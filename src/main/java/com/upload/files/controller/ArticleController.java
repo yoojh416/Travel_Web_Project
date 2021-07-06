@@ -66,7 +66,7 @@ public class ArticleController {
 		return "article/detail";
 	}	
 
-	/*@GetMapping("/article/update/{id}")
+	@GetMapping("/article/update/{id}")
 	public String getArticleUpdate(Model model, @PathVariable Long id) {
 		Article article = articleRepository.findById(id).get();
 		System.out.println(article);
@@ -82,6 +82,6 @@ public class ArticleController {
 		article.setUpdateDate(LocalDateTime.now());
 		articleRepository.save(article);
 		return "redirect:/article/detail" + article.getId();
-	}*/
+	}
 
 }
