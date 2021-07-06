@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#top{
+		height: 250px;
+		background-image: url('/resources/images/flight.jpg');
+		/* background-position: center; */
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	.ItemFilter{
+		width: 190px;
+		border: 1px solid #d7d7db;
+		margin: 10px;
+		margin-left: 15px;
+		padding: 20px;
+		padding-left: 25px;
+		border-radius: 4px;
+	}
+	.ItemFilterGroupTitle{
+		padding-top: 4px;
+		font-weight: 700;
+		font-size: 16px;
+	}
+	.ItemFilterGroupList{
+		cursor: pointer;
+		margin-top: 5px;
+		margin-left: 5px;
+		align-items: center;
+	}
+	.check{
+		height: 16px;
+		width: 16px;
+		margin-right: 5px;
+	}
+	.card{
+		margin-top: 10px;
+		margin-right: 5px;
+		margin-left: 5px;
+		width: 18rem;
+		height: 30rem
+	}
