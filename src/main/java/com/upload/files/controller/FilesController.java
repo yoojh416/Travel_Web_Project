@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 
 @Controller
-public class FilesController { //메인 이미지 파일 업로드 컨트롤러
+public class FilesController {
+    //메인 이미지 파일 업로드 컨트롤러
 
     @Autowired FilePathService filesService;
 
