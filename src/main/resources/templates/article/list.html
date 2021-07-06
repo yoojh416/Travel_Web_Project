@@ -24,7 +24,7 @@
           <tbody>
               <tr th:each="article : ${articleList}">
                 <td th:text="${article.id}"/>
-                <td ><a href="/article/${article.id}" th:text="${article.title}"></a></td>
+                <td ><a th:href="@{/article/{id}(id = ${article.id})}" th:text="${article.title}"></a></td>
                 <td th:text="${article.content}"/>
                 <td th:text="${article.registerDate}"/>
               </tr>

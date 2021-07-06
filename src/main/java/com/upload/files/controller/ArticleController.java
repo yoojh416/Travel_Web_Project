@@ -46,27 +46,27 @@ public class ArticleController {
 		return "article/list";
 	}
 
-	/**글 한개 클릭*/
-	@GetMapping("/article/{id}")
-	public String getArticle(Model model, @PathVariable Long id) {
-		Article article = articleRepository.findById(id).get();
-		model.addAttribute("article", article);
-		return "article/detail";
-	}
+//	/**글 한개 클릭*/
+//	@GetMapping("/article/{id}")
+//	public String getArticle(Model model, @PathVariable Long id) {
+//		Article article = articleRepository.findById(id).get();
+//		model.addAttribute("article", article);
+//		return "article/detail";
+//	}
 
 	/**수정*/
-	@GetMapping("/modify/{id}")
+	@GetMapping("/article/{id}")
 	public String getArticle(@PathVariable("id") Long id, Model model) {
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
-
 		List<Article> listarticles = articleRepository.findAll();
 		model.addAttribute("listarticles", listarticles);
 
 		return "article/detail";
 	}	
 
-	@GetMapping("/article/update/{id}")
+
+	/*@GetMapping("/article/update/{id}")
 	public String getArticleUpdate(Model model, @PathVariable Long id) {
 		Article article = articleRepository.findById(id).get();
 		System.out.println(article);
@@ -82,6 +82,6 @@ public class ArticleController {
 		article.setUpdateDate(LocalDateTime.now());
 		articleRepository.save(article);
 		return "redirect:/article/detail" + article.getId();
-	}
+	}*/
 
 }
