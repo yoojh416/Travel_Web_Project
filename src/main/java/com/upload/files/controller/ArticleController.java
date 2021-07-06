@@ -55,7 +55,7 @@ public class ArticleController {
 	}
 
 	/**수정*/
-	@GetMapping("/article/{id}")
+	@GetMapping("/modify/{id}")
 	public String getArticle(@PathVariable("id") Long id, Model model) {
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
