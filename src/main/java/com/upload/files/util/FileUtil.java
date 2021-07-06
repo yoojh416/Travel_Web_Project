@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class FileUtil {
+public class FileUtil { //제품 이미지용(
 
     public static void fileupload(byte[] file,String filePath,String fileName) throws IOException {
         File targetfile = new File(filePath);

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @ToString
 @Table(name = "review")
-public class Article {
+public class Article { //댓글 테이블 생성용
 	@Id @GeneratedValue
 	private Long id;
 	

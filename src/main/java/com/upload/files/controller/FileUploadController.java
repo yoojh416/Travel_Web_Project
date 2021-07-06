@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/article")
-public class FileUploadController {
+public class FileUploadController { //이미지(리뷰)용 컨트롤러
 
     @Autowired
     private ArticleRepository articleRepository;

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ProductForm {
+public class ProductForm { //컨테이너(상품 관련 컨트롤러 돌리기 위한 용도)
 
     private Long proNo;
     private String proTitle;

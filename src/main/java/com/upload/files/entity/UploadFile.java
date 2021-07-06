@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-public class UploadFile {
+public class UploadFile { //리뷰 사진용 엔티티
 	
 	@Id @GeneratedValue
 	private Long id;
