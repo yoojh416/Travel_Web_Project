@@ -26,25 +26,24 @@
 <div th:fragment="headerFragment">
     <div class="container">
         <nav class="navbar">
-            <a th:href="@{/index}"><img class="main_logo_img" th:src="@{/images/logo.png}" /></a>
+            <a th:href="@{/}"><img class="main_logo_img" th:src="@{/images/logo.png}" /></a>
+            <ul class="navbar_interval"></ul>
             <div class="navbar_logo">
-                <a th:href="@{/hello}"><i class="fas fa-pen-square">관리자</i></a>
+                <a th:href="@{/admin/upload}"><i class="fas fa-pen-square">관리자</i></a>
             </div>
             <!-- 관리자 ~ 회원정보 간격 조정 -->
             <ul class="navbar_interval">
                 <li></li><li></li><li></li>
             </ul>
             <ul class="navbar_menu">
-                <li><a th:href="@{/hello}"><i class="fas fa-sign-in-alt">로그인</i></a></li>
-                <li><a th:href="@{/hello}"><i class="fas fa-sign-out-alt">로그아웃</i></a></li>
-                <li><a th:href="@{/hello}"><i class="fas fa-bookmark">예약관리</i></a></li>
-                <li><a th:href="@{/hello}"><i class="fas fa-address-card">회원정보</i></a></li>
+                <li><a th:href="@{/user/login}"><i class="fas fa-sign-in-alt">로그인</i></a></li>
+                <li><a th:href="@{/user/logout}"><i class="fas fa-sign-out-alt">로그아웃</i></a></li>
+                <li><a th:href="@{/user/reservation}"><i class="fas fa-bookmark">예약관리</i></a></li>
+                <li><a th:href="@{/user/userInfo}"><i class="fas fa-address-card">회원정보</i></a></li>
             </ul>
             <ul class="navbar_icons">
-                <li><a href="#"><i class="fas fa-home">홈</i></a></li>
+                <li><a th:href="@{/}"><i class="fas fa-home">홈</i></a></li>
             </ul>
-
-
 
             <a href="#" class="navbar_toogleBtn"> <!--링크 변경 시 오류 발생(추가 안 해도 됨) -->
                 <i class="fas fa-bars"></i></a>
