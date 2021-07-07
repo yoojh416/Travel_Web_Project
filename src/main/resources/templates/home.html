@@ -1,10 +1,373 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<meta charset="UTF-8">
+<title>Title</title>
+
 <head>
-    <meta charset="UTF-8">
-    <title>main</title>
+  <!-- loader js link-->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+  <!-- icon link -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  <!-- custom css file link  -->
+  <link rel="stylesheet" th:href="@{/css/home.css}" >
+  <!-- loader js -->
+  <script>
+	$(window).load(function() { /*window가 로드되면 함수 실행*/
+		$('.loader').delay('1000').fadeOut(); /*loader class 처리해야 fade out*/
+	});
+</script>
+  <meta charset="UTF-8">
+  <title>메인 화면</title>
 </head>
 <body>
-main 화면 입니다.
+<th:block layout:fragment="content">
+  <!-- slidebox section starts -->
+  <div class="loader"></div>
+  <div class="slidebox">
+    <input type="radio" name="slide" id="slide01" checked> <input
+          type="radio" name="slide" id="slide02"> <input type="radio"
+                                                         name="slide" id="slide03"> <input type="radio" name="slide"
+                                                                                           id="slide04">
+    <ul class="slidelist">
+      <li class="slideitem">
+        <div>
+          <label for="slide04" class="left"></label> <label for="slide02"
+                                                            class="right"></label> <a href="#"><img
+                src="images/slideimg01.jpg"></a>
+        </div>
+      </li>
+      <li class="slideitem">
+        <div>
+          <label for="slide01" class="left"></label> <label for="slide03"
+                                                            class="right"></label> <a href="#"><img
+                src="images/slideimg02.jpg"></a>
+        </div>
+      </li>
+      <li class="slideitem">
+        <div>
+          <label for="slide02" class="left"></label> <label for="slide04"
+                                                            class="right"></label> <a href="#"><img
+                src="images/slideimg03.jpg"></a>
+        </div>
+      </li>
+      <li class="slideitem">
+        <div>
+          <label for="slide03" class="left"></label> <label for="slide01"
+                                                            class="right"></label> <a href="#"><img
+                src="images/slideimg04.jpg"></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- slidebox section ends -->
+  <!-- book section starts  -->
+
+  <section class="book" id="book">
+    <div class="row">
+      <form action="">
+        <div class="inputBox">
+
+          <select class="minimal">
+            <option selected>여행지</option>
+            <option value="korea">국내</option>
+            <option value="japan">일본</option>
+            <option value="china">중국</option>
+            <option value="Southeast_Asia">동남아</option>
+            <option value="Europe">유럽</option>
+          </select> <select class="minimal">
+          <option selected>계절</option>
+          <option value="spring">봄</option>
+          <option value="summer">여름</option>
+          <option value="autumn">가을</option>
+          <option value="winter">겨울</option>
+        </select> <select class="minimal">
+          <option selected>테마</option>
+          <option value="family">가족</option>
+          <option value="friend">친구</option>
+          <option value="couple">커플</option>
+          <option value="filial_piety">효도</option>
+        </select>
+          <button type="button" class="btn" id="img_btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- book section ends -->
+
+
+  <!-- sms icon starts -->
+  <div class="sms">
+    <ul>
+      <li><a href="#"><i class="fas fa-sms"></i></a></li>
+      <li><a href="#"><i class="fab fa-google"></i></a></li>
+    </ul>
+  </div>
+
+  <!-- sms icon ends -->
+
+  <!-- packages section starts  -->
+
+  <!-- 간격 조정 starts -->
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <!-- 간격 조정 ends -->
+
+  <section class="packages" id="package">
+    <h1 class="heading">
+      <span><i class="fas fa-plane-departure">너나들이와 지금 떠나요</i></span>
+    </h1>
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div class="box-container">
+
+      <div class="box">
+        <a href="#"><img src="images/p1.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">제주도 한라산</a>
+          </h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Veritatis, nam!</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a href="#"><img src="images/p2.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">태국 여행</a>
+          </h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Veritatis, nam!</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a href="#"><img src="images/p3.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">부산 여행</a>
+          </h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Veritatis, nam!</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a href="#"><img src="images/p4.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">베트남 다낭으로 떠나요</a>
+          </h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Veritatis, nam!</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a href="#"><img src="images/p5.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">뉴요커는 꿈이 아니에요 단 7일뿐</a>
+          </h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Veritatis, nam!</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <a href="#"><img src="images/p6.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">(Seoul)@BTS @PSY @SON</a>
+          </h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Veritatis, nam!</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- packages section ends -->
+
+  <!-- 간격 조정 starts -->
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <!-- 간격 조정 ends -->
+
+
+  <!-- special section starts -->
+  <h1 class="heading">
+    <span><i class="fas fa-calendar-check">특별한 날을 만드는 건 어때요?</i></span>
+  </h1>
+  <section class="packages" id="packages">
+    <div class="box-container">
+
+      <div class="box">
+        <a href="#"><img src="images/e1.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">북한산 오전 투어(6:00~15:00)</a>
+          </h3>
+          <p>일출만 보고 와요</p>
+        </div>
+      </div>
+      <div class="box">
+        <a href="#"><img src="images/e2.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">(서울) 특별한 날 연인과 호캉스</a>
+          </h3>
+          <p>뉴욕</p>
+        </div>
+      </div>
+      <div class="box">
+        <a href="#"><img src="images/e3.jpg" alt=""></a>
+        <div class="content">
+          <h3>
+            <a href="#">(강원도) 옥수수 한 사발 하실례예?</a>
+          </h3>
+          <p>서울</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- special section ends -->
+
+  <!-- 간격 조정 starts -->
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <ul class="navbar_interval">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <!-- 간격 조정 ends -->
+
+  <!-- gallery section starts  -->
+
+  <section class="gallery" id="gallery">
+
+    <h1 class="heading">
+      <span><i class="fas fa-hand-peace">베스트 리뷰 및 이벤트</i></span>
+    </h1>
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <div class="box-container">
+      <div class="box1">
+        <img class="gallery_img" src="images/g-7.jpg" alt="">
+        <img class="best_icon" src="images/best.png" alt="">
+        <div class="content">
+          <h3>정한나 회원님</h3>
+          <p>베스트 리뷰 : 우정 여행 패키지</p>
+          <br> <br> <br> <a href="#" class="btn">더 보기</a>
+        </div>
+      </div>
+
+      <div class="box2">
+        <a href="#"><img src="images/event.PNG" alt=""></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- gallery section ends -->
+</th:block>
 </body>
 </html>

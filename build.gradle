@@ -42,6 +42,7 @@ dependencies {
 	implementation group: 'org.webjars', name: 'font-awesome', version: '5.15.3'
 	implementation group: 'org.webjars', name: 'webjars-locator', version: '0.41'
 
+	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.3'
 
 
 
