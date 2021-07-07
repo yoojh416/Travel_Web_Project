@@ -27,7 +27,7 @@ public class ImageService {
 		System.out.println(rootLocation.toString());
 	}
 	
-	public UploadFile store(MultipartFile file) throws Exception {
+	public UploadFile store(MultipartFile file) throws Exception { //DB에 저장하기 위한 path 생성 => path를 DB로 저장하여 사용(리뷰용)
 
 		try {
 			if(file.isEmpty()) {

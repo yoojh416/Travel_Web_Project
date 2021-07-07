@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductController { //여행 상품용 컨트롤러
 
     private final ProductService productService;
 

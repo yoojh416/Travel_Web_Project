@@ -16,7 +16,7 @@ import java.util.List;
 import static java.rmi.server.LogStream.log;
 
 @Controller
-public class ArticleController {
+public class ArticleController { //리뷰용 컨트롤러
 
 	@Autowired
 	private ArticleRepository articleRepository;
