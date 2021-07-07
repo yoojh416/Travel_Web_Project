@@ -1,3 +1,4 @@
+/*
 package com.upload.files.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,3 +55,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
+*/

@@ -8,9 +8,18 @@
 <body>
 
 <div class="container">
-    <h2 class="mt-5">여행 시작일: <strong th:text="${#dates.format(order.dateIn, 'yyyy-MM-dd')}" ></strong></h2>
-    <h2 class="mt-5">여행 마지막일: <strong th:text="${#dates.format(order.dateOut, 'yyyy-MM-dd')}" ></strong></h2>
-    <a th:href="@{/}" class="btn btn-primary">Home 으로</a>
+    <h2>정한나 님, 예약해 주셔서 감사합니다!</h2>
+    <h3 class="mt-5">주문 번호: <strong th:name="orderId" th:text="${order.orderId}" ></strong></h3>
+    <h3 class="mt-5">결제 금액: <strong th:name="orderPrice" th:text="${order.orderPrice}" ></strong></h3>
+    <h3 class="mt-5">인원 수: <strong th:name="orderQty" th:text="${order.orderQty}" ></strong></h3>
+    <h3 class="mt-5">총 금액: <strong th:name="totalPrice" th:text="${order.orderPrice * order.orderQty}" ></strong></h3>
+
+    <hr />
+
+    <h3 class="mt-5">여행 시작일: <strong th:name="dateIn" th:text="${#dates.format(order.dateIn, 'yyyy-MM-dd')}" ></strong></h3>
+    <h3 class="mt-5">여행 마지막일: <strong th:name="dateOut" th:text="${#dates.format(order.dateOut, 'yyyy-MM-dd')}" ></strong></h3>
+    <a th:href="@{/order/modify}" class="btn btn-primary">수정하기</a>
+
 </div>
 
 </body>

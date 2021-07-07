@@ -1,10 +1,11 @@
 package com.upload.files.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+
 import java.util.Date;
 
 @Entity
@@ -14,11 +15,16 @@ public class Booking {
 
     @Id
     @GeneratedValue
-    private Long OrderId;
-    private int OrderPrice;
-    private int OrderQty;
-    private LocalDate OrderDate;
-    private LocalDate dateIn;
-    private LocalDate dateOut;
+    private Long orderId;
+    private int orderPrice;
+    private int orderQty;
+
+    @Column(name = "order_date", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
+    private Date orderDate;
+
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+    private Date dateIn;
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+    private Date dateOut;
 
 }
