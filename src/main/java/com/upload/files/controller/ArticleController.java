@@ -6,9 +6,7 @@ import com.upload.files.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -46,42 +44,39 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "article/list";
 	}
 
-//	/**글 한개 클릭*/
-//	@GetMapping("/article/{id}")
-//	public String getArticle(Model model, @PathVariable Long id) {
-//		Article article = articleRepository.findById(id).get();
-//		model.addAttribute("article", article);
-//		return "article/detail";
-//	}
-
-	/**수정*/
+	/**상세 페이지*/
 	@GetMapping("/article/{id}")
 	public String getArticle(@PathVariable("id") Long id, Model model) {
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
-		List<Article> listarticles = articleRepository.findAll();
-		model.addAttribute("listarticles", listarticles);
+
+		List<Article> listArticles = articleRepository.findAll();
+		model.addAttribute("listArticles", listArticles);
 
 		return "article/detail";
-	}	
+	}
 
-
-	/*@GetMapping("/article/update/{id}")
+	/**수정 페이지*/
+	@GetMapping("/article/update/{id}")
 	public String getArticleUpdate(Model model, @PathVariable Long id) {
 		Article article = articleRepository.findById(id).get();
-		System.out.println(article);
 		model.addAttribute("article", article);
 		return "article/update";
 	}
 
-	@PostMapping("/article/updated/{id}")
+	@PostMapping(value = "/article/updated/{id}")
 	public String setArticleUpdate(Model model, @PathVariable Long id, Article updatedArticle) {
 		Article article = articleRepository.findById(id).get();
 		article.setTitle(updatedArticle.getTitle());
 		article.setContent(updatedArticle.getContent());
 		article.setUpdateDate(LocalDateTime.now());
 		articleRepository.save(article);
-		return "redirect:/article/detail" + article.getId();
-	}*/
+
+		List<Article> articleList = articleRepository.findAll();
+		model.addAttribute("articleList", articleList);
+		articleList.forEach(System.out::println);
+
+		return "article/list";
+	}
 
 }

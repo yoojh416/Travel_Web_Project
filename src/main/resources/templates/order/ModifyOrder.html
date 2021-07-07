@@ -38,7 +38,7 @@ $(document).ready(function () {
 <!-- Navigation -->
 
 <div class="container">
-    <form method="post" th:object="${order}" action="/order/confirm">
+    <form method="post" th:object="${order}">
 
         <div class="form-group row">
 
@@ -80,10 +80,9 @@ $(document).ready(function () {
                 </div>
             </div>
         </div>
-
-        <button class="btn btn-primary" type="submit">예약하기</button>
+        <button class="btn btn-primary" type="submit" onclick="/order/modify">수정하기</button>
     </form>
-
+    <a th:href="@{/order/cancel}" class="btn btn-danger">취소하기</a>
 </div>
 
 </body>
