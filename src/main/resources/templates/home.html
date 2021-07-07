@@ -28,35 +28,34 @@
   <div class="loader"></div>
   <div class="slidebox">
     <input type="radio" name="slide" id="slide01" checked> <input
-          type="radio" name="slide" id="slide02"> <input type="radio"
-                                                         name="slide" id="slide03"> <input type="radio" name="slide"
+          type="radio" name="slide" id="slide02"> <input type="radio" name="slide" id="slide03"> <input type="radio" name="slide"
                                                                                            id="slide04">
     <ul class="slidelist">
       <li class="slideitem">
         <div>
           <label for="slide04" class="left"></label> <label for="slide02"
-                                                            class="right"></label> <a href="#"><img
+                                                            class="right"></label><a th:href="@{/board/list}"><img
                 src="images/slideimg01.jpg"></a>
         </div>
       </li>
       <li class="slideitem">
         <div>
           <label for="slide01" class="left"></label> <label for="slide03"
-                                                            class="right"></label> <a href="#"><img
+                                                            class="right"></label><a th:href="@{/board/list}"><img
                 src="images/slideimg02.jpg"></a>
         </div>
       </li>
       <li class="slideitem">
         <div>
           <label for="slide02" class="left"></label> <label for="slide04"
-                                                            class="right"></label> <a href="#"><img
+                                                            class="right"></label><a th:href="@{/board/list}"><img
                 src="images/slideimg03.jpg"></a>
         </div>
       </li>
       <li class="slideitem">
         <div>
           <label for="slide03" class="left"></label> <label for="slide01"
-                                                            class="right"></label> <a href="#"><img
+                                                            class="right"></label><a th:href="@{/board/list}"><img
                 src="images/slideimg04.jpg"></a>
         </div>
       </li>
@@ -104,8 +103,8 @@
   <!-- sms icon starts -->
   <div class="sms">
     <ul>
-      <li><a href="#"><i class="fas fa-sms"></i></a></li>
-      <li><a href="#"><i class="fab fa-google"></i></a></li>
+      <li><a th:href="@{/board/list}"><i class="fas fa-sms"></i></a></li>
+      <li><a th:href="@{/board/list}"><i class="fab fa-google"></i></a></li>
     </ul>
   </div>
 
@@ -161,10 +160,10 @@
     <div class="box-container">
 
       <div class="box">
-        <a href="#"><img src="images/p1.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/p1.jpg"></a>
         <div class="content">
           <h3>
-            <a href="#">제주도 한라산</a>
+            <a th:href="@{/board/list}">제주도 한라산</a>
           </h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Veritatis, nam!</p>
@@ -172,10 +171,10 @@
       </div>
 
       <div class="box">
-        <a href="#"><img src="images/p2.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/p2.jpg" ></a>
         <div class="content">
           <h3>
-            <a href="#">태국 여행</a>
+            <a th:href="@{/board/list}">태국 여행</a>
           </h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Veritatis, nam!</p>
@@ -183,10 +182,10 @@
       </div>
 
       <div class="box">
-        <a href="#"><img src="images/p3.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/p3.jpg" alt=""></a>
         <div class="content">
           <h3>
-            <a href="#">부산 여행</a>
+            <a th:href="@{/board/list}">부산 여행</a>
           </h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Veritatis, nam!</p>
@@ -194,10 +193,10 @@
       </div>
 
       <div class="box">
-        <a href="#"><img src="images/p4.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/p4.jpg" alt=""></a>
         <div class="content">
           <h3>
-            <a href="#">베트남 다낭으로 떠나요</a>
+            <a th:href="@{/board/list}">베트남 다낭으로 떠나요</a>
           </h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Veritatis, nam!</p>
@@ -205,10 +204,10 @@
       </div>
 
       <div class="box">
-        <a href="#"><img src="images/p5.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/p5.jpg" alt=""></a>
         <div class="content">
           <h3>
-            <a href="#">뉴요커는 꿈이 아니에요 단 7일뿐</a>
+            <a th:href="@{/board/list}">뉴요커는 꿈이 아니에요 단 7일뿐</a>
           </h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Veritatis, nam!</p>
@@ -216,10 +215,10 @@
       </div>
 
       <div class="box">
-        <a href="#"><img src="images/p6.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/p6.jpg" alt=""></a>
         <div class="content">
           <h3>
-            <a href="#">(Seoul)@BTS @PSY @SON</a>
+            <a th:href="@{/board/list}">(Seoul)@BTS @PSY @SON</a>
           </h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Veritatis, nam!</p>
@@ -271,28 +270,28 @@
     <div class="box-container">
 
       <div class="box">
-        <a href="#"><img src="images/e1.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/e1.jpg" alt=""></a>
         <div class="content">
           <h3>
-            <a href="#">북한산 오전 투어(6:00~15:00)</a>
+            <a th:href="@{/board/list}">북한산 오전 투어(6:00~15:00)</a>
           </h3>
           <p>일출만 보고 와요</p>
         </div>
       </div>
       <div class="box">
-        <a href="#"><img src="images/e2.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/e2.jpg" alt=""></a>
         <div class="content">
           <h3>
-            <a href="#">(서울) 특별한 날 연인과 호캉스</a>
+            <a th:href="@{/board/list}">(서울) 특별한 날 연인과 호캉스</a>
           </h3>
           <p>뉴욕</p>
         </div>
       </div>
       <div class="box">
-        <a href="#"><img src="images/e3.jpg" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/e3.jpg" alt=""></a>
         <div class="content">
           <h3>
-            <a href="#">(강원도) 옥수수 한 사발 하실례예?</a>
+            <a th:href="@{/board/list}">(강원도) 옥수수 한 사발 하실례예?</a>
           </h3>
           <p>서울</p>
         </div>
@@ -357,12 +356,12 @@
         <div class="content">
           <h3>정한나 회원님</h3>
           <p>베스트 리뷰 : 우정 여행 패키지</p>
-          <br> <br> <br> <a href="#" class="btn">더 보기</a>
+          <br> <br> <br> <a th:href="@{/board/list}" class="btn">더 보기</a>
         </div>
       </div>
 
       <div class="box2">
-        <a href="#"><img src="images/event.PNG" alt=""></a>
+        <a th:href="@{/board/list}"><img src="images/event.PNG" alt=""></a>
       </div>
     </div>
   </section>
