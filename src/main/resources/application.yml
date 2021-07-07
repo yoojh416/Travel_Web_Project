@@ -1,4 +1,12 @@
 spring:
+  devtools:
+    restart:
+      enabled: true
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+    suffix: .html
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/passionatetour?characterEncoding=UTF-8&serverTimezone=UTC
@@ -6,18 +14,41 @@ spring:
     password: 'user_Password'
 
   jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: true
     hibernate:
-      #naming:
-      #  physical-stragtegy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-      #  ddl-auto: create
-    properties:
+      format_sql: true
+      ddl-auto: update
+#기존 jpa
+#  jpa:
+#    hibernate:
+#      #naming:
+#      #  physical-stragtegy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+#      #  ddl-auto: create
+#    properties:
+#      hibernate:
+#
+#        # show_sql: true
+#        format_sql: true
+
+logging:
+  level:
+    org:
       hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
 
-        # show_sql: true
-        format_sql: true
+handlebars:
+  suffix: .html
+  expose-session-attributes: true
 
-logging.level:
-  org.hibernate.SQL: debug
-# org.hibernate.type: trace
+#기존 logging
+#logging.level:
+#  org.hibernate.SQL: debug
+## org.hibernate.type: trace
 
 temp.path: D:\upload

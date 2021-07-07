@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User Account Managment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+    <script>
+   $(function () {
+   var bindDatePicker = function() {
+		$(".date").datetimepicker({
+        format:'YYYY-MM-DD',
+			icons: {
+				time: "fa fa-clock-o",
+				date: "fa fa-calendar",
+				up: "fa fa-arrow-up",
+				down: "fa fa-arrow-down"
+			}
+		}).find('input:first').on("blur",function () {
+			// check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+			// update the format if it's yyyy-mm-dd
+			var date = parseDate($(this).val());
+
+			if (! isValidDate(date)) {
+				//create date based on momentjs (we have that)
+				date = moment().format('YYYY-MM-DD');
+			}
+
+			$(this).val(date);
+		});
+	}
+
+   var isValidDate = function(value, format) {
+		format = format || false;
+		// lets parse the date to the best of our knowledge
+		if (format) {
+			value = parseDate(value);
+		}
+
+		var timestamp = Date.parse(value);
+
+		return isNaN(timestamp) == false;
+   }
+
+   var parseDate = function(value) {
+		var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+		if (m)
+			value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+		return value;
+   }
+
+   bindDatePicker();
+ });
+</script>
+
+<!--    <script>
+
+    function Save() {
+    document.getElementById('opType').value ="save";
+    }
+    function Search(){
+    document.getElementById('opType').value ="search";
+    }
+    </script>-->
+</head>
+
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container" style="padding=50% 0% 0% 0%;">
+
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home으로
+                        <span class="sr-only">(current)</span>
+                    </a>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <form method="post" th:object="${order}" action="/order/confirm">
+        <div class="form-group row">
+            <div class="col-md-4 mt-5">
+                <label for="dateIn">여행의 시작</label>
+                <div class="input-group date">
+                    <input type="date" class="form-control" id="dateIn" autocomplete="off" th:field="*{dateIn}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-5">
+                <label for="dateOut">여행의 마지막</label>
+                <div class="input-group date">
+                    <input type="date" class="form-control" id="dateOut" autocomplete="off" th:field="*{dateOut}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">예약하기</button>
+    </form>
+
+</div>
+
+</body>
+</html>

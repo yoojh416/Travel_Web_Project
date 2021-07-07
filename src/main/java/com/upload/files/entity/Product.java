@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Table(name = "product")
 @Getter @Setter
@@ -21,6 +23,7 @@ public class Product {
     private String season;
     private String theme;
 
+
     public Product(){}
 
     public Product(Long proNo, String proTitle, String proWriter, String proContent
@@ -33,5 +36,6 @@ public class Product {
         this.region = region;
         this.season = season;
         this.theme = theme;
+
     }
 }

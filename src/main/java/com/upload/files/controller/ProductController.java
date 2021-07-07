@@ -11,7 +11,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -27,8 +30,8 @@ public class ProductController { //여행 상품용 컨트롤러
     }
 
     @PostMapping(value = "/admin/register")
-    public String registered(@Validated ProductForm form, BindingResult result) {
-        
+    public String registered(@Validated ProductForm form, BindingResult result, Model model, HttpServletRequest request) {
+
         if (result.hasErrors()) {
             return "admin/upload";
         }
@@ -37,17 +40,15 @@ public class ProductController { //여행 상품용 컨트롤러
                 , form.getProContent(), form.getRegion(), form.getSeason(), form.getTheme(), form.getPrice());
         productService.save(product);
 
-        return "redirect:/admin/list";
+        model.addAttribute("proNo", product.getProNo());
+
+        /*HttpSession session = request.getSession();
+        session.setAttribute("proNo", product.getProNo());*/
+
+        return "/admin/fileUpload";
     }
 
-    @GetMapping(value = "/admin/list")
-    public String list(Model model) {
-        List<Product> products = productService.products();
-        model.addAttribute("products", products);
-        return "admin/itemList";
-    }
-
-    @GetMapping(value = "/list")
+    @RequestMapping(value = "/board/list")
     public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model){
         List<Product> products = productService.findItemsByFilter(listSearch);
         model.addAttribute("items", products);

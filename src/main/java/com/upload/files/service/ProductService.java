@@ -35,7 +35,7 @@ public class ProductService {
 
     @Transactional
     public void updateProduct(Long proNo, String ptoTitle, int price, String proWriter, String proContent
-    , String region, String season, String theme) {
+            , String region, String season, String theme) {
 
         Product product = productRepository.findOne(proNo);
         product.setProTitle(ptoTitle);

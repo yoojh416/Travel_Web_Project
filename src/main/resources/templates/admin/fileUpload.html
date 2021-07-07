@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>file upload</title>
@@ -10,6 +10,7 @@
 
 <div class="container">
     <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:name="proNo" th:value="${proNo}">
         <input type="file" name="files">
         <button type="submit" class="btn btn-dark">업로드</button>
     </form>

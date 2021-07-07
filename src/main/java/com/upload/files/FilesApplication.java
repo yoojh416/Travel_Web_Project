@@ -1,5 +1,6 @@
 package com.upload.files;
 
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,11 @@ public class FilesApplication {
 	@Bean(name = "uploadPath")
 	public String uploadPath() {
 		return "d:/image/review";
+	}
+
+	/*캘린더 실행*/
+	public void calendar(String[] args) {
+		SpringApplication.run(ApplicationArguments.class, args);
 	}
 
 }

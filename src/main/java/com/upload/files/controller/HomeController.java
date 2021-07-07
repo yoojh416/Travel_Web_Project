@@ -1,17 +1,41 @@
 package com.upload.files.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller @Slf4j
+@Controller
 public class HomeController {
+    @GetMapping("hello")
+    public String hello(Model model) {
+        model.addAttribute("data", "hello!!");
+        return "hello";
+    }
 
-    @RequestMapping("/")
-    public String home(){
-        log.info("home controller");
+
+    @GetMapping("default")
+    public String Idefault(Model model) {
+        model.addAttribute("data", "hello!!");
+        return "layout/default";
+    }
+
+
+    @GetMapping("header")
+    public String header(Model model) {
+        model.addAttribute("data", "hello!!");
+        return "/fragments/header";
+    }
+
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("data", "hello!!");
         return "home";
     }
 
+    @GetMapping("footer")
+    public String footer(Model model) {
+        model.addAttribute("data", "hello!!");
+        return "/fragments/footer";
+    }
 
 }

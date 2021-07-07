@@ -1,0 +1,91 @@
+body {
+	margin: 0; /*웹 페이지를 상단 바가 다 채움*/
+	font-family: 'Roboto', sans-serif; /*body 내 모든 포튼 동일 적용*/
+	text-align: center;
+
+}
+.navbar {
+    position: fixed;
+	display: flex; /*한 줄에 나란히*/
+	width: 100%;
+	justify-content: center;
+	align-items: center; /*중앙 배치*/
+	background-color: #16a085;
+	z-index: 1;
+}
+a{
+	text-decoration: none;/*.없앰*/
+	color: white;
+}
+.main_logo_img{
+	width:150px;
+	height:70px;
+	padding: 0.3rem 0.35rem;
+}
+.navbar_logo {
+	font-size: 24px;
+	color : white;
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+
+}
+navbar_logo li {
+   width: 140px;
+}
+
+.navbar_logo:hover {
+	background-color: #66c9a8;
+	border-radius: 4px;
+}
+.navbar_interval{
+	display:flex;
+	list-style: none;
+	padding-left: 0;
+}
+.navbar_interval li {
+	padding: 8px 50px; /*메뉴안 내용들의 간격 조정*/
+}
+.navbar_menu {
+	display: flex; /*한 줄에 하나씩 나옴*/
+	list-style:none; /*홈이 같지 않음*/
+	padding-left: 0; /*이렇게 지정해서 중앙에 배치*/
+	font-size: 24px;
+	text-align: center;
+}
+.navbar_menu li {
+    width: 140px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+}
+/*.navbar_menu li a{
+    text-align: center;
+    display: inline-block;
+}*/
+.navbar_menu li:hover {/*클릭시 색깔 변함*/
+	background-color: #66c9a8;
+	border-radius: 4px; /*모서리 둥글게*/
+}
+.navbar_icons{
+	color: white;
+	font-size: 24px;
+	display: flex;
+	/*list-style:none;*/
+	padding-left: 0rem; /*중앙 배치*/
+}
+.navbar_icons li {
+    width: 120px;
+	text-align: center;
+}
+.navbar_icons li:hover {
+	background-color: #66c9a8;
+	border-radius: 4px; /*모서리 둥글게*/
+}
+.navbar_toogleBtn { /*위치 조정*/
+	display: none; /*큰 크기때는 안 보이게 함*/
+	position: absolute; /*제일 위에 배치*/
+	right: 32px; /*오른쪽에서 32px 떨어진 곳에 배치*/
+	font-size: 18px;
+	color: white;
+}
