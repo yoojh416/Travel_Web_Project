@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>예약 확인 페이지</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="mt-5">여행 시작일: <strong th:text="${#dates.format(order.dateIn, 'yyyy-MM-dd')}" ></strong></h2>
+    <h2 class="mt-5">여행 마지막일: <strong th:text="${#dates.format(order.dateOut, 'yyyy-MM-dd')}" ></strong></h2>
+    <a th:href="@{/}" class="btn btn-primary">Home 으로</a>
+</div>
+
+</body>
+</html>
