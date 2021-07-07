@@ -15,7 +15,10 @@ public class ProductForm { //컨테이너(상품 관련 컨트롤러 돌리기 �
     private String season;
     private String theme;
 
-    public ProductForm(Long proNo, String proTitle, String proWriter, int price, String proContent, String region, String season, String theme) {
+    private int fno;
+    private Long reNo;
+
+    public ProductForm(Long proNo, String proTitle, String proWriter, int price, String proContent, String region, String season, String theme, int fno, Long reNo) {
         this.proNo = proNo;
         this.proTitle = proTitle;
         this.proWriter = proWriter;
@@ -24,6 +27,8 @@ public class ProductForm { //컨테이너(상품 관련 컨트롤러 돌리기 �
         this.region = region;
         this.season = season;
         this.theme = theme;
+        this.fno = fno;
+        this.reNo = reNo;
     }
 
     public ProductForm() {}

@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Getter @Setter
 @Table(name = "files")
@@ -16,5 +18,6 @@ public class FilePath { //메인 이미지(제품)용 엔티티 - DB에 저장�
     String fileName;
     String fileOriName;
     String fileUrl;
+    Long proNo;
 
 }

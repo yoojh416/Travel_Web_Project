@@ -6,6 +6,7 @@ import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
 import com.upload.files.entity.QProduct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -62,7 +63,7 @@ public class ProductRepository {
             return null;
         }
         else {
-            
+
         }
         return product.region.like(regionCond);
     }

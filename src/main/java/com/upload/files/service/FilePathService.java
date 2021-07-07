@@ -17,6 +17,7 @@ public class FilePathService { //제품용 이미지 저장 위한 서비스 => 
         f.setFileName(files.getFileName());
         f.setFileOriName(files.getFileOriName());
         f.setFileUrl(files.getFileUrl());
+        f.setProNo(files.getProNo());
 
         filePathRepository.save(f);
     }
