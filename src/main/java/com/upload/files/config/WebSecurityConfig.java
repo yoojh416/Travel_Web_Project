@@ -1,4 +1,3 @@
-/*
 package com.upload.files.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/account/register", "/css/**").permitAll()
+                    .antMatchers("/", "/account/register", "/css/**","/api/**","/images/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -55,4 +54,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
-*/
+
