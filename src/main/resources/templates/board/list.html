@@ -4,6 +4,9 @@
     <title>여행상품</title>
     <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link th:href="@{/css/listStyle.css}" rel="stylesheet">
 <body>
 <div class="jumbotron" id="top">
 
@@ -76,22 +79,22 @@
         <div class="col-lg-10 card-deck">
             <div class="col-lg-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
                 <div class="card">
-                    <img class="card-img-top" src="#" alt="Card image cap">
+                    <img class="card-img-top" th:src="@{'/images/p4.jpg'}" alt="Card image cap">
                     <div class="card-body">
-                        <h3><a class="proTitle" th:href="@{'/board/get?proNo='+${list.proNo}}" th:text = "${list.proTitle}"></a></h3>
-                        <p class="card-text" th:text="${list.proContent}"></p>
+                        <h4><a class="proTitle" th:href="@{'/board/get?proNo='+${list.proNo}}" th:text = "${list.proTitle}"></a></h4>
+                        <h5><p class="card-text" th:text="${list.proContent}"></p></h5>
                         @<input type="hidden" name="region" th:text="${list.region}"><br>
                         @<input type="hidden" name="season" th:text="${list.season}"><br>
                         @<input type="hidden" name="theme" th:text="${list.theme}"><br>
                     </div>
                     <div class="card-footer" style="background-color: white">
-                        <p class="card-text" th:text="${list.price}"></p>
+                        <p class="card-text" th:text="${list.price}">원 ~ </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div th:replace="fragments/footer :: footer"/>
+   <!-- <div th:replace="fragments/footer :: footer"/>-->
 </div>
 </body>
 <!--<th:block layout:fragment="script">

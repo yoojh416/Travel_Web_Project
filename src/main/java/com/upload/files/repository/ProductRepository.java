@@ -34,6 +34,16 @@ public class ProductRepository {
                 .getResultList();
     }
 
+    /*public int update(Product product, Long proNo) {
+        return em.createQuery("update Product p set p.price = :price" +
+                ", p.proContent = :proContent" +
+                ", p.proTitle = :proTitle" +
+                ", p.proWriter = :proWriter" +
+                ", p.region = :region}" +
+                ", p.season = :#{#product.season}" +
+                ", p.theme = :#{#product.theme} where p.proNo = :proNo", Product.class).executeUpdate();
+    }*/
+
     public List<Product> findByFilter(ListSearch listSearch){
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QProduct product = QProduct.product;
@@ -47,12 +57,12 @@ public class ProductRepository {
                 .fetch();
     }
 
-    public List<Product> findByProNo(Long proNo) {
+    /*public List<Product> findByProNo(Long proNo) {
         return em.createQuery("select m from product m where m.proNo = :proNo",
                 Product.class)
                 .setParameter("proNo", proNo)
                 .getResultList();
-    }
+    }*/
 
     private BooleanExpression regionLike(String regionCond) {
         QProduct product = QProduct.product;
@@ -62,9 +72,7 @@ public class ProductRepository {
         if (!cond) {
             return null;
         }
-        else {
 
-        }
         return product.region.like(regionCond);
     }
 

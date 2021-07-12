@@ -60,6 +60,37 @@ public class FilesController {
         return "redirect:/admin/list";
     }
 
+   /* @RequestMapping("/update")
+    public String fileUpdate(HttpServletRequest request
+            , @RequestPart MultipartFile files
+            , Model model) throws Exception {
+
+        FilePath file = new FilePath();
+        Long afterUpload = Long.parseLong(request.getParameter("proNo"));
+
+        String sourceFileName = files.getOriginalFilename();
+        String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
+        File destinationFile;
+        String destinationFileName;
+        String fileUrl = "D:/upload/main/";
+
+        do {
+            destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
+            destinationFile = new File(fileUrl + destinationFileName);
+        } while (destinationFile.exists());
+
+        destinationFile.getParentFile().mkdirs();
+        files.transferTo(destinationFile);
+
+        file.setProNo(afterUpload);
+        file.setFileName(destinationFileName);
+        file.setFileOriName(sourceFileName);
+        file.setFileUrl(fileUrl);
+
+        filesService.updateFileInfo(file);
+        return "redirect:/admin/list";
+    }*/
+
     @GetMapping("/admin/list")
     public String list(Model model) {
         List<Product> products = productService.products();

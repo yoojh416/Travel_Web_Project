@@ -20,15 +20,15 @@ import java.util.List;
 public class ProductController { //여행 상품용 컨트롤러
 
     private final ProductService productService;
-    private final ProductRepository productRepository;
+    //private final ProductRepository productRepository;
 
-    @GetMapping(value = "/admin/new")
+    @GetMapping(value = "/admin/new") //상품 등록
     public String register(Model model) {
         model.addAttribute("productForm", new ProductForm());
         return "admin/upload";
     }
 
-    @PostMapping(value = "/admin/register")
+    @PostMapping(value = "/admin/register") //입력한 상품 정보 DB에 저장
     public String registered(@Validated ProductForm form, BindingResult result, Model model, HttpServletRequest request) {
 
         if (result.hasErrors()) {
@@ -41,25 +41,45 @@ public class ProductController { //여행 상품용 컨트롤러
 
         model.addAttribute("proNo", product.getProNo());
 
-        /*HttpSession session = request.getSession();
-        session.setAttribute("proNo", product.getProNo());*/
-
         return "/admin/fileUpload";
     }
 
-    @RequestMapping("/board/list")
-    public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model){
+    @GetMapping("/admin/modify/{proNo}") //상품 정보 수정 요청
+    public String getProductUpdate(Model model, @PathVariable Long proNo) {
+        //Product product = (Product) productRepository.findByProNo(proNo);
+        Product product = productService.findOne(proNo);
+        model.addAttribute("productForm", product);
+
+        return "admin/modifyUpload";
+    }
+
+    @PostMapping(value = "/admin/modify/{proNo}") //상품 등록 후 상품 목록으로 이동
+    public String setProductUpdate(Model model, @PathVariable Long proNo, Product updatedProduct){
+
+        /*Product product = productService.findOne(proNo);
+        product.setProNo(updatedProduct.getProNo());
+        product.setProTitle(updatedProduct.getProTitle());
+        product.setProWriter(updatedProduct.getProWriter());
+        product.setProContent(updatedProduct.getProContent());
+        product.setRegion(updatedProduct.getRegion());
+        product.setSeason(updatedProduct.getSeason());
+        product.setTheme(updatedProduct.getTheme());
+        product.setPrice(updatedProduct.getPrice());
+        productService.updateProduct();*/
+
+        /*productService.updateProduct(updatedProduct, proNo);*/
+
+        List<Product> productList = productService.products();
+        model.addAttribute("products", productList);
+
+        return "admin/modifyFileUpload";
+    }
+
+    @RequestMapping("/board/list") //등록 상품 목록
+    public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
         model.addAttribute("items", products);
         return "board/list";
     }
-
-    @GetMapping("/admin/modify/{proNo}")
-	public String getArticle(Model model, @PathVariable Long proNo) {
-		Product product = (Product) productRepository.findByProNo(proNo);
-		model.addAttribute("proNo", proNo);
-
-		return "admin/modify";
-	}
 
 }

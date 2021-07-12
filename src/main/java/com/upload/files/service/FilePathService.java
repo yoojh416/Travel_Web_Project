@@ -22,4 +22,8 @@ public class FilePathService { //제품용 이미지 저장 위한 서비스 => 
         filePathRepository.save(f);
     }
 
+    /*public void updateFileInfo(FilePath files) {
+        filePathRepository.update(files);
+    }*/
+
 }
