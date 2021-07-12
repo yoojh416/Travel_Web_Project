@@ -4,6 +4,8 @@ package com.upload.files.controller;
 import com.upload.files.entity.Article;
 import com.upload.files.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +58,7 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "article/detail";
 	}
 
-	/**수정 페이지*/
+	/**수정 페이지 들어가기*/
 	@GetMapping("/article/update/{id}")
 	public String getArticleUpdate(Model model, @PathVariable Long id) {
 		Article article = articleRepository.findById(id).get();
@@ -64,6 +66,7 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "article/update";
 	}
 
+	/**수정 하기*/
 	@PostMapping(value = "/article/updated/{id}")
 	public String setArticleUpdate(Model model, @PathVariable Long id, Article updatedArticle) {
 		Article article = articleRepository.findById(id).get();
@@ -77,6 +80,14 @@ public class ArticleController { //리뷰용 컨트롤러
 		articleList.forEach(System.out::println);
 
 		return "article/list";
+	}
+
+	@GetMapping("/article/delete/{id}")
+	public String deleteArticle(Model model, @PathVariable Long id) {
+
+		articleRepository.deleteById(id);
+
+		return "redirect:/article/list";
 	}
 
 }
