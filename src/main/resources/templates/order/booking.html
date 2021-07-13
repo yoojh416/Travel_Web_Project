@@ -34,11 +34,11 @@ $(document).ready(function () {
     <title>예약 사이트</title>
 </head>
 <body>
-orderModify page 입니다
+
 <!-- Navigation -->
 
-<!--<div class="container">
-    <form method="post" th:object="${order}">
+<div class="container">
+    <form method="post" th:object="${order}" action="/order/confirm">
 
         <div class="form-group row">
 
@@ -64,9 +64,6 @@ orderModify page 입니다
                 <div class="input-group date">
                     <input type="text" class="form-control" id="dateIn" th:field="*{dateIn}"
                            placeholder="여행 시작일 ✿˘◡˘✿"/>
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                    </div>
                 </div>
             </div>
 
@@ -74,16 +71,14 @@ orderModify page 입니다
                 <div class="input-group date">
                     <input type="text" class="form-control" id="dateOut" th:field="*{dateOut}"
                            placeholder="여행 마지막일 ( ᵕ ᵕ̩̩ )"/>
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                    </div>
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" onclick="/order/modify">수정하기</button>
+
+        <button class="btn btn-primary" type="submit">예약하기</button>
     </form>
-    <a th:href="@{/order/cancel}" class="btn btn-danger">취소하기</a>
-</div>-->
+
+</div>
 
 </body>
 </html>

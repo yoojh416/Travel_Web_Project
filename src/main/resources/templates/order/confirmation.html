@@ -19,6 +19,7 @@
     <h3 class="mt-5">여행 시작일: <strong th:name="dateIn" th:text="${#dates.format(order.dateIn, 'yyyy-MM-dd')}" ></strong></h3>
     <h3 class="mt-5">여행 마지막일: <strong th:name="dateOut" th:text="${#dates.format(order.dateOut, 'yyyy-MM-dd')}" ></strong></h3>
     <a th:href="@{/order/modify/{orderId}(orderId= ${order.orderId})}" class="btn btn-primary">수정하기</a>
+    <a th:href="@{/}" class="btn btn-primary">홈으로 돌아가기</a>
 </div>
 
 </body>

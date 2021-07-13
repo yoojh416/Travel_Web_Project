@@ -1,9 +1,7 @@
 package com.upload.files.controller;
 
-import com.querydsl.core.types.Order;
 import com.upload.files.entity.Booking;
 import com.upload.files.repository.BookingRepository;
-import com.upload.files.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,69 +11,65 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.persistence.EntityManager;
-import javax.persistence.OptimisticLockException;
-import javax.swing.text.html.Option;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/order")
-@Transactional(readOnly = true)
+@Transactional
 public class BookingController {
 
-    @Autowired private BookingService bookingService;
     @Autowired private BookingRepository bookingRepository;
-    @Autowired private EntityManager em;
 
-    @GetMapping("/book") //상품 예약
+    /** 예약페이지로 이동 */
+    @GetMapping("/book")
     public String main(Model model) {
         model.addAttribute("order", new Booking());
-        return "order/Booking";
+
+        return "order/booking";
     }
 
-    @PostMapping("/confirm") //예약 내용 확인
+    /** 예약된 내용 저장해서 확인 페이지로 보냄 */
+    @PostMapping("/confirm")
+
     public String save(Booking booking, Model model) {
-        bookingService.save(booking);
+        bookingRepository.save(booking);
         model.addAttribute("order", booking);
+
         return "order/Confirmation";
     }
 
+    /** 변경 페이지 확인 */
     @GetMapping("/modify/{orderId}")
-    public String getOrderUpdate(Model model, @PathVariable Long orderId) {
-        Optional<Booking> booking = bookingService.findById(orderId);
-        model.addAttribute("bookingInfo", booking);
+    public String getOrderUpdate(@PathVariable("orderId") Long orderId, Model model) {
+        Booking booking = bookingRepository.findById(orderId).get();
+        model.addAttribute("order", booking);
 
-        return "order/ModifyOrder";
+        return "order/modify";
     }
 
-    @PostMapping(value = "/modify/{orderId}")
-    @Transactional
+    /** 변경 진행 후 확인 */
+    @PostMapping("/modify/{orderId}")
     public String setOrderUpdate(Model model, @PathVariable Long orderId, Booking updateOrder) {
-        Booking booking = bookingService.findById(orderId).get();
-        booking.setOrderId(updateOrder.getOrderId());
+        Booking booking = bookingRepository.findById(orderId).get();
+
         booking.setDateIn(updateOrder.getDateIn());
         booking.setDateOut(updateOrder.getDateOut());
-        booking.setOrderDate(updateOrder.getOrderDate());
-        booking.setOrderPrice(updateOrder.getOrderPrice());
         booking.setOrderQty(updateOrder.getOrderQty());
-        bookingService.save(booking);
+        bookingRepository.save(booking);
+
         model.addAttribute("order", booking);
+
+        /*List<Booking> bookingList = bookingRepository.findAll();
+        model.addAttribute("order", bookingList);*/
 
         return "order/Confirmation";
     }
 
-    @GetMapping("/cancel") //예약 취소
-    @Transactional
-    public String deleteOrder(Long orderId) {
-        int isSuccessful = em.createQuery("delete from booking b where b.order_id=:order_id")
-                .setParameter("order_id", orderId)
-                .executeUpdate();
-        if (isSuccessful == 0) {
-            throw new OptimisticLockException("이미 삭제 된 주문건 입니다.");
-        }
-        return "/";
+    /** 취소 */
+    @GetMapping("/cancel/{orderId}")
+    public String deleteOrder(@PathVariable Long orderId) {
+        bookingRepository.deleteById(orderId);
+
+        return "redirect:/";
     }
 
 }
-

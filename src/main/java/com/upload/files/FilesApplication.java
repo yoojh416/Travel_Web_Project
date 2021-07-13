@@ -16,10 +16,10 @@ public class FilesApplication {
 
 	@Bean(name = "uploadPath")
 	public String uploadPath() {
-		return "d:/image/review";
+		return "c:/image/review";
 	}
 
-	/*캘린더 실행*/
+	/** 캘린더 실행 */
 	public void calendar(String[] args) {
 		SpringApplication.run(ApplicationArguments.class, args);
 	}

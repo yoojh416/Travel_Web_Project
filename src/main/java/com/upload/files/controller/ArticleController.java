@@ -5,13 +5,13 @@ import com.upload.files.entity.Article;
 import com.upload.files.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static java.rmi.server.LogStream.log;
 
 @Controller
 public class ArticleController { //리뷰용 컨트롤러
@@ -30,7 +30,6 @@ public class ArticleController { //리뷰용 컨트롤러
 	public String setArticle(Article article, Model model) {
 		article.setRegisterDate(LocalDateTime.now());
 		articleRepository.save(article);
-		log("setArticle");
 
 		return "redirect:/article/list";
 	}
@@ -41,6 +40,7 @@ public class ArticleController { //리뷰용 컨트롤러
 		List<Article> articleList = articleRepository.findAll();
 		model.addAttribute("articleList", articleList);
 		articleList.forEach(System.out::println);
+
 		return "article/list";
 	}
 
@@ -56,14 +56,16 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "article/detail";
 	}
 
-	/**수정 페이지*/
+	/**수정 페이지 들어가기*/
 	@GetMapping("/article/update/{id}")
 	public String getArticleUpdate(Model model, @PathVariable Long id) {
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
+
 		return "article/update";
 	}
 
+	/**수정 하기*/
 	@PostMapping(value = "/article/updated/{id}")
 	public String setArticleUpdate(Model model, @PathVariable Long id, Article updatedArticle) {
 		Article article = articleRepository.findById(id).get();
@@ -74,9 +76,17 @@ public class ArticleController { //리뷰용 컨트롤러
 
 		List<Article> articleList = articleRepository.findAll();
 		model.addAttribute("articleList", articleList);
-		articleList.forEach(System.out::println);
 
 		return "article/list";
+	}
+
+	/** 삭제하기*/
+	@GetMapping("/article/delete/{id}")
+	@Transactional
+	public String deleteArticle(Model model, @PathVariable Long id) {
+		articleRepository.deleteById(id);
+
+		return "redirect:/article/list";
 	}
 
 }
