@@ -1,6 +1,7 @@
 package com.upload.files.service;
 
 import com.upload.files.entity.FilePath;
+import com.upload.files.entity.Product;
 import com.upload.files.repository.FilePathRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Service;
 public class FilePathService { //제품용 이미지 저장 위한 서비스 => 저장을 하기 위해 준비하는 단계
 
 
-    @Autowired
-    private FilePathRepository filePathRepository;
+    @Autowired private FilePathRepository filePathRepository;
+    @Autowired private ProductService productService;
 
     public void save(FilePath files) {
         FilePath f = new FilePath();
@@ -25,5 +26,9 @@ public class FilePathService { //제품용 이미지 저장 위한 서비스 => 
     /*public void updateFileInfo(FilePath files) {
         filePathRepository.update(files);
     }*/
+
+    public void deleteByProNo(int fno) {
+        filePathRepository.deleteById(fno);
+    }
 
 }

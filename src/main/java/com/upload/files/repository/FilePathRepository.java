@@ -6,15 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface FilePathRepository extends CrudRepository<FilePath, Integer>{ //제품 이미지용 repository
+public interface FilePathRepository extends CrudRepository<FilePath, Integer> { //제품 이미지용 repository
 
-    FilePath findByFno(int fno);
-
-    /*@Modifying
-    @Query(value = "update FilePath f set f.fileName = :#{#files.fileName}" +
-            ", f.fileOriName = :#{#files.fileOriName}" +
-            ", f.fileUrl = :#{#files.fileUrl} where f.fno =:#{#files.fno}", nativeQuery = false)
-    Integer update(@Param("files") FilePath files);*/
+    @Query(value = "select f.fno from FilePath f where f.proNo = :proNo", nativeQuery = false)
+    int findFno(@Param("proNo") Long proNo);
 
 }
 

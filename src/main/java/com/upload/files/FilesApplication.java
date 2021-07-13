@@ -19,7 +19,7 @@ public class FilesApplication {
 		return "c:/image/review";
 	}
 
-	/*캘린더 실행*/
+	/** 캘린더 실행 */
 	public void calendar(String[] args) {
 		SpringApplication.run(ApplicationArguments.class, args);
 	}

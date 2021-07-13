@@ -6,8 +6,12 @@ import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
 import com.upload.files.entity.QProduct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -34,14 +38,31 @@ public class ProductRepository {
                 .getResultList();
     }
 
-    /*public int update(Product product, Long proNo) {
+    public void deleteProduct(Product product) {
+        em.remove(em.contains(product) ? product : em.merge(product));
+    }
+
+    /*@Transactional
+    public int updateProduct(Product product, Long proNo) {
         return em.createQuery("update Product p set p.price = :price" +
                 ", p.proContent = :proContent" +
                 ", p.proTitle = :proTitle" +
                 ", p.proWriter = :proWriter" +
-                ", p.region = :region}" +
-                ", p.season = :#{#product.season}" +
-                ", p.theme = :#{#product.theme} where p.proNo = :proNo", Product.class).executeUpdate();
+                ", p.region = :region" +
+                ", p.season = :season" +
+                ", p.theme = :theme where p.proNo = :proNo").executeUpdate();
+    }*/
+
+    /*@Modifying(clearAutomatically = true)
+    @Query("UPDATE product p SET p.proContent = :proContent " +
+            ", p.proTitle = :proTitle" +
+            ", p.proWriter = :proWriter" +
+            ", p.region = :region" +
+            ", p.season = :season" +
+            ", p.theme = :theme" +
+            "WHERE c.id = :companyId")
+    public int updateProduct(@Param("proNo") Long proNo) {
+        return 1;
     }*/
 
     public List<Product> findByFilter(ListSearch listSearch){

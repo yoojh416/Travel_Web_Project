@@ -21,14 +21,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>상품 업로드</h2>
+                <h2>상품 업데이트</h2>
                 <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-                <form method="post" th:action="@{/admin/modify/{proNo}(proNo = ${proNo})}" th:object="${productForm}">
+                <form method="post" th:action="@{/admin/modified/{proNo}(proNo = ${proNo})}" th:object="${productForm}">
 
                     <div class="form-group">
                         <label th:for="proTitle">제목</label>
                         <input type="text" th:field="*{proTitle}" class="form-control"
                                placeholder="여행 제목을 입력하세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label th:for="price">가격</label>
+                        <input type="text" th:field="*{price}" class="form-control"
+                               placeholder="숫자만 입력하세요">
                     </div>
 
                     <div class="form-group">
@@ -69,9 +75,10 @@
                             <option th:value="Filial" class="form-control">효도</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Upload product</button>
-
+                    <button type="submit" class="btn btn-primary">상품 업데이트</button>
                 </form>
+                <button class="btn-danger"
+                        th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기</button>
             </div>
         </div>
     </div>
