@@ -1,5 +1,6 @@
 package com.upload.files.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.ToString;
 
@@ -19,8 +20,9 @@ public class Article { //댓글 테이블 생성용
 	@Column(length= 100000000)
 	private String content;
 
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDateTime registerDate;
 
-	@Column
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDateTime updateDate;
 }
