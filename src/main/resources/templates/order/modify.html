@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet"th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" >
+<link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
 <script th:src="@{https://code.jquery.com/jquery-3.2.1.js}" type="text/javascript"></script>
 <script th:src="@{/js/bootstrap-datepicker.js}" type="text/javascript"></script>
@@ -27,42 +27,42 @@ $(document).ready(function () {
         todayHighlight: true
     });
 });
+
 </script>
 
 <head>
     <meta charset="UTF-8">
     <title>예약 사이트</title>
 </head>
-<body>
-orderModify page 입니다
-<!-- Navigation -->
 
-<!--<div class="container">
+<body>
+
+<div class="container">
     <form method="post" th:object="${order}">
 
         <div class="form-group row">
-
             <div class="col-md-4 mt-5">
                 <label for="OrderPrice">패키지 가격</label>
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="OrderPrice" th:field="*{OrderPrice}" />
+                    <input type="text" class="form-control" id="OrderPrice"
+                           readonly th:value="*{orderPrice}"/>
                 </div>
             </div>
 
             <div class="col-md-4 mt-5">
                 <label for="OrderQty">인원수</label>
                 <div class="input-group date">
-                    <input type="number" class="form-control" id="OrderQty" th:field="*{OrderQty}" />
+                    <input type="number" class="form-control" id="OrderQty" th:value="*{orderQty}"/>
                 </div>
             </div>
         </div>
 
-        <hr />
+        <hr/>
 
         <div class="form-group row">
             <div class="col-md-4 mt-5">
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="dateIn" th:field="*{dateIn}"
+                    <input type="text" class="form-control" id="dateIn" th:value="*{dateIn}"
                            placeholder="여행 시작일 ✿˘◡˘✿"/>
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
@@ -72,7 +72,7 @@ orderModify page 입니다
 
             <div class="col-md-4 mt-5">
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="dateOut" th:field="*{dateOut}"
+                    <input type="text" class="form-control" id="dateOut" th:value="*{dateOut}"
                            placeholder="여행 마지막일 ( ᵕ ᵕ̩̩ )"/>
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
@@ -80,10 +80,14 @@ orderModify page 입니다
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit" onclick="/order/modify">수정하기</button>
+
+        <button class="btn btn-primary" type="submit"
+                onclick="@{/order/modify/{orderId}(orderId= ${order.orderId})}">
+            수정완료</button>
     </form>
-    <a th:href="@{/order/cancel}" class="btn btn-danger">취소하기</a>
-</div>-->
+    <a th:href="@{/order/cancel/{orderId}(orderId= ${order.orderId})}" class="btn btn-danger">여행 취소하기</a>
+    <a th:href="@{/}" class="btn btn-success">홈으로 가기</a>
+</div>
 
 </body>
 </html>

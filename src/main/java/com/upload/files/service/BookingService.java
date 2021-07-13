@@ -10,24 +10,27 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Transactional
 public class BookingService {
 
     private final BookingRepository bookingRepository;
     /*private final MemberRepository memberRepository;*/
 
-    @Transactional
     public void save(Booking order) {
         bookingRepository.save(order);
     }
 
-    public List<Booking> order() {
-        return bookingRepository.findAll();
+/*    public List<Booking> findAllById(Long orderId) {
+        return bookingRepository.findAllById(orderId);
+    }*/
+
+    public Optional<Booking> findById(Long orderId) {
+        return bookingRepository.findById(orderId);
     }
 
-    public Optional<Booking> findById (Long orderId) {
-        return bookingRepository.findById(orderId);
+    public void deleteById(Long orderId) {
+        bookingRepository.deleteById(orderId);
     }
 
 }

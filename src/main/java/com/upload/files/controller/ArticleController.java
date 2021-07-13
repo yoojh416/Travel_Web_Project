@@ -76,7 +76,6 @@ public class ArticleController { //리뷰용 컨트롤러
 
 		List<Article> articleList = articleRepository.findAll();
 		model.addAttribute("articleList", articleList);
-		articleList.forEach(System.out::println);
 
 		return "article/list";
 	}
