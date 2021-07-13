@@ -9,4 +9,5 @@ public class ListSearch {
     private String region;
     private String season;
     private String theme;
+
 }

@@ -1,16 +1,22 @@
 package com.upload.files.controller;
 
+import com.upload.files.entity.ListSearch;
+import com.upload.files.entity.Product;
+import com.upload.files.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @SpringBootApplication(scanBasePackages = {"com.upload.files"})
+@RequiredArgsConstructor
 public class HomeController {
+
+    private final ProductService productService;
 
     @GetMapping("/")
     public String home(Model model) {
@@ -43,11 +49,12 @@ public class HomeController {
         return "/user/userInfo";
     }
 
-    /*여행지, 계절, 테마 검색*/
-    @RequestMapping("list")
-    public String boardList(Model model) {
-        //model.addAttribute("data", "boardList!!");
-        return "/board/list";
+    /**여행지, 계절, 테마 검색*/
+    @RequestMapping(value="list")
+    public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
+        List<Product> products = productService.findItemsByFilter(listSearch);
+        model.addAttribute("listSearch", products);
+        return "board/filteredList";
     }
 
 }
