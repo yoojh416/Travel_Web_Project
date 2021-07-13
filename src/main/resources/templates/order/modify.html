@@ -38,21 +38,20 @@ $(document).ready(function () {
 <body>
 
 <div class="container">
-    <form method="post" th:object="${order}">
+    <form method="post" th:object="${order}" th:action="@{/order/modify/{orderId}(orderId= ${order.orderId})}">
 
         <div class="form-group row">
             <div class="col-md-4 mt-5">
-                <label for="OrderPrice">패키지 가격</label>
+                <label th:name="OrderPrice">패키지 가격</label>
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="OrderPrice"
-                           readonly th:value="*{orderPrice}"/>
+                    <input type="text" class="form-control" readonly th:name="OrderPrice" th:value="*{OrderPrice}" />
                 </div>
             </div>
 
             <div class="col-md-4 mt-5">
-                <label for="OrderQty">인원수</label>
+                <label th:name="OrderQty">인원수</label>
                 <div class="input-group date">
-                    <input type="number" class="form-control" id="OrderQty" th:value="*{orderQty}"/>
+                    <input type="number" class="form-control" th:name="OrderQty" th:value="*{OrderQty}" />
                 </div>
             </div>
         </div>
@@ -61,29 +60,23 @@ $(document).ready(function () {
 
         <div class="form-group row">
             <div class="col-md-4 mt-5">
+                <label for="dateIn"></label>
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="dateIn" th:value="*{dateIn}"
-                           placeholder="여행 시작일 ✿˘◡˘✿"/>
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                    </div>
+                    <input type="text" class="form-control" id="dateIn"
+                           th:name="dateIn" th:value="${#dates.format(dateIn,'yyyy-MM-dd')}" th:placeholder="*{dateIn}"/>
                 </div>
             </div>
 
             <div class="col-md-4 mt-5">
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="dateOut" th:value="*{dateOut}"
-                           placeholder="여행 마지막일 ( ᵕ ᵕ̩̩ )"/>
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                    </div>
+                    <input type="text" class="form-control" id="dateOut"
+                           th:name="dateOut" th:value="${#dates.format(dateOut, 'yyyy-MM-dd')}" th:placeholder="*{dateOut}"/>
                 </div>
             </div>
         </div>
 
-        <button class="btn btn-primary" type="submit"
-                onclick="@{/order/modify/{orderId}(orderId= ${order.orderId})}">
-            수정완료</button>
+        <button class="btn btn-primary" type="submit">수정완료</button>
+                <!--onclick="@{/order/modify/{orderId}(orderId= ${order.orderId})}"> 수정완료</button>-->
     </form>
     <a th:href="@{/order/cancel/{orderId}(orderId= ${order.orderId})}" class="btn btn-danger">여행 취소하기</a>
     <a th:href="@{/}" class="btn btn-success">홈으로 가기</a>

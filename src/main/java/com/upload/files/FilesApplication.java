@@ -16,7 +16,7 @@ public class FilesApplication {
 
 	@Bean(name = "uploadPath")
 	public String uploadPath() {
-		return "d:/image/review";
+		return "c:/image/review";
 	}
 
 	/*캘린더 실행*/

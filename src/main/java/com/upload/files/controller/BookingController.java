@@ -68,7 +68,8 @@ public class BookingController {
     @GetMapping("/cancel/{orderId}")
     public String deleteOrder(@PathVariable Long orderId) {
         bookingRepository.deleteById(orderId);
-        return "board/list";
+
+        return "redirect:/";
     }
 
 }

@@ -20,7 +20,7 @@ public class ImageService {
 	@Autowired
 	UploadFileRepository uploadFileRepository;
 
-	private final Path rootLocation; // d:/image/
+	private final Path rootLocation; // c:/image/
 
 	public ImageService(String uploadPath) {
 		this.rootLocation = Paths.get(uploadPath);
