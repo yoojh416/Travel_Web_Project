@@ -105,7 +105,6 @@ public class ProductController { //여행 상품용 컨트롤러
         /* 상품 텍스트 삭제 */
         productRepository.deleteProduct(product);
 
-        /*값이 안넘어감*/
         List<Product> productList = productRepository.findAll();
         model.addAttribute("products", productList);
 
@@ -119,6 +118,7 @@ public class ProductController { //여행 상품용 컨트롤러
     public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
         model.addAttribute("items", products);
+
         return "board/list";
     }
 

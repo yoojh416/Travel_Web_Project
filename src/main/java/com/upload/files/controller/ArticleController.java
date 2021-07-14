@@ -3,11 +3,15 @@ package com.upload.files.controller;
 
 import com.upload.files.entity.Article;
 import com.upload.files.repository.ArticleRepository;
+import com.upload.files.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +20,8 @@ import java.util.List;
 @Controller
 public class ArticleController { //리뷰용 컨트롤러
 
-	@Autowired
-	private ArticleRepository articleRepository;
+	@Autowired private ArticleRepository articleRepository;
+	@Autowired private ArticleService articleService;
 
 	/**폼으로 가기*/
 	@GetMapping("/form")
@@ -36,10 +40,11 @@ public class ArticleController { //리뷰용 컨트롤러
 
 	/**전체 리스트 */
 	@GetMapping("/article/list")
-	public String getArticleList(Model model) {
-		List<Article> articleList = articleRepository.findAll();
+	public String getArticleList(Model model, @PageableDefault Pageable pageable
+			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
+		Page<Article> articleList = articleService.getArticleList(pageable);
+
 		model.addAttribute("articleList", articleList);
-		//articleList.forEach(System.out::println);
 
 		return "article/list";
 	}
@@ -77,7 +82,7 @@ public class ArticleController { //리뷰용 컨트롤러
 		List<Article> articleList = articleRepository.findAll();
 		model.addAttribute("articleList", articleList);
 
-		return "article/list";
+		return "redirect:/article/{id}";
 	}
 
 	/** 삭제하기*/

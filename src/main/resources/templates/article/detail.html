@@ -28,6 +28,7 @@
                 <div th:utext="${article.content}" class="panel-body"></div>
                 <button class="btn-primary" th:onclick="|window.location.href='/article/update/${article.id}'|">수정하기</button>
                 <button class="btn-danger" th:onclick="|window.location.href='/article/delete/${article.id}'|">삭제하기</button>
+                <button class="btn-success" th:onclick="|window.location.href='/article/list'|">목록으로</button>
             </div>
         </div>
     </div>

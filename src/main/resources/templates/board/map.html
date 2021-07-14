@@ -2,10 +2,12 @@
 <html lang='en'>
 <head>
     <meta charset='utf-8' />
-    <title>Getting started with the Mapbox Directions API</title>
+    <title>여행 지역 지도</title>
+
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
     <style>
       body {
         margin: 0;
@@ -19,6 +21,7 @@
         width: 100%;
       }
     </style>
+
 </head>
 <body>
 <div id='map'></div>
@@ -29,7 +32,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia2l3aWhhbm5haCIsImEiOiJja3IydGp6emsyZmc5Mm5tb
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v10',
-  center: [-122.662323, 45.523751],
+  center: [-127.7669, 35.9078],
   zoom: 12
 });
 

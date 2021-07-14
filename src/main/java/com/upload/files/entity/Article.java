@@ -20,6 +20,8 @@ public class Article { //댓글 테이블 생성용
 	@Column(length= 100000000)
 	private String content;
 
+	private String writer;
+
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDateTime registerDate;
 
