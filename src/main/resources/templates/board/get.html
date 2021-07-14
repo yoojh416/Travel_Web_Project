@@ -23,38 +23,41 @@
 <body>
 <th:block layout:fragment="content">
     <div class="container">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title" th:text="${productInfo.proTitle}"></h3>
-                    <hr>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <img th:src="@{${fileInfo.fileUrl+fileInfo.fileName}}">
-                        <!--상품 메인 이미지-->
-                    </div>
-                    <div>
-                        가격
-                    </div>
-                    <div>
-                        예약하기 버튼
-                    </div>
-                    <div>
-                        상품 이미지2
-                    </div>
-                    <div>
-                        상품 정보 테이블(contents에 주의사항 짧게 기입)
-                    </div>
-                    <hr>
-                    <div>
-                        <div th:fragment="reviewList" th:replace="article/list :: reviewList"/>
-                        <!--리뷰 리스트-->
-                    </div>
-                </div>
+        <div class="col-lg-10">
+            <div>
+                <span>좋아요</span>
+                <span>조회수</span>
+            </div>
+            <div class="productImg">
+                메인 이미지
+            </div>
+            <div class="bookingProduct">
+                <h5 th:text="${productInfo.price}">원</h5>
+                <button type="button" class="btn btn-default" th:onclick="|window.location.href='/order/book'|">예약하기</button>
+            </div>
+            <br>
+            <table>
+                <tr>
+                    <th>상품명</th>
+                    <td th:text="${productInfo.proTitle}"></td>
+                </tr>
+                <tr>
+                    <th>가격</th>
+                    <td th:text="${productInfo.price}"></td>
+                </tr>
+                <tr>
+                    <th>상품 설명</th>
+                    <td th:text="${productInfo.proContent}"></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <div>
+                <div th:fragment="reviewList" th:replace="article/list :: reviewList"/>
             </div>
         </div>
-    </div>
     </div>
 </th:block>
 </body>

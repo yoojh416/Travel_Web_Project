@@ -17,6 +17,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
+            <!--checkbox 시작-->
             <div class="col-lg-2">
                 <form th:object="${listSearch}" name="searchFrm">
                     <div class="ItemFilter">
@@ -79,9 +80,11 @@
                         <button type="submit" class="btn btn-default" id="btnSearch" style="background-color: #16a085; color: #f0f0f0;">검색</button>
                     </div>
                 </form>
-            </div>
-            <div class="col-lg-10 card-deck">
-                <div class="col-lg-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
+            </div> <!--checkbox 종료-->
+
+            <!--상품 목록(card-deck) 시작-->
+            <div class="col-10 card-deck">
+                <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
                     <div class="card">
                         <img class="card-img-top" th:src="@{/images/p4.jpg}" alt="임의 사진 설정">
                         <div class="card-body">
@@ -97,6 +100,7 @@
                     </div>
                 </div>
             </div>
+            <!--상품 목록 종료-->
         </div>
     </div>
 </th:block>
