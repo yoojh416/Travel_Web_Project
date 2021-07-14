@@ -42,29 +42,6 @@ public class ProductRepository {
         em.remove(em.contains(product) ? product : em.merge(product));
     }
 
-    /*@Transactional
-    public int updateProduct(Product product, Long proNo) {
-        return em.createQuery("update Product p set p.price = :price" +
-                ", p.proContent = :proContent" +
-                ", p.proTitle = :proTitle" +
-                ", p.proWriter = :proWriter" +
-                ", p.region = :region" +
-                ", p.season = :season" +
-                ", p.theme = :theme where p.proNo = :proNo").executeUpdate();
-    }*/
-
-    /*@Modifying(clearAutomatically = true)
-    @Query("UPDATE product p SET p.proContent = :proContent " +
-            ", p.proTitle = :proTitle" +
-            ", p.proWriter = :proWriter" +
-            ", p.region = :region" +
-            ", p.season = :season" +
-            ", p.theme = :theme" +
-            "WHERE c.id = :companyId")
-    public int updateProduct(@Param("proNo") Long proNo) {
-        return 1;
-    }*/
-
     public List<Product> findByFilter(ListSearch listSearch){
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QProduct product = QProduct.product;

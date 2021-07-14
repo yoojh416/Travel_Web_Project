@@ -1,14 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-상품 변경화면 &ndash;&gt; 같은폴더 upload 파일 참고 요망
-</body>
-</html>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -21,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>상품 업데이트</h2>
+                <h2>상품 수정</h2>
                 <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
                 <form method="post" th:action="@{/admin/modified/{proNo}(proNo = ${proNo})}" th:object="${productForm}">
 

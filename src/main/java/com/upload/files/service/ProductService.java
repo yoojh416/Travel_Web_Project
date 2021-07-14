@@ -2,7 +2,6 @@ package com.upload.files.service;
 
 import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
-import com.upload.files.model.User;
 import com.upload.files.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,22 +33,4 @@ public class ProductService {
         return productRepository.findByFilter(listSearch);
     }
 
-    /*@Transactional
-    public void updateProduct(Product product, Long proNo) {
-        productRepository.update(product, proNo);
-    }*/
-
-    /*@Transactional
-    public void updateProduct(Product product) {
-
-        Product productInfo = productRepository.findOne(product.getProNo());
-        productInfo.setProTitle(product.getProTitle());
-        productInfo.setPrice(product.getPrice());
-        productInfo.setProWriter(product.getProWriter());
-        productInfo.setProContent(product.getProContent());
-        productInfo.setRegion(product.getRegion());
-        productInfo.setSeason(product.getSeason());
-        productInfo.setTheme(product.getTheme());
-
-    }*/
 }

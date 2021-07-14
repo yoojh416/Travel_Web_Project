@@ -1,7 +1,6 @@
 package com.upload.files.service;
 
 import com.upload.files.entity.FilePath;
-import com.upload.files.entity.Product;
 import com.upload.files.repository.FilePathRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
