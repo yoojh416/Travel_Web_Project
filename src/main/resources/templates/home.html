@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
+<meta charset="UTF-8">
+<title>Title</title>
+
 <head>
   <!-- loader js link-->
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
@@ -30,9 +33,9 @@
     <ul class="slidelist">
       <li class="slideitem">
         <div>
-          <label for="slide04" class="left"></label> <label for="slide02"
-                                                            class="right"></label><a th:href="@{/board/list}"><img
-                src="images/slideimg01.jpg"></a>
+          <label for="slide04" class="left"></label>
+          <label for="slide02" class="right"></label>
+          <a th:href="@{/board/list}"><img src="images/slideimg01.jpg"></a>
         </div>
       </li>
       <li class="slideitem">
