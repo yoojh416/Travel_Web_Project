@@ -49,7 +49,9 @@ public class ProductController { //여행 상품용 컨트롤러
         }
 
         Product product = new Product(form.getProNo(), form.getProTitle(), form.getProWriter()
-                , form.getProContent(), form.getRegion(), form.getSeason(), form.getTheme(), form.getPrice());
+                , form.getProContent(), form.getRegion(), form.getSeason(), form.getTheme()
+                , form.getPrice(), form.getN(), form.getE());
+
         productService.save(product);
 
         model.addAttribute("proNo", product.getProNo());
@@ -82,6 +84,8 @@ public class ProductController { //여행 상품용 컨트롤러
         product.setSeason(updatedProduct.getSeason());
         product.setTheme(updatedProduct.getTheme());
         product.setPrice(updatedProduct.getPrice());
+        product.setE(updatedProduct.getE());
+        product.setN(updatedProduct.getN());
 
         productRepository.save(product);
 

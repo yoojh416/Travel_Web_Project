@@ -37,15 +37,15 @@ function getParameterByName(name) {
 }
 
 <!--받은 걸로 변수 선언-->
-var N = getParameterByName('N');
 var E = getParameterByName('E');
+var N = getParameterByName('N');
 
 <!--기본 맵-->
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2l3aWhhbm5haCIsImEiOiJja3IydGp6emsyZmc5Mm5tbnh1ZzA3bXZlIn0.FBt4dq5Av6NR1IbMttcyMA';
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v10',
-  center: [N, E],
+  center: [E, N],
   zoom: 7
 });
 

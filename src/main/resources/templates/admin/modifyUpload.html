@@ -75,10 +75,20 @@
                             <option th:value="Filial" class="form-control">효도</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label th:for="N">위도 (Nº)</label>
+                        <input type="text" th:field="*{N}" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label th:for="E">경도 (Eº)</label>
+                        <input type="text" th:field="*{E}" class="form-control" />
+                    </div>
                     <button type="submit" class="btn btn-primary">상품 업데이트</button>
                 </form>
                 <button class="btn-danger"
                         th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기</button>
+                <button class="btn-info"
+                        th:onclick="|window.location.href='/admin/list'|">목록으로</button>
             </div>
         </div>
     </div>

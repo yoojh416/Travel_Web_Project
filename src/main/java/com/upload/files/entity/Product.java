@@ -22,12 +22,13 @@ public class Product {
     private String region;
     private String season;
     private String theme;
-
+    private String N; //위도
+    private String E; //경도
 
     public Product(){}
 
     public Product(Long proNo, String proTitle, String proWriter, String proContent
-            , String region, String season, String theme, int price) {
+            , String region, String season, String theme, int price, String N, String E) {
         this.proNo = proNo;
         this.proTitle = proTitle;
         this.proWriter = proWriter;
@@ -36,6 +37,7 @@ public class Product {
         this.region = region;
         this.season = season;
         this.theme = theme;
-
+        this.N = N;
+        this.E = E;
     }
 }
