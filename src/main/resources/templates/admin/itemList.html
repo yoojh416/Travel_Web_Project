@@ -20,7 +20,8 @@
             <tbody>
             <tr th:each="product : ${products}">
                 <td th:text="${product.proNo}"></td>
-                <td th:text="${product.proTitle}"></td>
+                <td><a th:href="@{modify/{proNo}(proNo = ${product.proNo})}"
+                       th:text="${product.proTitle}"></a></td>
                 <td th:text="${product.proWriter}"></td>
                 <td th:text="${product.proContent}"></td>
             </tr>
