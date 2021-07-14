@@ -24,12 +24,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/board/list")
-    public String list(Model model) {
-        model.addAttribute("data", "hello!!");
-        return "/board/list";
-    }
-
     //유저(user)
     @GetMapping(value = "user/login")
     public String login(Model model) {

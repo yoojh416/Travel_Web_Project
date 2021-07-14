@@ -2,118 +2,103 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
-    <title>여행상품</title>
-    <head th:replace="fragments/header :: header">
+<title>여행상품</title>
+<head th:replace="fragments/header :: header">
     <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link th:href="@{/css/listStyle.css}" rel="stylesheet">
+
 <body>
 <th:block layout:fragment="content">
-<div class="jumbotron" id="top">
+    <div class="jumbotron" id="top">
 
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-2">
-            <form th:object="${listSearch}" name="searchFrm">
-                <div class="ItemFilter">
-                    <div class="ItemFilterGroup">
-                        <div class="ItemFilterGroupTitle">여행지</div>
-                        <div class="ItemFilterGroupList">
-                            <label>
-                                <input type="checkbox" th:name="region" th:value="Korea">&nbsp;국내
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="region" th:value="Japan">&nbsp;일본
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="region" th:value="China">&nbsp;중국
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="region" th:value="Southeast_Asia">&nbsp;동남아시아
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="region" th:value="Europe">&nbsp;유럽
-                            </label>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2">
+                <form th:object="${listSearch}" name="searchFrm">
+                    <div class="ItemFilter">
+                        <div class="ItemFilterGroup">
+                            <div class="ItemFilterGroupTitle">여행지</div>
+                            <div class="ItemFilterGroupList">
+                                <label>
+                                    <input type="checkbox" th:name="region" th:value="Korea">&nbsp;국내
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="region" th:value="Japan">&nbsp;일본
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="region" th:value="China">&nbsp;중국
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="region" th:value="Southeast_Asia">&nbsp;동남아시아
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="region" th:value="Europe">&nbsp;유럽
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="ItemFilterGroup">
-                        <div class="ItemFilterGroupTitle">계절</div>
-                        <div class="ItemFilterGroupList">
-                            <label>
-                                <input type="checkbox" th:name="season" th:value="Spring">&nbsp;봄
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="season" th:value="Summer">&nbsp;여름
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="season" th:value="Autumn">&nbsp;가을
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="season" th:value="Winter">&nbsp;겨울
-                            </label><br>
+                        <hr>
+                        <div class="ItemFilterGroup">
+                            <div class="ItemFilterGroupTitle">계절</div>
+                            <div class="ItemFilterGroupList">
+                                <label>
+                                    <input type="checkbox" th:name="season" th:value="Spring">&nbsp;봄
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="season" th:value="Summer">&nbsp;여름
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="season" th:value="Autumn">&nbsp;가을
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="season" th:value="Winter">&nbsp;겨울
+                                </label><br>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="ItemFilterGroup">
-                        <div class="ItemFilterGroupTitle">테마</div>
-                        <div class="ItemFilterGroupList">
-                            <label>
-                                <input type="checkbox" th:name="theme" th:value="Family">&nbsp;가족
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="theme" th:value="Friend">&nbsp;친구
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="theme" th:value="Couple">&nbsp;커플
-                            </label><br>
-                            <label>
-                                <input type="checkbox" th:name="theme" th:value="Filial">&nbsp;효도
-                            </label><br>
+                        <hr>
+                        <div class="ItemFilterGroup">
+                            <div class="ItemFilterGroupTitle">테마</div>
+                            <div class="ItemFilterGroupList">
+                                <label>
+                                    <input type="checkbox" th:name="theme" th:value="Family">&nbsp;가족
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="theme" th:value="Friend">&nbsp;친구
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="theme" th:value="Couple">&nbsp;커플
+                                </label><br>
+                                <label>
+                                    <input type="checkbox" th:name="theme" th:value="Filial">&nbsp;효도
+                                </label><br>
+                            </div>
                         </div>
+                        <button type="submit" class="btn btn-default" id="btnSearch" style="background-color: #16a085; color: #f0f0f0;">검색</button>
                     </div>
-                    <button type="submit" class="btn btn-default" id="btnSearch" style="background-color: #16a085; color: #f0f0f0;">검색</button>
-                </div>
-            </form>
-        </div>
-        <div class="col-lg-10 card-deck">
-            <div class="col-lg-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
-                <div class="card">
-                    <img class="card-img-top" th:src="@{'/images/p4.jpg'}" alt="Card image cap">
-                    <div class="card-body">
-                        <h4><a class="proTitle" th:href="@{/board/get/{proNo}(proNo=${list.proNo})}" th:text = "${list.proTitle}"></a></h4>
-                        <!--<h4><a class="proTitle" th:href="@{'/board/get?proNo='+${list.proNo}}" th:text = "${list.proTitle}"></a></h4>-->
-                        <h5><p class="card-text" th:text="${list.proContent}"></p></h5>
-                        @<input type="hidden" name="region" th:text="${list.region}"><br>
-                        @<input type="hidden" name="season" th:text="${list.season}"><br>
-                        @<input type="hidden" name="theme" th:text="${list.theme}"><br>
-                    </div>
-                    <div class="card-footer" style="background-color: white">
-                        <p class="card-text" th:text="${list.price}">원 ~ </p>
+                </form>
+            </div>
+            <div class="col-lg-10 card-deck">
+                <div class="col-lg-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
+                    <div class="card">
+                        <img class="card-img-top" th:src="@{/images/p4.jpg}" alt="임의 사진 설정">
+                        <div class="card-body">
+                            <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo})}" th:text = "${list.proTitle}"></a></h3>
+                            <p class="card-text" th:text="${list.proContent}"></p>
+                            @<input type="hidden" name="region" th:text="${list.region}"><br>
+                            @<input type="hidden" name="season" th:text="${list.season}"><br>
+                            @<input type="hidden" name="theme" th:text="${list.theme}"><br>
+                        </div>
+                        <div class="card-footer" style="background-color: white">
+                            <p class="card-text" th:text="${list.price}"></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   <!-- <div th:replace="fragments/footer :: footer"/>-->
-</div>
 </th:block>
 </body>
-<!--<th:block layout:fragment="script">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        var checkArr = [];
-        $("#btnSearch").on("click", function(){
-            $("input[type='checkbox']:checked").each(function(e){
-                var value = $(this).val();
-                checkArr.push(value);
-            });
-
-            console.log(checkArr);
-        });
-    </script>
-</th:block>-->
 </html>
