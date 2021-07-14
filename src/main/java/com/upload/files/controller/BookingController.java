@@ -29,7 +29,6 @@ public class BookingController {
 
     /** 예약된 내용 저장해서 확인 페이지로 보냄 */
     @PostMapping("/confirm")
-
     public String save(Booking booking, Model model) {
         bookingRepository.save(booking);
         model.addAttribute("order", booking);
