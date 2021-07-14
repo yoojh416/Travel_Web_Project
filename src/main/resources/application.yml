@@ -9,9 +9,11 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/passionatetour?characterEncoding=UTF-8&serverTimezone=UTC
-    username: 'user_Id'
-    password: 'user_Password'
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8
+    username: '---'
+    password: '---'
+#    username: 'hannah'
+#    password: '@dufwjd123'
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -19,18 +21,7 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl-auto: update
-#기존 jpa
-#  jpa:
-#    hibernate:
-#      #naming:
-#      #  physical-stragtegy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-#      #  ddl-auto: create
-#    properties:
-#      hibernate:
-#
-#        # show_sql: true
-#        format_sql: true
+      #ddl-auto: create
 
 logging:
   level:
@@ -46,9 +37,5 @@ handlebars:
   suffix: .html
   expose-session-attributes: true
 
-#기존 logging
-#logging.level:
-#  org.hibernate.SQL: debug
-## org.hibernate.type: trace
 
-temp.path: D:\upload
+temp.path: C:\upload
