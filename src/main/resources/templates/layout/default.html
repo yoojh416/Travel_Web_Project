@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lagn="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<link th:href="@{/css/listStyle.css}" rel="stylesheet" />
-<!--bootstrap -->
-<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
-<link rel="stylesheet" th:href="@{/css/bootstrapcdn-4.4.1.css}"> <!--위의 bootstrap과 일부 설정들이 다름 -->
+
 <!-- 공통 헤더-->
 <!--<th:block th:replace="fragment/header :: headFragment"></th:block> -->
 <header th:replace="fragments/header :: headerFragment"></header>
-<link rel="stylesheet" th:href="@{/css/header.css}">
-<!-- icon link -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<!--custom css file link-->
-<link th:href="@{/css/listStyle.css}" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/css/header.css}"> <!--header 변경없음 -->
 
 <body id="page-top">
 <div id="wrapper">

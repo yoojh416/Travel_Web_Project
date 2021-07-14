@@ -24,6 +24,12 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/board/list")
+    public String list(Model model) {
+        model.addAttribute("data", "hello!!");
+        return "/board/list";
+    }
+
     //유저(user)
     @GetMapping(value = "user/login")
     public String login(Model model) {
@@ -53,8 +59,8 @@ public class HomeController {
     @RequestMapping(value="list")
     public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
-        model.addAttribute("listSearch", products);
-        return "board/filteredList";
+        model.addAttribute("items", products);
+        return "board/list";
     }
 
     /** 지도 이동 */

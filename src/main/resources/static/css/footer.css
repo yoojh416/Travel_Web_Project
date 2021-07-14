@@ -51,9 +51,21 @@ p{
 	width: 50%;
 	height: 50%;
 }
+h4 {
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+    background: #16a085;
+    border-radius: 4px;
+    width: 400px;
+    height: 38px;
+    text-align: center;
+    margin: 10px 195px 10px 195px;
+}
 h2 {
 	font-weight: 600;
 	font-size: 25px;
+	text-align:center;
 }
 .footer ul {
 	list-style: none;

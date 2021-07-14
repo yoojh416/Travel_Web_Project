@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
+<meta charset="UTF-8">
+<title>Title</title>
+
 <head>
   <!-- loader js link-->
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
@@ -17,22 +20,23 @@
 	});
 </script>
   <meta charset="UTF-8">
-  <title>Home</title>
+  <title>메인 화면</title> <!-- href 링크 모두 동일-->
 </head>
 <body>
 <th:block layout:fragment="content">
   <!-- slidebox section starts -->
   <div class="loader"></div>
   <div class="slidebox">
-    <input type="radio" name="slide" id="slide01" checked> <input
-          type="radio" name="slide" id="slide02"> <input type="radio" name="slide" id="slide03"> <input type="radio" name="slide"
-                                                                                                        id="slide04">
+    <input type="radio" name="slide" id="slide01" checked>
+    <input type="radio" name="slide" id="slide02">
+    <input type="radio" name="slide" id="slide03">
+    <input type="radio" name="slide" id="slide04">
     <ul class="slidelist">
       <li class="slideitem">
         <div>
-          <label for="slide04" class="left"></label> <label for="slide02"
-                                                            class="right"></label><a th:href="@{/board/list}"><img
-                src="images/slideimg01.jpg"></a>
+          <label for="slide04" class="left"></label>
+          <label for="slide02" class="right"></label>
+          <a th:href="@{/board/list}"><img src="images/slideimg01.jpg"></a>
         </div>
       </li>
       <li class="slideitem">
@@ -63,32 +67,31 @@
 
   <section class="book" id="book">
     <div class="row">
-      <form action="">
+      <form method="get" th:action="@{board/list}" th:object="${listSearch}" name="searchFrm">
         <div class="inputBox">
-
-          <select class="minimal">
-            <option selected>여행지</option>
-            <option value="korea">국내</option>
-            <option value="japan">일본</option>
-            <option value="china">중국</option>
-            <option value="Southeast_Asia">동남아</option>
-            <option value="Europe">유럽</option>
-          </select> <select class="minimal">
-          <option selected>계절</option>
-          <option value="spring">봄</option>
-          <option value="summer">여름</option>
-          <option value="autumn">가을</option>
-          <option value="winter">겨울</option>
-        </select> <select class="minimal">
-          <option selected>테마</option>
-          <option value="family">가족</option>
-          <option value="friend">친구</option>
-          <option value="couple">커플</option>
-          <option value="filial_piety">효도</option>
-        </select>
-          <button type="button" class="btn" id="img_btn">
-            <a th:href="@{/board/list}"><i class="fas fa-search"></i></a>
-          </button>
+          <select th:name="region" class="minimal">
+            <option value="">여행지</option>
+            <option th:value="Korea">국내</option>
+            <option th:value="Japan">일본</option>
+            <option th:value="China">중국</option>
+            <option th:value="Southeast_Asia">동남아</option>
+            <option th:value="Europe">유럽</option>
+          </select>
+          <select th:name="season" class="minimal">
+            <option value="">계절</option>
+            <option th:value="Spring">봄</option>
+            <option th:value="Summer">여름</option>
+            <option th:value="Autumn">가을</option>
+            <option th:value="Winter">겨울</option>
+          </select>
+          <select th:name="theme" class="minimal">
+            <option value="">테마</option>
+            <option th:value="Family">가족</option>
+            <option th:value="Friend">친구</option>
+            <option th:value="Couple">커플</option>
+            <option th:value="Filial">효도</option>
+          </select>
+          <button type="submit" class="btn" id="img_btn"><i class="fas fa-search"></i></button>
         </div>
       </form>
     </div>

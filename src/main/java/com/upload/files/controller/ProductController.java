@@ -1,7 +1,10 @@
 package com.upload.files.controller;
 
+import com.upload.files.entity.Article;
+import com.upload.files.entity.FilePath;
 import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
+import com.upload.files.repository.ArticleRepository;
 import com.upload.files.repository.FilePathRepository;
 import com.upload.files.repository.ProductRepository;
 import com.upload.files.service.ProductService;
@@ -23,15 +26,20 @@ public class ProductController { //여행 상품용 컨트롤러
     private final ProductService productService;
     private final ProductRepository productRepository;
     private final FilePathRepository filePathRepository;
+    private final ArticleRepository articleRepository;
 
-    /** 상품등록 페이지로 이동 */
+    /**
+     * 상품등록 페이지로 이동
+     */
     @GetMapping("/admin/new")
     public String register(Model model) {
         model.addAttribute("productForm", new ProductForm());
         return "admin/upload";
     }
 
-    /** 입력한 상품 정보 저장 */
+    /**
+     * 입력한 상품 정보 저장
+     */
     @PostMapping("/admin/register")
     public String registered(@Validated ProductForm form, BindingResult result
             , Model model, HttpServletRequest request) {
@@ -49,7 +57,9 @@ public class ProductController { //여행 상품용 컨트롤러
         return "/admin/fileUpload";
     }
 
-    /** 상품 정보 수정 요청 */
+    /**
+     * 상품 정보 수정 요청
+     */
     @GetMapping("/admin/modify/{proNo}")
     public String getProductUpdate(Model model, @PathVariable Long proNo) {
         Product product = productRepository.findOne(proNo);
@@ -58,10 +68,12 @@ public class ProductController { //여행 상품용 컨트롤러
         return "admin/modifyUpload";
     }
 
-    /** 상품 등록 후 상품 목록으로 이동 */
+    /**
+     * 상품 등록 후 상품 목록으로 이동
+     */
     @Transactional
     @PostMapping("/admin/modified/{proNo}")
-    public String setProductUpdate(Model model, @PathVariable Long proNo, Product updatedProduct){
+    public String setProductUpdate(Model model, @PathVariable Long proNo, Product updatedProduct) {
         Product product = productService.findOne(proNo);
 
         product.setProTitle(updatedProduct.getProTitle());
@@ -79,7 +91,9 @@ public class ProductController { //여행 상품용 컨트롤러
         return "redirect:/admin/fileUpdate/{proNo}";
     }
 
-    /** 삭제하기 */
+    /**
+     * 삭제하기
+     */
     @GetMapping("/admin/delete/{proNo}")
     @Transactional
     public String deleteProduct(Model model, @PathVariable Long proNo, Product product) {
@@ -98,11 +112,29 @@ public class ProductController { //여행 상품용 컨트롤러
         return "redirect:/admin/list";
     }
 
-    /** 메인 상품 페이지 */
+    /**
+     * 메인 상품 페이지
+     */
     @RequestMapping("/board/list")
     public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
         model.addAttribute("items", products);
         return "board/list";
     }
+
+    @GetMapping("/board/get/{proNo}")
+    public String getProduct(@PathVariable("proNo") Long proNo, Model model) {
+        Product product = productService.findOne(proNo);
+        model.addAttribute("productInfo", product);
+
+        int fno = filePathRepository.findFno(proNo);
+        FilePath file = filePathRepository.findById(fno).get();
+        model.addAttribute("fileInfo", file);
+
+        List<Article> articleList = articleRepository.findAll();
+        model.addAttribute("articleList", articleList);
+
+        return "board/get";
+    }
+
 }

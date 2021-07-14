@@ -57,7 +57,7 @@ ul, li { /*ul, li의 리스트 스타일 제거*/
 
 .slidebox .slideitem label {
 	position: absolute; /*자율 배치하는 값*/
-	z-index: 1; /*기본값 1*/
+	z-index: -1; /*기본값 1*/
 	top: 50%;
 	transform: translateY(-50%); /*가운데 지정*/
 	padding: 20px;
@@ -80,7 +80,7 @@ ul, li { /*ul, li의 리스트 스타일 제거*/
 	padding: 8px 75px; /*메뉴안 내용들의 간격 조정*/
 }
 
-label.left {
+/*label.left {
 	left: 20px;
 	background-color: none;
 	background-image: url('images/left_arrow.png');
@@ -96,7 +96,7 @@ label.right {
 	background-position: center center;
 	background-size: 100%;
 	background-repeat: no-repeat;
-}
+}*/
 
 [id="slide01"]:checked ~ .slidelist .slideitem {
 	transform: translateX(0);
@@ -203,7 +203,7 @@ section {
 	background: none;
 }
 
-.btn { /*버튼 형식*/
+.btn_main { /*버튼 형식*/
 	margin-top: 1rem;
 	background: none;
 	color: #fff;
@@ -213,7 +213,7 @@ section {
 	font-size: 32px;
 }
 
-.btn:hover {
+.btn_main:hover {
 	background: rgba(255, 165, 0, .2);
 	color: var(- -orange);
 }

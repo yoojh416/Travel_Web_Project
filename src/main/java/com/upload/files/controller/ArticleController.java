@@ -39,7 +39,7 @@ public class ArticleController { //리뷰용 컨트롤러
 	public String getArticleList(Model model) {
 		List<Article> articleList = articleRepository.findAll();
 		model.addAttribute("articleList", articleList);
-		articleList.forEach(System.out::println);
+		//articleList.forEach(System.out::println);
 
 		return "article/list";
 	}

@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
 <head th:replace="fragments/header :: header">
-    <title>upload</title>
-    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+    <title>Spring Boot & Thymeleaf File Upload</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link th:href="@{/css/bootstrapcdn-4.4.1.css}" rel="stylesheet">
 </head>
 <body>
 <th:block layout:fragment="content">
-    <br/><br/><br/><br/>
 <section class="my-5">
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>상품 업로드</h2>
+                <h4>상품 업로드</h4>
                 <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
                 <form method="post" th:action="@{/admin/register}" th:object="${productForm}">
 
@@ -68,14 +67,13 @@
                             <option th:value="Filial" class="form-control">효도</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">상품 업로드</button>
+                    <button type="submit" class="btn btn-primary">업로드</button>
 
                 </form>
             </div>
         </div>
     </div>
 </section>
-    <br/><br/><br/><br/>
 </th:block>
 </body>
 </html>
