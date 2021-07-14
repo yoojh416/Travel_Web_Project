@@ -2,13 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
     <title>Hello</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--custom css file link-->
-    <link th:href="@{/css/listStyle.css}" rel="stylesheet">
-
+    <link rel="stylesheet" th:href="@{/css/bootstrapcdn-4.4.1.css}">
     <!-- icon link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <!-- font link -->
@@ -19,38 +15,31 @@
     <link rel="stylesheet" th:href="@{/js/header.js}" >
 </head>
 <meta charset="UTF-8">
-<title>header-navbar</title>
+<title>header</title>
 </head>
 <body>
 <!--headerFragment 선언-->
 <div th:fragment="headerFragment">
-    <div class="container">
-        <nav class="navbar">
-            <a th:href="@{/}"><img class="main_logo_img" th:src="@{/images/logo.png}" /></a>
-            <ul class="navbar_interval"></ul>
-            <div class="navbar_logo">
-                <a th:href="@{/admin/new}"><i class="fas fa-pen-square">관리자</i></a>
-            </div>
-            <!-- 관리자 ~ 회원정보 간격 조정 -->
-            <ul class="navbar_interval">
-                <li></li><li></li><li></li>
-            </ul>
-            <ul class="navbar_menu">
-                <li><a th:href="@{/user/login}"><i class="fas fa-sign-in-alt">로그인</i></a></li>
-                <li><a th:href="@{/user/logout}"><i class="fas fa-sign-out-alt">로그아웃</i></a></li>
-                <li><a th:href="@{/user/reservation}"><i class="fas fa-bookmark">예약관리</i></a></li>
-                <li><a th:href="@{/user/userInfo}"><i class="fas fa-address-card">회원정보</i></a></li>
-            </ul>
-            <ul class="navbar_icons">
-                <li><a th:href="@{/}"><i class="fas fa-home">홈</i></a></li>
-            </ul>
-
-            <a href="#" class="navbar_toogleBtn"> <!--링크 변경 시 오류 발생(추가 안 해도 됨) -->
-                <i class="fas fa-bars"></i></a>
-        </nav>
-    </div>
+    <nav class="navbar navbar-custom">
+        <a th:href="@{/}"><img class="main_logo_img" th:src="@{/images/logo.png}" /></a>
+        <div class="navbar_logo">
+            <a th:href="@{/admin/new}"><i class="fas fa-pen-square">관리자</i></a>
+        </div>
+        <!-- 관리자 ~ 회원정보 간격 조정 -->
+        <ul class="navbar_interval">
+            </li><li> </li><li> </li><li> </li><li> </li><li>
+        </ul>
+        <ul class="navbar_menu">
+            <li><a th:href="@{/user/login}"><i class="fas fa-sign-in-alt">로그인</i></a></li>
+            <li><a th:href="@{/user/logout}"><i class="fas fa-sign-out-alt">로그아웃</i></a></li>
+            <li><a th:href="@{/user/reservation}"><i class="fas fa-bookmark">예약관리</i></a></li>
+            <li><a th:href="@{/user/userInfo}"><i class="fas fa-address-card">회원정보</i></a></li>
+        </ul>
+        <ul class="navbar_icons">
+            <li><a th:href="@{/}"><i class="fas fa-home">홈</i></a></li>
+        </ul>
+    </nav>
 </div>
-<div class="counter"></div>
 </body>
 </html>
 
