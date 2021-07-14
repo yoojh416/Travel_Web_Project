@@ -90,8 +90,8 @@ public class FilesController {
     }
 
         /* 안쓰는 업로드 로직
-    @RequestMapping("/admin/fileUpdate")
-    public String fileUpdate(HttpServletRequest request
+        @RequestMapping("/admin/fileUpdate")
+        public String fileUpdate(HttpServletRequest request
             , @RequestPart MultipartFile files
             , Model model, @PathVariable Long ProNo) throws Exception {
 

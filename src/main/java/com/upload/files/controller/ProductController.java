@@ -4,7 +4,6 @@ import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
 import com.upload.files.repository.FilePathRepository;
 import com.upload.files.repository.ProductRepository;
-import com.upload.files.service.FilePathService;
 import com.upload.files.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ public class ProductController { //여행 상품용 컨트롤러
 
     private final ProductService productService;
     private final ProductRepository productRepository;
-    private final FilePathService filePathService;
     private final FilePathRepository filePathRepository;
 
     /** 상품등록 페이지로 이동 */
@@ -81,14 +79,6 @@ public class ProductController { //여행 상품용 컨트롤러
         return "redirect:/admin/fileUpdate/{proNo}";
     }
 
-    /** 메인 상품 페이지 */
-    @RequestMapping("/board/list")
-    public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
-        List<Product> products = productService.findItemsByFilter(listSearch);
-        model.addAttribute("items", products);
-        return "board/list";
-    }
-
     /** 삭제하기 */
     @GetMapping("/admin/delete/{proNo}")
     @Transactional
@@ -103,9 +93,16 @@ public class ProductController { //여행 상품용 컨트롤러
 
         /*값이 안넘어감*/
         List<Product> productList = productRepository.findAll();
-        model.addAttribute("productForm", productList);
+        model.addAttribute("products", productList);
 
-        return "admin/itemList";
+        return "redirect:/admin/list";
     }
 
+    /** 메인 상품 페이지 */
+    @RequestMapping("/board/list")
+    public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
+        List<Product> products = productService.findItemsByFilter(listSearch);
+        model.addAttribute("items", products);
+        return "board/list";
+    }
 }
