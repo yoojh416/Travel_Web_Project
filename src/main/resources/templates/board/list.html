@@ -4,9 +4,6 @@
     <title>여행상품</title>
     <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
 </head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link th:href="@{/css/listStyle.css}" rel="stylesheet">
 <body>
 <div class="jumbotron" id="top">
 
@@ -20,19 +17,19 @@
                         <div class="ItemFilterGroupTitle">여행지</div>
                         <div class="ItemFilterGroupList">
                             <label>
-                                <input type="checkbox" th:name="region" value="Korea">&nbsp;국내
+                                <input type="checkbox" th:field="*{region}" value="Korea">&nbsp;국내
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="region" value="Japan">&nbsp;일본
+                                <input type="checkbox" th:field="*{region}" value="Japan">&nbsp;일본
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="region" value="China">&nbsp;중국
+                                <input type="checkbox" th:field="*{region}" value="China">&nbsp;중국
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="region" value="Southeast_Asia">&nbsp;동남아시아
+                                <input type="checkbox" th:field="*{region}" value="Southeast_Asia">&nbsp;동남아시아
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="region" value="Europe">&nbsp;유럽
+                                <input type="checkbox" th:field="*{region}" value="Europe">&nbsp;유럽
                             </label>
                         </div>
                     </div>
@@ -41,16 +38,16 @@
                         <div class="ItemFilterGroupTitle">계절</div>
                         <div class="ItemFilterGroupList">
                             <label>
-                                <input type="checkbox" th:name="season" value="Spring">&nbsp;봄
+                                <input type="checkbox" th:field="*{season}" value="Spring">&nbsp;봄
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="season" value="Summer">&nbsp;여름
+                                <input type="checkbox" th:field="*{season}" value="Summer">&nbsp;여름
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="season" value="Autumn">&nbsp;가을
+                                <input type="checkbox" th:field="*{season}" value="Autumn">&nbsp;가을
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="season" value="Winter">&nbsp;겨울
+                                <input type="checkbox" th:field="*{season}" value="Winter">&nbsp;겨울
                             </label><br>
                         </div>
                     </div>
@@ -59,16 +56,16 @@
                         <div class="ItemFilterGroupTitle">테마</div>
                         <div class="ItemFilterGroupList">
                             <label>
-                                <input type="checkbox" th:name="theme" value="Family">&nbsp;가족
+                                <input type="checkbox" th:field="*{theme}" value="Family">&nbsp;가족
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="theme" value="Friend">&nbsp;친구
+                                <input type="checkbox" th:field="*{theme}" value="Friend">&nbsp;친구
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="theme" value="Couple">&nbsp;커플
+                                <input type="checkbox" th:field="*{theme}" value="Couple">&nbsp;커플
                             </label><br>
                             <label>
-                                <input type="checkbox" th:name="theme" value="Filial">&nbsp;효도
+                                <input type="checkbox" th:field="*{theme}" value="Filial">&nbsp;효도
                             </label><br>
                         </div>
                     </div>
@@ -79,22 +76,22 @@
         <div class="col-lg-10 card-deck">
             <div class="col-lg-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
                 <div class="card">
-                    <img class="card-img-top" th:src="@{'/images/p4.jpg'}" alt="Card image cap">
+                    <img class="card-img-top" src="#" alt="Card image cap">
                     <div class="card-body">
-                        <h4><a class="proTitle" th:href="@{'/board/get?proNo='+${list.proNo}}" th:text = "${list.proTitle}"></a></h4>
-                        <h5><p class="card-text" th:text="${list.proContent}"></p></h5>
+                        <h3><a class="proTitle" th:href="@{'/board/get?proNo='+${list.proNo}}" th:text = "${list.proTitle}"></a></h3>
+                        <p class="card-text" th:text="${list.proContent}"></p>
                         @<input type="hidden" name="region" th:text="${list.region}"><br>
                         @<input type="hidden" name="season" th:text="${list.season}"><br>
                         @<input type="hidden" name="theme" th:text="${list.theme}"><br>
                     </div>
                     <div class="card-footer" style="background-color: white">
-                        <p class="card-text" th:text="${list.price}">원 ~ </p>
+                        <p class="card-text" th:text="${list.price}"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   <!-- <div th:replace="fragments/footer :: footer"/>-->
+    <div th:replace="fragments/footer :: footer"/>
 </div>
 </body>
 <!--<th:block layout:fragment="script">
