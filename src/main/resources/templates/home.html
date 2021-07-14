@@ -69,7 +69,6 @@
     <div class="row">
       <form method="get" th:action="@{board/list}" th:object="${listSearch}" name="searchFrm">
         <div class="inputBox">
-          <!--<select th:name="region" class="minimal">-->
           <select th:name="region" class="minimal">
             <option value="">여행지</option>
             <option th:value="Korea">국내</option>
@@ -92,9 +91,7 @@
             <option th:value="Couple">커플</option>
             <option th:value="Filial">효도</option>
           </select>
-          <button type="submit" class="btn" id="img_btn"><i class="fas fa-search"></i>
-            <!--<a th:href="@{/board/list}"></a>-->
-          </button>
+          <button type="submit" class="btn" id="img_btn"><i class="fas fa-search"></i></button>
         </div>
       </form>
     </div>

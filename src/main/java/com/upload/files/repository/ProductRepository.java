@@ -78,43 +78,19 @@ public class ProductRepository {
                 .fetch();
     }
 
-    /*public List<Product> findByProNo(Long proNo) {
-        return em.createQuery("select m from product m where m.proNo = :proNo",
-                Product.class)
-                .setParameter("proNo", proNo)
-                .getResultList();
-    }*/
-
     private BooleanExpression regionLike(String regionCond) {
         QProduct product = QProduct.product;
-        boolean cond = StringUtils.hasText(regionCond);
-        int count = 0;
-
-        if (!cond) {
-            return null;
-        }
-
-        return product.region.like(regionCond);
+        return !StringUtils.hasText(regionCond) ? null : product.region.like(regionCond);
     }
 
     private BooleanExpression seasonLike(String seasonCond) {
         QProduct product = QProduct.product;
-
-        if (!StringUtils.hasText(seasonCond)) {
-            return null;
-        }
-
-        return product.season.like(seasonCond);
+        return !StringUtils.hasText(seasonCond) ? null : product.season.like(seasonCond);
     }
 
     private BooleanExpression themeLike(String themeCond) {
         QProduct product = QProduct.product;
-
-        if (!StringUtils.hasText(themeCond)) {
-            return null;
-        }
-
-        return product.theme.like(themeCond);
+        return !StringUtils.hasText(themeCond) ? null : product.theme.like(themeCond);
     }
 
 }

@@ -53,8 +53,8 @@ public class HomeController {
     @RequestMapping(value="list")
     public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
-        model.addAttribute("listSearch", products);
-        return "board/filteredList";
+        model.addAttribute("items", products);
+        return "board/list";
     }
 
 }

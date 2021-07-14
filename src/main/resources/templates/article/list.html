@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="reviewList">
 <head xmlns:th="http://www.thymeleaf.org">
   <meta charset="UTF-8">
   <title>Insert title here</title>
@@ -24,7 +24,7 @@
         <tbody>
         <tr th:each="article : ${articleList}">
           <td th:text="${article.id}"/>
-          <td ><a th:href="@{/article/{id}(id = ${article.id})}" th:text="${article.title}"></a></td>
+          <td ><a th:href="@{/article/{id}(id = ${article.id})}" th:text="${article.title}" class="articleTitle"></a></td>
           <td th:text="${article.registerDate}"/>
         </tr>
         </tbody>
@@ -33,4 +33,7 @@
   </div>
 </div>
 </body>
+<script>
+
+</script>
 </html>
