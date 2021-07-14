@@ -57,4 +57,10 @@ public class HomeController {
         return "board/filteredList";
     }
 
+    /** 지도 이동 */
+    @GetMapping("board/map")
+    public String map() {
+        return "board/map";
+    }
+
 }
