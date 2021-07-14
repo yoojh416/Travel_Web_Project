@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Spring Boot & Thymeleaf File Upload</title>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<head th:replace="fragments/header :: header">
+    <title>upload</title>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
-
+<th:block layout:fragment="content">
+    <br/><br/><br/><br/>
 <section class="my-5">
     <div class="container">
         <div class="row">
@@ -71,6 +75,7 @@
         </div>
     </div>
 </section>
-
+    <br/><br/><br/><br/>
+</th:block>
 </body>
 </html>

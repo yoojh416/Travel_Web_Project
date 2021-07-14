@@ -388,6 +388,10 @@ header .search-bar-container label:hover {
 	position: relative;
 	border-radius: 50%;
 }
+.sms ul li a:hover {
+    color:  #0C4F3C;
+}
+
 
 .book .row {
 	display: flex;
@@ -416,7 +420,7 @@ header .search-bar-container label:hover {
 	text-align: center;
 	padding: 0px;
 	margin: 20 20px;
-	display: inline-block; /*줄바꿈x*/
+	display: block;
 }
 
 /*searching bar updated start*/
@@ -447,6 +451,7 @@ select.minimal {
 		linear-gradient(to right, #ccc, #ccc);
 	background-position: right center;
 	background-size: 10px 10px;
+	padding: 10px;
 	background-repeat: no-repeat;
 }
 
@@ -508,11 +513,11 @@ select:-moz-focusing {
 
 .packages .box-container .box .content h3 a {
 	font-size: 2rem;
-	color: black;
+	font-weight: bold;
+	color: #16a085;
 }
-
 .packages .box-container .box .content h3 i {
-	color: black;
+	color:  #16a085;
 }
 
 .packages .box-container .box .content p {
