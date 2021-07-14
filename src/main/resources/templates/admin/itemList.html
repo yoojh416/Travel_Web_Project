@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header" />
 <body>
@@ -21,8 +20,7 @@
             <tbody>
             <tr th:each="product : ${products}">
                 <td th:text="${product.proNo}"></td>
-                <td th:text="${product.proTitle}"
-                    th:onclick="|window.location.href='/admin/modify/${product.proNo}'|"></td>
+                <td th:text="${product.proTitle}"></td>
                 <td th:text="${product.proWriter}"></td>
                 <td th:text="${product.proContent}"></td>
             </tr>

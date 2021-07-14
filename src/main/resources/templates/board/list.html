@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
     <title>여행상품</title>
+    <head th:replace="fragments/header :: header">
     <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link th:href="@{/css/listStyle.css}" rel="stylesheet">
 <body>
+<th:block layout:fragment="content">
 <div class="jumbotron" id="top">
 
 </div>
@@ -97,6 +100,7 @@
     </div>
    <!-- <div th:replace="fragments/footer :: footer"/>-->
 </div>
+</th:block>
 </body>
 <!--<th:block layout:fragment="script">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
