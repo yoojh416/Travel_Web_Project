@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lagn="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<link th:href="@{/css/listStyle.css}" rel="stylesheet" />
 
-<!-- 공통 헤더-->
-<!--<th:block th:replace="fragment/header :: headFragment"></th:block> -->
+<!--bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <header th:replace="fragments/header :: headerFragment"></header>
-<link rel="stylesheet" th:href="@{/css/header.css}"> <!--header 변경없음 -->
 
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<!-- icon link -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<!--custom css file link-->
+<link th:href="@{/css/listStyle.css}" rel="stylesheet">
+<link th:href="@{/css/upload.css}" rel="stylesheet">
 <body id="page-top">
 <div id="wrapper">
 

@@ -1,0 +1,120 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+.admin_title {
+    background: #16a085;
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    margin-left: 200px;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+.title {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+    margin-right: 680px;
+    padding: 5px;
+}
+.price {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+    margin-right: 680px;
+    padding: 5px;
+}
+.adminId {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+    margin-right: 586px;
+    padding: 5px;
+}
+.content {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+    margin-right: 630px;
+    padding: 5px;
+}
+.region {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+}
+.season {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+}
+.theme {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+}
+.select_region {
+    font-size: 15px;
+    font-weight: bold;
+    width: 100px;
+    height: 32px;
+    border-color: #16a085;
+    border-radius: 4px;
+}
+.select_season {
+    font-size: 15px;
+    font-weight: bold;
+    width: 100px;
+    height: 32px;
+    border-color: #16a085;
+    border-radius: 4px;
+}
+.select_theme {
+    font-size: 15px;
+    font-weight: bold;
+    width: 100px;
+    height: 32px;
+    border-color: #16a085;
+    border-radius: 4px;
+}
+.N {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+    margin-right: 630px;
+    padding: 5px;
+}
+.E {
+    font-size: 23px;
+    text-align: center;
+    color: #16a085;
+    font-weight: bold;
+    margin-right: 630px;
+    padding: 5px;
+}
+.btn-upload {
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    background: #16a085;
+    font-weight: bold;
+    margin-left: 0px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 150px;
+    border-color: #16a085;
+}
+.btn-upload:hover {
+    background: #0C4F3C;
+}
