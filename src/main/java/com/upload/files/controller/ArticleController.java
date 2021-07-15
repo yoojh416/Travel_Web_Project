@@ -6,6 +6,7 @@ import com.upload.files.repository.ArticleRepository;
 import com.upload.files.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,13 +39,33 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "redirect:/article/list";
 	}
 
-	/**전체 리스트 */
+	/** 전체 리스트 + 페이징 */
 	@GetMapping("/article/list")
 	public String getArticleList(Model model, @PageableDefault Pageable pageable
 			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
 		Page<Article> articleList = articleService.getArticleList(pageable);
-
 		model.addAttribute("articleList", articleList);
+
+		return "article/list";
+	}
+
+	/** 검색기능 추가 */
+	@GetMapping("/article/search")
+	public String getSearch(Model model, @PageableDefault Pageable pageable
+			, @RequestParam(value = "page", defaultValue = "1") String pageNum
+			, String keyword) {
+		Page result;
+		Page<Article> articleList = articleService.getArticleList(pageable);
+		Page<Article> searchList = articleService.search(keyword, pageable);
+
+		/*검색어가 없으면 전체 리스트 반환하는 로직*/
+		if(keyword.isEmpty()) {
+			result = articleList;
+		} else {
+			result = searchList;
+		}
+
+		model.addAttribute("articleList", result);
 
 		return "article/list";
 	}

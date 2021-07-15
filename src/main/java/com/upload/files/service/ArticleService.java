@@ -7,6 +7,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ArticleService {
@@ -17,11 +20,26 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
+    /** 전체 페이징 메소드 */
     public Page<Article> getArticleList(Pageable pageable) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
         pageable = PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id"));
 
         return articleRepository.findAll(pageable);
+    }
+
+    /** 검색 메소드 */
+    @Transactional
+    public Page<Article> search(String keyword, Pageable pageable) {
+
+        Page<Article> ArticleList = articleRepository.findByTitleContaining(keyword, pageable);
+        Page<Article> ArticleAllList = articleRepository.findAll(pageable);
+
+        if (!keyword.isEmpty()) {
+            return ArticleList;
+        } else {
+            return ArticleAllList;
+        }
     }
 
 }
