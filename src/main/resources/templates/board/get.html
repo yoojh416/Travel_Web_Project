@@ -25,12 +25,9 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
 
     <style>
-
       #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 50%;
+        width: 800px;
+        height: 300px;
       }
     </style>
 </head>
@@ -46,15 +43,18 @@
                 <span>조회수</span>
             </div>
             <div class="productImg">
-                <img src="#" alt="제품 이미지"/>
+                <img th:src="@{/upload/{fileName}(fileName = ${fileInfo.fileName})}"
+                     alt="제품 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
             </div>
             <div class="bookingProduct">
                 <h5 th:text="${productInfo.price}"></h5>
                 <button type="button" class="btn btn-success" th:onclick="|window.location.href='/order/book'|">예약하기</button>
                 <button type="button" class="btn btn-default" onclick="history.go(-1)">목록으로</button>
             </div>
+            <br>
+            <br>
             <div>
-                <!--<div id="map"/>-->
+                <div id="map"/>
             </div>
             <br>
             <table>
@@ -100,7 +100,7 @@
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [E, N],
-      zoom: 7
+      zoom: 10
     });
 
 </script>

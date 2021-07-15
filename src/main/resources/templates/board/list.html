@@ -87,15 +87,17 @@
                 <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
                     <div class="card">
                         <img class="card-img-top" th:src="@{/images/p4.jpg}" alt="임의 사진 설정">
+                       <!-- DB에서 이미지 꺼내 올 수 있도록 Controller 설정 필요-->
+                        <!--<img class="card-img-top" th:src="@{/upload/{fileName}(fileName = ${fileInfo.fileName})}" alt="여행 상품 메인 사진">-->
                         <div class="card-body">
                             <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}" th:text = "${list.proTitle}"></a></h3>
+                            <p class="card-text" th:text="'￦ '+${list.price}"></p>
                             <p class="card-text" th:text="${list.proContent}"></p>
-                            @<input type="hidden" name="region" th:text="${list.region}"><br>
-                            @<input type="hidden" name="season" th:text="${list.season}"><br>
-                            @<input type="hidden" name="theme" th:text="${list.theme}"><br>
                         </div>
                         <div class="card-footer" style="background-color: white">
-                            <p class="card-text" th:text="${list.price}"></p>
+                            @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
+                            @<input type="hidden" name="season" th:text="${list.season}">&nbsp;
+                            @<input type="hidden" name="theme" th:text="${list.theme}">
                         </div>
                     </div>
                 </div>
