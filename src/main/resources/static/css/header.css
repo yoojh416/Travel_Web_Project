@@ -1,74 +1,123 @@
-.navbar-custom {
-    background-color: #16a085;
-    position: fixed;
-    z-index: 1;
-    width: 100%;
-    justify-content: center;
+body {
+	margin: 0; /*웹 페이지를 상단 바가 다 채움*/
+	font-family: 'Roboto', sans-serif; /*body 내 모든 포튼 동일 적용*/
+	text-align: center;
+
 }
-li a {
+.navbar {
+	display: flex; /*한 줄에 나란히*/
+	justify-content: center; /*스페이스를 사이사이에 넣음*/
+	align-items: center; /*중앙 배치*/
+	background-color: #16a085;
+	padding: 10px;
+}
+li a{
     color: white;
-    text-align: center;
-    /*padding: 20px 10px 10px 10px;*/
+	text-decoration: none;/*.없앰*/
+	color: white;
 }
 li a:hover {
     color:  #0C4F3C;
 }
-ul {
-    justify-content: center;
-}
 .main_logo_img{
-	width:180px;
-	height:80px;
-	padding: 0rem 0rem;
+	width: 190px;
+	height: 75px;
+	padding: 0.3rem 0.35rem;
 }
 .navbar_logo {
-	padding: 0;
-    width: 140px;
-    text-align: center;
+	padding: 0px;
+	width: 200px;
+	list-style:none;
 }
-.navbar_logo a {
+.navbar_logo li {
+    width: 100px;
     font-size: 24px;
-	color : white;
-
-}
-.navbar_logo a:hover {
-    color:  #0C4F3C;
-}
-.navbar_interval{
-	display:flex;
-	list-style: none;
-	padding-left: 0;
-}
-.navbar_interval li {
-	padding: 22px 80px; /*메뉴안 내용들의 간격 조정*/
+    height: 27px;
 }
 .navbar_menu {
 	display: flex; /*한 줄에 하나씩 나옴*/
 	list-style:none; /*홈이 같지 않음*/
 	padding-left: 0; /*이렇게 지정해서 중앙에 배치*/
-	font-size: 24px;
+	font-size: 18px;
 }
 .navbar_menu li {
-    width: 140px;
-    height: 22px;
-    text-align: center;
+	padding: 0px; /*메뉴안 내용들의 간격 조정*/
+	width: 125px;
+    font-size: 24px;
+    height: 27px;
 }
-.navbar_icons{
+/*.navbar_menu li:hover {*//*클릭시 색깔 변함*//*
+	background-color: #66c9a8;
+	width: 140px;
+	height: 22px;
+	border-radius: 4px; *//*모서리 둥글게*//*
+}*/
+.navbar_icons {
 	color: white;
-	font-size: 24px;
+	font-size: 25px;
 	display: flex;
 	list-style:none;
 	padding-left: 0rem; /*중앙 배치*/
 }
 .navbar_icons li {
-    width: 140px;
-	height: 22px;
-    text-align: center;
+	padding: 0px;
+	width: 140px;
+    font-size: 24px;
+    height: 27px;
 }
+/*.navbar_icons li:hover {
+	background-color: #66c9a8;
+	border-radius: 4px; *//*모서리 둥글게*//*
+}*/
 .navbar_toogleBtn { /*위치 조정*/
 	display: none; /*큰 크기때는 안 보이게 함*/
 	position: absolute; /*제일 위에 배치*/
 	right: 32px; /*오른쪽에서 32px 떨어진 곳에 배치*/
 	font-size: 24px;
 	color: white;
+}
+
+@media screen and (max-width: 1075px) {
+	.navbar {
+		flex-direction: column;
+/*기존은 row, column으로 아래로 내림*/
+
+		align-items: flex-start;
+/*왼쪽으로 이동*/
+
+	}
+	.navbar_menu{
+		display: none; */
+/*화면에서 사라짐*/
+
+		flex-direction: column;
+		align-items: center; */
+        /*중앙배치*/
+		width: 100%
+/*align-items가 반응하지 않는 부분을 width가 보완*/
+
+	}
+	.navbar_menu li{ */
+/*hover부분이 넓어짐*/
+
+		width: 100%;
+		text-align: center;
+	}
+	.navbar_icons {
+		display: none;
+		justify-content: center; */
+/*중앙 배치*/
+
+		width: 100%;
+	}
+	.navbar_toogleBtn{
+/*화면이 작아질때만 표시되도록 함*/
+
+		display: block;
+	}
+	.navbar_menu.active,
+	.navbar_icons.active {
+    /*navbar_toogleBtn이 클릭시 활성화*/
+	display: flex;
+	}
 }
