@@ -1,7 +1,5 @@
 package com.upload.files.controller;
 
-import com.upload.files.entity.Article;
-import com.upload.files.entity.FilePath;
 import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
 import com.upload.files.repository.ArticleRepository;
@@ -10,9 +8,6 @@ import com.upload.files.repository.ProductRepository;
 import com.upload.files.service.ArticleService;
 import com.upload.files.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -129,24 +124,6 @@ public class ProductController { //여행 상품용 컨트롤러
         model.addAttribute("items", products);
 
         return "board/list";
-    }
-
-    @GetMapping("/board/get")
-    public String getProduct(@RequestParam(name = "proNo") Long proNo,
-                             @RequestParam(value="page", defaultValue = "1") String pageNum,
-                             @PageableDefault Pageable pageable, Model model) {
-
-        Product product = productService.findOne(proNo);
-        model.addAttribute("productInfo", product);
-
-        int fno = filePathRepository.findFno(proNo);
-        FilePath file = filePathRepository.findById(fno).get();
-        model.addAttribute("fileInfo", file);
-
-        Page<Article> articleList = articleService.getArticleList(pageable);
-        model.addAttribute("articleList", articleList);
-
-        return "board/get";
     }
 
 }

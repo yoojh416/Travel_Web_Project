@@ -88,7 +88,7 @@
                     <div class="card">
                         <img class="card-img-top" th:src="@{/images/p4.jpg}" alt="임의 사진 설정">
                         <div class="card-body">
-                            <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo})}" th:text = "${list.proTitle}"></a></h3>
+                            <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}" th:text = "${list.proTitle}"></a></h3>
                             <p class="card-text" th:text="${list.proContent}"></p>
                             @<input type="hidden" name="region" th:text="${list.region}"><br>
                             @<input type="hidden" name="season" th:text="${list.season}"><br>

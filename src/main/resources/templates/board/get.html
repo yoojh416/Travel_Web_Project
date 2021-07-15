@@ -19,21 +19,42 @@
             src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script
             src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <!--map 관련 head 정보-->
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+      }
+    </style>
 </head>
 <body>
 <th:block layout:fragment="content">
     <div class="container">
+        <div class="jumbotron">
+
+        </div>
         <div class="col-lg-10">
             <div>
                 <span>좋아요</span>
                 <span>조회수</span>
             </div>
             <div class="productImg">
-                메인 이미지
+                <img src="#" alt="제품 이미지"/>
             </div>
             <div class="bookingProduct">
-                <h5 th:text="${productInfo.price}">원</h5>
-                <button type="button" class="btn btn-default" th:onclick="|window.location.href='/order/book'|">예약하기</button>
+                <h5 th:text="${productInfo.price}"></h5>
+                <button type="button" class="btn btn-success" th:onclick="|window.location.href='/order/book'|">예약하기</button>
+                <button type="button" class="btn btn-default" onclick="history.go(-1)">목록으로</button>
+            </div>
+            <div>
+                <!--<div id="map"/>-->
             </div>
             <br>
             <table>
@@ -59,6 +80,30 @@
             </div>
         </div>
     </div>
+    <script>
+
+    <!--파라미터 받기-->
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    <!--받은 걸로 변수 선언-->
+    var E = getParameterByName('E');
+    var N = getParameterByName('N');
+
+    <!--기본 맵-->
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2l3aWhhbm5haCIsImEiOiJja3IydGp6emsyZmc5Mm5tbnh1ZzA3bXZlIn0.FBt4dq5Av6NR1IbMttcyMA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v10',
+      center: [E, N],
+      zoom: 7
+    });
+
+</script>
 </th:block>
 </body>
 </html>
