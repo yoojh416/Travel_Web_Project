@@ -16,32 +16,43 @@
                 <div class="col-md-8 mx-auto">
                     <div class="admin_title">상품 수정</div>
                     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-                    <form method="post" th:action="@{/admin/modified/{proNo}(proNo = ${proNo})}" th:object="${productForm}">
+                    <form method="post" th:action="@{/admin/modified/{proNo}(proNo = ${proNo})}"
+                          th:object="${productForm}">
 
                         <div class="form-group">
-                            <label th:for="proTitle"><div class="title">제목</div></label>
+                            <label th:for="proTitle">
+                                <div class="title">제목</div>
+                            </label>
                             <input type="text" th:field="*{proTitle}" class="form-word"
                                    placeholder="여행 제목을 입력하세요">
                         </div>
 
                         <div class="form-group">
-                            <label th:for="price"><div class="price">가격</div></label>
+                            <label th:for="price">
+                                <div class="price">가격</div>
+                            </label>
                             <input type="text" th:field="*{price}" class="form-word"
                                    placeholder="숫자만 입력하세요">
                         </div>
 
                         <div class="form-group">
-                            <label th:for="proWriter"><div class="adminId">관리자 아이디</div></label>
+                            <label th:for="proWriter">
+                                <div class="adminId">관리자 아이디</div>
+                            </label>
                             <input type="text" th:field="*{proWriter}" class="form-word">
                         </div>
 
                         <div class="form-group">
-                            <label th:for="proContent"><div class="content">상세 내용</div></label>
-                            <textarea th:field="*{proContent}" class="form-word-content" />
+                            <label th:for="proContent">
+                                <div class="content">상세 내용</div>
+                            </label>
+                            <textarea th:field="*{proContent}" class="form-word-content"/>
                         </div>
 
                         <div class="region-season-theme">
-                            <label th:for="region"><div class="region">여행지</div></label>
+                            <label th:for="region">
+                                <div class="region">여행지</div>
+                            </label>
                             <select th:field="*{region}" class="select_region">
                                 <option th:value="Korea" class="form-control">국내</option>
                                 <option th:value="Japan" class="form-control">일본</option>
@@ -49,14 +60,18 @@
                                 <option th:value="Southeast_Asia" class="form-control">동남아시아</option>
                                 <option th:value="Europe" class="form-control">유럽</option>
                             </select>
-                            <label th:for="season"><div class="season">계절</div></label>
+                            <label th:for="season">
+                                <div class="season">계절</div>
+                            </label>
                             <select th:field="*{season}" class="select_season">
                                 <option th:value="Spring" class="form-control">봄</option>
                                 <option th:value="Summer" class="form-control">여름</option>
                                 <option th:value="Autumn" class="form-control">가을</option>
                                 <option th:value="Winter" class="form-control">겨울</option>
                             </select>
-                            <label th:for="theme"><div class="theme">테마</div></label>
+                            <label th:for="theme">
+                                <div class="theme">테마</div>
+                            </label>
                             <select th:field="*{theme}" class="select_theme">
                                 <option th:value="Family" class="form-control">가족</option>
                                 <option th:value="Friend" class="form-control">친구</option>
@@ -65,21 +80,29 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label th:for="N"><div class="N">위도 (Nº)</div></label>
-                            <input type="text" th:field="*{N}" class="form-word" />
+                            <label th:for="N">
+                                <div class="N">위도 (Nº)</div>
+                            </label>
+                            <input type="text" th:field="*{N}" class="form-word"/>
                         </div>
                         <div class="form-group">
-                            <label th:for="E"><div class="E">경도 (Eº)</div></label>
-                            <input type="text" th:field="*{E}" class="form-word" />
+                            <label th:for="E">
+                                <div class="E">경도 (Eº)</div>
+                            </label>
+                            <input type="text" th:field="*{E}" class="form-word"/>
                         </div>
                         <div class="buttons">
                             <button type="submit" class="btn-upload">상품 업데이트</button>
-                            <button class="btn-delete"
-                                    th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기</button>
-                            <button class="btn-list"
-                                    th:onclick="|window.location.href='/admin/list'|">목록으로</button>
                         </div>
                     </form>
+                    <div class="buttons">
+                        <button class="btn-delete"
+                                th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기
+                        </button>
+                        <button class="btn-list"
+                                th:onclick="|window.location.href='/admin/list'|">목록으로
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
