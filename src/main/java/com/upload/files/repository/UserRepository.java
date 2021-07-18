@@ -1,3 +1,4 @@
+/*
 package com.upload.files.repository;
 
 
@@ -11,3 +12,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAllById(Long id);
 
 }
+*/

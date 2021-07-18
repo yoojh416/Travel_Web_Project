@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width" />
@@ -20,59 +22,69 @@
 			src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 </head>
 <body>
+
 <div style="padding:0% 30%">
 	<form id="articleForm" role="form" action="/write" method="post">
 		<br style="clear: both">
 		<div class="form-group">
-			<h3 style="margin-bottom: 25px;">d=(´▽｀)=b 리뷰를 작성해주세요 d=(´▽｀)=b</h3>
+			<h3 style="margin-bottom: 25px;">리뷰를 작성해주세요 “φʕ•ᴥ•｡ʔ</h3>
 			<input type="text" class="form-control" id="title" name="title"
-				   placeholder="title" required>
+				   placeholder="제목" required>
 			<input type="text" class="form-control" id="writer" name="writer"
-				   placeholder="writer" required>
+				   placeholder="닉네임" required>
 		</div>
 		<div class="form-group">
 			<textarea class="form-control" id="summernote" name="content"
 					  placeholder="content" maxlength="140" rows="7"></textarea>
 		</div>
+		<a type="button" class="btn btn-danger pull-right"  th:href="@{/article/list}">취소하기</a>
+
 		<button type="submit" id="submit" name="submit"
-				class="btn btn-primary pull-right">Submit Form</button>
+				class="btn btn-success pull-right">저장하기</button>
+
+
+
 	</form>
+
+
+
 </div>
+
 </body>
 <script>
-		$(document).ready(function() {
-			$('#summernote').summernote({
-				height : 300,
-				minHeight : null,
-				maxHeight : null,
-				focus : true,
-				callbacks : {
-					onImageUpload : function(files, editor, welEditable) {
-						for (var i = 0; i < files.length; i++) {
-							sendFile(files[i], this);
-						}
-					}
-				}
-			});
-		});
+      $(document).ready(function() {
+         $('#summernote').summernote({
+            height : 300,
+            minHeight : null,
+            maxHeight : null,
+            focus : true,
+            callbacks : {
+               onImageUpload : function(files, editor, welEditable) {
+                  for (var i = 0; i < files.length; i++) {
+                     sendFile(files[i], this);
+                  }
+               }
+            }
+         });
+      });
 
-		function sendFile(file, el) {
-			var form_data = new FormData();
-			form_data.append('file', file);
-			$.ajax({
-				data : form_data,
-				type : "POST",
-				url : '/image',
-				cache : false,
-				contentType : false,
-				enctype : 'multipart/form-data',
-				processData : false,
-				success : function(url) {
-					$(el).summernote('insertImage', url, function($image) {
-						$image.css('width', "50%");
-					});
-				}
-			});
-		}
+      function sendFile(file, el) {
+         var form_data = new FormData();
+         form_data.append('file', file);
+         $.ajax({
+            data : form_data,
+            type : "POST",
+            url : '/image',
+            cache : false,
+            contentType : false,
+            enctype : 'multipart/form-data',
+            processData : false,
+            success : function(url) {
+               $(el).summernote('insertImage', url, function($image) {
+                  $image.css('width', "50%");
+               });
+            }
+         });
+      }
 	</script>
 </html>

@@ -1,5 +1,5 @@
 
-package com.upload.files.model;
+/*package com.upload.files.model;
 
 import lombok.Data;
 
@@ -34,7 +34,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
-}
+}*/
 
 
 /*package com.upload.files.model;

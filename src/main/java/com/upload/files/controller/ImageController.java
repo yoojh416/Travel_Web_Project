@@ -43,6 +43,5 @@ public class ImageController { //메인 이미지(제품)용 컨트롤러
 			e.printStackTrace();
 			return ResponseEntity.badRequest().build();
 		}
-		
 	}
 }

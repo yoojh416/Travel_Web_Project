@@ -1,3 +1,4 @@
+/*
 package com.upload.files.model;
 
 import lombok.AllArgsConstructor;
@@ -22,3 +23,4 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 }
+*/
