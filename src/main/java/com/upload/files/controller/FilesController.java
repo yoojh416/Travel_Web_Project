@@ -22,8 +22,7 @@ import java.util.UUID;
 
 @Controller
 @Slf4j
-public class FilesController {
-    //메인 이미지 파일 업로드 컨트롤러
+public class FilesController { /*메인 이미지 파일 업로드 컨트롤러*/
 
     @Autowired
     private FilePathService filesService;
