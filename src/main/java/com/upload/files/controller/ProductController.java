@@ -1,5 +1,6 @@
 package com.upload.files.controller;
 
+import com.upload.files.entity.FilePath;
 import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
 import com.upload.files.repository.ArticleRepository;
@@ -16,7 +17,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -121,7 +124,18 @@ public class ProductController { //여행 상품용 컨트롤러
     @RequestMapping("/board/list")
     public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
-        model.addAttribute("items", products);
+        List<FilePath> files = new ArrayList<>();
+
+        for (int i = 0; i < products.size(); i++) {
+            Long proNo = products.get(i).getProNo();
+            int fno = filePathRepository.findFno(proNo);
+
+            Optional<FilePath> file = filePathRepository.findById(fno);
+            files.add(file.get());
+
+            model.addAttribute("items", products);
+            model.addAttribute("files", files);
+        }
 
         return "board/list";
     }

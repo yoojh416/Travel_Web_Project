@@ -84,13 +84,19 @@
 
             <!--상품 목록(card-deck) 시작-->
             <div class="col-10 card-deck">
-                <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;" th:each = "list : ${items}">
+                <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;"
+                     th:each = "list : ${items}">
                     <div class="card">
-                        <img class="card-img-top" th:src="@{/images/p4.jpg}" alt="임의 사진 설정">
-                       <!-- DB에서 이미지 꺼내 올 수 있도록 Controller 설정 필요-->
-                        <!--<img class="card-img-top" th:src="@{/upload/{fileName}(fileName = ${fileInfo.fileName})}" alt="여행 상품 메인 사진">-->
+                        <block th:each=" file : ${files}" th:remove="tag">
+                            <img class="card-img-top" th:if="${list.proNo} == ${file.proNo}"
+                                 th:src="@{/upload/{fileName}(fileName = ${file.fileName})}" alt="여행 상품 메인 사진">
+                        </block>
+                       <!-- <block th:each=" file : ${files}" th:remove="tag">
+                            <img class="card-img-top" th:src="@{/upload/{fileName}(fileName = ${file.get})}" alt="여행 상품 메인 사진">
+                        </block>-->
                         <div class="card-body">
-                            <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}" th:text = "${list.proTitle}"></a></h3>
+                            <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}"
+                                   th:text = "${list.proTitle}"></a></h3>
                             <p class="card-text" th:text="'￦ '+${list.price}"></p>
                             <p class="card-text" th:text="${list.proContent}"></p>
                         </div>
@@ -102,7 +108,6 @@
                     </div>
                 </div>
             </div>
-            <!--상품 목록 종료-->
         </div>
     </div>
 </th:block>
