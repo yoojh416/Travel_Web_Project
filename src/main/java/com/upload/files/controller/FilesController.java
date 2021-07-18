@@ -6,8 +6,6 @@ import com.upload.files.repository.FilePathRepository;
 import com.upload.files.service.FilePathService;
 import com.upload.files.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,9 +25,12 @@ import java.util.UUID;
 public class FilesController {
     //메인 이미지 파일 업로드 컨트롤러
 
-    @Autowired private FilePathService filesService;
-    @Autowired private FilePathRepository filePathRepository;
-    @Autowired private ProductService productService;
+    @Autowired
+    private FilePathService filesService;
+    @Autowired
+    private FilePathRepository filePathRepository;
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping("/admin/fileUpload")
     public String Insert() {
@@ -37,7 +38,7 @@ public class FilesController {
     }
 
     @PostMapping("/upload")
-    public String fileInsert(MultipartFile[] files,HttpServletRequest request, Model model) {
+    public String fileInsert(MultipartFile[] files, HttpServletRequest request, Model model) {
 
         FilePath filePath = new FilePath();
         Long afterUpload = Long.parseLong(request.getParameter("proNo"));
@@ -71,22 +72,22 @@ public class FilesController {
         return "redirect:/admin/list";
     }
 
-
-        /**
-         * 상품 정보 수정 관련
-         * 정보 수정 후 파일 덮어쓰기(업로드 내용 삭제 후 재생성)
-         */
+    /**
+     * 상품 정보 수정 관련
+     * 정보 수정 후 파일 덮어쓰기(업로드 내용 삭제 후 재생성)
+     */
     @RequestMapping("/admin/fileUpdate/{proNo}")
     @Transactional
     public String fileUpdate(Model model
             , @PathVariable("proNo") Long proNo) {
-        int[] fno = filePathRepository.findAllFno(proNo);
 
         /* 이미지 먼저 삭제 */
+        int[] fno = filePathRepository.findAllFno(proNo);
         for (int i = 0; i < fno.length; ++i) {
             filePathRepository.deleteById(fno[i]);
         }
 
+        /* 업로드 로직으로 돌아감 */
         return "/admin/fileUpload";
     }
 
