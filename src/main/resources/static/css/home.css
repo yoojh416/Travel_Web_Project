@@ -509,6 +509,7 @@ select:-moz-focusing {
 
 .packages .box-container .box .content {
 	padding: 2rem;
+	margin: 15px;
 }
 
 .packages .box-container .box .content h3 a {
@@ -606,4 +607,9 @@ select:-moz-focusing {
 	position: absolute;
 	height: 100%;
 	width: 100%;
+}
+.img_btn {
+    background: #16a085;
+    color: white;
+    font-size: 35px;
 }
