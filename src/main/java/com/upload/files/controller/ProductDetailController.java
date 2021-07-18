@@ -29,9 +29,9 @@ public class ProductDetailController {
         Product product = productService.findOne(proNo);
         model.addAttribute("productInfo", product);
 
-        int fno = filePathRepository.findFno(proNo);
+        /*int fno = filePathRepository.findFno(proNo);
         FilePath file = filePathRepository.findById(fno).get();
-        model.addAttribute("fileInfo", file);
+        model.addAttribute("fileInfo", file);*/
 
         Page<Article> articleList = articleService.getArticleList(pageable);
         model.addAttribute("articleList", articleList);

@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -104,10 +105,12 @@ public class ProductController { //여행 상품용 컨트롤러
     @GetMapping("/admin/delete/{proNo}")
     @Transactional
     public String deleteProduct(Model model, @PathVariable Long proNo, Product product) {
+        int[] fno = filePathRepository.findAllFno(proNo);
 
         /* 이미지 먼저 삭제 */
-        int fno = filePathRepository.findFno(proNo);
-        filePathRepository.deleteById(fno);
+        for (int i = 0; i < fno.length; ++i) {
+            filePathRepository.deleteById(fno[i]);
+        }
 
         /* 상품 텍스트 삭제 */
         productRepository.deleteProduct(product);
@@ -126,7 +129,7 @@ public class ProductController { //여행 상품용 컨트롤러
         List<Product> products = productService.findItemsByFilter(listSearch);
         List<FilePath> files = new ArrayList<>();
 
-        for (int i = 0; i < products.size(); i++) {
+        /*for (int i = 0; i < products.size(); i++) {
             Long proNo = products.get(i).getProNo();
             int fno = filePathRepository.findFno(proNo);
 
@@ -135,7 +138,7 @@ public class ProductController { //여행 상품용 컨트롤러
 
             model.addAttribute("items", products);
             model.addAttribute("files", files);
-        }
+        }*/
 
         return "board/list";
     }
