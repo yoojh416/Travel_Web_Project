@@ -1,35 +1,45 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header" />
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>itemList</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link th:href="@{/css/itemList.css}" rel="stylesheet">
+</head>
 <body>
-<div class="container">
+<th:block layout:fragment="content">
+    <div class="container">
 
-    <button class="btn-success" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
-    <button class="btn-success" th:onclick="|window.location.href='/'|">홈으로</button>
+        <button class="btn-btn-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
+        <button class="btn-home" th:onclick="|window.location.href='/'|">홈으로</button>
 
-    <div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>제목</th>
-                <th>관리자</th>
-                <th>내용</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="product : ${products}">
-                <td th:text="${product.proNo}"></td>
-                <td><a th:href="@{modify/{proNo}(proNo = ${product.proNo})}"
-                       th:text="${product.proTitle}"></a></td>
-                <td th:text="${product.proWriter}"></td>
-                <td th:text="${product.proContent}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+        <div class="table-list">
+            <table class="table_box">
+                <thead>
+                <tr>
+                    <th class="th-list">#</th>
+                    <th class="th-list">제목</th>
+                    <th class="th-list">관리자</th>
+                    <th class="th-list">내용</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.proNo}"></td>
+                    <td><a th:href="@{modify/{proNo}(proNo = ${product.proNo})}"
+                           th:text="${product.proTitle}"></a></td>
+                    <td th:text="${product.proWriter}"></td>
+                    <td th:text="${product.proContent}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-   <!-- <div th:replace="fragments/footer :: footer" />-->
-</div> <!-- /container -->
+        <!-- <div th:replace="fragments/footer :: footer" />-->
+    </div> <!-- /container -->
+</th:block>
 </body>
 </html>

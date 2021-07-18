@@ -7,6 +7,7 @@ body {
 .navbar {
 	display: flex; /*한 줄에 나란히*/
 	justify-content: center; /*스페이스를 사이사이에 넣음*/
+	justify-content: center; /*스페이스를 사이사이에 넣음*/
 	align-items: center; /*중앙 배치*/
 	background-color: #16a085;
 	padding: 10px;
