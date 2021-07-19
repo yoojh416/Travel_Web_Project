@@ -6,8 +6,6 @@ import com.upload.files.repository.FilePathRepository;
 import com.upload.files.service.FilePathService;
 import com.upload.files.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,16 +17,19 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
 @Slf4j
-public class FilesController {
-    //메인 이미지 파일 업로드 컨트롤러
+public class FilesController { /*메인 이미지 파일 업로드 컨트롤러*/
 
-    @Autowired private FilePathService filesService;
-    @Autowired private FilePathRepository filePathRepository;
-    @Autowired private ProductService productService;
+    @Autowired
+    private FilePathService filesService;
+    @Autowired
+    private FilePathRepository filePathRepository;
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping("/admin/fileUpload")
     public String Insert() {
@@ -36,33 +37,37 @@ public class FilesController {
     }
 
     @PostMapping("/upload")
-    public String fileInsert(HttpServletRequest request
-            , @RequestPart MultipartFile files
-            , Model model) throws Exception {
+    public String fileInsert(MultipartFile[] files, HttpServletRequest request, Model model) {
 
-        FilePath file = new FilePath();
+        FilePath filePath = new FilePath();
         Long afterUpload = Long.parseLong(request.getParameter("proNo"));
 
-        String sourceFileName = files.getOriginalFilename();
-        String sourceFileNameExtension = FilenameUtils.getExtension(sourceFileName).toLowerCase();
-        File destinationFile;
-        String destinationFileName;
-        String fileUrl = "C:/upload/main/";
+        for (int i = 0; i < files.length; ++i) {
+            if (!files[i].isEmpty()) {
+                try {
+                    String originalFilename = files[i].getOriginalFilename();
+                    UUID uuid = UUID.randomUUID();
+                    String destinationFileName = uuid + originalFilename;
+                    String pathFile = uuid + originalFilename;
 
-        do {
-            destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + sourceFileNameExtension;
-            destinationFile = new File(fileUrl + destinationFileName);
-        } while (destinationFile.exists());
+                    File file1 = new File("C:/upload/" + pathFile);
+                    files[i].transferTo(file1);
+                    String fileUrl = "C:/upload/";
 
-        destinationFile.getParentFile().mkdirs();
-        files.transferTo(destinationFile);
+                    filePath.setProNo(afterUpload);
+                    filePath.setFileName(destinationFileName);
+                    filePath.setFileOriName(originalFilename);
+                    filePath.setFileUrl(fileUrl);
 
-        file.setProNo(afterUpload);
-        file.setFileName(destinationFileName);
-        file.setFileOriName(sourceFileName);
-        file.setFileUrl(fileUrl);
-
-        filesService.save(file);
+                    filesService.save(filePath);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            } else {
+                System.out.println("is empty");
+            }
+        }
+        //Back to view
         return "redirect:/admin/list";
     }
 
@@ -72,10 +77,16 @@ public class FilesController {
      */
     @RequestMapping("/admin/fileUpdate/{proNo}")
     @Transactional
-    public String fileUpdate(Model model, @PathVariable("proNo") Long proNo) {
-        int fno = filePathRepository.findFno(proNo);
-        filePathRepository.deleteById(fno);
+    public String fileUpdate(Model model
+            , @PathVariable("proNo") Long proNo) {
 
+        /* 이미지 먼저 삭제 */
+        int[] fno = filePathRepository.findAllFno(proNo);
+        for (int i = 0; i < fno.length; ++i) {
+            filePathRepository.deleteById(fno[i]);
+        }
+
+        /* 업로드 로직으로 돌아감 */
         return "/admin/fileUpload";
     }
 

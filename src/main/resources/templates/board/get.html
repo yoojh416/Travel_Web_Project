@@ -14,21 +14,22 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
     <!-- icon link -->
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <script
             src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script
             src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
     <!--map 관련 head 정보-->
-    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
     <style>
       #map {
         width: 800px;
         height: 300px;
       }
+
     </style>
 </head>
 <body>
@@ -43,12 +44,13 @@
                 <span>조회수</span>
             </div>
             <div class="productImg">
-                <img th:src="@{/upload/{fileName}(fileName = ${fileInfo.fileName})}"
-                     alt="제품 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+                <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
+                     alt="상품 메인 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
             </div>
             <div class="bookingProduct">
                 <h5 th:text="${productInfo.price}"></h5>
-                <button type="button" class="btn btn-success" th:onclick="|window.location.href='/order/book'|">예약하기</button>
+                <button type="button" class="btn btn-success" th:onclick="|window.location.href='/order/book'|">예약하기
+                </button>
                 <button type="button" class="btn btn-default" onclick="history.go(-1)">목록으로</button>
             </div>
             <br>
@@ -68,6 +70,10 @@
                 </tr>
                 <tr>
                     <th>상품 설명</th>
+                    <div class="productImg">
+                        <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
+                             alt="상품 상세 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+                    </div>
                     <td th:text="${productInfo.proContent}"></td>
                 </tr>
             </table>
@@ -103,7 +109,8 @@
       zoom: 10
     });
 
-</script>
+
+    </script>
 </th:block>
 </body>
 </html>

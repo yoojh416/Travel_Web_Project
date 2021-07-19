@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class ImageController { //메인 이미지(제품)용 컨트롤러
+public class ImageController { /*리뷰용 이미지 컨트롤러*/
 
 	@Autowired
 	ImageService imageService;
@@ -33,7 +33,7 @@ public class ImageController { //메인 이미지(제품)용 컨트롤러
 		}
 	}
 	
-	@GetMapping("/image/{fileId}") // DB에 저장(메인 이미지 - 제품용)
+	@GetMapping("/image/{fileId}")
 	public ResponseEntity<?> serveFile(@PathVariable Long fileId){
 		try {
 			UploadFile uploadFile = imageService.load(fileId);

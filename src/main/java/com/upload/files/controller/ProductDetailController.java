@@ -1,3 +1,4 @@
+/*
 package com.upload.files.controller;
 
 import com.upload.files.entity.Article;
@@ -22,19 +23,33 @@ public class ProductDetailController {
     private final ArticleService articleService;
 
     @GetMapping("/board/get")
-    public String getProduct(@RequestParam(name = "proNo") Long proNo,
+    public String getProduct(@RequestParam(name = "proNo") Long proNo, Model model) {
+    */
+/*public String getProduct(@RequestParam(name = "proNo") Long proNo,
                              @RequestParam(value="page", defaultValue = "1") String pageNum,
-                             @PageableDefault Pageable pageable, Model model) {
+                             @PageableDefault Pageable pageable, Model model) {*//*
+
 
         Product product = productService.findOne(proNo);
         model.addAttribute("productInfo", product);
 
-        int fno = filePathRepository.findFno(proNo);
-        FilePath file = filePathRepository.findById(fno).get();
-        model.addAttribute("fileInfo", file);
+        int[] fno = filePathRepository.findAllFno(proNo);
+        model.addAttribute("images", fno);
 
-        Page<Article> articleList = articleService.getArticleList(pageable);
-        model.addAttribute("articleList", articleList);
+        */
+/*int fno = filePathRepository.findFno(proNo);
+        FilePath file = filePathRepository.findById(fno).get();
+        model.addAttribute("fileInfo", file);*//*
+
+
+        */
+/*Page<Article> articleList = articleService.getArticleList(pageable);*//*
+
+        */
+/*model.addAttribute("articleList", articleList);*//*
+
 
         return "board/get";
-    }}
+    }
+}
+*/

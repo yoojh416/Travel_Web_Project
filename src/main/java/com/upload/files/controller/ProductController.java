@@ -1,5 +1,6 @@
 package com.upload.files.controller;
 
+import com.upload.files.entity.Article;
 import com.upload.files.entity.FilePath;
 import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
@@ -9,12 +10,16 @@ import com.upload.files.repository.ProductRepository;
 import com.upload.files.service.ArticleService;
 import com.upload.files.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -104,10 +109,12 @@ public class ProductController { //여행 상품용 컨트롤러
     @GetMapping("/admin/delete/{proNo}")
     @Transactional
     public String deleteProduct(Model model, @PathVariable Long proNo, Product product) {
+        int[] fno = filePathRepository.findAllFno(proNo);
 
         /* 이미지 먼저 삭제 */
-        int fno = filePathRepository.findFno(proNo);
-        filePathRepository.deleteById(fno);
+        for (int i = 0; i < fno.length; ++i) {
+            filePathRepository.deleteById(fno[i]);
+        }
 
         /* 상품 텍스트 삭제 */
         productRepository.deleteProduct(product);
@@ -122,22 +129,37 @@ public class ProductController { //여행 상품용 컨트롤러
      * 메인 상품 페이지
      */
     @RequestMapping("/board/list")
-    public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
+    public String list(@ModelAttribute("listSearch") ListSearch listSearch
+            , Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
-        List<FilePath> files = new ArrayList<>();
+        //리서치 서비스 페이징 추가 요망
+        model.addAttribute("items", products);
 
         for (int i = 0; i < products.size(); i++) {
             Long proNo = products.get(i).getProNo();
-            int fno = filePathRepository.findFno(proNo);
-
-            Optional<FilePath> file = filePathRepository.findById(fno);
-            files.add(file.get());
-
-            model.addAttribute("items", products);
+            int[] fno = filePathRepository.findAllFno(proNo);
+            Optional<FilePath> files =  filePathRepository.findById(fno[0]);
             model.addAttribute("files", files);
         }
 
         return "board/list";
+    }
+
+    @GetMapping("/board/get/{proNo}")
+    public String getProduct(@PathVariable(name = "proNo") Long proNo
+            , Model model) {
+
+        Product product = productService.findOne(proNo);
+        model.addAttribute("productInfo", product);
+
+        int[] fno = filePathRepository.findAllFno(proNo);
+        FilePath MainImg = filePathRepository.findById(fno[0]).get();
+        FilePath DetailImg = filePathRepository.findById(fno[1]).get();
+
+        model.addAttribute("MainImg", MainImg);
+        model.addAttribute("DetailImg", DetailImg);
+
+        return "board/get";
     }
 
 }
