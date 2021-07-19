@@ -132,22 +132,27 @@ public class ProductController { //여행 상품용 컨트롤러
     public String list(@ModelAttribute("listSearch") ListSearch listSearch
             , Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
+        List<FilePath> files = new ArrayList<>();
         //리서치 서비스 페이징 추가 요망
-        model.addAttribute("items", products);
 
         for (int i = 0; i < products.size(); i++) {
             Long proNo = products.get(i).getProNo();
             int[] fno = filePathRepository.findAllFno(proNo);
-            Optional<FilePath> files =  filePathRepository.findById(fno[0]);
-            model.addAttribute("files", files);
+            Optional<FilePath> MainImage = filePathRepository.findById(fno[0]);
+            files.add(MainImage.get());
+
+            model.addAttribute("items", products);
+            model.addAttribute("MainImage", files);
+
         }
 
         return "board/list";
     }
 
-    @GetMapping("/board/get/{proNo}")
-    public String getProduct(@PathVariable(name = "proNo") Long proNo
-            , Model model) {
+    @GetMapping("/board/get")
+    public String getProduct(@RequestParam(name = "proNo") Long proNo,
+                             @RequestParam(value = "page", defaultValue = "1") String pageNum,
+                             @PageableDefault Pageable pageable, Model model) {
 
         Product product = productService.findOne(proNo);
         model.addAttribute("productInfo", product);
@@ -156,8 +161,11 @@ public class ProductController { //여행 상품용 컨트롤러
         FilePath MainImg = filePathRepository.findById(fno[0]).get();
         FilePath DetailImg = filePathRepository.findById(fno[1]).get();
 
-        model.addAttribute("MainImg", MainImg);
-        model.addAttribute("DetailImg", DetailImg);
+        model.addAttribute("MainImg", MainImg.getFileName());
+        model.addAttribute("DetailImg", DetailImg.getFileName());
+
+        Page<Article> articleList = articleService.getArticleList(pageable);
+        model.addAttribute("articleList", articleList);
 
         return "board/get";
     }

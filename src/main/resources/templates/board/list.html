@@ -87,7 +87,7 @@
                 <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;"
                      th:each = "list : ${items}">
                     <div class="card">
-                        <block th:each=" file : ${files}" th:remove="tag">
+                        <block th:each=" file : ${MainImage}" th:remove="tag">
                             <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
                                  th:src="@{/upload/{fileName}(fileName = ${file.fileName})}" alt="여행 상품 메인 사진">
                         </block>
