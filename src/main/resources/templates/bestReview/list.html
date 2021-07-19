@@ -37,46 +37,26 @@
     </div>
 
     <br/><br/>
-    <!--페이징, 검색 시작-->
-<!--    <nav style="text-align: center">-->
-<!--        <ul class="pagination"-->
-<!--            th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},-->
-<!--              last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">-->
-
-<!--            <li>-->
-<!--                <a th:href="@{./list(page=1)}" aria-label="First">-->
-<!--                    <span aria-hidden="true">← 처음</span>-->
-<!--                </a>-->
-<!--            </li>-->
-
-<!--            <li th:class="${articleList.first} ? 'disabled'">-->
-<!--                <a th:href="${articleList.first} ? '#' : @{./list(page=${articleList.number})}"-->
-<!--                   aria-label="Previous">-->
-<!--                    <span aria-hidden="true">&lt;</span>-->
-<!--                </a>-->
-<!--            </li>-->
-
-<!--            <li th:each="page: ${#numbers.sequence(start, last)}"-->
-<!--                th:class="${page == articleList.number + 1} ? 'active'">-->
-<!--                <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>-->
-<!--            </li>-->
-
-<!--            <li th:class="${articleList.last} ? 'disabled'">-->
-<!--                <a th:href="${articleList.last} ? '#' : @{./list(page=${articleList.number + 2})}"-->
-<!--                   aria-label="Next">-->
-<!--                    <span aria-hidden="true">&gt;</span>-->
-<!--                </a>-->
-<!--            </li>-->
-
-<!--            <li>-->
-<!--                <a th:href="@{./list(page=${articleList.totalPages})}" aria-label="Last">-->
-<!--                    <span aria-hidden="true">마지막 →</span>-->
-<!--                </a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-    <!--페이징 시작-->
-
+    <!--베스트댓글 목록(card-deck) 시작-->
+    <div class="col-10 card-deck">
+        <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;">
+            <div class="card">
+                <block>
+                    <div class="single-upload">
+                        <img src= "https://via.placeholder.com/150" alt="여행 상품 메인 사진">
+                        <!--<img th:src="@{/upload/{MainImg}(MainImg = ${bestReviews.id})}"
+                             alt="리뷰 메인 이미지" style="width: 300px; height: 200px;"/>
+                        <div th:utext="${bestReview.content}" class="panel-body"></div>-->
+                    </div>
+                </block>
+                <div class="card-body">
+                    <h3><td><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}" th:text="${bestReview.title}"
+                               class="articleTitle"></a></td></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-warning" th:onclick="|window.location.href='/'|">홈으로</button>
 </div>
 </body>
 
