@@ -2,15 +2,64 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="reviewList">
 <head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>베스트 리뷰</title>
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>
 
 </head>
 <body>
 <th:block layout:fragment="content">
+<div id="container">
+    <h3> # BEST Review</h3>
+    <h1> 너나들이 와 함께한 <br>
+         베스트리뷰 (◍•ᴗ•◍)❤</h1>
+    <br>
+
+    <tr th:each="bestReview : ${bestReviews}">
+    <div id="sidebar">
+
+            <td><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
+                   th:utext="${bestReview.content}" style="text-align : center; top: 50px;"></a>
+
+    </div>
+    <div id="contents">
+        <h2>작성자 : <td th:text="${bestReview.writer}" class="articleWriter"></td> 님 🥳️</h2>
+        <hr align="left" style="border: solid 1px #16a085; width: 75%;">
+
+
+        <h3> 리뷰 제목 : <td th:text="${bestReview.title}" class="articleTitle"></td></h3>
+        <p>리뷰 작성일 :
+        <td th:text="${bestReview.registerDate}"/></p>
+
+    </div>
+
+    <div style="clear: both; height: 0px;"><img alt="" height="0" /></div>
+    </tr>
+</div>
+
+
+
+        <!--<div class="table-list">
+            <table class="table_box">
+                <tbody>-->
+
+
+
+              <!--      <td th:utext="${bestReview.content}" class="panel-body"></td>
+
+                </tr>-->
+  <!--              </tbody>
+            </table>
+        </div>
+    </div>-->
+</th:block>
+
+
+
+<!--<th:block layout:fragment="content">
     <div class="container">
         <div class="table-list">
             <table class="table_box">
@@ -26,7 +75,7 @@
             </table>
         </div>
     </div>
-</th:block>
+</th:block>-->
 
     <script type="text/javascript">
 	function clearSearch() {
