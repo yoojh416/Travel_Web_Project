@@ -24,12 +24,9 @@ import java.util.UUID;
 @Slf4j
 public class FilesController { /*메인 이미지 파일 업로드 컨트롤러*/
 
-    @Autowired
-    private FilePathService filesService;
-    @Autowired
-    private FilePathRepository filePathRepository;
-    @Autowired
-    private ProductService productService;
+    @Autowired private FilePathService filesService;
+    @Autowired private FilePathRepository filePathRepository;
+    @Autowired private ProductService productService;
 
     @RequestMapping("/admin/fileUpload")
     public String Insert() {

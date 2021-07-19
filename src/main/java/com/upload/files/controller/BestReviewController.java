@@ -57,15 +57,15 @@ public class BestReviewController { //리뷰용 컨트롤러
 
 	/** 전체 리스트 + 페이징 */
 	@GetMapping("/bestReview/list")
-	public String getBestReviewList(Model model, @PageableDefault Pageable pageable
-			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
-		Page<BestReview> bestReviews = bestReviewService.getBestReviewList(pageable);
+	public String getBestReviewList(Model model) {
+
+		List<BestReview> bestReviews = bestReviewRepository.findAll();
 		model.addAttribute("bestReviews", bestReviews);
 
 		return "bestReview/list";
 	}
 
-	/**상세 페이지*/
+	/** 상세 페이지 */
 	@GetMapping("/bestReview/{id}")
 	public String getArticle(@PathVariable("id") Long id, Model model) {
 		BestReview bestReview = bestReviewRepository.findById(id).get();
@@ -77,7 +77,7 @@ public class BestReviewController { //리뷰용 컨트롤러
 		return "bestReview/detail";
 	}
 
-	/** 삭제하기*/
+	/** 삭제하기 */
 	@GetMapping("/bestReview/delete/{id}")
 	@Transactional
 	public String deleteArticle(Model model, @PathVariable Long id) {

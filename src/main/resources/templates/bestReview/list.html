@@ -7,64 +7,33 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
 </head>
 <body>
-<div class="container">
-    <div class="row marketing">
-
-        <div class="col-lg-12">
-            <table class="table">
-                <thead>
-                <tr>
-                    <td>No.</td>
-                    <td>title</td>
-                    <td>writer</td>
-                    <td>date</td>
-                </tr>
-                </thead>
+<th:block layout:fragment="content">
+    <div class="container">
+        <div class="table-list">
+            <table class="table_box">
                 <tbody>
                 <tr th:each="bestReview : ${bestReviews}">
-                    <td th:text="${bestReview.id}"/>
-                    <td><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}" th:text="${bestReview.title}"
-                           class="articleTitle"></a></td>
-                    <td th:text="${bestReview.writer}"/>
+                    <td th:text="${bestReview.title}" class="articleTitle"></td>
+                    <td><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
+                           th:utext="${bestReview.content}"></a>
+                    <td th:utext="${bestReview.content}" class="panel-body"></td>
                     <td th:text="${bestReview.registerDate}"/>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <button class="btn btn-warning" th:onclick="|window.location.href='/'|">홈으로</button>
     </div>
+</th:block>
 
-    <br/><br/>
-    <!--베스트댓글 목록(card-deck) 시작-->
-    <div class="col-10 card-deck">
-        <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;">
-            <div class="card">
-                <block>
-                    <div class="single-upload">
-                        <img src= "https://via.placeholder.com/150" alt="여행 상품 메인 사진">
-                        <!--<img th:src="@{/upload/{MainImg}(MainImg = ${bestReviews.id})}"
-                             alt="리뷰 메인 이미지" style="width: 300px; height: 200px;"/>
-                        <div th:utext="${bestReview.content}" class="panel-body"></div>-->
-                    </div>
-                </block>
-                <div class="card-body">
-                    <h3><td><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}" th:text="${bestReview.title}"
-                               class="articleTitle"></a></td></h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-warning" th:onclick="|window.location.href='/'|">홈으로</button>
-</div>
-</body>
-
-<script type="text/javascript">
+    <script type="text/javascript">
 	function clearSearch() {
 		window.location = "[[@{article/list}]]";
 	}
 
-</script>
+    </script>
 
+</body>
 </html>
