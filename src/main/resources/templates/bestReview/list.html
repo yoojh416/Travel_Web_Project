@@ -64,13 +64,13 @@
         <div class="table-list">
             <table class="table_box">
                 <tbody>
-                <tr th:each="bestReview : ${bestReviews}">
-                    <td th:text="${bestReview.title}" class="articleTitle"></td>
-                    <td><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
-                           th:utext="${bestReview.content}"></a>
-                    <td th:utext="${bestReview.content}" class="panel-body"></td>
-                    <td th:text="${bestReview.registerDate}"/>
-                </tr>
+                <td th:each="bestReview : ${bestReviews}">
+                    <a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
+                       th:text="${bestReview.title}" class="articleTitle"></a>
+                    <a th:text="${bestReview.registerDate}"/>
+                    <a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
+                       th:utext="${bestReview.content}"></a>
+                </td>
                 </tbody>
             </table>
         </div>
