@@ -1,115 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org">
 <title>여행상품</title>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+<link th:href="@{/css/board_list.css}" rel="stylesheet">
 <head th:replace="fragments/header :: header">
-    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link th:href="@{/css/listStyle.css}" rel="stylesheet">
-
+<link th:href="@{/css/footer.css}" rel="stylesheet">
 <body>
-<th:block layout:fragment="content">
-    <div class="jumbotron" id="top">
-
+<div th:replace="layout/bodyHeader :: bodyHeader" />
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--sidebar starts-->
+<div id="mysidenav" class="sidenav">
+    <a href="#" class="closebtn" onclick='closeNav()'>x</a>
+    <div class="ItemFilterGroupTitle">여행지</div>
+    <div class="ItemFilterGroupList">
+        <label>
+            <input type="checkbox" th:name="region" th:value="Korea">&nbsp;국내
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="region" th:value="Japan">&nbsp;일본
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="region" th:value="China">&nbsp;중국
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="region" th:value="Southeast_Asia">&nbsp;동남아시아
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="region" th:value="Europe">&nbsp;유럽
+        </label>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <!--checkbox 시작-->
-            <div class="col-lg-2">
-                <form th:object="${listSearch}" name="searchFrm">
-                    <div class="ItemFilter">
-                        <div class="ItemFilterGroup">
-                            <div class="ItemFilterGroupTitle">여행지</div>
-                            <div class="ItemFilterGroupList">
-                                <label>
-                                    <input type="checkbox" th:name="region" th:value="Korea">&nbsp;국내
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="region" th:value="Japan">&nbsp;일본
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="region" th:value="China">&nbsp;중국
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="region" th:value="Southeast_Asia">&nbsp;동남아시아
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="region" th:value="Europe">&nbsp;유럽
-                                </label>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="ItemFilterGroup">
-                            <div class="ItemFilterGroupTitle">계절</div>
-                            <div class="ItemFilterGroupList">
-                                <label>
-                                    <input type="checkbox" th:name="season" th:value="Spring">&nbsp;봄
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="season" th:value="Summer">&nbsp;여름
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="season" th:value="Autumn">&nbsp;가을
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="season" th:value="Winter">&nbsp;겨울
-                                </label><br>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="ItemFilterGroup">
-                            <div class="ItemFilterGroupTitle">테마</div>
-                            <div class="ItemFilterGroupList">
-                                <label>
-                                    <input type="checkbox" th:name="theme" th:value="Family">&nbsp;가족
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="theme" th:value="Friend">&nbsp;친구
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="theme" th:value="Couple">&nbsp;커플
-                                </label><br>
-                                <label>
-                                    <input type="checkbox" th:name="theme" th:value="Filial">&nbsp;효도
-                                </label><br>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-default" id="btnSearch" style="background-color: #16a085; color: #f0f0f0;">검색</button>
-                    </div>
-                </form>
-            </div> <!--checkbox 종료-->
-
-            <!--상품 목록(card-deck) 시작-->
-            <div class="col-10 card-deck">
-                <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;"
-                     th:each = "list : ${items}">
-                    <div class="card">
-                        <block th:each=" file : ${MainImage}" th:remove="tag">
-                            <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
-                                 th:src="@{/upload/{fileName}(fileName = ${file.fileName})}" alt="여행 상품 메인 사진">
-                        </block>
-                       <!-- <block th:each=" file : ${files}" th:remove="tag">
-                            <img class="card-img-top" th:src="@{/upload/{fileName}(fileName = ${file.get})}" alt="여행 상품 메인 사진">
-                        </block>-->
-                        <div class="card-body">
-                            <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}"
-                                   th:text = "${list.proTitle}"></a></h3>
-                            <p class="card-text" th:text="'￦ '+${list.price}"></p>
-                            <p class="card-text" th:text="${list.proContent}"></p>
-                        </div>
-                        <div class="card-footer" style="background-color: white">
-                            @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
-                            @<input type="hidden" name="season" th:text="${list.season}">&nbsp;
-                            @<input type="hidden" name="theme" th:text="${list.theme}">
-                        </div>
-                    </div>
-                </div>
+    <div class="ItemFilterGroupTitle">계절</div>
+    <div class="ItemFilterGroupList">
+        <label>
+            <input type="checkbox" th:name="season" th:value="Spring">&nbsp;봄
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="season" th:value="Summer">&nbsp;여름
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="season" th:value="Autumn">&nbsp;가을
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="season" th:value="Winter">&nbsp;겨울
+        </label><br>
+    </div>
+    <div class="ItemFilterGroupTitle">테마</div>
+    <div class="ItemFilterGroupList">
+        <label>
+            <input type="checkbox" th:name="theme" th:value="Family">&nbsp;가족
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="theme" th:value="Friend">&nbsp;친구
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="theme" th:value="Couple">&nbsp;커플
+        </label><br>
+        <label>
+            <input type="checkbox" th:name="theme" th:value="Filial">&nbsp;효도
+        </label><br>
+    </div>
+    <button type="submit" class="btnSearch" id="btnSearch">검색</button>
+</div>
+<!--sidebar ends-->
+<!--상품 목록(card-deck) 시작-->
+<!--        <div class="col-10 card-deck">-->
+<p>메뉴버튼을 클릭하면 사이드 네비게이션이 열립니다.</p>
+<span class="openmenu" onclick='openNav()'><i class="fa fa-angle-double-left fa-5" aria-hidden="true"></i> open</span>
+<div class="card-deck-items">
+    <div class="card-deck-case" th:each = "list : ${items}">
+        <div class="card">
+            <block th:each=" file : ${MainImage}" th:remove="tag">
+                <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
+                     th:src="@{/upload/{fileName}(fileName = ${file.fileName})}" alt="여행 상품 메인 사진">
+            </block>
+            <!-- <block th:each=" file : ${files}" th:remove="tag">
+                 <img class="card-img-top" th:src="@{/upload/{fileName}(fileName = ${file.get})}" alt="여행 상품 메인 사진">
+             </block>-->
+            <div class="card-body">
+                <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}"
+                       th:text = "${list.proTitle}"></a></h3>
+                <p class="card-text" th:text="'￦ '+${list.price}"></p>
+                <p class="card-text" th:text="${list.proContent}"></p>
+            </div>
+            <div class="card-footer" style="background-color: white">
+                @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
+                @<input type="hidden" name="season" th:text="${list.season}">&nbsp;
+                @<input type="hidden" name="theme" th:text="${list.theme}">
             </div>
         </div>
     </div>
-</th:block>
+</div>
+</div>
+</div>
+
+<div th:replace="fragments/footer :: footer" />
+<script>
+      function openNav() {
+         document.getElementById('mysidenav').style.width = '250px';
+      }
+      function closeNav() {
+         document.getElementById('mysidenav').style.width = '0';
+      }
+   </script>
 </body>
 </html>

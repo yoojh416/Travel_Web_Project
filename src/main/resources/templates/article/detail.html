@@ -10,19 +10,20 @@
 <body>
 <div class="upload-container">
     <div class="upload-header">
-        <h2>댓글 확인창 🤹</h2>
+        <h2># 댓글 확인창 🤹</h2>
         <p th:utext="${article.registerDate}" style="text-align : right;"> </p>
-        <h3>제목 : <a th:utext="${article.title}" href="#"></a></h3>
-        <h4>작성자 : <a th:text="${article.writer}"></a></h4>
     </div>
     <div class="upload-content">
+        <h3>Review Title : <a th:utext="${article.title}"></a></h3>
         <div class="single-upload">
-            <div th:utext="${article.content}" class="panel-body"></div>
+            <div th:utext="${article.content}" class="panel-body" style="text-align : center;"></div>
+            <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
         </div>
+
         <div style="text-align:center;">
         <button class="button" th:onclick="|window.location.href='/article/update/${article.id}'|">수정하기 🤩</button>
         <button class="button" th:onclick="|window.location.href='/article/delete/${article.id}'|">삭제하기 😢</button>
-        <button class="button" th:onclick="|window.location.href='/article/list'|">목록으로 😎</button>
+        <button class="button" th:onclick="|window.location.href='/article/list'|">뒤로가기 😎</button> <!--뒤로가기 href링크 필요-->
         <button class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍</button>
         </div>
 

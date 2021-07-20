@@ -3,6 +3,7 @@ body {
 	font-family: 'Roboto', sans-serif; /*body 내 모든 포튼 동일 적용*/
 	text-align: center;
 
+
 }
 .navbar {
 	display: flex; /*한 줄에 나란히*/

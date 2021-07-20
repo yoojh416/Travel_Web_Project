@@ -7,6 +7,7 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
 
 <script>
 $(document).ready(function () {
@@ -37,45 +38,56 @@ $(document).ready(function () {
 
 <!-- Navigation -->
 
-<div class="container">
+<div class="upload-container">
+    <div class="upload-header">
+        <h2>주문 확인창 🤠</h2>
+    </div>
     <form method="post" th:object="${order}" action="/order/confirm">
 
-        <div class="form-group row">
+        <div class="upload-content">
+            <div class="form-group row" >
 
-            <div class="col-md-4 mt-5">
-                <label for="OrderPrice">패키지 가격</label>
-                <div class="input-group date">
-                    <input type="text" class="form-control" id="OrderPrice" th:field="*{OrderPrice}" />
+                <div class="col-md-6 mt-5" >
+                    <label for="OrderPrice">패키지 가격</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="OrderPrice" th:field="*{OrderPrice}" />
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <label for="OrderQty">인원수</label>
+                    <div class="input-group date">
+                        <input type="number" class="form-control" id="OrderQty" th:field="*{OrderQty}" />
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-4 mt-5">
-                <label for="OrderQty">인원수</label>
-                <div class="input-group date">
-                    <input type="number" class="form-control" id="OrderQty" th:field="*{OrderQty}" />
+            <hr />
+
+            <div class="form-group row">
+                <div class="col-md-6 mt-5">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="dateIn" th:field="*{dateIn}"
+                               placeholder="🛫 여행 시작일"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="dateOut" th:field="*{dateOut}"
+                               placeholder="🛬 여행 마지막일"/>
+                    </div>
                 </div>
             </div>
+            <a class="btnfos btnfos-1">
+                <svg>
+                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                </svg>
+                예약하기
+            </a>
+
+            <button class="btn btn-primary" type="submit">예약하기</button>
         </div>
-
-        <hr />
-
-        <div class="form-group row">
-            <div class="col-md-4 mt-5">
-                <div class="input-group date">
-                    <input type="text" class="form-control" id="dateIn" th:field="*{dateIn}"
-                           placeholder="여행 시작일 ✿˘◡˘✿"/>
-                </div>
-            </div>
-
-            <div class="col-md-4 mt-5">
-                <div class="input-group date">
-                    <input type="text" class="form-control" id="dateOut" th:field="*{dateOut}"
-                           placeholder="여행 마지막일 ( ᵕ ᵕ̩̩ )"/>
-                </div>
-            </div>
-        </div>
-
-        <button class="btn btn-primary" type="submit">예약하기</button>
     </form>
 
 </div>
