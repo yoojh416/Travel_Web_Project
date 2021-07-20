@@ -2,87 +2,41 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="reviewList">
 <head xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>베스트 리뷰</title>
     <!-- include libraries(jQuery, bootstrap) -->
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
     <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>
 
 </head>
 <body>
-<th:block layout:fragment="content">
-<div id="container">
-    <h3> # BEST Review</h3>
-    <h1> 너나들이 와 함께한 <br>
-         베스트리뷰 (◍•ᴗ•◍)❤</h1>
-    <br>
 
-    <tr th:each="bestReview : ${bestReviews}">
-    <div id="sidebar">
+<div class="container gallery-container">
 
-            <td><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
-                   th:utext="${bestReview.content}" style="text-align : center; top: 50px;"></a>
+    <h1> ❤너나들이와 함께한 베스트리뷰 (◍•ᴗ•◍)❤ </h1>
 
-    </div>
-    <div id="contents">
-        <h2>작성자 : <td th:text="${bestReview.writer}" class="articleWriter"></td> 님 🥳️</h2>
-        <hr align="left" style="border: solid 1px #16a085; width: 75%;">
-
-
-        <h3> 리뷰 제목 : <td th:text="${bestReview.title}" class="articleTitle"></td></h3>
-        <p>리뷰 작성일 :
-        <td th:text="${bestReview.registerDate}"/></p>
-
+    <div class="tz-gallery">
+        <div class="row">
+            <div class="col-sm-12 col-md-4" th:each="bestReview : ${bestReviews}">
+                <h3><a th:text="${bestReview.writer}" class="articleWriter"></a>님 🥳️</h3>
+                <a class="lightbox" th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
+                   th:utext="${bestReview.content}" >
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div style="clear: both; height: 0px;"><img alt="" height="0" /></div>
-    </tr>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
 
-
-        <!--<div class="table-list">
-            <table class="table_box">
-                <tbody>-->
-
-
-
-              <!--      <td th:utext="${bestReview.content}" class="panel-body"></td>
-
-                </tr>-->
-  <!--              </tbody>
-            </table>
-        </div>
-    </div>-->
-</th:block>
-
-
-
-<!--<th:block layout:fragment="content">
-    <div class="container">
-        <div class="table-list">
-            <table class="table_box">
-                <tbody>
-                <td th:each="bestReview : ${bestReviews}">
-                    <a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
-                       th:text="${bestReview.title}" class="articleTitle"></a>
-                    <a th:text="${bestReview.registerDate}"/>
-                    <a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
-                       th:utext="${bestReview.content}"></a>
-                </td>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</th:block>-->
-
-    <script type="text/javascript">
-	function clearSearch() {
-		window.location = "[[@{article/list}]]";
-	}
-
-    </script>
+<script>
+    baguetteBox.run('.tz-gallery');
+</script>
 
 </body>
 </html>

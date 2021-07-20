@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>댓글 확인창</title>
     <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
 </head>
 <body>
 <div class="upload-container">
@@ -18,10 +19,12 @@
         <div class="single-upload">
             <div th:utext="${article.content}" class="panel-body"></div>
         </div>
-        <button class="btn-primary" th:onclick="|window.location.href='/article/update/${article.id}'|">수정하기 🤩</button>
-        <button class="btn-danger" th:onclick="|window.location.href='/article/delete/${article.id}'|">삭제하기 😢</button>
-        <button class="btn-success" th:onclick="|window.location.href='/article/list'|">목록으로 😎</button>
-        <button class="btn-success" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍</button>
+        <div style="text-align:center;">
+        <button class="button" th:onclick="|window.location.href='/article/update/${article.id}'|">수정하기 🤩</button>
+        <button class="button" th:onclick="|window.location.href='/article/delete/${article.id}'|">삭제하기 😢</button>
+        <button class="button" th:onclick="|window.location.href='/article/list'|">목록으로 😎</button>
+        <button class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍</button>
+        </div>
 
 
     </div>
