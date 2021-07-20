@@ -25,19 +25,19 @@
                             <div class="ItemFilterGroupTitle">여행지</div>
                             <div class="ItemFilterGroupList">
                                 <label>
-                                    <input type="checkbox" th:name="region" th:value="Korea">&nbsp;국내
+                                    <input type="checkbox" name="region" th:value="Korea">&nbsp;국내
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="region" th:value="Japan">&nbsp;일본
+                                    <input type="checkbox" name="region" th:value="Japan">&nbsp;일본
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="region" th:value="China">&nbsp;중국
+                                    <input type="checkbox" name="region" th:value="China">&nbsp;중국
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="region" th:value="Southeast_Asia">&nbsp;동남아시아
+                                    <input type="checkbox" name="region" th:value="Southeast_Asia">&nbsp;동남아시아
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="region" th:value="Europe">&nbsp;유럽
+                                    <input type="checkbox" name="region" th:value="Europe">&nbsp;유럽
                                 </label>
                             </div>
                         </div>
@@ -46,16 +46,16 @@
                             <div class="ItemFilterGroupTitle">계절</div>
                             <div class="ItemFilterGroupList">
                                 <label>
-                                    <input type="checkbox" th:name="season" th:value="Spring">&nbsp;봄
+                                    <input type="checkbox" name="season" th:value="Spring">&nbsp;봄
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="season" th:value="Summer">&nbsp;여름
+                                    <input type="checkbox" name="season" th:value="Summer">&nbsp;여름
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="season" th:value="Autumn">&nbsp;가을
+                                    <input type="checkbox" name="season" th:value="Autumn">&nbsp;가을
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="season" th:value="Winter">&nbsp;겨울
+                                    <input type="checkbox" name="season" th:value="Winter">&nbsp;겨울
                                 </label><br>
                             </div>
                         </div>
@@ -64,16 +64,16 @@
                             <div class="ItemFilterGroupTitle">테마</div>
                             <div class="ItemFilterGroupList">
                                 <label>
-                                    <input type="checkbox" th:name="theme" th:value="Family">&nbsp;가족
+                                    <input type="checkbox" name="theme" th:value="Family">&nbsp;가족
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="theme" th:value="Friend">&nbsp;친구
+                                    <input type="checkbox" name="theme" th:value="Friend">&nbsp;친구
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="theme" th:value="Couple">&nbsp;커플
+                                    <input type="checkbox" name="theme" th:value="Couple">&nbsp;커플
                                 </label><br>
                                 <label>
-                                    <input type="checkbox" th:name="theme" th:value="Filial">&nbsp;효도
+                                    <input type="checkbox" name="theme" th:value="Filial">&nbsp;효도
                                 </label><br>
                             </div>
                         </div>
@@ -101,15 +101,40 @@
                             <p class="card-text" th:text="${list.proContent}"></p>
                         </div>
                         <div class="card-footer" style="background-color: white">
-                            @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
-                            @<input type="hidden" name="season" th:text="${list.season}">&nbsp;
-                            @<input type="hidden" name="theme" th:text="${list.theme}">
+                            @<input type="text" name="region" th:text="${list.region}">&nbsp;
+                            @<input type="text" name="season" th:text="${list.season}">&nbsp;
+                            @<input type="text" name="theme" th:text="${list.theme}">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--if($("input:checkbox[name='region']").is(":checked")){
+    alert("하나만 선택해주세요");
+    }-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+
+        $("input:checkbox[name='region']").change(function(){
+            var items = [];
+
+            $("input:checkbox[name='region']:checked").each(function(){
+                items.push($(this).val());
+                console.log(items.length);
+
+                for(int i = 0; i <items.length; i++){
+                    if(items.length > 1){
+                        alert("하나만 선택해주세요");
+                        console.log(items);
+                    }
+                }
+            });
+        });
+
+    });
+    </script>
 </th:block>
 </body>
 </html>
