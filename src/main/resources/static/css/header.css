@@ -7,33 +7,35 @@ body {
 .navbar {
 	display: flex; /*한 줄에 나란히*/
 	justify-content: center; /*스페이스를 사이사이에 넣음*/
-	justify-content: center; /*스페이스를 사이사이에 넣음*/
 	align-items: center; /*중앙 배치*/
 	background-color: #16a085;
 	padding: 10px;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
 }
 li a{
-    color: white;
 	text-decoration: none;/*.없앰*/
-	color: white;
-}
-li a:hover {
-    color:  #0C4F3C;
 }
 .main_logo_img{
-	width: 190px;
+	width: 220px;
 	height: 75px;
 	padding: 0.3rem 0.35rem;
 }
 .navbar_logo {
 	padding: 0px;
-	width: 200px;
+	width: 93px;
+    margin-right: 217px;
 	list-style:none;
 }
-.navbar_logo li {
-    width: 100px;
+.navbar_logo li a{
+    color: white;
+    text-decoration: none;/*.없앰*/
     font-size: 24px;
     height: 27px;
+}
+.navbar_logo li a:hover{
+    color:  #0C4F3C;
 }
 .navbar_menu {
 	display: flex; /*한 줄에 하나씩 나옴*/
@@ -41,35 +43,36 @@ li a:hover {
 	padding-left: 0; /*이렇게 지정해서 중앙에 배치*/
 	font-size: 18px;
 }
-.navbar_menu li {
-	padding: 0px; /*메뉴안 내용들의 간격 조정*/
+.navbar_menu li a {
+    color: white;
+    text-decoration: none;/*.없앰*/
+	padding: 10px; /*메뉴안 내용들의 간격 조정*/
 	width: 125px;
     font-size: 24px;
     height: 27px;
 }
-/*.navbar_menu li:hover {*//*클릭시 색깔 변함*//*
-	background-color: #66c9a8;
-	width: 140px;
-	height: 22px;
-	border-radius: 4px; *//*모서리 둥글게*//*
-}*/
+.navbar_menu li a:hover {
+    color:  #0C4F3C;
+}
 .navbar_icons {
 	color: white;
 	font-size: 25px;
 	display: flex;
 	list-style:none;
 	padding-left: 0rem; /*중앙 배치*/
+	margin-left: 50px;
 }
-.navbar_icons li {
+.navbar_icons li a {
+    color: black;
+	font-size: 25px;
 	padding: 0px;
 	width: 140px;
     font-size: 24px;
     height: 27px;
 }
-/*.navbar_icons li:hover {
-	background-color: #66c9a8;
-	border-radius: 4px; *//*모서리 둥글게*//*
-}*/
+.navbar_icons li a:hover {
+    color:white;
+}
 .navbar_toogleBtn { /*위치 조정*/
 	display: none; /*큰 크기때는 안 보이게 함*/
 	position: absolute; /*제일 위에 배치*/
