@@ -101,9 +101,9 @@
                             <p class="card-text" th:text="${list.proContent}"></p>
                         </div>
                         <div class="card-footer" style="background-color: white">
-                            @<input type="text" name="region" th:text="${list.region}">&nbsp;
-                            @<input type="text" name="season" th:text="${list.season}">&nbsp;
-                            @<input type="text" name="theme" th:text="${list.theme}">
+                            @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
+                            @<input type="hidden" name="season" th:text="${list.season}">&nbsp;
+                            @<input type="hidden" name="theme" th:text="${list.theme}">
                         </div>
                     </div>
                 </div>
