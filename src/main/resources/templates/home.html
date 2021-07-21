@@ -107,13 +107,13 @@
   <!-- book section ends -->
 
 
-  <!-- sms icon starts -->
+<!--  &lt;!&ndash; sms icon starts &ndash;&gt;
   <div class="sms">
     <ul>
       <li><a th:href="@{/board/list}"><i class="fas fa-sms"></i></a></li>
       <li><a th:href="@{/board/list}"><i class="fab fa-google"></i></a></li>
     </ul>
-  </div>
+  </div>-->
 
   <!-- sms icon ends -->
 
@@ -378,10 +378,11 @@
 
               <!-- Button trigger modal -->
 
-              <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                자세한 내용은 이 버튼을 클릭 하세요
+              <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                ✨ 자세한 내용보기 ✨
               </button>
 
+<!--
               <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
@@ -416,6 +417,7 @@
               </div>
               <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
 
+-->
 
             </li>
             <li class="slideitem1">
@@ -447,24 +449,37 @@
   <div th:replace="fragments/footer :: footer" />
 </div>
 
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">이벤트 제목</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <img src="./images/slide01.jpg"/>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="button" data-bs-dismiss="modal">닫기</button>
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
       </div>
     </div>
   </div>
 </div>
-
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/60a4d80a185beb22b30ea5d1/1f61unr3a';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
