@@ -1,8 +1,9 @@
 package com.upload.files.controller;
 
 import com.upload.files.entity.Booking;
-import com.upload.files.entity.Member;
+import com.upload.files.entity.Product;
 import com.upload.files.repository.BookingRepository;
+import com.upload.files.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 @RequestMapping("/order")
@@ -21,18 +24,23 @@ import java.util.List;
 public class BookingController {
 
     @Autowired private BookingRepository bookingRepository;
+    @Autowired private ProductService productService;
 
     /** 예약페이지로 이동 */
-    @GetMapping("/book")
-    public String main(Model model) {
+    @GetMapping("/book/{proNo}")
+    public String main(Model model, @PathVariable Long proNo) {
         model.addAttribute("order", new Booking());
+
+        Product product = productService.findOne(proNo);
+        model.addAttribute("product", product);
 
         return "order/booking";
     }
 
     /** 예약된 내용 저장해서 확인 페이지로 보냄 */
     @PostMapping("/confirm")
-    public String save(Booking booking, Model model) {
+    public String save(Booking booking, HttpServletRequest request, Model model) {
+        booking.setOrderPrice(Integer.parseInt(request.getParameter("OrderPrice")));
         bookingRepository.save(booking);
         model.addAttribute("order", booking);
 
