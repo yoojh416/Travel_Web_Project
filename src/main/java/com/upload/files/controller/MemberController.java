@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,9 +97,10 @@ public class MemberController {
     }
 
     // 내 정보 페이지
-    @GetMapping("/user/info/{id}")
-    public String dispMyInfo(@Param("id")Long id, Member member, Model model) {
-        member = memberRepository.findById(id).get();
+    @GetMapping("/user/info")
+    public String dispMyInfo(@AuthenticationPrincipal UserDetails userDetails
+            , Member member, Model model) {
+        member = memberRepository.findByUsername(userDetails.getUsername()).get();
 
         model.addAttribute("members", member);
         return "user/myInfo";
@@ -105,8 +108,11 @@ public class MemberController {
 
     // 정보 수정 페이지
     @GetMapping("/user/modify/{id}")
-    public String modifyMyInfo(@PathVariable("id") Long id, @Valid MemberDto memberDto
+    public String modifyMyInfo(@AuthenticationPrincipal UserDetails userDetails
+            , @Valid MemberDto memberDto, @PathVariable("id") Long id
             , BindingResult result, Model model, Member member) {
+
+        member = memberRepository.findById(id).get();
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
@@ -120,7 +126,9 @@ public class MemberController {
         member.setUsername(memberDto.getUsername());
         member.setRegDate(LocalDate.now());
         this.memberRepository.save(member);
+
         model.addAttribute("member", member);
+
         return "redirect:/user/login";
     }
 
