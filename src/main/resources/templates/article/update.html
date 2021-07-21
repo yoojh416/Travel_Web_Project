@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width" />
-	<title>Example</title>
+	<title>🤩리뷰수정</title>
 	<!-- include libraries(jQuery, bootstrap) -->
 	<link
 			href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -18,12 +19,22 @@
 			rel="stylesheet">
 	<script
 			src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+	<link rel="stylesheet" th:href="@{/css/button.css}"/>
+	<head th:replace="fragments/header :: header">
 </head>
+	<!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 <body>
-<div style="padding:0% 30%">
-<form id="articleForm" role="form" th:action="@{/article/updated/{id}(id = ${article.id})}" method="post">
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="padding:0% 15%">
+<form id="articleForm" role="form" th:action="@{/article/updated(id = ${article.id}, proNo = ${proNo})}" method="post">
 	<br style="clear: both">
-	<h3 style="margin-bottom: 25px;">수정하기 “φʕ•ᴥ•｡ʔ</h3>
+	<h3 style="margin-bottom: 25px;">수정하기 “φʕ•ᴥ•｡ʔ</h3><br>
+	<input type="hidden" th:name="proNo" th:value="${proNo}">
 	<div class="form-group">
 		<input th:value="${article.title}" type="text" class="form-control" id="title" name="title"
 			   placeholder="제목" required>
@@ -33,7 +44,8 @@
 					  placeholder="content" maxlength="140" rows="7"></textarea>
 	</div>
 	<button type="submit" id="submit" name="submit"
-			class="btn btn-primary pull-right">수정하기</button>
+			class="button" style="width:100px; font-size: 1.5rem;">수정하기 😊</button>
+	<a type="button" class="button" onclick="history.go(-1)" >취소하기 😉</a>
 </form>
 </div>
 <script>
@@ -73,4 +85,7 @@
 		}
 	</script>
 </body>
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<!--<div th:replace="fragments/footer :: footer" />-->
+
 </html>

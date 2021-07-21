@@ -7,6 +7,9 @@ body {
 	display: fixed;
 	font-size: 14px;
 }
+li {
+    list-style: none;
+}
 .main {
 	display: -webkit-flex;
 	display: -moz-flex;
@@ -65,11 +68,18 @@ h4 {
 h2 {
 	font-weight: 600;
 	font-size: 25px;
-	text-align:center;
+    text-align: left;
+}
+.More {
+    margin-left: 40px;
+	font-weight: 600;
+	font-size: 25px;
+    text-align: left;
 }
 .footer ul {
-	list-style: none;
-	padding-left: 0;
+    line-height: 2em;
+    margin-left: -30px;
+    width: 170px
 }
 .footer li {
 	line-height: 2em;
@@ -91,6 +101,10 @@ h2 {
 }
 .box a {
 	color: white;
+}
+.li_box {
+    width: 195px;
+    margin-left: -15px;
 }
 .footer-bottom {
 	height: 50px;

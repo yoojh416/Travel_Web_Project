@@ -33,7 +33,6 @@ public class ProductController { //여행 상품용 컨트롤러
     private final ProductService productService;
     private final ProductRepository productRepository;
     private final FilePathRepository filePathRepository;
-    private final ArticleRepository articleRepository;
     private final ArticleService articleService;
 
     /**
@@ -129,8 +128,10 @@ public class ProductController { //여행 상품용 컨트롤러
      * 메인 상품 페이지
      */
     @RequestMapping("/board/list")
-    public String list(@ModelAttribute("listSearch") ListSearch listSearch
-            , Model model) {
+    public String list(@ModelAttribute("listSearch") ListSearch listSearch,
+                       @PageableDefault Pageable pageable,
+                       @RequestParam(value = "page", defaultValue = "0") String pageNum,
+                       Model model) {
         List<Product> products = productService.findItemsByFilter(listSearch);
         List<FilePath> files = new ArrayList<>();
         //리서치 서비스 페이징 추가 요망
@@ -146,12 +147,14 @@ public class ProductController { //여행 상품용 컨트롤러
 
         }
 
+
+
         return "board/list";
     }
 
     @GetMapping("/board/get")
     public String getProduct(@RequestParam(name = "proNo") Long proNo,
-                             @RequestParam(value = "page", defaultValue = "1") String pageNum,
+                             @RequestParam(value = "page", defaultValue = "0") String pageNum,
                              @PageableDefault Pageable pageable, Model model) {
 
         Product product = productService.findOne(proNo);

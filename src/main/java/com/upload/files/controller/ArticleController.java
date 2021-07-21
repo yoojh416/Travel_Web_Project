@@ -2,8 +2,12 @@ package com.upload.files.controller;
 
 
 import com.upload.files.entity.Article;
+import com.upload.files.entity.FilePath;
+import com.upload.files.entity.Product;
 import com.upload.files.repository.ArticleRepository;
+import com.upload.files.repository.FilePathRepository;
 import com.upload.files.service.ArticleService;
+import com.upload.files.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -23,23 +27,51 @@ public class ArticleController { //리뷰용 컨트롤러
 
 	@Autowired private ArticleRepository articleRepository;
 	@Autowired private ArticleService articleService;
+	@Autowired private ProductService productService;
+	@Autowired private FilePathRepository filePathRepository;
 
-	/**폼으로 가기*/
+	/**
+	 * 폼으로 가기
+	 */
 	@GetMapping("/form")
-	public String form() {
+	public String form(@RequestParam(name = "proNo") Long proNo,
+					   @RequestParam(name = "N") String N,
+					   @RequestParam(name = "E") String E, Model model) {
+
+		model.addAttribute("proNo", proNo);
+		model.addAttribute("N", N);
+		model.addAttribute("E", E);
+
 		return "article/write";
 	}
 
 	/**글쓰기*/
 	@PostMapping("/write")
-	public String setArticle(Article article, Model model) {
+	public String setArticle(Article article,
+							 @RequestParam(name = "proNo") Long proNo,
+							 @PageableDefault Pageable pageable,
+							 @RequestParam(value = "page", defaultValue = "1") String pageNum,
+							 Model model) {
 		article.setRegisterDate(LocalDateTime.now());
 		articleRepository.save(article);
 
-		return "redirect:/article/list";
+		Product product = productService.findOne(proNo);
+		model.addAttribute("productInfo", product);
+
+		int[] fno = filePathRepository.findAllFno(proNo);
+		FilePath MainImg = filePathRepository.findById(fno[0]).get();
+		FilePath DetailImg = filePathRepository.findById(fno[1]).get();
+
+		model.addAttribute("MainImg", MainImg.getFileName());
+		model.addAttribute("DetailImg", DetailImg.getFileName());
+
+		Page<Article> articleList = articleService.getArticleList(pageable);
+		model.addAttribute("articleList", articleList);
+
+		return "board/get";
 	}
 
-	/** 전체 리스트 + 페이징 */
+	/** 전체 리스트 + 페이징 *//*
 	@GetMapping("/article/list")
 	public String getArticleList(Model model, @PageableDefault Pageable pageable
 			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
@@ -47,9 +79,9 @@ public class ArticleController { //리뷰용 컨트롤러
 		model.addAttribute("articleList", articleList);
 
 		return "article/list";
-	}
+	}*/
 
-	/** 검색기능 추가 */
+	/** 검색기능 추가 *//*
 	@GetMapping("/article/search")
 	public String getSearch(Model model, @PageableDefault Pageable pageable
 			, @RequestParam(value = "page", defaultValue = "1") String pageNum
@@ -58,7 +90,7 @@ public class ArticleController { //리뷰용 컨트롤러
 		Page<Article> articleList = articleService.getArticleList(pageable);
 		Page<Article> searchList = articleService.search(keyword, pageable);
 
-		/*검색어가 없으면 전체 리스트 반환하는 로직*/
+		*//*검색어가 없으면 전체 리스트 반환하는 로직*//*
 		if(keyword.isEmpty()) {
 			result = articleList;
 		} else {
@@ -68,51 +100,80 @@ public class ArticleController { //리뷰용 컨트롤러
 		model.addAttribute("articleList", result);
 
 		return "article/list";
-	}
+	}*/
 
 	/**상세 페이지*/
-	@GetMapping("/article/{id}")
-	public String getArticle(@PathVariable("id") Long id, Model model) {
+	@GetMapping("/article/detail")
+	public String getArticle(@RequestParam("id") Long id,
+							 @RequestParam(name="proNo", required = false) Long proNo,
+							 Model model) {
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
 
 		List<Article> listArticles = articleRepository.findAll();
 		model.addAttribute("listArticles", listArticles);
 
+		model.addAttribute("proNo", proNo);
+
 		return "article/detail";
 	}
 
 	/**수정 페이지 들어가기*/
-	@GetMapping("/article/update/{id}")
-	public String getArticleUpdate(Model model, @PathVariable Long id) {
+	@GetMapping("/article/update")
+	public String getArticleUpdate(Model model, @RequestParam Long id,
+								   @RequestParam("proNo") Long proNo) {
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
+
+		model.addAttribute("proNo", proNo);
 
 		return "article/update";
 	}
 
 	/**수정 하기*/
-	@PostMapping(value = "/article/updated/{id}")
-	public String setArticleUpdate(Model model, @PathVariable Long id, Article updatedArticle) {
+	@PostMapping(value = "/article/updated")
+	public String setArticleUpdate(Model model, @RequestParam Long id,
+								   @RequestParam(name="proNo", required = false) Long proNo,
+								   Article updatedArticle) {
 		Article article = articleRepository.findById(id).get();
 		article.setTitle(updatedArticle.getTitle());
 		article.setContent(updatedArticle.getContent());
 		article.setUpdateDate(LocalDateTime.now());
 		articleRepository.save(article);
+		model.addAttribute("article", article);
 
 		List<Article> articleList = articleRepository.findAll();
-		model.addAttribute("articleList", articleList);
+		model.addAttribute("listArticles", articleList);
 
-		return "redirect:/article/{id}";
+		model.addAttribute("proNo", proNo);
+
+		return "article/detail";
 	}
 
 	/** 삭제하기*/
-	@GetMapping("/article/delete/{id}")
+	@GetMapping("/article/delete")
 	@Transactional
-	public String deleteArticle(Model model, @PathVariable Long id) {
+	public String deleteArticle(Model model,
+								@RequestParam Long id,
+								@RequestParam("proNo") Long proNo,
+								@PageableDefault Pageable pageable,
+								@RequestParam(value = "page", defaultValue = "1") String pageNum) {
 		articleRepository.deleteById(id);
 
-		return "redirect:/article/list";
+		Product product = productService.findOne(proNo);
+		model.addAttribute("productInfo", product);
+
+		int[] fno = filePathRepository.findAllFno(proNo);
+		FilePath MainImg = filePathRepository.findById(fno[0]).get();
+		FilePath DetailImg = filePathRepository.findById(fno[1]).get();
+
+		model.addAttribute("MainImg", MainImg.getFileName());
+		model.addAttribute("DetailImg", DetailImg.getFileName());
+
+		Page<Article> articleList = articleService.getArticleList(pageable);
+		model.addAttribute("articleList", articleList);
+
+		return "board/get";
 	}
 
 }

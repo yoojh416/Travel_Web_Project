@@ -1,10 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
-<meta charset="UTF-8">
-<title>Title</title>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <!-- loader js link-->
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
@@ -13,6 +8,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
   <!-- custom css file link  -->
   <link rel="stylesheet" th:href="@{/css/home.css}" >
+  <link rel="stylesheet" th:href="@{/css/footer.css}" >
   <!-- loader js -->
   <script>
 	$(window).load(function() { /*window가 로드되면 함수 실행*/
@@ -21,9 +17,11 @@
 </script>
   <meta charset="UTF-8">
   <title>메인 화면</title> <!-- href 링크 모두 동일-->
+  <head th:replace="fragments/header :: header">
 </head>
 <body>
-<th:block layout:fragment="content">
+<div class="containers">
+<div th:replace="layout/bodyHeader :: bodyHeader" />
   <!-- slidebox section starts -->
   <div class="loader"></div>
   <div class="slidebox">
@@ -90,7 +88,7 @@
             <option th:value="Couple">커플</option>
             <option th:value="Filial">효도</option>
           </select>
-          <button type="submit" class="img_btn" id="img_btn"><i class="fas fa-search"></i></button>
+          <button type="submit" class="img_btn" id="img_btn"><a th:href="@{/board/list}"><i class="fas fa-search"></i></a></button>
         </div>
       </form>
     </div>
@@ -365,6 +363,7 @@
   </section>
 
   <!-- gallery section ends -->
-</th:block>
+  <div th:replace="fragments/footer :: footer" />
+</div>
 </body>
 </html>

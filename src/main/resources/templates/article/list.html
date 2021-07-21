@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org">
 
 
 <head>
@@ -12,15 +10,27 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
+    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
     <link th:href="@{/css/itemList.css}" rel="stylesheet">
+
+    <head th:replace="fragments/header :: header">
+        <!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 </head>
 
 <body>
-<th:block layout:fragment="content" th:fragment="reviewList">
+<th:block th:fragment="reviewList">
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="container">
+        <div style="text-align:left;">
+        <button class="button-hover"
+                th:onclick="|window.location.href='@{/form(proNo=${productInfo.proNo}, N=${productInfo.N}, E=${productInfo.E})}'|">후기쓰기😇</button>
+        <!--<button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 🏰</button>-->
 
-        <button class="btn-btn-upload" th:onclick="|window.location.href='/form'|">글쓰기</button>
-        <button class="btn-home" th:onclick="|window.location.href='/'|">홈으로</button>
+        </div>
 
         <div class="table-list">
             <table class="table_box">
@@ -35,7 +45,7 @@
                 <tbody>
                 <tr th:each="article : ${articleList}">
                     <td th:text="${article.id}"></td>
-                    <td><a th:href="@{/article/{id}(id = ${article.id})}" th:text="${article.title}"
+                    <td><a th:href="@{/article/detail(proNo = ${productInfo.proNo}, id = ${article.id})}" th:text="${article.title}"
                            class="articleTitle"></a></td>
                     <td th:text="${article.writer}"></td>
                     <td th:text="${article.registerDate}"/>
@@ -45,11 +55,11 @@
         </div>
 
         <!--페이징, 검색 시작-->
-        <nav style="text-align: center">
+        <!--<nav style="text-align: center">
 
             <div>
                 <form th:action="@{/article/search}" th:method="GET" >
-                    <input name="keyword" type="text" placeholder="검색할 제목을 입력" style="width: 85%;">
+                    <input name="keyword" type="text" placeholder="검색할 제목을 입력" style="width: 80%;">
                     <button class="btn-home">검색하기</button>
                 </form>
             </div>
@@ -90,7 +100,7 @@
                 </li>
             </ul>
         </nav>
-        <!--페이징 시작-->
+        &lt;!&ndash;페이징 시작&ndash;&gt;-->
 
     </div>
 
@@ -99,10 +109,10 @@
       window.location = "[[@{article/list}]]";
    }
 </script>
-
 </th:block>
+
 </body>
-
-
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<!--<div th:replace="fragments/footer :: footer" />-->
 
 </html>
