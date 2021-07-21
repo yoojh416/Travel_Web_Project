@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.springframework.org/security/tags"
       layout:decorator="layout/default">
 
 <head>
@@ -26,7 +27,7 @@
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
 
-    <title>가입하기</title>
+    <title>회원정보 수정</title>
 </head>
 
 <body>
@@ -42,7 +43,7 @@
 
                 <div class="col-lg-9 my-4 mb-4" style="height: 100%;">
                     <form class="form-signin" th:action="@{/user/modified/{id}(id = ${member.id})}" method="post"
-                          th:object="${memberDto}">
+                          th:object="${member}">
 
                         <!--csrf**-->
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -54,7 +55,7 @@
                                 <div class="col-sm-6">
                                     <input type="email" th:field="*{username}" id="username"
                                            class="form-control" th:value="*{username}"
-                                           placeholder="로그인 할 이메일">
+                                           placeholder="로그인 할 이메일" readonly>
                                 </div>
                             </div>
 
@@ -91,7 +92,7 @@
                                     <input type="date" pattern="(010)-\d{3,4}-\d{4}" class="form-control"
                                            th:field="*{birthdate}" th:value="*{birthdate}"
                                            id="birthdate"
-                                           placeholder="생년월일" required>
+                                           placeholder="생년월일" readonly>
                                 </div>
                             </div>
 
@@ -108,7 +109,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">성별</label>
                                 <div class="col-sm-6">
-                                    <input type="text" th:field="*{gender}" th:value="*{gender}">&nbsp;
+                                    <input type="text" th:field="*{gender}" th:value="*{gender}" readonly>&nbsp;
                                 </div>
                             </div>
 
@@ -117,9 +118,9 @@
                                     <button class="btn btn-outline-primary btn-block"
                                             style="float: right; width: 74%;" type="submit">수정하기</button>
                                     <a type="button" class="btn btn-outline-danger btn-block"
-                                       style="float: right; width: 74%;" th:href="@{/user/info(id = ${member.id})}">취소하기</a>
+                                       style="float: right; width: 74%;" th:href="@{/user/info}"> 수정취소하기</a>
                                     <a type="button" class="btn btn-outline-danger btn-block"
-                                       style="float: right; width: 74%;" th:href="@{/user/signOut}">계정탈퇴하기</a>
+                                       style="float: right; width: 74%;" th:href="@{/user/delete/{id}(id = ${member.id})}">계정탈퇴하기</a>
                                 </div>
                             </div>
                         </div>

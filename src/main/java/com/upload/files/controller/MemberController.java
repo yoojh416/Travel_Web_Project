@@ -108,11 +108,19 @@ public class MemberController {
 
     // 정보 수정 페이지
     @GetMapping("/user/modify/{id}")
+    public String modifyForm(@AuthenticationPrincipal UserDetails userDetails
+            , Model model, Member member, @PathVariable("id") Long id) {
+        member = memberRepository.findById(id).get();
+        model.addAttribute("member", member);
+
+        return "user/modifyMyInfo";
+    }
+
+    // 정보 수정 로직
+    @PostMapping("/user/modified/{id}")
     public String modifyMyInfo(@AuthenticationPrincipal UserDetails userDetails
             , @Valid MemberDto memberDto, @PathVariable("id") Long id
             , BindingResult result, Model model, Member member) {
-
-        member = memberRepository.findById(id).get();
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
@@ -127,16 +135,17 @@ public class MemberController {
         member.setRegDate(LocalDate.now());
         this.memberRepository.save(member);
 
-        model.addAttribute("member", member);
+        model.addAttribute("id", id);
 
         return "redirect:/user/login";
     }
 
-    // 계정삭제 로직 -> 삭제 후 홈으로 이동
-    @GetMapping("/user/signOut")
+    // 계정삭제 로직 -> 삭제 후 login 으로 이동
+    @GetMapping("/user/delete/{id}")
     public String deleteMyInfo(@PathVariable("id") Long id) {
         memberRepository.deleteById(id);
-        return "/";
+
+        return "user/login";
     }
 
     // 어드민 페이지
