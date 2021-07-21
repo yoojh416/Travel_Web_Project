@@ -7,6 +7,7 @@
 
     <title>베스트 리뷰</title>
     <!-- include libraries(jQuery, bootstrap) -->
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
@@ -14,7 +15,9 @@
 
 </head>
 <body>
-
+<div style="text-align:center;">
+    <button class="button-hover1" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+</div>
 <div class="container gallery-container">
 
     <h1> ❤너나들이와 함께한 베스트리뷰 (◍•ᴗ•◍)❤ </h1>
