@@ -1,11 +1,14 @@
 package com.upload.files.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.upload.files.repository.Role;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 @Entity
@@ -32,6 +35,10 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    /*@JsonIgnore
+    @OneToMany(mappedBy = "member")
+    private List<Booking> bookingList = new ArrayList<Booking>();*/
 
     @Builder
     public Member(String username, String password, String name

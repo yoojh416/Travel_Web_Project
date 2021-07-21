@@ -71,4 +71,9 @@ public class BookingController {
         return "redirect:/";
     }
 
+    /** booking list로 가기 구현중 */
+   /* public String findAllby() {
+
+    }*/
+
 }

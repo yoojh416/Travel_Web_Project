@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -95,7 +96,11 @@ public class MemberController {
 
     // 어드민 페이지
     @GetMapping("/admin/userList")
-    public String dispAdmin() {
+    public String dispAdmin(Member member, Model model) {
+        List<Member> memberList = memberRepository.findAll();
+
+        model.addAttribute("members", memberList);
+
         return "admin/memberList";
     }
 
