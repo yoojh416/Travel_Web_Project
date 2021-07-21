@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class FilePathService { //제품용 이미지 저장 위한 서비스 => 저장을 하기 위해 준비하는 단계
 
-
     @Autowired private FilePathRepository filePathRepository;
     @Autowired private ProductService productService;
 

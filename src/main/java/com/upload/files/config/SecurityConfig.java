@@ -1,20 +1,44 @@
 package com.upload.files.config;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
+import javax.sql.DataSource;
+
 @EnableWebSecurity
-@AllArgsConstructor
+@Slf4j
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final UserDetailsService userDetailsService;
+    private final DataSource dataSource;
+
+    /** JdbcTokenRepositoryImpl */
+    /*private PersistentTokenRepository getJDBCRepository(){
+        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+        repo.setDataSource(dataSource);
+        return repo;
+    }*/
+
+    @Bean
+    public PersistentTokenRepository tokenRepository(){
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        return jdbcTokenRepository;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -32,19 +56,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 페이지 권한 설정
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**", "/transfer/**", "/bestReview/delete/**").hasRole("ADMIN")
                 .antMatchers("/user/myInfo").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
-                .and() // 로그인 설정
-                .formLogin()
-                .loginPage("/user/login")
-                .loginProcessingUrl("/signIn")
-                .defaultSuccessUrl("/home")
-                .permitAll()
+                .and() // 로그인 설정 & RememberME
+                .formLogin( formLogin -> formLogin
+                        .loginPage("/user/login")
+                        .loginProcessingUrl("/signIn")
+                        .defaultSuccessUrl("/").permitAll())
+                .rememberMe().key("rememberMe")
+                        .userDetailsService(userDetailsService)
+                        .tokenRepository(tokenRepository())
                 .and() // 로그아웃 설정
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-                .logoutSuccessUrl("/home")
+                .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .and()
                 // 403 예외처리 핸들링

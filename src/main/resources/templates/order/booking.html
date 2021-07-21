@@ -38,18 +38,21 @@ $(document).ready(function () {
 <body>
 
 <div class="upload-container">
-<form method="post" th:object="${order}" action="/order/confirm">
+    <form method="post" th:object="${order}" action="/order/confirm">
 
         <div class="upload-header">
             <h2>예약하기 🤠</h2>
+            <input type="hidden" th:value="${product.proNo}" name="proNo"/>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         </div>
         <div class="upload-content">
             <div class="form-group row" >
 
                 <div class="col-md-6 mt-5" >
-                    <label for="OrderPrice">패키지 가격</label>
+                    <label>패키지 가격</label>
                     <div class="input-group date">
-                        <input type="text" class="form-control" id="OrderPrice" th:field="*{OrderPrice}" />
+                        <!--<input type="text" class="form-control" id="OrderPrice" th:field="*{OrderPrice}" />-->
+                        <input type="text" class="form-control" name="OrderPrice" th:value="${product.price}"/>
                     </div>
                 </div>
 
@@ -80,17 +83,13 @@ $(document).ready(function () {
             </div>
         </div>
 
-<div style="text-align:right;">
+        <div style="text-align:right;">
 
-    <button class="button" type="submit" >
+            <button class="button" type="submit" >
                 예약하기
-    </button>
-</div>
-
-
-
-
-</form>
+            </button>
+        </div>
+    </form>
 </div>
 
 </body>

@@ -37,9 +37,11 @@
         <input type="email" id="username" name="username" class="form-control" placeholder="이메일" required autofocus>
         <label for="password" class="sr-only">비밀번호</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required>
-        <label> <input type="checkbox" value="remember-me">
-            Remember me
-        </label>
+        <div class="checkbox mb-3">
+            <label>
+                <input name="remember-me" id="rememberMe" type="checkbox" th:checked="${rememeberMe}"> Remember me
+            </label>
+        </div>
         <input class="submit-btn " type="submit" value="로그인">
         <a type="button" class="btn btn-secondary btn-lg btn-block" th:href="@{/user/join}">회원가입</a>
 

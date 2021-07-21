@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "booking")
@@ -25,5 +27,13 @@ public class Booking {
     private Date dateIn;
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
     private Date dateOut;
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    private List<Booking> bookingList = new ArrayList<Booking>();*/
+
 
 }
