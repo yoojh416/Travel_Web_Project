@@ -14,7 +14,7 @@
     <link th:href="@{/css/itemList.css}" rel="stylesheet">
 
     <head th:replace="fragments/header :: header">
-        <div th:replace="layout/bodyHeader :: bodyHeader" />
+        <!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 </head>
 
 <body>
@@ -26,8 +26,9 @@
     <br>
     <div class="container">
         <div style="text-align:left;">
-        <button class="button-hover" th:onclick="|window.location.href='/form'|">후기쓰기😇</button>
-        <button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 🏰</button> <!--상품보기로 돌아가는 버튼 필요-->
+        <button class="button-hover"
+                th:onclick="|window.location.href='@{/form(proNo=${productInfo.proNo}, N=${productInfo.N}, E=${productInfo.E})}'|">후기쓰기😇</button>
+        <!--<button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 🏰</button>-->
 
         </div>
 
@@ -44,7 +45,7 @@
                 <tbody>
                 <tr th:each="article : ${articleList}">
                     <td th:text="${article.id}"></td>
-                    <td><a th:href="@{/article/{id}(id = ${article.id})}" th:text="${article.title}"
+                    <td><a th:href="@{/article/detail(proNo = ${productInfo.proNo}, id = ${article.id})}" th:text="${article.title}"
                            class="articleTitle"></a></td>
                     <td th:text="${article.writer}"></td>
                     <td th:text="${article.registerDate}"/>
@@ -54,7 +55,7 @@
         </div>
 
         <!--페이징, 검색 시작-->
-        <nav style="text-align: center">
+        <!--<nav style="text-align: center">
 
             <div>
                 <form th:action="@{/article/search}" th:method="GET" >
@@ -99,7 +100,7 @@
                 </li>
             </ul>
         </nav>
-        <!--페이징 시작-->
+        &lt;!&ndash;페이징 시작&ndash;&gt;-->
 
     </div>
 
@@ -112,6 +113,6 @@
 
 </body>
 <link th:href="@{/css/footer.css}" rel="stylesheet">
-<div th:replace="fragments/footer :: footer" />
+<!--<div th:replace="fragments/footer :: footer" />-->
 
 </html>

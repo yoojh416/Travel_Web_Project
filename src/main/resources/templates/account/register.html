@@ -13,7 +13,6 @@
     <link href="starter-template.css" th:href="@{/starter-template.css}" rel="stylesheet">
 
 
-
     <title>Login</title>
 </head>
 <th:block layout:fragment="content">
@@ -32,16 +31,14 @@
 
 
                     <div class="all_register">
-                        <!--아이디-->
+                        <!--이메일-->
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">아이디</label>
+                            <label class="col-sm-2 col-form-label">로그인 용 Email</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="username" id="username"
-                                       placeholder="아이디" required>
+                                <input type="email" class="form-control" name="username" id="username"
+                                       placeholder="Email" required>
                             </div>
-
                         </div>
-
 
                         <!--비밀번호-->
                         <div class="form-group row">
@@ -49,19 +46,18 @@
                             <div class="col-sm-6">
                                 <input type="text" pattern=".{8,12}" class="form-control" name="password" id="password"
                                        placeholder="비밀번호" required>
-                                <small id="passwordhelp" class="form-text text-muted" style="text-align:left;">&nbsp;8글자 이상 12글자 이하로 입력해주세요.</small>
+                                <small id="passwordhelp" class="form-text text-muted" style="text-align:left;">&nbsp;8글자
+                                    이상 12글자 이하로 입력해주세요.</small>
                             </div>
                         </div>
 
-                        <!--이메일-->
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Email</label>
+                            <label class="col-sm-2 col-form-label">이름</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" name="useremail" id="useremail"
-                                       placeholder="Email" required>
+                                <input type="text" class="form-control" name="name" id="name"
+                                       placeholder="이름" required>
                             </div>
                         </div>
-
 
                         <!--주소-->
                         <div class="form-group row">
@@ -76,9 +72,11 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">생년월일</label>
                             <div class="col-sm-6">
-                                <input type="date" pattern="(010)-\d{3,4}-\d{4}" class="form-control" name="brithdate" id="brithdate"
+                                <input type="date" pattern="(010)-\d{3,4}-\d{4}" class="form-control" name="brithdate"
+                                       id="brithdate"
                                        placeholder="생년월일" required>
-                                <small id="birthhelp" class="form-text text-muted" style="text-align:left;">&nbsp;예시: 2021년 01월 01일 -> 2021-01-01</small>
+                                <small id="birthhelp" class="form-text text-muted" style="text-align:left;">&nbsp;예시:
+                                    2021년 01월 01일 -> 2021-01-01</small>
                             </div>
                         </div>
 
@@ -86,61 +84,30 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">전화번호</label>
                             <div class="col-sm-6">
-                                <input type="text" pattern="(010)-\d{3,4}-\d{4}" class="form-control" name="phoneno" id="phoneno"
+                                <input type="text" pattern="(010)-\d{3,4}-\d{4}" class="form-control" name="phoneno"
+                                       id="phoneno"
                                        placeholder="전화번호" required>
-                                <small id="phonenohelp" class="form-text text-muted" style="text-align:left;">&nbsp;예시: 010-0000-0000</small>
+                                <small id="phonenohelp" class="form-text text-muted" style="text-align:left;">&nbsp;예시:
+                                    010-0000-0000</small>
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">성별</label>
+                            <div class="col-sm-6">
+                                남성<input type="radio" name="gender" value="남성 ">&nbsp;
+                                여성<input type="radio" name="gender" value="여성 ">&nbsp;
 
-
-                        <!--
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2 col-form-label">성별</label>
-                                                            <div class="col-sm-6">
-                                                                남성<input type="radio"  name="conuntry" value="남성 ">&nbsp;
-                                                                여성<input type="radio" name="conuntry" value="여성 " >&nbsp;
-
-                                                            </div>
-                                                        </div>
-
-                                                        &lt;!&ndash;선호하는 여행지&ndash;&gt;
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-4">선호하는 여행지는 어디신가요?</label>
-                                                            <div class="col-sm-6">
-                                                                국내<input type="radio"  name="conuntry" value="국내 ">&nbsp;
-                                                                일본<input type="radio" name="conuntry" value="일본 " >&nbsp;
-                                                                중국<input type="radio" name="conuntry" value="중국 " >&nbsp;
-                                                                동남아시아<input type="radio" name="conuntry" value="동남아시아 " >&nbsp;
-                                                                유럽<input type="radio" name="conuntry" value="유럽 " >
-                                                            </div>
-                                                        </div>
-                                                        &lt;!&ndash;선호하는 날씨&ndash;&gt;
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-4">선호하는 계절은 무엇인가요?</label>
-                                                            <div class="col-sm-6">
-                                                                봄<input type="radio"  name="conuntry" value="봄 ">&nbsp;
-                                                                여름<input type="radio" name="conuntry" value="여름 " >&nbsp;
-                                                                가을<input type="radio" name="conuntry" value="가을 " >&nbsp;
-                                                                겨울<input type="radio" name="conuntry" value="겨울 " >
-                                                            </div>
-                                                        </div>
-                                                        &lt;!&ndash;선호하는 테마&ndash;&gt;
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-4">선호하는 테마는 무엇인가요?</label>
-                                                            <div class="col-sm-6">
-                                                                가족<input type="radio"  name="conuntry" value="가족 ">&nbsp;
-                                                                친구<input type="radio" name="conuntry" value="친구 " >&nbsp;
-                                                                커플<input type="radio" name="conuntry" value="커플 " >&nbsp;
-                                                                효도<input type="radio" name="conuntry" value="효도 " >
-                                                            </div>
-                                                        </div>&ndash;&gt;-->
-
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-8 text-center">
-                                <button class="btn btn-outline-primary btn-block" style="float: right; width: 74%;" type="submit">회원가입</button>
-                                <a type="button" class="btn btn-outline-danger btn-block" style="float: right; width: 74%;" th:href="@{/account/login}">로그인 창으로 돌아가기</a>
+                                <button class="btn btn-outline-primary btn-block" style="float: right; width: 74%;"
+                                        type="submit">회원가입
+                                </button>
+                                <a type="button" class="btn btn-outline-danger btn-block"
+                                   style="float: right; width: 74%;" th:href="@{/account/login}">로그인 창으로 돌아가기</a>
                             </div>
                         </div>
                     </div>
@@ -148,7 +115,6 @@
             </div>
         </div>
     </div>
-
 
 
     <!--Optional JavaScript-->

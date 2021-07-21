@@ -15,15 +15,15 @@
     </div>
     <div class="upload-content">
         <h3>Review Title : <a th:utext="${article.title}"></a></h3>
+        <input type="hidden" th:name="proNo" th:value="${proNo}">
         <div class="single-upload">
             <div th:utext="${article.content}" class="panel-body" style="text-align : center;"></div>
             <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
         </div>
-
         <div style="text-align:center;">
-        <button class="button" th:onclick="|window.location.href='/article/update/${article.id}'|">수정하기 🤩</button>
-        <button class="button" th:onclick="|window.location.href='/article/delete/${article.id}'|">삭제하기 😢</button>
-        <button class="button" th:onclick="|window.location.href='/article/list'|">뒤로가기 😎</button> <!--뒤로가기 href링크 필요-->
+        <button class="button" th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">수정하기 🤩</button>
+        <button class="button" th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">삭제하기 😢</button>
+        <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
         <button class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍</button>
         </div>
 

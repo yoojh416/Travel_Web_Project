@@ -5,6 +5,7 @@ import com.upload.files.entity.Product;
 import com.upload.files.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,29 +25,10 @@ public class HomeController {
         return "home";
     }
 
-    //유저(user)
-    @GetMapping(value = "user/login")
-    public String login(Model model) {
-        model.addAttribute("data", "login!!");
-        return "/user/login";
-    }
-
-    @GetMapping(value = "user/logout")
-    public String logout(Model model) {
-        model.addAttribute("data", "logout!!");
-        return "/user/logout";
-    }
-
-    @GetMapping(value = "user/reservation")
-    public String reservation(Model model) {
-        model.addAttribute("data", "reservation!!");
-        return "/user/reservation";
-    }
-
-    @GetMapping(value = "user/userInfo")
-    public String userInfo(Model model) {
-        model.addAttribute("data", "userInfo!!");
-        return "/user/userInfo";
+    @GetMapping("/{id}")
+    public String homeUserID(@Param("id")Long id, Model model) {
+        model.addAttribute("id", id);
+        return "home";
     }
 
     /**여행지, 계절, 테마 검색*/

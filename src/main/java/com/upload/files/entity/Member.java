@@ -1,30 +1,49 @@
 package com.upload.files.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import com.upload.files.repository.Role;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
+@Getter @Setter
 @Entity
-@Getter
-@Setter
+@NoArgsConstructor
+@Table(name = "member")
 public class Member {
+
     @Id
-    @GeneratedValue
-    @Column(name = "member_id")
-    private Long id; //회원 고유 번호(조회 할때 사용)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    private String username; //email 로그인 id로 사용
+    private String password;
+    private String name;
+    private String gender;
+    private String address;
+    private String phoneNo;
 
-    private String name; //회원 아이디
-    private String password; //비밀번호
-    private String useremail; //이메일
-    private String address; //주소
-    private String brithdate; //생일
-    private String phoneno; //전화 번호
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String birthdate;
 
+    @Column(name = "RegDate")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate regDate;
 
-   /* @OneToMany(mappedBy = "member") //주문조회
-    private List<Order> orders = new ArrayList<>();*/
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Builder
+    public Member(String username, String password, String name
+            , String gender, String address, String birthdate
+            , String phoneNo, Role role) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.gender = gender;
+        this.address = address;
+        this.birthdate = birthdate;
+        this.phoneNo = phoneNo;
+        this.role = role;
+    }
 }
