@@ -91,9 +91,6 @@
                             <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
                                  th:src="@{/upload/{fileName}(fileName = ${file.fileName})}" alt="여행 상품 메인 사진">
                         </block>
-                       <!-- <block th:each=" file : ${files}" th:remove="tag">
-                            <img class="card-img-top" th:src="@{/upload/{fileName}(fileName = ${file.get})}" alt="여행 상품 메인 사진">
-                        </block>-->
                         <div class="card-body">
                             <h3><a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}"
                                    th:text = "${list.proTitle}"></a></h3>
@@ -108,6 +105,44 @@
                     </div>
                 </div>
             </div>
+            <!-- 페이징 처리
+            <nav style="text-align: center">
+                <ul class="pagination"
+                    th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},
+              last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
+
+                    <li>
+                        <a th:href="@{./list(page=1)}" aria-label="First">
+                            <span aria-hidden="true">← 처음</span>
+                        </a>
+                    </li>
+
+                    <li th:class="${articleList.first} ? 'disabled'">
+                        <a th:href="${articleList.first} ? '#' : @{./list(page=${articleList.number})}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+
+                    <li th:each="page: ${#numbers.sequence(start, last)}"
+                        th:class="${page == articleList.number + 1} ? 'active'">
+                        <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>
+                    </li>
+
+                    <li th:class="${articleList.last} ? 'disabled'">
+                        <a th:href="${articleList.last} ? '#' : @{./list(page=${articleList.number + 2})}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{./list(page=${articleList.totalPages})}" aria-label="Last">
+                            <span aria-hidden="true">마지막 →</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>-->
         </div>
     </div>
     <!--if($("input:checkbox[name='region']").is(":checked")){
@@ -124,12 +159,44 @@
                 items.push($(this).val());
                 console.log(items.length);
 
-                for(int i = 0; i <items.length; i++){
-                    if(items.length > 1){
-                        alert("하나만 선택해주세요");
-                        console.log(items);
-                    }
+                if(items.length > 1){
+                    alert("하나만 선택해주세요");
+                    $("input:checkbox[name='region']").attr("checked", false);
+                    console.log(items);
                 }
+
+            });
+        });
+
+        $("input:checkbox[name='season']").change(function(){
+            var items = [];
+
+            $("input:checkbox[name='season']:checked").each(function(){
+                items.push($(this).val());
+                console.log(items.length);
+
+                if(items.length > 1){
+                    alert("하나만 선택해주세요");
+                    $("input:checkbox[name='season']").attr("checked", false);
+                    console.log(items);
+                }
+
+            });
+        });
+
+        $("input:checkbox[name='theme']").change(function(){
+            var items = [];
+
+            $("input:checkbox[name='theme']:checked").each(function(){
+                items.push($(this).val());
+                console.log(items.length);
+
+                if(items.length > 1){
+                    alert("하나만 선택해주세요");
+                    $("input:checkbox[name='theme']").attr("checked", false);
+                    console.log(items);
+                }
+
             });
         });
 

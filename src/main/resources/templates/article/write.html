@@ -3,54 +3,67 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width" />
-	<title>Example</title>
-	<!-- include libraries(jQuery, bootstrap) -->
-	<link
-			href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-			rel="stylesheet">
-	<script
-			src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-	<script
-			src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-	<!-- include summernote css/js-->
-	<link
-			href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
-			rel="stylesheet">
-	<script
-			src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width" />
+<title>😇리뷰작성</title>
+<link rel="stylesheet" th:href="@{/css/button.css}"/>
+<!-- include libraries(jQuery, bootstrap) -->
+<link
+		href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+		rel="stylesheet">
+<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- include summernote css/js-->
+<link
+		href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+		rel="stylesheet">
+<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+<link th:href="@{/css/board_list.css}" rel="stylesheet">
+<head th:replace="fragments/header :: header">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
 </head>
+<!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 <body>
 
-<div style="padding:0% 30%">
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="padding:0% 15%">
 	<form id="articleForm" role="form" action="/write" method="post">
 		<br style="clear: both">
 		<div class="form-group">
 			<h3 style="margin-bottom: 25px;">리뷰를 작성해주세요 “φʕ•ᴥ•｡ʔ</h3>
+			<input type="hidden" th:name="proNo" th:value="${proNo}">
 			<input type="text" class="form-control" id="title" name="title"
-				   placeholder="제목" required>
+				   placeholder="제목" style="width:97%; margin-bottom: 5px;" required>
 			<input type="text" class="form-control" id="writer" name="writer"
-				   placeholder="닉네임" required>
+				   placeholder="닉네임" style="width:97%;" required>
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="text-align:left;">
 			<textarea class="form-control" id="summernote" name="content"
-					  placeholder="content" maxlength="140" rows="7"></textarea>
+					  placeholder="content" maxlength="140" rows="7" ></textarea>
 		</div>
-		<a type="button" class="btn btn-danger pull-right"  th:href="@{/article/list}">취소하기</a>
-
-		<button type="submit" id="submit" name="submit"
-				class="btn btn-success pull-right">저장하기</button>
-
-
-
+		<div style="height:80px;">
+			<button type="submit" id="submit" name="submit"
+					class="button" style="width:100px; font-size: 1.5rem;">저장하기 🥰</button>
+			<a type="button" class="button" th:href="@{/board/get(proNo=${proNo}, N=${N}, E=${E})}" >취소하기 😢</a>
+		</div>
 	</form>
-
-
-
 </div>
 
+
 </body>
+
 <script>
       $(document).ready(function() {
          $('#summernote').summernote({
@@ -87,4 +100,7 @@
          });
       }
 	</script>
+<link th:href="@{/css/footer.css}" rel="stylesheet">
+<!--<div th:replace="fragments/footer :: footer" />-->
+
 </html>
