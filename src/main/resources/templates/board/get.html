@@ -52,7 +52,8 @@
             </div>
             <div class="bookingProduct">
                 <h5 th:text="${productInfo.price}"></h5>
-                <button type="button" class="btn btn-success" th:onclick="|window.location.href='/order/book'|">예약하기
+                <button type="button" class="btn btn-success"
+                        th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
                 </button>
                 <button type="button" class="btn btn-default" th:onclick="|window.location.href='/board/list'|">목록으로</button>
             </div>

@@ -2,53 +2,62 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width" />
-	<title>🤩리뷰수정</title>
-	<!-- include libraries(jQuery, bootstrap) -->
-	<link
-			href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-			rel="stylesheet">
-	<script
-			src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-	<script
-			src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-	<!-- include summernote css/js-->
-	<link
-			href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
-			rel="stylesheet">
-	<script
-			src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
-	<link rel="stylesheet" th:href="@{/css/button.css}"/>
-	<head th:replace="fragments/header :: header">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.parameterName}">
+    <title>🤩리뷰수정</title>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link
+            href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+            rel="stylesheet">
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script
+            src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <!-- include summernote css/js-->
+    <link
+            href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+            rel="stylesheet">
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+    <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
+
 </head>
-	<!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 <body>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<div style="padding:0% 15%">
-<form id="articleForm" role="form" th:action="@{/article/updated(id = ${article.id}, proNo = ${proNo})}" method="post">
-	<br style="clear: both">
-	<h3 style="margin-bottom: 25px;">수정하기 “φʕ•ᴥ•｡ʔ</h3><br>
-	<input type="hidden" th:name="proNo" th:value="${proNo}">
-	<div class="form-group">
-		<input th:value="${article.title}" type="text" class="form-control" id="title" name="title"
-			   placeholder="제목" required>
-	</div>
-	<div class="form-group">
+<div class="upload-container">
+    <div class="upload-header">
+        <h3 style="margin-bottom: 25px;">수정하기 “φʕ•ᴥ•｡ʔ</h3>
+    </div>
+    <div class="upload-content">
+        <form id="articleForm" role="form"
+              th:action="@{/article/updated(id = ${article.id}, proNo = ${proNo})}"
+              method="post">
+            <br style="clear: both">
+
+            <input type="hidden" th:name="proNo" th:value="${proNo}">
+            <div class="form-group">
+                <input th:value="${article.title}" type="text" class="form-control" id="title" name="title"
+                       placeholder="제목" required>
+            </div>
+            <div class="form-group">
 			<textarea th:field="${article.content}" class="form-control" id="summernote" name="content"
-					  placeholder="content" maxlength="140" rows="7"></textarea>
-	</div>
-	<button type="submit" id="submit" name="submit"
-			class="button" style="width:100px; font-size: 1.5rem;">수정하기 😊</button>
-	<a type="button" class="button" onclick="history.go(-1)" >취소하기 😉</a>
-</form>
+                      placeholder="content" maxlength="140" rows="7"></textarea>
+            </div>
+
+            <br/>
+            <br/>
+            <!--민지-->
+            <button type="submit" id="sucker" name="submit" class="sucker">수정하기 😊
+            </button>
+            <a type="button" class="button" onclick="history.go(-1)">취소하기 😉</a>
+        </form>
+    </div>
 </div>
-<script>
+</body>
+<script th:inline="javascript">
 		$(document).ready(function() {
 			$('#summernote').summernote({
 				height : 300,
@@ -66,8 +75,13 @@
 		});
 
 		function sendFile(file, el) {
-			var form_data = new FormData();
-			form_data.append('file', file);
+			var token = $("meta[name='_csrf']").attr("content");
+		 	var header = $("meta[name='_csrf_header']").attr("content");
+
+         	var form_data = new FormData();
+         	form_data.append('file', file);
+         	form_data.append(header, token);
+
 			$.ajax({
 				data : form_data,
 				type : "POST",
@@ -83,9 +97,6 @@
 				}
 			});
 		}
-	</script>
-</body>
-<link th:href="@{/css/footer.css}" rel="stylesheet">
-<!--<div th:replace="fragments/footer :: footer" />-->
 
+</script>
 </html>
