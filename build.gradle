@@ -43,6 +43,7 @@ dependencies {
 	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.3'
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.5.1'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 
