@@ -4,10 +4,12 @@ import com.upload.files.entity.Member;
 import com.upload.files.repository.MemberDto;
 import com.upload.files.repository.MemberRepository;
 import com.upload.files.repository.Role;
+import com.upload.files.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,7 @@ import java.util.List;
 public class MemberController {
 
     @Autowired private MemberRepository memberRepository;
+    @Autowired private MemberService memberService;
 
     // 회원가입 페이지
     @GetMapping("/user/join")
@@ -136,6 +139,12 @@ public class MemberController {
         model.addAttribute("members", memberList);
 
         return "admin/memberList";
+    }
+
+    //중복 아이디 확인 메서드
+    @GetMapping("/exists/{username}")
+    public ResponseEntity<Boolean> checkUsernameDuplicate(@PathVariable String username) {
+        return ResponseEntity.ok(memberService.checkUsernameDuplicate(username));
     }
 
 }
