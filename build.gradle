@@ -42,9 +42,11 @@ dependencies {
 
 	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.3'
 
+	/** security 의존성 모음 */
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.5.1'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 
 }

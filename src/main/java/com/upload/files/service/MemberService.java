@@ -63,4 +63,9 @@ public class MemberService implements UserDetailsService {
         return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
     }
 
+    /** username 중복 확인 로직 */
+    public boolean checkUsernameDuplicate(String username) {
+        return memberRepository.existsByUsername(username);
+    }
+
 }
