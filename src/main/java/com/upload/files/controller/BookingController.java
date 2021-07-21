@@ -1,6 +1,7 @@
 package com.upload.files.controller;
 
 import com.upload.files.entity.Booking;
+import com.upload.files.entity.Member;
 import com.upload.files.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 
 @Controller
@@ -71,9 +74,14 @@ public class BookingController {
         return "redirect:/";
     }
 
-    /** booking list로 가기 구현중 */
-   /* public String findAllby() {
+    /** booking list로 가기 */
+    @GetMapping("/list")
+    public String goBookingList(Booking Booking, Model model) {
+        List<Booking> bookingList = bookingRepository.findAll();
 
-    }*/
+        model.addAttribute("orders", bookingList);
+
+        return "order/bookingList";
+    }
 
 }

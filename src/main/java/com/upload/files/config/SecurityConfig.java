@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 페이지 권한 설정
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**", "/transfer/**", "/bestReview/delete/**").hasRole("ADMIN")
                 .antMatchers("/user/myInfo").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
                 .and() // 로그인 설정
