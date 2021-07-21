@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -78,6 +80,16 @@ public class BookingController {
         bookingRepository.deleteById(orderId);
 
         return "redirect:/";
+    }
+
+    /** booking list로 가기 */
+    @GetMapping("/list")
+    public String goBookingList(Booking Booking, Model model) {
+        List<Booking> bookingList = bookingRepository.findAll();
+
+        model.addAttribute("orders", bookingList);
+
+        return "order/bookingList";
     }
 
 }

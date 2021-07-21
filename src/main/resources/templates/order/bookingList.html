@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>주문번호</th>
+            <th>여행 시작일</th>
+            <th>여행 마지막일</th>
+            <th>주문일자</th>
+            <th>금액</th>
+            <th>수량</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.dateIn}"></td>
+            <td th:text="${order.dateOut}"></td>
+            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.orderPrice}"></td>
+            <td th:text="${order.orderQty}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
