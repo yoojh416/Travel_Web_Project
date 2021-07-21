@@ -20,7 +20,6 @@
             <div th:utext="${article.content}" class="panel-body" style="text-align : center;"></div>
             <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
         </div>
-
         <div style="text-align:center;">
         <button class="button" th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">수정하기 🤩</button>
         <button class="button" th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">삭제하기 😢</button>

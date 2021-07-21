@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrinkto-fit=no">
     <!-- icon link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
     <!-- font link -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <!-- css link -->
     <link rel="stylesheet" th:href="@{/css/header.css}" >
-    <link th:href="@{/css/listStyle.css}" rel="stylesheet">
     <!-- js link -->
     <link rel="stylesheet" th:href="@{/js/header.js}" >
     <title>header</title>
@@ -28,11 +28,10 @@
             <li><a th:href="@{/user/userInfo}"><i class="fas fa-address-card">회원정보</i></a></li>
         </ul>
         <ul class="navbar_icons">
-            <li><a th:href="@{/}"><i class="fas fa-home">홈</i></a></li>
+            <li class="navbar_icons_home"><a th:href="@{/}"><i class="fas fa-home">홈</i></a></li>
         </ul>
     </nav>
 </div>
-<div class="counter"></div>
 </body>
 </html>
 
