@@ -45,4 +45,16 @@ public class HomeController {
         return "board/map";
     }
 
+    @GetMapping("/header")
+    public String header() {
+        return "/layout/header";
+    }
+
+    @GetMapping("/footer")
+    public String footer() {
+        return "/layout/footer";
+    }
+
+
+
 }

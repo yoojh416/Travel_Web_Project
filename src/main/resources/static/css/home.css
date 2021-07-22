@@ -42,7 +42,7 @@ ul, li { /*ul, li의 리스트 스타일 제거*/
 }
 
 .slidebox .slidelist {
-	white-space: nowrap;
+	/*white-space: nowrap;*/
 	font-size: 0; /*빈공간을 없애기 위함*/
 	overflow: hidden; /*초과해서 이미지가 나올 경우 나오지 않게 함*/
 }

@@ -1,3 +1,11 @@
+/* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
+
+.fullscreen{
+width: 100%;
+}
+
 .jumbotrons {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
@@ -13,50 +21,42 @@
     min-height: 1px;
     padding-right: 40px;
     padding-left: 40px;
-    margin-top: 20px;
 }
 .card-decks-first {
+    text-align: center;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -ms-flex-flow: row wrap;
     flex-flow: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
     -webkit-box-flex: 0;
     -ms-flex: 0 0 83.333333%;
-    flex: 0 0 90%;
-    max-width: 90%;
+    flex: 0 0 100%;
+    max-width: 80%;
 }
 .card-decks-second {
     -webkit-box-flex: 0;
     flex: 1 0 30.33333%;
-    max-width: 33.333333%;
-    margin-right: 0px;
-    margin-left: -23px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    border:0;
+    max-width: 26%;
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
 }
 .rows{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-/*    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;*/
-    margin-right: -15px;
-    margin-left: -15px;
 }
 
 .ItemFilter{
-    width: 150px;
+    width: 170px;
     height: 705px;
     border: 1px solid #d7d7db;
     margin: 10px;
-    margin-top: 140px;
+    margin-top: 15px;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 2px 2px 5px #999;
+    margin-left: -15px;
 }
 	.ItemFilterGroupTitle{
 		padding-top: 4px;
@@ -65,10 +65,8 @@
 	}
 	.ItemFilterGroupList{
 		cursor: pointer;
-		margin-top: 5px;
-		margin-left: 5px;
 		align-items: center;
-		font-size: 20px;
+		margin: 20px;
 	}
 	.check{
 		height: 16px;
@@ -87,11 +85,11 @@
     background-clip: border-box;
     border: 1px solid #999;
     border-radius: 0.5rem;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-right: 5px;
     margin-left: 5px;
-    width: 20rem;
-    height: 25rem;
+    width: 18rem;
+    height: 20rem;
     box-sizing: content-box;
     cursor: pointer;
     transition: transform 0.5s;
@@ -114,4 +112,9 @@ cards-footer {
     background-color: white;
     border-top: 1px solid rgba(0,0,0,.125);
     box-sizing: content-box;
+}
+label {
+    display: inline-flex;
+    width: 120px;
+    font-size: 15px;
 }
