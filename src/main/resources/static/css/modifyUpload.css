@@ -8,8 +8,8 @@ body {
     height: 50px;
     text-align: center;
     border-radius: 4px;
-    margin-left: 200px;
-    font-size: 30px;
+    margin-left: 250px;
+    font-size: 35px;
     text-align: center;
     color: white;
 }
@@ -128,20 +128,23 @@ body {
     margin-left: 15px;
 }
 .buttons {
-    margin-left: 140px;
-    margin-top: 25px;
+    margin:10px;
+}
+.buttons2 {
+    margin-left: 200px;
 }
 .btn-upload {
-    font-size: 23px;
-    color: white;
-    text-align: center;
-    background: #16a085;
-    font-weight: bold;
-    margin-left: 0px;
-    padding: 5px;
-    border-radius: 4px;
-    width: 150px;
-    border-color: white;
+     font-size: 23px;
+     color: white;
+     text-align: center;
+     background: #16a085;
+     font-weight: bold;
+     margin: 15px;
+     padding: 5px;
+     border-radius: 4px;
+     width: 150px;
+     border-color: white;
+     margin-left: -287px;
 }
 .btn-upload:hover {
     background: #0C4F3C;

@@ -1,15 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Spring Boot & Thymeleaf File modifyUpload</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link th:href="@{/css/modifyUpload.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <head th:replace="layout/header :: header">
 </head>
 <body>
-<th:block layout:fragment="content">
+<div th:replace="layout/bodyHeader :: bodyHeader" />
+<br>
+<br>
+<br>
+<br>
     <section class="my-5">
         <div class="container">
             <div class="row">
@@ -95,7 +99,7 @@
                             <button type="submit" class="btn-upload">상품 업데이트</button>
                         </div>
                     </form>
-                    <div class="buttons">
+                    <div class="buttons2">
                         <button class="btn-delete"
                                 th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기
                         </button>
@@ -107,6 +111,6 @@
             </div>
         </div>
     </section>
-</th:block>
+<div th:replace="layout/footer :: footer" />
 </body>
 </html>

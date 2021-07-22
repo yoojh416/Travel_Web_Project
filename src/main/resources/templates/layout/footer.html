@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <!-- icon link -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+  <!-- css link -->
+  <link rel="stylesheet" th:href="@{/css/footer.css}" >
+  <meta charset="UTF-8">
+  <title>footer</title>
+  </head>
+  <body>
+  <div class="footer" th:fragment="footer">
+  <footer class="footer">
+    <ul class="footer-left">
+      <img th:src="@{/images/logo.png}" alt="main_logo_img">
+    </ul>
+    <ul class="footer-right">
+      <li class="features">
+        <h2>너나들이 여행</h2>
+        <ul class="box">
+          <li class="li_box"><a th:href="@{/}"><i class="far fa-map">서울시 관악구 신림동</i></a></li>
+          <li class="li_box"><a th:href="@{/}"><i class="far fa-envelope">neonadeul-i@gmail.com</i></a></li>
+          <li class="li_box"><a th:href="@{/}"><i class="fas fa-phone">1-800-800-2299(Support)</i></a></li>
+        </ul>
+      </li>
+      <li class="features">
+        <div class="socials">
+          <h2>Information</h2>
+        <ul class="box">
+          <li><a th:href="@{/}">About</a></li>
+          <li><a th:href="@{/}">Blog</a></li>
+          <li><a th:href="@{/}">Pricing</a></li>
+          <li><a th:href="@{/}">Contact</a></li><br>
+        </ul>
+        </div>
+      </li>
+      <li class="features">
+        <h2 class="More">More</h2>
+        <ul class="box">
+          <li><a th:href="@{/}">Press</a></li>
+          <li><a th:href="@{/}">Investors</a></li>
+          <li><a th:href="@{/}">Term</a></li>
+          <li><a th:href="@{/}">Privacy</a></li>
+          <li><a th:href="@{/}">Articles</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="footer-buttom">
+      <p>All Right reserved neonadeul-i &copy; 너나들이 </p>
+    </div>
+  </footer>
+  </div>
+  </body>
+</html>
