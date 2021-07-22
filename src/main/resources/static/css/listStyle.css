@@ -1,41 +1,111 @@
-@charset "UTF-8";
+.jumbotrons {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    /*background-color: #e9ecef;*/
+    border-radius: .3rem;
+}
+.left-side {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-top: 20px;
+}
+.card-decks-first {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 90%;
+    max-width: 90%;
+}
+.card-decks-second {
+    -webkit-box-flex: 0;
+    flex: 1 0 30.33333%;
+    max-width: 33.333333%;
+    margin-right: 0px;
+    margin-left: -23px;
+    margin-top: 20px;
+}
+/*.card-deck .cards {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 0%;
+    flex: 1 0 0%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+    height: 330px;
+    border-style: 1px solid black;
+}*/
+.rows{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+/*    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;*/
+    margin-right: -15px;
+    margin-left: -15px;
+}
 
-#top{
-		/*height: 250px;*/
-        height: 0px;
-		/* background-position: center; */
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-	.ItemFilter{
-		width: 150px;
-		border: 1px solid #d7d7db;
-		margin: 10px;
-		margin-left: 15px;
-		padding: 20px;
-		padding-left: 25px;
-		border-radius: 4px;
-	}
+.ItemFilter{
+    width: 150px;
+    height: 705px;
+    border: 1px solid #d7d7db;
+    margin: 10px;
+    margin-top: 140px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px #999;
+}
 	.ItemFilterGroupTitle{
 		padding-top: 4px;
 		font-weight: 700;
-		font-size: 16px;
+		font-size: 18px;
 	}
 	.ItemFilterGroupList{
 		cursor: pointer;
 		margin-top: 5px;
 		margin-left: 5px;
 		align-items: center;
+		font-size: 20px;
 	}
 	.check{
 		height: 16px;
 		width: 16px;
 		margin-right: 5px;
 	}
-	.card{
-		margin-top: 10px;
-		margin-right: 5px;
-		margin-left: 5px;
-		width: 18rem;
-		height: 30rem
+	.cards{
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid black;
+    border-radius: 0.25rem
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 18rem;
+    height: 30rem;
+    box-sizing: content-box;
 	}

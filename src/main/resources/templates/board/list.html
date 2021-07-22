@@ -12,13 +12,13 @@
 
 <body>
 <th:block layout:fragment="content">
-    <div class="jumbotron" id="top">
+    <div class="jumbotrons" id="top">
 
     </div>
     <div class="container-fluid">
-        <div class="row">
+        <div class="rows">
             <!--checkbox 시작-->
-            <div class="col-lg-2">
+            <div class="left-side">
                 <form th:object="${listSearch}" name="searchFrm">
                     <div class="ItemFilter">
                         <div class="ItemFilterGroup">
@@ -83,10 +83,10 @@
             </div> <!--checkbox 종료-->
 
             <!--상품 목록(card-deck) 시작-->
-            <div class="col-10 card-deck">
-                <div class="col-4 card-deck" style="margin-bottom: 30px; border:0;"
+            <div class="card-decks-first">
+                <div class="card-decks-second" style="margin-bottom: 30px; border:0;"
                      th:each = "list : ${items}">
-                    <div class="card">
+                    <div class="cards">
                         <block th:each=" file : ${MainImage}" th:remove="tag">
                             <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
                                  th:src="@{/upload/{fileName}(fileName = ${file.fileName})}" alt="여행 상품 메인 사진">
