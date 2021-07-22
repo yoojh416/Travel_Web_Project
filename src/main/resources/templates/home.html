@@ -23,13 +23,12 @@
 </script>
   <meta charset="UTF-8">
   <title>메인 화면</title> <!-- href 링크 모두 동일-->
-  <head th:replace="fragments/header :: header">
+  <head th:replace="layout/header :: header">
   </head>
 <body>
-<div class="containers">
   <div th:replace="layout/bodyHeader :: bodyHeader" />
 
-
+  <div class="containers">
   <!-- slidebox section starts -->
   <div class="loader"></div>
   <div class="slidebox">
@@ -430,7 +429,7 @@
 
 
   <!-- gallery section ends -->
-  <div th:replace="fragments/footer :: footer" />
+  <div th:replace="layout/footer :: footer" />
 </div>
 
 

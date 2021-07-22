@@ -39,22 +39,17 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(memberDto.toEntity()).getId();
     }
 
-   /* @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("email 이 존재하지 않습니다: " + username));
-        return new GroovyParser.MemberDeclarationContext(member);
-    }*/
-
     /** 로그인 확인 로직 */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        String admin = "admin@1234";
+
         Optional<Member> userEntityWrapper = memberRepository.findByUsername(username);
         Member userEntity = userEntityWrapper.get();
-
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        if (("admin@1234").equals(username)) {
+        if (admin.equals(username)) {
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));

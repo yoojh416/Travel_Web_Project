@@ -1,9 +1,10 @@
-*,*:before, *:after{
-	box-sizing: content-box;
-}
+/* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
 body {
 	font-family: poppins;
-	margin: 0;
+	margin: 0 auto;
+	padding: 0px;
 	display: fixed;
 	font-size: 14px;
 }
@@ -25,12 +26,9 @@ li {
 	font-weight: bold;
 }
 footer {
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-    flex-flow: row wrap;
+    width: 100%;
+    display:  inline-flex;
+    flex-flow: wrap;
     padding: 30px;
     color: #fff;
     background-color: #16a085;
@@ -146,7 +144,7 @@ h2 {
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1300px) {
 	.footer {
 		padding: 15px;
 	}

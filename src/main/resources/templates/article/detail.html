@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>댓글 확인창</title>
+    <title>리뷰 확인창</title>
     <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
     <link rel="stylesheet" th:href="@{/css/button.css}"/>
 </head>
@@ -11,8 +12,8 @@
 <body>
 <div class="upload-container">
     <div class="upload-header">
-        <h2># 댓글 확인창 🤹</h2>
-        <p th:utext="${article.registerDate}" style="text-align : right;"> </p>
+        <h2># 리뷰 확인창 🤹</h2>
+        <p th:utext="${article.registerDate}" style="text-align : right;"></p>
     </div>
     <div class="upload-content">
         <h3>Review Title : <a th:utext="${article.title}"></a></h3>
@@ -22,10 +23,18 @@
             <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
         </div>
         <div style="text-align:center;">
-        <button class="button" th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">수정하기 🤩</button>
-        <button class="button" th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">삭제하기 😢</button>
-        <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
-        <button class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍</button>
+            <button class="button"
+                    th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">수정하기
+                🤩
+            </button>
+            <button class="button"
+                    th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">삭제하기
+                😢
+            </button>
+            <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+            <button sec:authorize="hasRole('ROLE_ADMIN')"
+                    class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍
+            </button>
         </div>
 
 

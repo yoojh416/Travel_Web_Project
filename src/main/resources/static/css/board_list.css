@@ -1,3 +1,6 @@
+  /* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
 /* 사이드바 스타일 */
 .sidenav {
     height:100%;
@@ -42,7 +45,7 @@
     font-size: 30px;
 }
 /* 미디어쿼리 적용 */
-@media screen and (max-height:450px) {
+@media screen and (max-height:1300px) {
     .sidenav {
         padding-top:15px;
     }
