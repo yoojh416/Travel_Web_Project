@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 <title>get</title>
 <head xmlns:th="http://www.thymeleaf.org">
+
+    <link rel="stylesheet" th:href="@{/css/button-like.css}" >
+    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link
@@ -33,64 +34,110 @@
     </style>
 </head>
 <body>
-<th:block layout:fragment="content">
-    <div class="container">
-        <div class="jumbotron">
+<!--<th:block layout:fragment="content">-->
+<br>
+<br>
+<br>
+<br><br>
+<br><br>
+<br>
 
+
+
+<div class="container">
+
+    <!--<span>조회수</span>-->
+    <!--좋아요 버튼-->
+    <button class="like__btn">
+        <span id="icon"><i class="far fa-thumbs-up"></i></span>
+        <span id="count">0</span> Like
+    </button>
+
+    <script>
+    const likeBtn = document.querySelector(".like__btn");
+let likeIcon = document.querySelector("#icon"),
+  count = document.querySelector("#count");
+
+let clicked = false;
+
+
+likeBtn.addEventListener("click", () => {
+  if (!clicked) {
+    clicked = true;
+    likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+    count.textContent++;
+  } else {
+    clicked = false;
+    likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+    count.textContent--;
+  }
+});
+
+</script>
+
+
+    <div class="col-lg-10">
+        <div>
+            <input type="hidden" name="proNo" th:value="${productInfo.proNo}">
+            <input type="hidden" name="N" th:value="${productInfo.N}">
+            <input type="hidden" name="E" th:value="${productInfo.E}">
         </div>
-        <div class="col-lg-10">
-            <div>
-                <span>좋아요</span>
-                <span>조회수</span>
-                <input type="hidden" name="proNo" th:value="${productInfo.proNo}">
-                <input type="hidden" name="N" th:value="${productInfo.N}">
-                <input type="hidden" name="E" th:value="${productInfo.E}">
-            </div>
-            <div class="productImg">
-                <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
-                     alt="상품 메인 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
-            </div>
-            <div class="bookingProduct">
-                <h5 th:text="${productInfo.price}"></h5>
-                <button type="button" class="btn btn-success"
+        <div class="productImg">
+            <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
+                 alt="상품 메인 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+        </div>
+        <div class="bookingProduct">
+
+            가격:
+            <h5 th:text="${productInfo.price}"></h5>
+            <div style="text-align:left;">
+                <button class="button-hover"
                         th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
                 </button>
-                <button type="button" class="btn btn-default" th:onclick="|window.location.href='/board/list'|">목록으로</button>
+                <button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 🏰</button>
+
             </div>
-            <br>
-            <br>
-            <div>
-                <div id="map"/>
-            </div>
-            <br>
-            <table>
-                <tr>
-                    <th>상품명</th>
-                    <td th:text="${productInfo.proTitle}"></td>
-                </tr>
-                <tr>
-                    <th>가격</th>
-                    <td th:text="${productInfo.price}"></td>
-                </tr>
-                <tr>
-                    <th>상품 설명</th>
-                    <div class="productImg">
-                        <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
-                             alt="상품 상세 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
-                    </div>
-                    <td th:text="${productInfo.proContent}"></td>
-                </tr>
-            </table>
-            <br>
-            <br>
-            <hr>
-            <br>
-            <div>
-                <div th:fragment="reviewList" th:include="article/list :: reviewList"/>
-            </div>
+
+
+            <button type="button" class="btn btn-success"
+                    th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
+            </button>
+            <button type="button" class="btn btn-default" th:onclick="|window.location.href='/board/list'|">목록으로</button>
+        </div>
+        <br>
+        <br>
+        <div>
+            <div id="map"/>
+        </div>
+        <br>
+        <table>
+            <tr>
+                <th>상품명</th>
+                <td th:text="${productInfo.proTitle}"></td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td th:text="${productInfo.price}"></td>
+            </tr>
+            <tr>
+                <th>상품 설명</th>
+                <div class="productImg">
+                    <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
+                         alt="상품 상세 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+                </div>
+                <td th:text="${productInfo.proContent}"></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <div>
+            <div th:fragment="reviewList" th:include="article/list :: reviewList"/>
         </div>
     </div>
-    <script>
+</div>
+<script>
 
     <!--파라미터 받기-->
     function getParameterByName(name) {
@@ -115,6 +162,11 @@
 
 
     </script>
-</th:block>
+<!--</th:block>-->
 </body>
+
+
+
+
+
 </html>
