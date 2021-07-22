@@ -2,13 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.springframework.org/security/tags">
 <head>
+  <style>
+  /* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
+
+</style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrinkto-fit=no">
   <!-- icon link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
   <!-- font link -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-  <!-- css link -->
+  <!-- css links -->
   <link rel="stylesheet" th:href="@{/css/header.css}" >
   <link rel="stylesheet" th:href="@{/css/footer.css}" >
   <!-- js link -->

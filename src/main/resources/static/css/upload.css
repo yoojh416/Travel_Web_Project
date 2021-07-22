@@ -1,15 +1,11 @@
-body {
-    margin: 0px;
-    padding: 0px;
-}
 .admin_title {
     background: #16a085;
     width: 400px;
     height: 50px;
     text-align: center;
     border-radius: 4px;
-    margin-left: 200px;
-    font-size: 30px;
+    margin-left: 250px;
+    font-size: 35px;
     text-align: center;
     color: white;
 }
@@ -22,7 +18,7 @@ body {
 }
 .form-word-content {
     width: 795px;
-    height: 85px;
+    height: 135px;
     text-align: center;
     font-size: 24px;
     border-style: 1px solid #16A085;
@@ -35,6 +31,7 @@ body {
     font-weight: bold;
     margin-right: 680px;
     padding: 5px;
+    margin-left: 15px;
 }
 .price {
     font-size: 23px;
@@ -43,6 +40,7 @@ body {
     font-weight: bold;
     margin-right: 680px;
     padding: 5px;
+    margin-left: 15px;
 }
 .adminId {
     font-size: 23px;
@@ -51,6 +49,7 @@ body {
     font-weight: bold;
     margin-right: 586px;
     padding: 5px;
+    margin-left: 15px;
 }
 .content {
     font-size: 23px;
@@ -59,6 +58,10 @@ body {
     font-weight: bold;
     margin-right: 630px;
     padding: 5px;
+    margin-left: 15px;
+}
+.region-season-theme {
+    margin-left: 140px;
 }
 .region {
     font-size: 23px;
@@ -83,7 +86,7 @@ body {
     font-weight: bold;
     width: 100px;
     height: 32px;
-    border-color: #16a085;
+    border-color: black;
     border-radius: 4px;
 }
 .select_season {
@@ -91,7 +94,7 @@ body {
     font-weight: bold;
     width: 100px;
     height: 32px;
-    border-color: #16a085;
+    border-color: black;
     border-radius: 4px;
 }
 .select_theme {
@@ -99,7 +102,7 @@ body {
     font-weight: bold;
     width: 100px;
     height: 32px;
-    border-color: #16a085;
+    border-color: black;
     border-radius: 4px;
 }
 .N {
@@ -109,6 +112,7 @@ body {
     font-weight: bold;
     margin-right: 630px;
     padding: 5px;
+    margin-left: 15px;
 }
 .E {
     font-size: 23px;
@@ -117,6 +121,11 @@ body {
     font-weight: bold;
     margin-right: 630px;
     padding: 5px;
+    margin-left: 15px;
+}
+.buttons {
+    margin-left: 140px;
+    margin-top: 25px;
 }
 .btn-upload {
     font-size: 23px;
@@ -124,12 +133,42 @@ body {
     text-align: center;
     background: #16a085;
     font-weight: bold;
+    margin: 15px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 150px;
+    border-color: white;
+}
+.btn-upload:hover {
+    background: #0C4F3C;
+}
+.btn-delete {
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    background: #CF1F42;
+    font-weight: bold;
     margin-left: 0px;
     padding: 5px;
     border-radius: 4px;
     width: 150px;
-    border-color: #16a085;
+    border-color: white;
 }
-.btn-upload:hover {
-    background: #0C4F3C;
+.btn-delete:hover {
+    background: #A61935;
+}
+.btn-list {
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    background: #2569CF;
+    font-weight: bold;
+    margin-left: 0px;
+    padding: 5px;
+    border-radius: 4px;
+    width: 150px;
+    border-color: white;
+}
+.btn-list:hover {
+    background: #1E55A8;
 }

@@ -1,9 +1,10 @@
+/* 리셋 CSS */
+* {margin:0;padding:0;box-sizing:border-box;}
+ul, li {list-style:none;}
 body {
 	margin: 0; /*웹 페이지를 상단 바가 다 채움*/
 	font-family: 'Roboto', sans-serif; /*body 내 모든 포튼 동일 적용*/
 	text-align: center;
-
-
 }
 .navbar {
 	display: flex; /*한 줄에 나란히*/
@@ -81,48 +82,48 @@ li a{
 	font-size: 24px;
 	color: white;
 }
-
+/*
 @media screen and (max-width: 1075px) {
 	.navbar {
 		flex-direction: column;
-/*기존은 row, column으로 아래로 내림*/
+*//*기존은 row, column으로 아래로 내림*//*
 
 		align-items: flex-start;
-/*왼쪽으로 이동*/
+*//*왼쪽으로 이동*//*
 
 	}
 	.navbar_menu{
-		display: none; */
-/*화면에서 사라짐*/
+		display: none; *//*
+*//*화면에서 사라짐*//*
 
 		flex-direction: column;
-		align-items: center; */
-        /*중앙배치*/
+		align-items: center; *//*
+        *//*중앙배치*//*
 		width: 100%
-/*align-items가 반응하지 않는 부분을 width가 보완*/
+*//*align-items가 반응하지 않는 부분을 width가 보완*//*
 
 	}
-	.navbar_menu li{ */
-/*hover부분이 넓어짐*/
+	.navbar_menu li{ *//*
+*//*hover부분이 넓어짐*//*
 
 		width: 100%;
 		text-align: center;
 	}
 	.navbar_icons {
 		display: none;
-		justify-content: center; */
-/*중앙 배치*/
+		justify-content: center; *//*
+*//*중앙 배치*//*
 
 		width: 100%;
 	}
 	.navbar_toogleBtn{
-/*화면이 작아질때만 표시되도록 함*/
+*//*화면이 작아질때만 표시되도록 함*//*
 
 		display: block;
 	}
 	.navbar_menu.active,
 	.navbar_icons.active {
-    /*navbar_toogleBtn이 클릭시 활성화*/
+    *//*navbar_toogleBtn이 클릭시 활성화*//*
 	display: flex;
 	}
-}
+}*/
