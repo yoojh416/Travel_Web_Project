@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Pen+Script&display=swap"
           rel="stylesheet">
 
-    <title>Login</title>
+    <title>✈️로그인</title>
 </head>
 
 <body class="text-center">
@@ -37,11 +37,16 @@
         <input type="email" id="username" name="username" class="form-control" placeholder="이메일" required autofocus>
         <label for="password" class="sr-only">비밀번호</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input name="remember-me" id="rememberMe" type="checkbox" th:checked="${rememeberMe}"> Remember me
+
+        <div class="left">
+            <label class="checkbox" >
+                <input type="checkbox" name="remember-me" id="rememberMe" >
+                <span class="icon"></span>
+                <span class="text">Remember me</span>
             </label>
         </div>
+
+
         <input class="submit-btn " type="submit" value="로그인">
         <a type="button" class="btn btn-secondary btn-lg btn-block" th:href="@{/user/join}">회원가입</a>
 
