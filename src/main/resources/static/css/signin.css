@@ -18,11 +18,11 @@ body {
 }
 .login-form {
     width: 500px;
-    height: 400px;
+    height: 450px;
     background-color: #EEEFF1;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
     padding: 20px;
     text-align: center;
     border: none;
