@@ -25,23 +25,39 @@
 
     <title>회원정보 수정</title>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 /* 비밀번호 유효성 체크: ajax 비동기처리 */
-$(function(){
+function idCheck() {
 
-//비밀번호 확인
-	$('#pw2').blur(function(){
-	   if($('#pw').val() != $('#pw2').val()){
-	    	if($('#pw2').val()!=''){
-		    alert("비밀번호가 일치하지 않습니다.");
-	    	    $('#pw2').val('');
-	          $('#pw2').focus();
-	       }
-	    }
-	})
-});
+    var username = $("#username").val();
 
-    </script>
+    if(username.search(/\s/) != -1) {
+        alert("아이디에는 공백이 들어갈 수 없습니다.");
+    } else {
+        if(username.trim().length != 0) {
+            $.ajax({
+                async : true,
+                type : 'GET',
+                data: username,
+                url: "/exists/" + username,
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                success: function(data) {
+                    if(data != false) {
+                        alert("중복된 아이디 입니다.");
+                        $("#submit").attr("disabled", "disabled");
+                        window.location.reload();
+                    } else {
+                        alert("사용 가능한 아이디 입니다.");
+                        $("#submit").removeAttr("disabled");
+                    }
+                }
+            });
+        }
+    }
+}
+</script>
+
 </head>
 
 <body>
@@ -82,8 +98,7 @@ $(function(){
                                     <input type="password" pattern=".{8,12}" class="form-control"
                                            th:field="*{password}" id="password" placeholder="비밀번호"
                                            th:class="${#fields.hasErrors('password')}? 'form-control fieldError' : 'form-control'">
-                                    <p th:if="${#fields.hasErrors('password')}"
-                                       th:errors="*{password}">잘못된 비밀번호</p>
+                                    <button class="btn btn-secondary" onclick="idCheck()" style="margin-left:30px">PW 확인</button>
                                 </div>
                             </div>
 
