@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>userInfo</title>
@@ -19,9 +21,11 @@
 
 <div class="container gallery-container">
 <br>
-    <h1> ❤회원정보(◍•ᴗ•◍)❤ </h1>
+
+    <h1> <span sec:authentication="principal.username"></span> 회원님 정보(◍•ᴗ•◍)❤ </h1>
     <div style="text-align:right;">
-        <button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+        <a class="button-hover" th:href="@{/user/modify/{id}(id = ${member.id})}" style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;" >회원정보 수정 🧐</a>
+        <button class="button-hover" th:onclick="|window.location.href='/'|"  style="font-size: 1rem;" >홈으로 가기 😎</button>
     </div>
 
 <div class="container">

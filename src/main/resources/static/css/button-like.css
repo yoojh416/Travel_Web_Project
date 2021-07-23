@@ -24,5 +24,6 @@ a.jcm-top {
    background-color:#ffba00; opacity:0.5; filter:alpha(opacity=50);
     z-index: 999;
     display: none;
+
 }a.jcm-top:hover{background-color:#000}
 
