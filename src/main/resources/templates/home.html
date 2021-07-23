@@ -105,13 +105,13 @@
   <!-- book section ends -->
 
 
-<!--  &lt;!&ndash; sms icon starts &ndash;&gt;
-  <div class="sms">
-    <ul>
-      <li><a th:href="@{/board/list}"><i class="fas fa-sms"></i></a></li>
-      <li><a th:href="@{/board/list}"><i class="fab fa-google"></i></a></li>
-    </ul>
-  </div>-->
+  <!--  &lt;!&ndash; sms icon starts &ndash;&gt;
+    <div class="sms">
+      <ul>
+        <li><a th:href="@{/board/list}"><i class="fas fa-sms"></i></a></li>
+        <li><a th:href="@{/board/list}"><i class="fab fa-google"></i></a></li>
+      </ul>
+    </div>-->
 
   <!-- sms icon ends -->
 
@@ -370,66 +370,50 @@
           <input type="radio" name="slide1" id="slide01" checked>
           <input type="radio" name="slide1" id="slide02">
           <input type="radio" name="slide1" id="slide03">
+          <input type="radio" name="slide1" id="slide04">
           <ul class="slidelist1">
             <li class="slideitem1">
-                <img src="./images/slide01.jpg"/>
-
-              <!-- Button trigger modal -->
-
-              <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
-                ✨ 자세한 내용보기 ✨
-              </button>
-
-<!--
-              <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      Show a second modal and hide this one with the button below.
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      Hide this modal and show the first with the button below.
-                    </div>
-                    <div class="modal-footer">
-                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
-
--->
-
-            </li>
-            <li class="slideitem1">
               <a>
-
-                <img src="./images/slide02.jpg">
-
+                <label for="slide03" class="prev"></label>
+                <img src="./images/slide01.jpg"/>
+                <!-- Button trigger modal -->
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  ✨ 자세한 내용보기 ✨
+                </button>
+                  <label for="slide02" class="next"></label>
               </a>
             </li>
             <li class="slideitem1">
               <a>
-
+                <label for="slide01" class="prev"></label>
+                <img src="./images/slide02.jpg">
+                <!-- Button trigger modal -->
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  ✨ 자세한 내용보기 ✨
+                </button>
+                <label for="slide03" class="next"></label>
+              </a>
+            </li>
+            <li class="slideitem1">
+              <a>
+                <label for="slide02" class="prev"></label>
                 <img src="./images/slide03.jpg">
-
+                <!-- Button trigger modal -->
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  ✨ 자세한 내용보기 ✨
+                </button>
+                <label for="slide04" class="next"></label>
+              </a>
+            </li>
+            <li class="slideitem1">
+              <a>
+                <label for="slide03" class="prev"></label>
+                <img src="./images/slide04.jpg">
+                <!-- Button trigger modal -->
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  ✨ 자세한 내용보기 ✨
+                </button>
+                <label for="slide01" class="next"></label>
               </a>
             </li>
           </ul>
@@ -457,7 +441,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img src="./images/slide01.jpg"/>
+        <h1>이벤트 내용</h1>
       </div>
       <div class="modal-footer">
         <button type="button" class="button" data-bs-dismiss="modal">닫기</button>

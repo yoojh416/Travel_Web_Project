@@ -83,33 +83,78 @@ a.button:hover {
   color: white;
 }
 
-.btnfos-1 {
-  background: #3498db;
-  font-weight: 100;
+.wrapper{
+  display: inline-flex;
+  background: #fff;
+  height: 30px;
+  width: 102%;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 12px 7px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
 }
-.btnfos-1 svg {
-  position: absolute;
-  left: 0;
-  top: 0;
+.wrapper .option{
+  background: #fff;
+  height: 100%;
   width: 100%;
-  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
 }
-.btnfos-1 rect {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 1;
-  stroke-dasharray: 422, 0;
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #0069d9;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2{
+  border-color: #0069d9;
+  background: #0069d9;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot{
+  background: #fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 20px;
+  color: #808080;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span{
+  color: #fff;
 }
 
-.btnfos-1:hover {
-  background: rgba(225, 51, 45, 0);
-  letter-spacing: 1px;
-  font-weight: 900;
-}
-.btnfos-1:hover rect {
-  stroke-width: 5;
-  stroke-dasharray: 15, 310;
-  stroke-dashoffset: 48;
-  -webkit-transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
-          transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+.text-center{
+  margin: 0 auto;
+  width:100%;
 }
