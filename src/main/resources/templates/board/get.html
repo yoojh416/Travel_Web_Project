@@ -1,29 +1,37 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>get</title>
+
+<link th:href="@{/css/itemList.css}" rel="stylesheet">
+<link th:href="@{/css/button-like.css}" rel="stylesheet">
+<link th:href="@{/css/button-hover.css}" rel="stylesheet">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" th:href="@{/css/footer.css}">
-<head th:replace="layout/header :: header">
-    <!-- include libraries(jQuery, bootstrap) -->
-    <link
-            href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-            rel="stylesheet">
-    <!-- loader js link-->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
-    <!-- icon link -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-    <script
-            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script
-            src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-    <!--map 관련 head 정보-->
-    <meta name='viewport' content='width=device-width, initial-scale=1'/>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
+<!--<head th:replace="layout/header :: header">-->
+<!-- include libraries(jQuery, bootstrap) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<link
+        href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+        rel="stylesheet">
+<!-- loader js link-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+<!-- icon link -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<script
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script
+        src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!--map 관련 head 정보-->
+<meta name='viewport' content='width=device-width, initial-scale=1'/>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
 
-    <style>
+<style>
       #map {
         width: 800px;
         height: 300px;
@@ -31,20 +39,37 @@
 
     </style>
 </head>
-<body>
-<div th:replace="layout/bodyHeader :: bodyHeader" />
+<body id="pageTop">
+<div class="container row" style="float: none; margin:0 auto;">
+
+    <!--
+    <div th:replace="layout/bodyHeader :: bodyHeader" />
+    -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
-<div class="container">
 
-    <!--<span>조회수</span>-->
-    <!--좋아요 버튼-->
-    <button class="like__btn">
-        <span id="icon"><i class="far fa-thumbs-up"></i></span>
-        <span id="count">0</span> Like
-    </button>
+    <div class="container">
 
-    <script>
+        <!--<span>조회수</span>-->
+        <!--좋아요 버튼-->
+        <button class="like__btn">
+            <span id="icon"><i class="far fa-thumbs-up"></i></span>
+            <span id="count">0</span> Like
+        </button>
+
+        <script>
     const likeBtn = document.querySelector(".like__btn");
 let likeIcon = document.querySelector("#icon"),
   count = document.querySelector("#count");
@@ -66,69 +91,63 @@ likeBtn.addEventListener("click", () => {
 
 </script>
 
-
-    <div class="col-lg-10">
-        <div>
-            <input type="hidden" name="proNo" th:value="${productInfo.proNo}">
-            <input type="hidden" name="N" th:value="${productInfo.N}">
-            <input type="hidden" name="E" th:value="${productInfo.E}">
-        </div>
-        <div class="productImg">
-            <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
-                 alt="상품 메인 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
-        </div>
-        <div class="bookingProduct">
-
-            가격:
-            <h5 th:text="${productInfo.price}"></h5>
-            <div style="text-align:left;">
-                <button class="button-hover"
-                        th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
-                </button>
-                <button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 🏰</button>
-
+        <br>
+        <div style="text-align:center;">
+            <div>
+                <input type="hidden" name="proNo" th:value="${productInfo.proNo}">
+                <input type="hidden" name="N" th:value="${productInfo.N}">
+                <input type="hidden" name="E" th:value="${productInfo.E}">
+            </div>
+            <div class="productImg">
+                <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
+                     alt="상품 메인 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+            </div>
+            <div class="bookingProduct">
+                <br>
+                <h3>👛상품가격 : <strong th:text="${productInfo.price}"/> 원</h3>
+                <div>
+                    <button class="button-hover"
+                            th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
+                    </button>
+                    <button class="button-hover" th:onclick="|window.location.href='/board/list'|">목록으로</button>
+                </div>
             </div>
 
+            <div style="margin-left:150px" >
+                <div id="map"/>
+            </div>
+        </div>
 
-            <button type="button" class="btn btn-success"
-                    th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
-            </button>
-            <button type="button" class="btn btn-default" th:onclick="|window.location.href='/board/list'|">목록으로</button>
+            <div>
+            <table style="visibility:hidden">
+                <tr>
+                    <th>상품명</th>
+                    <td th:text="${productInfo.proTitle}"></td>
+                </tr>
+                <tr>
+                    <th>가격</th>
+                    <td th:text="${productInfo.price}"></td>
+                </tr>
+                <tr>
+                    <th>상품 설명</th>
+
+                    <td th:text="${productInfo.proContent}"></td>
+                </tr>
+            </table>
+            <hr>
+
+
+            <div class="productImg">
+                <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
+                     alt="상품 상세 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+            </div>
         </div>
-        <br>
-        <br>
-        <div>
-            <div id="map"/>
-        </div>
-        <br>
-        <table>
-            <tr>
-                <th>상품명</th>
-                <td th:text="${productInfo.proTitle}"></td>
-            </tr>
-            <tr>
-                <th>가격</th>
-                <td th:text="${productInfo.price}"></td>
-            </tr>
-            <tr>
-                <th>상품 설명</th>
-                <div class="productImg">
-                    <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
-                         alt="상품 상세 이미지" style="width: 500px; height: 300px;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
-                </div>
-                <td th:text="${productInfo.proContent}"></td>
-            </tr>
-        </table>
-        <br>
-        <br>
-        <hr>
-        <br>
-        <div>
-            <div th:fragment="reviewList" th:include="article/list :: reviewList"/>
-        </div>
+
+        <div th:fragment="reviewList" th:include="article/list :: reviewList"/>
+
     </div>
-</div>
-<script>
+
+    <script>
 
     <!--파라미터 받기-->
     function getParameterByName(name) {
@@ -152,7 +171,48 @@ likeBtn.addEventListener("click", () => {
     });
 
 
-    </script>
-<div th:replace="layout/footer :: footer" />
+
+</script>
+    <!--<div th:replace="layout/footer :: footer" />-->
+</div>
+
+
+<!-- 맨위로 가기 이미지 버튼 시작 -->
+
+<a href="#" class="jcm-top"><img src="../images/up.png" style="margin-bottom: 60px;width: 60px;"></a>
+
+<script>
+
+$( document ).ready( function() {
+
+$( window ).scroll( function() {
+
+if ( $( this ).scrollTop() > 200 ) {
+
+$( '.jcm-top' ).fadeIn();
+
+} else {
+
+$( '.jcm-top' ).fadeOut();
+
+}
+
+} );
+
+$( '.jcm-top' ).click( function() {
+
+$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+
+return false;
+
+} );
+
+} );
+
+</script>
+
+<!-- 맨위로 가기 이미지 버튼 끝 -->
+
 </body>
+
 </html>

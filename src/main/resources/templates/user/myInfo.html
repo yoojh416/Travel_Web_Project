@@ -5,46 +5,74 @@
     <title>userInfo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- memberList에 맞는 css <link th:href="@{/css/.css}" rel="stylesheet">-->
+    <link rel="stylesheet" th:href="@{/css/itemList.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
     <link rel="stylesheet" th:href="@{/css/footer.css}">
-    <head th:replace="layout/header :: header">
+    <!-- <head th:replace="layout/header :: header"/>-->
 </head>
 <body>
-<div th:replace="layout/bodyHeader :: bodyHeader" />
+<!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 <br>
 <br>
 <br>
+
+<div class="container gallery-container">
 <br>
-<div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>아이디</th>
-            <th>비밀번호</th>
-            <th>이름</th>
-            <th>성별</th>
-            <th>주소</th>
-            <th>생일</th>
-            <th>연락처</th>
-            <th>가입일</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="member : ${members}">
-            <td><a th:href="@{/user/modify/{id}(id = ${member.id})}"
-                   th:text="${member.id}"></a></td>
-            <td th:text="${member.username}"></td>
-            <td>****</td>
-            <td th:text="${member.name}"></td>
-            <td th:text="${member.gender}"></td>
-            <td th:text="${member.address}"></td>
-            <td th:text="${member.birthdate}"></td>
-            <td th:text="${member.phoneNo}"></td>
-            <td th:text="${member.regDate}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <h1> ❤회원정보(◍•ᴗ•◍)❤ </h1>
+    <div style="text-align:right;">
+        <button class="button-hover" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+    </div>
+
+<div class="container">
+        <div class="table-list">
+            <table class="table_box" style="width:100%">
+
+                    <!--<tr th:each="member : ${members}">
+                        <td>#</td>
+                        <td><a th:href="@{/user/modify/{id}(id = ${member.id})}"
+                               th:text="${member.id}"></a></td>
+                    </tr>-->
+                <thead>
+                    <tr th:each="member : ${members}">
+                        <th class="th-list">아이디</th>
+                        <th class="th-list" th:text="${member.username}"></th>
+                    </tr>
+                </thead>
+                    <!--<tr th:each="member : ${members}">
+                        <td>비밀번호</td>
+                        <td>****</td>
+                    </tr>-->
+                <tbody>
+                    <tr th:each="member : ${members}">
+                        <td>이름</td>
+                        <td th:text="${member.name}"></td>
+                    </tr>
+                    <tr th:each="member : ${members}">
+                        <td>성별</td>
+                        <td th:text="${member.gender}"></td>
+                    </tr>
+                    <tr th:each="member : ${members}">
+                        <td>주소</td>
+                        <td th:text="${member.address}"></td>
+                    </tr>
+                    <tr th:each="member : ${members}">
+                        <td>생일</td>
+                        <td th:text="${member.birthdate}"></td>
+                    </tr>
+                    <tr th:each="member : ${members}">
+                        <td>연락처</td>
+                        <td th:text="${member.phoneNo}"></td>
+                    </tr>
+                    <tr th:each="member : ${members}">
+                        <td>가입일</td>
+                        <td th:text="${member.regDate}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
-<div th:replace="layout/footer :: footer" />
+<!--<div th:replace="layout/footer :: footer" />-->
 </html>
