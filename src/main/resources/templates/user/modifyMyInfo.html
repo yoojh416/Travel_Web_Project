@@ -27,35 +27,19 @@
 
     <script type="text/javascript">
 /* 비밀번호 유효성 체크: ajax 비동기처리 */
-function pwCheck() {
+$(function(){
 
-    var password = $("#password").val();
-
-    if(password.search(/\s/) != -1) {
-        alert("아이디에는 공백이 들어갈 수 없습니다.");
-    } else {
-        if(password.trim().length != 0) {
-            $.ajax({
-                async : true,
-                type : 'GET',
-                data: password,
-                url: "/validate/" + password,
-                dataType: "json",
-                contentType: "application/json; charset=UTF-8",
-                success: function(data) {
-                    if(data != ture) {
-                        alert("비밀번호가 틀렸습니다.");
-                        $("#submit").attr("disabled", "disabled");
-                        window.location.reload();
-                    } else {
-                        alert("유효한 비밀번호 입니다.");
-                        $("#submit").removeAttr("disabled");
-                    }
-                }
-            });
-        }
-    }
-}
+//비밀번호 확인
+	$('#pw2').blur(function(){
+	   if($('#pw').val() != $('#pw2').val()){
+	    	if($('#pw2').val()!=''){
+		    alert("비밀번호가 일치하지 않습니다.");
+	    	    $('#pw2').val('');
+	          $('#pw2').focus();
+	       }
+	    }
+	})
+});
 
     </script>
 </head>

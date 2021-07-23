@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -18,8 +17,6 @@ public class SendEmailService {
 
     @Autowired
     private MemberRepository memberRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
     @Autowired
     private JavaMailSender mailSender;
     @Autowired
@@ -59,8 +56,8 @@ public class SendEmailService {
         mailDto.setAddress(username);
         mailDto.setTitle(name + "님의 너나들이투어 임시비밀번호 안내 이메일 입니다.");
         mailDto.setMessage("안녕하세요. 너나들이투어 임시비밀번호 안내 관련 이메일 입니다."
-                + "[" + name + "]" + "님의 임시 비밀번호는 "
-                + str + " 입니다.");
+                + "[" + name + "]" + "님의 임시 비밀번호는 ["
+                + str + "] 입니다.");
         return mailDto;
     }
 

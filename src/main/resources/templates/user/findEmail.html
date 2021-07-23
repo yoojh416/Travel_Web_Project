@@ -1,0 +1,16 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>아이디( 이메일 ) 찾기</title>
+
+</head>
+
+<body>
+<form method="post" th:action="@{/user/findId}">
+    <input type="text" th:name="name" placeholder="이름">
+    <input type="text" th:name="phoneNo" placeholder="휴대폰 번호">
+    <button type="submit">찾아보기</button>
+</form>
+</body>
+
+</html>
