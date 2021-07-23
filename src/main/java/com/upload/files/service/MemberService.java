@@ -5,6 +5,7 @@ import com.upload.files.repository.MemberDto;
 import com.upload.files.repository.MemberRepository;
 
 import com.upload.files.repository.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -17,13 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
 public class MemberService implements UserDetailsService {
 
-    private final MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
+    
 
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -39,14 +41,16 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(memberDto.toEntity()).getId();
     }
 
-    /** 로그인 확인 로직 */
+    /**
+     * 로그인 확인 로직
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         String admin = "admin@1234";
 
-        Optional<Member> userEntityWrapper = memberRepository.findByUsername(username);
-        Member userEntity = userEntityWrapper.get();
+        Member userEntityWrapper = memberRepository.findByUsername(username);
+        Member userEntity = userEntityWrapper;
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         if (admin.equals(username)) {
@@ -58,9 +62,31 @@ public class MemberService implements UserDetailsService {
         return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
     }
 
-    /** username 중복 확인 로직 */
+    /**
+     * username 중복 확인 로직
+     */
     public boolean checkUsernameDuplicate(String username) {
         return memberRepository.existsByUsername(username);
+    }
+
+    /**
+     * 회원정보 수정시 password 확인
+     */
+    public boolean validatePassword(String password) {
+        return memberRepository.existsByPassword(password);
+    }
+
+    /** email 유효성 검사  */
+    public boolean userEmailCheck(String username, String name) {
+
+        Member member = memberRepository.findByUsername(username);
+
+        if(member!=null && member.getUsername().equals(username)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Pen+Script&display=swap"
+          rel="stylesheet">
+
+    <title>이메일로 비밀번호 찾기</title>
+</head>
+<body>
+
+<div id="container">
+    <form method="post" th:action="@{/mail}">
+
+        <div class="form-group">
+            <label for="username" class="sr-only">이메일</label>
+            <input type="email" id="username" name="username" class="form-control"
+                   placeholder="이메일" required autofocus />
+            <label for="name" class="sr-only">비밀번호</label>
+            <input type="text" id="name" name="name" class="form-control"
+                   placeholder="비밀번호" required />
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">확인하기</button>
+    </form>
+    <a th:href="@{/user/login}" class="btn btn-danger btn-default pull-left">로그인으로 가기</a>
+</div>
+</body>
+
+</html>

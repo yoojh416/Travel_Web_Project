@@ -24,6 +24,40 @@
             crossorigin="anonymous"></script>
 
     <title>회원정보 수정</title>
+
+    <script type="text/javascript">
+/* 비밀번호 유효성 체크: ajax 비동기처리 */
+function pwCheck() {
+
+    var password = $("#password").val();
+
+    if(password.search(/\s/) != -1) {
+        alert("아이디에는 공백이 들어갈 수 없습니다.");
+    } else {
+        if(password.trim().length != 0) {
+            $.ajax({
+                async : true,
+                type : 'GET',
+                data: password,
+                url: "/validate/" + password,
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                success: function(data) {
+                    if(data != ture) {
+                        alert("비밀번호가 틀렸습니다.");
+                        $("#submit").attr("disabled", "disabled");
+                        window.location.reload();
+                    } else {
+                        alert("유효한 비밀번호 입니다.");
+                        $("#submit").removeAttr("disabled");
+                    }
+                }
+            });
+        }
+    }
+}
+
+    </script>
 </head>
 
 <body>
@@ -41,8 +75,8 @@
                 </div>
 
                 <div class="col-lg-9 my-4 mb-4" style="height: 100%;">
-                    <form class="form-signin" th:action="@{/user/modified/{id}(id = ${member.id})}" method="post"
-                          th:object="${member}">
+                    <form class="form-signin" th:action="@{/user/modified/{id}(id = ${member.id})}"
+                          method="post" th:object="${member}">
 
                         <!--csrf**-->
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -62,8 +96,10 @@
                                 <label class="col-sm-2 col-form-label">비밀번호</label>
                                 <div class="col-sm-6">
                                     <input type="password" pattern=".{8,12}" class="form-control"
-                                           th:field="*{password}" id="password" th:value="*{password}"
-                                           placeholder="비밀번호" required>
+                                           th:field="*{password}" id="password" placeholder="비밀번호"
+                                           th:class="${#fields.hasErrors('password')}? 'form-control fieldError' : 'form-control'">
+                                    <p th:if="${#fields.hasErrors('password')}"
+                                       th:errors="*{password}">잘못된 비밀번호</p>
                                 </div>
                             </div>
 
