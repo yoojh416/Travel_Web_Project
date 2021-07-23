@@ -23,13 +23,8 @@ import java.util.List;
 @Service
 public class MemberService implements UserDetailsService {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    
-
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private MemberService memberService;
 
     @Transactional
     public Long joinUser(MemberDto memberDto) {
@@ -80,7 +75,6 @@ public class MemberService implements UserDetailsService {
     public boolean userEmailCheck(String username, String name) {
 
         Member member = memberRepository.findByUsername(username);
-
         if(member!=null && member.getUsername().equals(username)) {
             return true;
         }
@@ -88,5 +82,4 @@ public class MemberService implements UserDetailsService {
             return false;
         }
     }
-
 }

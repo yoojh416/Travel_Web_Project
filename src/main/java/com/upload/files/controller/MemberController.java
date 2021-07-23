@@ -11,6 +11,7 @@ import com.upload.files.service.SendEmailService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,15 +22,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 
 @Slf4j
@@ -37,16 +37,9 @@ import java.util.Random;
 @AllArgsConstructor
 public class MemberController {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private MemberService memberService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private JavaMailSender javaMailSender;
-    @Autowired
-    private SendEmailService sendEmailService;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private MemberService memberService;
+    @Autowired private SendEmailService sendEmailService;
 
     /**
      * 회원가입 페이지
@@ -213,6 +206,39 @@ public class MemberController {
     }
 
     /**
+     * 아이디 (이메일) 찾기
+     */
+    @GetMapping("/findId")
+    public String findId() {
+        return "user/findEmail";
+    }
+
+    @PostMapping("/user/findId")
+    public String findingId(HttpServletRequest request, Model model) throws Exception {
+        String phoneNo = request.getParameter("phoneNo");
+        String name = request.getParameter("name");
+        Member member = memberRepository.findMember(phoneNo, name);
+
+        model.addAttribute("member", member);
+
+        return "user/findResult";
+    }
+
+    /**
+     * 비밀번호 찾기할때 이메일과 이름이 있는지 조회
+     */
+    @GetMapping("/check/findPw")
+    public @ResponseBody
+    Map<String, Boolean> pw_find(String username, String name) {
+        Map<String, Boolean> json = new HashMap<>();
+        boolean pwFindCheck = memberService.userEmailCheck(username, name);
+
+        json.put("check", pwFindCheck);
+
+        return json;
+    }
+
+    /**
      * 임시 비밀번호 보내기
      */
     @PostMapping("/mail")
@@ -221,7 +247,8 @@ public class MemberController {
             , MailDto mailDto, BindingResult result, Model model) {
 
         String str = sendEmailService.getTempPassword(); // 임시 비밀번호
-        mailDto = sendEmailService.createMailAndChangePassword(memberDto.getUsername(), memberDto.getName());
+        mailDto = sendEmailService.createMailAndChangePassword(memberDto.getUsername()
+                , memberDto.getName());
         sendEmailService.mailSend(mailDto);
 
         return "/user/login";

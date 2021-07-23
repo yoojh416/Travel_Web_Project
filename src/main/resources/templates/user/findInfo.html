@@ -1,6 +1,5 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,25 +14,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Pen+Script&display=swap"
           rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>이메일로 비밀번호 찾기</title>
 </head>
 <body>
 
-<div id="container">
-    <form method="post" th:action="@{/mail}">
+<!--<script type="text/javascript"> 잘못된 정보, 이메일 발송 이후 alert창 뜨게 스크립트 작성중
+       $("#checkEmail").click(function () {
+        let username = $("#username").val();
+        let name = $("#name").val();
 
-        <div class="form-group">
-            <label for="username" class="sr-only">이메일</label>
-            <input type="email" id="username" name="username" class="form-control"
-                   placeholder="이메일" required autofocus />
-            <label for="name" class="sr-only">비밀번호</label>
-            <input type="text" id="name" name="name" class="form-control"
-                   placeholder="비밀번호" required />
-        </div>
+        $.ajax({
+            type: "GET",
+            url: "/check/findPw",
+            data: {
+                "username": username,
+                "name": name
+            },
+            success: function (res) {
+                if (res['check']) {
+                    swal("발송 완료!", "입력하신 이메일로 임시비밀번호가 발송되었습니다.", "success")
+                } else {
+                    swal("일치 하는 정보 X!", "다시 확인해 주세요.", "fail")
+                }
+            }
+        })
+    })
+</script>-->
 
-        <button type="submit" class="btn btn-success btn-block">확인하기</button>
-    </form>
-    <a th:href="@{/user/login}" class="btn btn-danger btn-default pull-left">로그인으로 가기</a>
+<p id="container">
+<form method="post" th:action="@{/mail}">
+
+    <div class="form-group">
+        <label for="username" class="sr-only">이메일</label>
+        <input type="email" id="username" name="username" class="form-control"
+               placeholder="이메일" required autofocus/>
+        <label for="name" class="sr-only">비밀번호</label>
+        <input type="text" id="name" name="name" class="form-control"
+               placeholder="비밀번호" required/>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block" id="checkEmail">확인하기</button>
+</form>
+
+<a th:href="@{/user/login}" class="btn btn-danger btn-default pull-left">로그인으로 가기</a>
 </div>
 </body>
 
