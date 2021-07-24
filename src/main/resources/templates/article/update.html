@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width"/>
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.parameterName}">
-    <title>🤩리뷰수정</title>
+    <title>✈️리뷰수정</title>
     <!-- include libraries(jQuery, bootstrap) -->
     <link
             href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -49,10 +49,12 @@
 
             <br/>
             <br/>
-            <!--민지-->
-            <button type="submit" id="sucker" name="submit" class="sucker">수정하기 😊
+
+            <div style="text-align : right;">
+            <button type="submit" id="sucker" name="submit" style="margin-top:0px; margin-bottom:0px; font-size:15px;" class="sucker">수정하기 😊
             </button>
-            <a type="button" class="button" onclick="history.go(-1)">취소하기 😉</a>
+            <a type="button" style="text-decoration:none; font-size:15px;" class="button"  onclick="history.go(-1)">취소하기 😉</a>
+            </div>
         </form>
     </div>
 </div>
