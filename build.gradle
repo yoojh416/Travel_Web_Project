@@ -56,6 +56,9 @@ dependencies {
     implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
     implementation group: 'org.apache.commons', name: 'commons-email', version: '1.5'
 
+    /** thymeleaf layout*/
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.3'
+
 }
 
 test {

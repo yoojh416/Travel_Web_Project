@@ -8,6 +8,10 @@ body {
 	display: fixed;
 	font-size: 14px;
 }
+.icons {
+    font-style: normal;
+    font-weight: bold;
+}
 li {
     list-style: none;
 }
@@ -32,6 +36,7 @@ footer {
     padding: 30px;
     color: #fff;
     background-color: #16a085;
+    margin-top: 24px;
 }
 .main_logo_img{
 	width: 150px;
@@ -67,9 +72,11 @@ h2 {
 	font-weight: 600;
 	font-size: 25px;
     text-align: left;
+    width: 200px;
+    margin-left: -20px;
 }
 .More {
-    margin-left: 40px;
+    margin-left: 20px;
 	font-weight: 600;
 	font-size: 25px;
     text-align: left;

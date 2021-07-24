@@ -1,68 +1,114 @@
-/*loader starts*/
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey, 테두리:두께타입 색상 */
-  border-top: 16px solid #16a085; /* Blue, 개별 테두리 지정*/
-  border-radius: 50%; /*둥근 모서리 효과*/
-  width: 100px; /*정사각형 형태*/
-  height: 100px;
-  animation: spin 2s linear infinite; /*한 바퀴 도는 데 2초, linear: 일정한 속도, 끈임없이 반복하는 값*/
-  position: fixed; /*브라우저 기준으로 요소 배치*/
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /*자신을 기준으로 x,y이동*/
+body {
+    margin: 0;
+    padding: 0;
+    /*height: 100vh;*/
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    /*background: #fff;*/
+}
+.slider {
+    width: 950px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left:250px;
+    margin-top: 10px;
+}
+.slides {
+    width: 500%;
+    height: 500px;
+    display: flex;
+}
+.slides input{
+    display: none;
+}
+.slide {
+    width: 20%;
+    transition: 2s;
+}
+.slide img {
+    width: 950px;
+    height: 700px;
 }
 
-@keyframes spin { /*한 바퀴 돌아감*/
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-/*loader ends*/
-* {
-	margin: 0; /*브라우저 내 기본 설정값 초기화*/
-	padding: 0; /*브라우저 내 기본 설정값 초기화*/
-	box-sizing: border-box;
+/*css for manual slide navigation*/
+
+.navigation-manual {
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    margin-left: 60px;
+    display: flex;
+    justify-content: center;
 }
 
-ul, li { /*ul, li의 리스트 스타일 제거*/
-	list-style: none;
+.manual-btn {
+    border: 2px solid #16a085;
+    padding: 4px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
 }
-/*슬라이드에 직접 적용되는 스타일*/
-[name="slide"] {
-	display: none;
-} /*클래스 slidebox 내 name="slide"부분 */
-.slidebox {
-	max-width: 1250px;
-	width: 100%;
-	height: 50%;
-	margin: 0 auto;
+.manual-btn:not(:last-child) {
+    margin-right: 40px;
 }
-
-.slidebox img { /*자신의 넓이 이상으로 커지지 않도록 함, 반응형 사용 가능*/
-	max-width: 100%;
+.manual-btn:hover {
+    background: #16a085;
 }
 
-.slidebox .slidelist {
-	/*white-space: nowrap;*/
-	font-size: 0; /*빈공간을 없애기 위함*/
-	overflow: hidden; /*초과해서 이미지가 나올 경우 나오지 않게 함*/
+#radio1:checked ~ .first{
+    margin-left: 0;
 }
 
-.slidebox .slideitem {
-	position: relative;
-	display: inline-block; /*세로 정렬을 가운데 맞추기 위함*/
-	vertical-align: middle;
-	width: 100%;
-	transition: all .35s; /*자연스러운 전환 속성을 위함*/
+#radio2:checked ~ .first{
+    margin-left: -20%;
 }
 
-.slidebox .slideitem label {
-	position: absolute; /*자율 배치하는 값*/
-	z-index: -1; /*기본값 1*/
-	top: 50%;
-	transform: translateY(-50%); /*가운데 지정*/
-	padding: 20px;
-	border-radius: 50%; /*둥근 버튼 모양*/
-	cursor: pointer; /*마우스가 올라가면 커서가 포인터로 바뀌도록 함*/
+#radio3:checked ~ .first{
+    margin-left: -40%;
+}
+
+#radio4:checked ~ .first{
+    margin-left: -60%;
+}
+
+/*css for automatic navigation */
+
+.navigation-auto {
+    position: absolute;
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    margin-top: 460px;
+    margin-left: 60px;
+}
+
+.navigation-auto div {
+    border: 2px solid #48D3DC;
+    padding: 4px;
+    border-radius: 10px;
+    transform: 1s;
+}
+
+.navigation-auto div:not(:last-child) {
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1 {
+    background: #16a085;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2 {
+    background: #16a085;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3 {
+    background: #16a085;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4 {
+    background: #16a085;
 }
 .container {
     display: fixed;

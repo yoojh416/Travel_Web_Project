@@ -14,10 +14,15 @@ body {
 	padding: 10px;
 	position: fixed;
 	width: 100%;
+	margin-top: 20px;
 	z-index: 1;
 }
-li a{
+li {
 	text-decoration: none;/*.없앰*/
+}
+.icons {
+    font-style: normal;
+    font-weight: bold;
 }
 .main_logo_img{
 	width: 220px;
@@ -30,11 +35,14 @@ li a{
     margin-right: 217px;
 	list-style:none;
 }
+.navbar_logo li {
+	width: 120px;
+    height: 24px;
+}
 .navbar_logo li a{
     color: white;
     text-decoration: none;/*.없앰*/
     font-size: 24px;
-    height: 27px;
 }
 .navbar_logo li a:hover{
     color:  #0C4F3C;
@@ -45,13 +53,15 @@ li a{
 	padding-left: 0; /*이렇게 지정해서 중앙에 배치*/
 	font-size: 18px;
 }
+.navbar_menu li {
+    width: 120px;
+    height: 24px;
+}
 .navbar_menu li a {
     color: white;
     text-decoration: none;/*.없앰*/
 	padding: 10px; /*메뉴안 내용들의 간격 조정*/
-	width: 125px;
     font-size: 24px;
-    height: 27px;
 }
 .navbar_menu li a:hover {
     color:  #0C4F3C;
@@ -64,13 +74,15 @@ li a{
 	padding-left: 0rem; /*중앙 배치*/
 	margin-left: 50px;
 }
+.navbar_icons li {
+    width: 120px;
+    height: 24px;
+}
 .navbar_icons li a {
     color: black;
 	font-size: 25px;
 	padding: 0px;
-	width: 140px;
     font-size: 24px;
-    height: 27px;
 }
 .navbar_icons li a:hover {
     color:white;
