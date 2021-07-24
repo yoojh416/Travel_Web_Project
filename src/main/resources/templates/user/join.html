@@ -1,17 +1,18 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <link href="starter-template.css" th:href="@{/starter-template.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
-  <!--  <head th:replace="layout/header :: header">-->
+    <link href="starter-template.css" th:href="@{/starter-template.css}" rel="stylesheet">
+    <!--    <link rel="stylesheet" th:href="@{/css/footer.css}">
+          <head th:replace="layout/header :: header">&ndash;&gt;-->
     <!--Optional JavaScript-->
     <!--jQuery first, then Popper.js, then Bootstrap JS-->
 
@@ -65,11 +66,8 @@ function idCheck() {
 </head>
 
 <body>
-<div th:replace="layout/bodyHeader :: bodyHeader" />
-<br>
-<br>
-<br>
-<br>
+
+<th:block layout:fragment="content">
     <div class="text-center">
         <div class="container-fluid">
             <div class="row">
@@ -86,17 +84,18 @@ function idCheck() {
 
                         <div class="all_register">
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-1"></label>
                                 <label class="col-sm-2 col-form-label">이메일</label>
                                 <div class="col-sm-5">
                                     <input type="email" th:field="*{username}" id="username" class="form-control"
                                            placeholder="로그인 할 이메일">
                                 </div>
-                                <button class="btn btn-secondary" onclick="idCheck()" style="margin-left:30px">ID 중복확인</button>
+                                <button class="col-sm-1 btn btn-secondary" onclick="idCheck()" style="width: 110px; font-size: 15px;">ID 중복확인</button>
+
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-1"></label>
                                 <label class="col-sm-2 col-form-label">비밀번호</label>
 
@@ -104,11 +103,14 @@ function idCheck() {
                                     <input type="password" pattern=".{8,12}" class="form-control"
                                            th:field="*{password}" id="password"
                                            placeholder="비밀번호" required>
+                                    <div style="text-align:left">
+                                        <small id="passwordhelp" class="form-text text-muted" >8글자 이상 12글자 이하로 입력해주세요.</small>
+                                    </div>
                                 </div>
                                 <label class="col-sm-3"></label>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-1"></label>
                                 <label class="col-sm-2 col-form-label">이름</label>
                                 <div class="col-sm-6">
@@ -117,7 +119,7 @@ function idCheck() {
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-1"></label>
                                 <label class="col-sm-2 col-form-label">주소</label>
                                 <div class="col-sm-6">
@@ -126,7 +128,7 @@ function idCheck() {
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-1"></label>
                                 <label class="col-sm-2 col-form-label">생년월일</label>
                                 <div class="col-sm-6">
@@ -137,52 +139,62 @@ function idCheck() {
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-1"></label>
                                 <label class="col-sm-2 col-form-label">전화번호</label>
                                 <div class="col-sm-6">
                                     <input type="text" pattern="(010)-\d{3,4}-\d{4}" class="form-control"
                                            th:field="*{phoneNo}"
                                            id="phoneNo"
-                                           placeholder="전화번호" required>
+                                           placeholder="전화번호 (000-0000-0000)" required>
+                                    <div style="text-align:left;">
+                                        <small id="phoneNohelp" class="form-text text-muted"> 하이퍼(-)를 입력해주세요</small>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-1"></label>
                                 <label class="col-sm-2 col-form-label">성별</label>
                                 <div class="col-sm-6">
                                     <div class="wrapper">
-                                    <input type="radio" th:field="*{gender}" value="남성 " id="option-1" checked>
-                                    <input type="radio" th:field="*{gender}" value="여성 " id="option-2">
-                                    <label for="option-1" class="option option-1">
-                                        <div class="dot"></div>
-                                        <span>남성 🧔</span>
-                                    </label>
-                                    <label for="option-2" class="option option-2">
-                                        <div class="dot"></div>
-                                        <span>여성 👩</span>
-                                    </label>
-
+                                        <input type="radio" th:field="*{gender}" value="남성 " id="option-1" checked>
+                                        <input type="radio" th:field="*{gender}" value="여성 " id="option-2">
+                                        <label for="option-1" class="option option-1">
+                                            <div class="dot"></div>
+                                            <span>남성 🧔</span>
+                                        </label>
+                                        <label for="option-2" class="option option-2">
+                                            <div class="dot"></div>
+                                            <span>여성 👩</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="form-group row" style="margin-bottom: 20px;">
+                                <label class="col-sm-3"></label>
+                                <div class="col-sm-6">
+                                    <button class="btn btn-outline-primary btn-block"
+                                            style=" width: 100%;" type="submit">회원가입</button>
+                                </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-8 text-center">
-                                    <button class="btn btn-outline-primary btn-block" style="float: right; width: 80%;"
-                                            type="submit">회원가입
-                                    </button>
+                            <div class="form-group row" style="margin-bottom: 20px;">
+                                <label class="col-sm-3"></label>
+
+                                <div class="col-sm-6">
                                     <a type="button" class="btn btn-outline-danger btn-block"
-                                       style="float: right; width: 80%;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
+                                       style="width: 100%;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-<div th:replace="layout/footer :: footer" />
+    </div>
+</th:block>
 </body>
 </html>
 
