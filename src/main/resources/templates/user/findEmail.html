@@ -17,6 +17,13 @@
 
     <title>✈️아이디( 이메일 ) 찾기</title>
 </head>
+<style>
+ a:link { color: #ffffff; text-decoration: none;}
+ a:visited { color: #ffffff; text-decoration: none;}
+ a:hover { color: #ffba00; text-decoration: underline;}
+</style>
+
+
 
 <body class="text-center">
 
@@ -27,7 +34,7 @@
     <a th:href="@{/}"><img class="mb-6" th:src="@{/images/logo.png}" width="500" alt="main_logo_img"></a>
     <div class="login-form">
         <br>
-        <h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1><br>
+        <h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1>
         <h6>회원정보에 등록한 전화번호와 입력한 전화번호가 같아야,<br>
             아이디를 찾을 수 있습니다.</h6>
         <br>
@@ -35,7 +42,11 @@
         <input type="text" th:name="name" placeholder="이름">
         <input type="text"  th:name="phoneNo" placeholder="전화번호">
 
-        <input class="submit-btn " type="submit" value="찾아보기">
+        <input class="submit-btn " type="submit" value="아이디 찾기">
+        <a type="button" class="submit-btn"
+           style="width: 100%; background-color: #5b5b5b;  text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
+<!--        <input type="button" class="submit-btn"
+            th:href="@{/user/login}" value="로그인 창으로 돌아가기">-->
 
     </div>
 

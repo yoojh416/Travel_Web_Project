@@ -24,29 +24,21 @@
 
     <h1> <span sec:authentication="principal.username"></span> 회원님 정보(◍•ᴗ•◍)❤ </h1>
     <div style="text-align:right;">
-        <a class="button-hover" th:href="@{/user/modify/{id}(id = ${member.id})}" style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;" >회원정보 수정 🧐</a>
+        <a class="button-hover" th:href="@{/user/passwordCheck}"
+           style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">회원정보 수정 🧐</a>
         <button class="button-hover" th:onclick="|window.location.href='/'|"  style="font-size: 1rem;" >홈으로 가기 😎</button>
     </div>
 
-<div class="container">
+    <div class="container">
         <div class="table-list">
             <table class="table_box" style="width:100%">
-
-                    <!--<tr th:each="member : ${members}">
-                        <td>#</td>
-                        <td><a th:href="@{/user/modify/{id}(id = ${member.id})}"
-                               th:text="${member.id}"></a></td>
-                    </tr>-->
                 <thead>
                     <tr th:each="member : ${members}">
                         <th class="th-list">아이디</th>
                         <th class="th-list" th:text="${member.username}"></th>
                     </tr>
                 </thead>
-                    <!--<tr th:each="member : ${members}">
-                        <td>비밀번호</td>
-                        <td>****</td>
-                    </tr>-->
+
                 <tbody>
                     <tr th:each="member : ${members}">
                         <td>이름</td>
