@@ -71,13 +71,6 @@ public class MemberService implements UserDetailsService {
         return memberRepository.existsByPassword(password);
     }
 
-    /**
-     * 회원정보 수정시 password 확인
-     */
-    public boolean validatePassword(String password) {
-        return memberRepository.existsByPassword(password);
-    }
-
     /** email 유효성 검사  */
     public boolean userEmailCheck(String username, String name) {
 

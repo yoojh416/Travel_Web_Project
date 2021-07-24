@@ -37,11 +37,12 @@
         <input type="email" id="username" name="username" class="form-control" placeholder="이메일" required autofocus />
         <label for="password" class="sr-only">비밀번호</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호" required />
-        <div class="checkbox mb-3">
-            <label>
-                <input name="remember-me" id="rememberMe" type="checkbox" th:checked="${rememeberMe}"> Remember me
-            </label>
+
+        <div class="form-group form-check">
+            <input id="rememberMe" type="checkbox" name="remember-me" class="form-check-input" checked/>
+            <label class="form-check-label" for="rememberMe" aria-describedby="rememberMeHelp">로그인 유지</label>
         </div>
+
         <input class="submit-btn " type="submit" value="로그인">
         <a type="button" class="btn btn-secondary btn-lg btn-block" th:href="@{/user/join}">회원가입</a>
         <a type="button" class="btn btn-danger btn-lg btn-block" th:href="@{/findInfo}">비밀번호 찾기</a>
@@ -63,5 +64,4 @@
         crossorigin="anonymous"></script>
 
 </body>
-
 </html>
