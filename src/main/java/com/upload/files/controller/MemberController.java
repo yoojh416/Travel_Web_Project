@@ -40,6 +40,7 @@ public class MemberController {
     @Autowired private MemberRepository memberRepository;
     @Autowired private MemberService memberService;
     @Autowired private SendEmailService sendEmailService;
+    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 회원가입 페이지
@@ -127,18 +128,48 @@ public class MemberController {
     public String modifyForm(@AuthenticationPrincipal UserDetails userDetails
             , Model model, Member member, @PathVariable("id") Long id) {
         member = memberRepository.findById(id).get();
+
         model.addAttribute("member", member);
 
-        return "user/modifyMyInfo";
+        return "user/passwordCheck";
+    }
+
+    /**
+     * 수정 전 비밀번호 확인
+     */
+    @GetMapping("/user/passwordCheck")
+    public String CheckPw() {
+        return "user/passwordCheck";
+    }
+
+    @GetMapping("/checkingPw")
+    public String pwCheck(@AuthenticationPrincipal UserDetails userDetails, Model model
+            , Member member, HttpServletRequest request) {
+
+        member = memberRepository.findByUsername(userDetails.getUsername());
+        String dbPw = member.getPassword();
+        String inputPw = request.getParameter("password");
+        String afterEncode = bCryptPasswordEncoder.encode(inputPw);
+
+        if (dbPw.equals(afterEncode)) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    public String turnIntoUpdateForm(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        Member member = memberRepository.findByUsername(userDetails.getUsername());
+        model.addAttribute("member", member);
+        return "user/modified";
     }
 
     /**
      * 정보 수정 로직
      */
-    @PostMapping("/user/modified/{id}")
+    @PostMapping("/user/modified")
     public String modifyMyInfo(@AuthenticationPrincipal UserDetails userDetails
-            , @Valid MemberDto memberDto, @PathVariable("id") Long id
-            , BindingResult result, Model model, Member member) {
+            , @Valid MemberDto memberDto, BindingResult result, Model model, Member member) {
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
@@ -153,24 +184,7 @@ public class MemberController {
         member.setRegDate(LocalDate.now());
         this.memberRepository.save(member);
 
-        model.addAttribute("id", id);
-
         return "redirect:/user/login";
-    }
-
-    /**
-     * 수정 시 비밀번호 재확인
-     */
-    @GetMapping("/validatePw")
-    public String validatePw(@RequestBody String password, HttpSession session) throws Exception {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        Member member = (Member) session.getAttribute("login");
-        if (encoder.matches(password, member.getPassword())) {
-            return "true";
-        } else {
-            return "false";
-        }
     }
 
     /**
