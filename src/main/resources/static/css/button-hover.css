@@ -81,7 +81,7 @@ button.button-hover1{
   position:relative;
   height:40px;
   font-size:1.6em;
-  padding:0 2em;
+  padding:12.5px;
   cursor:pointer;
   transition:800ms ease all;
   outline:none;
@@ -112,4 +112,41 @@ button.button-hover1:hover:before,button:hover:after{
   transition:800ms ease all;
 }
 
-Resources1× 0.5× 0.25×Rerun
+
+a.button-hover1{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.6em;
+  padding:12.5px;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  margin: 20px;
+}
+a.button-hover1:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+a.button-hover1:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+a.button-hover1:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+a.button-hover1:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

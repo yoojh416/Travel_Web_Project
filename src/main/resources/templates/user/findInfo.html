@@ -1,5 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -16,50 +17,60 @@
 
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>이메일로 비밀번호 찾기</title>
+    <title>✈️비밀번호 찾기</title>
+
+
 </head>
-<body>
 
-<!--<script type="text/javascript"> 잘못된 정보, 이메일 발송 이후 alert창 뜨게 스크립트 작성중
-       $("#checkEmail").click(function () {
-        let username = $("#username").val();
-        let name = $("#name").val();
+<body class="text-center">
+<form class="form-signin" method="post" th:action="@{/mail}">
+    <a th:href="@{/}"><img class="mb-6" th:src="@{/images/logo.png}" width="500" alt="main_logo_img"></a>
 
-        $.ajax({
-            type: "GET",
-            url: "/check/findPw",
-            data: {
-                "username": username,
-                "name": name
-            },
-            success: function (res) {
-                if (res['check']) {
-                    swal("발송 완료!", "입력하신 이메일로 임시비밀번호가 발송되었습니다.", "success")
-                } else {
-                    swal("일치 하는 정보 X!", "다시 확인해 주세요.", "fail")
-                }
-            }
-        })
-    })
-</script>-->
-
-<p id="container">
-<form method="post" th:action="@{/mail}">
-
-    <div class="form-group">
+    <div class="login-form">
+        <br>
+        <h1 class="h3 mb-3 font-weight-normal">비밀번호 찾기</h1>
+        <h6>회원정보에 등록한 이메일과 입력한 이메일이 같아야,<br>
+            비밀번호를 찾을 수 있습니다.</h6>
+        <br>
         <label for="username" class="sr-only">이메일</label>
         <input type="email" id="username" name="username" class="form-control"
                placeholder="이메일" required autofocus/>
         <label for="name" class="sr-only">이름</label>
         <input type="text" id="name" name="name" class="form-control"
                placeholder="이름" required/>
+        <input class="submit-btn " type="submit" id="checkEmail" value="비밀번호 찾기">
+        <a type="button" class="btn btn-secondary btn-lg btn-block"
+           style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
     </div>
-
-    <button type="submit" class="btn btn-success btn-block" id="checkEmail">확인하기</button>
+    <!--        <button type="submit" class="btn btn-success btn-block" >확인하기</button>-->
 </form>
 
-<a th:href="@{/user/login}" class="btn btn-danger btn-default pull-left">로그인으로 가기</a>
-</div>
+
+
+
+
+<!--
+    <div class="login-form">
+        <br>
+        <h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1>
+        <h6>회원정보에 등록한 전화번호와 입력한 전화번호가 같아야,<br>
+            아이디를 찾을 수 있습니다.</h6>
+        <br>
+
+        <input type="text" th:name="name" placeholder="이름">
+        <input type="text"  th:name="phoneNo" placeholder="전화번호">
+
+        <input class="submit-btn " type="submit" value="아이디 찾기">
+        <a type="button" class="btn btn-secondary btn-lg btn-block"
+           style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
+        &lt;!&ndash;        <input type="button" class="submit-btn"
+                    th:href="@{/user/login}" value="로그인 창으로 돌아가기">&ndash;&gt;
+
+    </div>
+
+</form>
+-->
+
 </body>
 
 </html>
