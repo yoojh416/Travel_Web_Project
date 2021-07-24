@@ -17,11 +17,7 @@
 
     <title>✈️아이디( 이메일 ) 찾기</title>
 </head>
-<style>
- a:link { color: #ffffff; text-decoration: none;}
- a:visited { color: #ffffff; text-decoration: none;}
- a:hover { color: #ffba00; text-decoration: underline;}
-</style>
+
 
 
 
@@ -43,8 +39,8 @@
         <input type="text"  th:name="phoneNo" placeholder="전화번호">
 
         <input class="submit-btn " type="submit" value="아이디 찾기">
-        <a type="button" class="submit-btn"
-           style="width: 100%; background-color: #5b5b5b;  text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
+        <a type="button" class="btn btn-secondary btn-lg btn-block"
+           style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
 <!--        <input type="button" class="submit-btn"
             th:href="@{/user/login}" value="로그인 창으로 돌아가기">-->
 

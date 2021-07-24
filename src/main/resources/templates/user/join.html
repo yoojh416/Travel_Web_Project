@@ -1,43 +1,80 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="~{layout/layout}">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <head>
-        <title>✈️회원가입</title>
-        <!--css-->
-        <link rel="stylesheet" th:href="@{/css/button.css}">
-        <link href="starter-template.css" th:href="@{/starter-template.css}" rel="stylesheet">
-        <!-- Bootstrap CSS -->
-<!--
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
--->
-        <!--js -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-                crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-                integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-                crossorigin="anonymous"></script>
-        <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script th:src="@{/js/join.js}"></script>
-    </head>
+    <link rel="stylesheet" th:href="@{/css/button.css}">
 
-    <th:block layout:fragment="content">
-        <div class="text-center">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <h2 class="display-6 my-4 text-left">회원가입</h2>
-                        <hr align="left" style="width: 75%;">
-                    </div>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="starter-template.css" th:href="@{/starter-template.css}" rel="stylesheet">
+    <!--    <link rel="stylesheet" th:href="@{/css/footer.css}">
+          <head th:replace="layout/header :: header">&ndash;&gt;-->
+    <!--Optional JavaScript-->
+    <!--jQuery first, then Popper.js, then Bootstrap JS-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>✈️회원가입</title>
+
+    <script type="text/javascript">
+/* 아이디 중복 체크 : ajax 비동기처리 */
+function idCheck() {
+
+    var username = $("#username").val();
+
+    if(username.search(/\s/) != -1) {
+        alert("아이디에는 공백이 들어갈 수 없습니다.");
+    } else {
+        if(username.trim().length != 0) {
+            $.ajax({
+                async : true,
+                type : 'GET',
+                data: username,
+                url: "/exists/" + username,
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                success: function(data) {
+                    if(data != false) {
+                        swal("중복된 아이디!", "다른 아이디를 사용해 주세요", "error");
+                        $("#submit").attr("disabled", "disabled");
+                        <!--window.location.reload();-->
+                    } else {
+                        swal("사용가능 아이디!", "중복되지 않았어요", "success");
+                        $("#submit").removeAttr("disabled");
+                    }
+                }
+            });
+        }
+    }
+}
+</script>
+
+</head>
+
+<body>
+
+<th:block layout:fragment="content">
+    <div class="text-center">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2 class="display-6 my-4 text-left">회원가입</h2>
+                    <hr align="left" style="width: 75%;">
+                </div>
 
                 <div class="col-12" style="height: 100%;">
                     <form class="form-signin" th:action="@{/user/signup}" method="post" th:object="${memberDto}">
@@ -121,8 +158,8 @@
                                 <label class="col-sm-2 col-form-label">성별</label>
                                 <div class="col-sm-6">
                                     <div class="wrapper">
-                                        <input type="radio" th:field="*{gender}" value="남성 " id="option-1" checked>
-                                        <input type="radio" th:field="*{gender}" value="여성 " id="option-2">
+                                        <input type="radio" th:field="*{gender}" value="남성 🧔" id="option-1" checked>
+                                        <input type="radio" th:field="*{gender}" value="여성 👩" id="option-2">
                                         <label for="option-1" class="option option-1">
                                             <div class="dot"></div>
                                             <span>남성 🧔</span>
@@ -145,18 +182,19 @@
                             <div class="form-group row" style="margin-bottom: 20px;">
                                 <label class="col-sm-3"></label>
 
-                                    <div class="col-sm-6">
-                                        <a type="button" class="btn btn-outline-danger btn-block"
-                                           style="width: 100%;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
-                                    </div>
+                                <div class="col-sm-6">
+                                    <a type="button" class="btn btn-outline-danger btn-block"
+                                       style="width: 100%; text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </th:block>
+    </div>
+</th:block>
+</body>
 </html>
 
 
