@@ -44,7 +44,7 @@ body {
 }
 
 .manual-btn {
-    border: 2px solid #16a085;
+    border: 2px solid #1839ff;
     padding: 4px;
     border-radius: 10px;
     cursor: pointer;
@@ -54,7 +54,7 @@ body {
     margin-right: 40px;
 }
 .manual-btn:hover {
-    background: #16a085;
+    background: #1839ff;
 }
 
 #radio1:checked ~ .first{
@@ -85,7 +85,7 @@ body {
 }
 
 .navigation-auto div {
-    border: 2px solid #48D3DC;
+    border: 2px solid #1839ff;
     padding: 4px;
     border-radius: 10px;
     transform: 1s;
@@ -96,19 +96,19 @@ body {
 }
 
 #radio1:checked ~ .navigation-auto .auto-btn1 {
-    background: #16a085;
+    background: #FFFFFF;
 }
 
 #radio2:checked ~ .navigation-auto .auto-btn2 {
-    background: #16a085;
+    background: #FFFFFF;
 }
 
 #radio3:checked ~ .navigation-auto .auto-btn3 {
-    background: #16a085;
+    background: #FFFFFF;
 }
 
 #radio4:checked ~ .navigation-auto .auto-btn4 {
-    background: #16a085;
+    background: #FFFFFF;
 }
 .container {
     display: fixed;
@@ -459,7 +459,7 @@ header .search-bar-container label:hover {
 	padding: 10px;
 	box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
 	border-radius: .5rem;
-	background-color: #16a085;
+	background-color: #c3e2dd;
 }
 
 .book .row form .inputBox {
@@ -655,7 +655,12 @@ select:-moz-focusing {
 	width: 100%;
 }
 .img_btn {
-    background: #16a085;
-    color: white;
+    background: #c3e2dd;
     font-size: 35px;
+}
+.img_btn i {
+    color: #1839ff;
+}
+.img_btn i:hover {
+    color: #0c71e0;
 }

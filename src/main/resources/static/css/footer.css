@@ -73,7 +73,7 @@ h2 {
 	font-size: 25px;
     text-align: left;
     width: 200px;
-    margin-left: -20px;
+    margin-left: 20px;
 }
 .More {
     margin-left: 20px;
@@ -88,6 +88,7 @@ h2 {
 }
 .footer li {
 	line-height: 2em;
+    width: 230px;
 }
 .footer a {
 	text-decoration: none;
