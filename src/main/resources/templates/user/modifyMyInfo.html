@@ -27,28 +27,27 @@
 
 <script type="text/javascript">
 /* 비밀번호 유효성 체크: ajax 비동기처리 */
-function idCheck() {
+function pwCheck() {
 
-    var username = $("#username").val();
+    var password = $("#password").val();
 
-    if(username.search(/\s/) != -1) {
+    if(password.search(/\s/) != -1) {
         alert("아이디에는 공백이 들어갈 수 없습니다.");
     } else {
-        if(username.trim().length != 0) {
+        if(password.trim().length != 0) {
             $.ajax({
                 async : true,
                 type : 'GET',
-                data: username,
-                url: "/exists/" + username,
+                data: password,
+                url: "/exists/" + password,
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
                 success: function(data) {
                     if(data != false) {
-                        alert("중복된 아이디 입니다.");
+                        alert("비밀번호가 확인되었습니다.");
                         $("#submit").attr("disabled", "disabled");
-                        window.location.reload();
                     } else {
-                        alert("사용 가능한 아이디 입니다.");
+                        alert("잘못된 비밀번호 입니다.");
                         $("#submit").removeAttr("disabled");
                     }
                 }
@@ -96,9 +95,8 @@ function idCheck() {
                                 <label class="col-sm-2 col-form-label">비밀번호</label>
                                 <div class="col-sm-6">
                                     <input type="password" pattern=".{8,12}" class="form-control"
-                                           th:field="*{password}" id="password" placeholder="비밀번호"
-                                           th:class="${#fields.hasErrors('password')}? 'form-control fieldError' : 'form-control'">
-                                    <button class="btn btn-secondary" onclick="idCheck()" style="margin-left:30px">PW 확인</button>
+                                           th:field="*{password}" id="password" placeholder="비밀번호">
+                                    <button class="btn btn-secondary" onclick="pwCheck()" style="margin-left:30px">PW 확인</button>
                                 </div>
                             </div>
 

@@ -127,9 +127,30 @@ public class MemberController {
     public String modifyForm(@AuthenticationPrincipal UserDetails userDetails
             , Model model, Member member, @PathVariable("id") Long id) {
         member = memberRepository.findById(id).get();
+
         model.addAttribute("member", member);
 
-        return "user/modifyMyInfo";
+        return "user/passwordCheck/{id}";
+    }
+
+    @GetMapping("/user/passwordCheck/{id}")
+    public String pwCheckForm() {
+
+        return "user/passwordCheck";
+    }
+
+    @PostMapping("/user/passwordCheck/{id}")
+    public String pwCheck(@AuthenticationPrincipal UserDetails userDetails, Model model
+            , Member member, HttpServletRequest request ) {
+        member = memberRepository.findByUsername(userDetails.getUsername());
+        String inputPw = request.getParameter("password");
+
+        if (member.getPassword().equals(inputPw)) {
+            return "user/modified/{id}";
+        } else {
+            return "user/passwordCheck/{id}";
+        }
+
     }
 
     /**
@@ -161,16 +182,9 @@ public class MemberController {
     /**
      * 수정 시 비밀번호 재확인
      */
-    @GetMapping("/validatePw")
-    public String validatePw(@RequestBody String password, HttpSession session) throws Exception {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        Member member = (Member) session.getAttribute("login");
-        if (encoder.matches(password, member.getPassword())) {
-            return "true";
-        } else {
-            return "false";
-        }
+    @GetMapping("/exists/{password}")
+    public ResponseEntity<Boolean> checkPasswordDuplicate(@PathVariable String password) {
+        return ResponseEntity.ok(memberService.checkPasswordDuplicate(password));
     }
 
     /**
