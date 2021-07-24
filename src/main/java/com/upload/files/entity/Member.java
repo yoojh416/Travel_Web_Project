@@ -10,14 +10,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
+
 @Getter @Setter
 @Entity
 @NoArgsConstructor
 @Table(name = "member")
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String username; //email 로그인 id로 사용
     private String password;
@@ -36,9 +38,8 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    /*@JsonIgnore
     @OneToMany(mappedBy = "member")
-    private List<Booking> bookingList = new ArrayList<Booking>();*/
+    private List<Booking> bookingList = new ArrayList<>();
 
     @Builder
     public Member(String username, String password, String name
@@ -53,4 +54,5 @@ public class Member {
         this.phoneNo = phoneNo;
         this.role = role;
     }
+
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
 <link rel="stylesheet" th:href="@{/css/button.css}"/>
 <link rel="stylesheet"th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" >
 <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
@@ -9,7 +10,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
-
 <script>
 $(document).ready(function () {
     $('#dateIn').datepicker({
@@ -30,7 +30,6 @@ $(document).ready(function () {
     });
 });
 </script>
-
 <head>
     <meta charset="UTF-8">
     <title>예약 사이트</title>
@@ -38,7 +37,7 @@ $(document).ready(function () {
 <body>
 
 <div class="upload-container">
-    <form method="post" th:object="${order}" action="/order/confirm">
+    <form method="post" th:object="${order}" action="/order/payment">
 
         <div class="upload-header">
             <h2>예약하기 🤠</h2>
