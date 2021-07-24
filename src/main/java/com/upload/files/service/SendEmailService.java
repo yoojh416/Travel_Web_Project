@@ -56,8 +56,21 @@ public class SendEmailService {
         mailDto.setAddress(username);
         mailDto.setTitle(name + "님의 너나들이투어 임시비밀번호 안내 이메일 입니다.");
         mailDto.setMessage("안녕하세요. 너나들이투어 임시비밀번호 안내 관련 이메일 입니다."
-                + "[" + name + "]" + "님의 임시 비밀번호는 ["
-                + str + "] 입니다.");
+                +"["+ name +"]"+"님의 임시 비밀번호는 ["+ str +"] 입니다.");
+
+        return mailDto;
+    }
+
+    /**
+     * 계정인증
+     */
+    public MailDto verifyUserAccount(String username) {
+        MailDto mailDto = new MailDto();
+        mailDto.setAddress(username);
+        mailDto.setTitle("[너나들이 투어] 이메일 계정인증 링크 안내");
+        mailDto.setMessage("안녕하세요. 계정을 인증하고 가입을 계속하려면 링크를 클릭해 주세요.☞"
+                + "http://192.168.0.6:8080/user/join/"+username);
+
         return mailDto;
     }
 

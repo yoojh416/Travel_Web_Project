@@ -55,6 +55,10 @@ dependencies {
     /** 메일 API 의존성 */
     implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
     implementation group: 'org.apache.commons', name: 'commons-email', version: '1.5'
+    implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
+    compileOnly group: 'javax', name: 'javaee-api', version: '8.0.1'
+    implementation group: 'org.springframework', name: 'spring-context-support', version: '5.3.9'
+
 
 }
 
