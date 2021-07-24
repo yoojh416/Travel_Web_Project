@@ -55,6 +55,4 @@ public class HomeController {
         return "/layout/footer";
     }
 
-
-
 }

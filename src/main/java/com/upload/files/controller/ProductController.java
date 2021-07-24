@@ -1,11 +1,9 @@
 package com.upload.files.controller;
 
-import com.upload.files.entity.Article;
-import com.upload.files.entity.FilePath;
-import com.upload.files.entity.ListSearch;
-import com.upload.files.entity.Product;
+import com.upload.files.entity.*;
 import com.upload.files.repository.ArticleRepository;
 import com.upload.files.repository.FilePathRepository;
+import com.upload.files.repository.MemberRepository;
 import com.upload.files.repository.ProductRepository;
 import com.upload.files.service.ArticleService;
 import com.upload.files.service.ProductService;
@@ -13,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -34,6 +34,7 @@ public class ProductController { //여행 상품용 컨트롤러
     private final ProductRepository productRepository;
     private final FilePathRepository filePathRepository;
     private final ArticleService articleService;
+    private final MemberRepository memberRepository;
 
     /**
      * 상품등록 페이지로 이동
@@ -48,12 +49,15 @@ public class ProductController { //여행 상품용 컨트롤러
      * 입력한 상품 정보 저장
      */
     @PostMapping("/admin/register")
-    public String registered(@Validated ProductForm form, BindingResult result
-            , Model model, HttpServletRequest request) {
+    public String registered(@Validated ProductForm form, @AuthenticationPrincipal UserDetails userDetails,
+                             BindingResult result, Model model) {
 
         if (result.hasErrors()) { // 업로드 오류 -> 재 입력
             return "admin/upload";
         }
+
+        Member member = memberRepository.findByUsername(userDetails.getUsername());
+        model.addAttribute("name", member.getName());
 
         Product product = new Product(form.getProNo(), form.getProTitle(), form.getProWriter()
                 , form.getProContent(), form.getRegion(), form.getSeason(), form.getTheme()
