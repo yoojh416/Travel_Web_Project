@@ -1,6 +1,5 @@
 package com.upload.files.controller;
 
-import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Member;
 import com.upload.files.repository.MailDto;
 import com.upload.files.repository.MemberDto;
@@ -11,22 +10,16 @@ import com.upload.files.service.SendEmailService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.*;
@@ -49,11 +42,20 @@ public class MemberController {
     /**
      * 회원가입 페이지
      */
+    @GetMapping("/user/join/{username}")
+    public String dispSignup(@ModelAttribute(name = "memberDto") @Valid MemberDto memberDto
+            ,@PathVariable("username")String username, BindingResult result, Model model) {
+        memberDto.setUsername(username);
+
+        model.addAttribute("memberDto", memberDto);
+        return "user/join";
+    }
+
     @GetMapping("/user/join")
     public String dispSignup(@ModelAttribute(name = "memberDto") @Valid MemberDto memberDto
-            , BindingResult result, Model model) {
+            ,BindingResult result, Model model) {
 
-        model.addAttribute("memberDro", memberDto);
+        model.addAttribute("memberDto", memberDto);
         return "user/join";
     }
 
@@ -253,6 +255,25 @@ public class MemberController {
         sendEmailService.mailSend(mailDto);
 
         return "/user/login";
+    }
+
+    /** 이메일 인증 폼으로 가기 */
+    @GetMapping("/verifyEmail")
+    public String verifyEmail(@ModelAttribute(name = "memberDto") @Valid MemberDto memberDto
+            ,BindingResult result, Model model) {
+        return "user/verifyEmail";
+    }
+
+    @PostMapping("/verifying")
+    public String verifying(HttpServletRequest request, Model model) {
+        String username = request.getParameter("username");
+
+        MailDto mailDto = sendEmailService.verifyUserAccount(username);
+        sendEmailService.mailSend(mailDto);
+
+        model.addAttribute("username", username);
+
+        return "user/login";
     }
 
 }

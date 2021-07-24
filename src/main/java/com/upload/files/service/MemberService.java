@@ -64,13 +64,6 @@ public class MemberService implements UserDetailsService {
         return memberRepository.existsByUsername(username);
     }
 
-    /**
-     * username 중복 확인 로직
-     */
-    public boolean checkPasswordDuplicate(String password) {
-        return memberRepository.existsByPassword(password);
-    }
-
     /** email 유효성 검사  */
     public boolean userEmailCheck(String username, String name) {
 
