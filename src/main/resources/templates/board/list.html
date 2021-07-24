@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>여행 상품</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link th:href="@{/css/listStyle.css}" rel="stylesheet">
-<link rel="stylesheet" th:href="@{/css/footer.css}">
-<link th:href="@{/css/button-hover.css}" rel="stylesheet">
-<head th:replace="layout/header :: header">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<head>
+    <title>여행 상품</title>
+    <!--css-->
+    <link th:href="@{/css/listStyle.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
+    <!--js -->
+    <!-- loader js link-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+    <script th:src="@{/js/home.js}"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 </head>
-<body class="fullscreen">
 
-<div th:replace="layout/bodyHeader :: bodyHeader" />
-    <div class="jumbotrons" id="top">
-
-    </div>
+<th:block layout:fragment="content">
     <div class="container-fluid">
         <div class="rows">
             <!--checkbox 시작-->
@@ -94,8 +100,6 @@
                                    th:text = "${list.proTitle}"></a></h3>
                             <p class="card-text" th:text="'￦ '+${list.price}"></p>
                             <p class="card-text" th:text="${list.proContent}"></p>
-                        </div>
-                        <div class="card-footer">
                             @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
                             @<input type="hidden" name="season" th:text="${list.season}">&nbsp;
                             @<input type="hidden" name="theme" th:text="${list.theme}">
@@ -146,7 +150,7 @@
     <!--if($("input:checkbox[name='region']").is(":checked")){
     alert("하나만 선택해주세요");
     }-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
     <script>
     $(document).ready(function(){
 
@@ -200,6 +204,5 @@
 
     });
     </script>
-<div th:replace="layout/footer :: footer" />
-</body>
+</th:block>
 </html>
