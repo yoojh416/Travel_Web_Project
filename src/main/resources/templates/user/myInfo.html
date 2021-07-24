@@ -25,12 +25,8 @@
     <h1> <span sec:authentication="principal.username"></span> 회원님 정보(◍•ᴗ•◍)❤ </h1>
     <div style="text-align:right;">
         <a class="button-hover" th:href="@{/user/passwordCheck}"
-           tyle="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;" >회원정보 수정 🧐</a>
+           style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">회원정보 수정 🧐</a>
         <button class="button-hover" th:onclick="|window.location.href='/'|"  style="font-size: 1rem;" >홈으로 가기 😎</button>
-    </div>
-
-    <div th:each="member : ${members}">
-        <a th:href="@{/user/passwordCheck}">수정하기</a>
     </div>
 
     <div class="container">

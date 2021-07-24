@@ -45,6 +45,8 @@
             <div class="col-lg-9 my-4 mb-4" style="height: 100%;">
                 <form class="form-signin" th:action="@{/user/modified}" method="post" th:object="${member}">
 
+                    <input type="hidden" th:field="*{id}" id="id" th:value="*{id}"/>
+
                     <!--csrf**-->
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
@@ -63,8 +65,7 @@
                             <label class="col-sm-2 col-form-label">비밀번호</label>
                             <div class="col-sm-6">
                                 <input type="password" pattern=".{8,12}" class="form-control"
-                                       th:field="*{password}" id="password" placeholder="비밀번호">
-                                <button class="btn btn-secondary" onclick="pwCheck()" style="margin-left:30px">PW 확인
+                                       th:field="*{password}" id="password" placeholder="변경할 비밀번호">
                                 </button>
                             </div>
                         </div>

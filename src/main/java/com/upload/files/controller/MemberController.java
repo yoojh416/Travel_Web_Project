@@ -37,10 +37,14 @@ import java.util.*;
 @AllArgsConstructor
 public class MemberController {
 
-    @Autowired private MemberRepository memberRepository;
-    @Autowired private MemberService memberService;
-    @Autowired private SendEmailService sendEmailService;
-    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private MemberRepository memberRepository;
+    @Autowired
+    private MemberService memberService;
+    @Autowired
+    private SendEmailService sendEmailService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 회원가입 페이지
@@ -122,19 +126,6 @@ public class MemberController {
     }
 
     /**
-     * 정보 수정 페이지
-     */
-    @GetMapping("/user/modify/{id}")
-    public String modifyForm(@AuthenticationPrincipal UserDetails userDetails
-            , Model model, Member member, @PathVariable("id") Long id) {
-        member = memberRepository.findById(id).get();
-
-        model.addAttribute("member", member);
-
-        return "user/passwordCheck";
-    }
-
-    /**
      * 수정 전 비밀번호 확인
      */
     @GetMapping("/user/passwordCheck")
@@ -142,26 +133,20 @@ public class MemberController {
         return "user/passwordCheck";
     }
 
-    @GetMapping("/checkingPw")
+    @PostMapping("/checkingPw")
     public String pwCheck(@AuthenticationPrincipal UserDetails userDetails, Model model
             , Member member, HttpServletRequest request) {
 
         member = memberRepository.findByUsername(userDetails.getUsername());
         String dbPw = member.getPassword();
         String inputPw = request.getParameter("password");
-        String afterEncode = bCryptPasswordEncoder.encode(inputPw);
 
-        if (dbPw.equals(afterEncode)) {
-            return "true";
+        if (bCryptPasswordEncoder.matches(inputPw, dbPw)) {
+            model.addAttribute("member", member);
+            return "user/modifyMyInfo";
         } else {
-            return "false";
+            return "user/passwordCheck";
         }
-    }
-
-    public String turnIntoUpdateForm(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-        Member member = memberRepository.findByUsername(userDetails.getUsername());
-        model.addAttribute("member", member);
-        return "user/modified";
     }
 
     /**
@@ -170,6 +155,8 @@ public class MemberController {
     @PostMapping("/user/modified")
     public String modifyMyInfo(@AuthenticationPrincipal UserDetails userDetails
             , @Valid MemberDto memberDto, BindingResult result, Model model, Member member) {
+
+        memberRepository.deleteById(memberDto.getId());
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
