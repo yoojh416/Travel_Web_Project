@@ -43,9 +43,9 @@
                                                  th:text="${#dates.format(order.dateOut, 'yyyy-MM-dd')}"></strong></h3>
         </div>
         <div style="text-align:right;">
-            <button class="button" type="button" id="check_module">결제하기(테스트)</button>
+            <button class="button" type="button" id="check_module" style="font-size: 13px; margin:0px;">결제하기(테스트)</button>
             <a th:href="@{/order/cancel/{orderId}(orderId= ${order.orderId})}"
-               class="button-hover" style="font-size: 0.8rem;" >여행 취소하기</a>
+               class="button" style="font-size: 13px; text-decoration:none;" >여행 취소하기</a>
         </div>
     </div>
 
