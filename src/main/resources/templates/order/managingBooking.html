@@ -7,9 +7,6 @@
 </head>
 <body>
 <div>
-    <div>
-        <span>[예정 여행 내역]</span>
-    </div>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -32,16 +29,15 @@
             <td th:text="${paid.orderDate}"></td>
             <td th:text="${paid.orderPrice}"></td>
             <td th:text="${paid.orderQty}"></td>
-            <td><input type="hidden" name="orderId" th:value="${paid.orderId}"></td>
-            <td><button class="button" id="cancelPay">예약 취소하기</button></td>
+            <td><input type="hidden" name="customerId" th:value="${paid.member.id}"></td>
+            <!--<td><button class="button"
+                        th:onclick="|window.location.href='@{/order/customerDetail/{id}(id=${paid.member.id})}'|">회원정보 확인하기</button></td>-->
+            <td><button class="button" id="checkCustom">회원정보 확인하기</button></td>
         </tr>
         </tbody>
     </table>
     <hr>
     <br>
-    <div>
-        <span>[지난 여행 내역]</span>
-    </div>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -63,39 +59,19 @@
             <td th:text="${comp.orderDate}"></td>
             <td th:text="${comp.orderPrice}"></td>
             <td th:text="${comp.orderQty}"></td>
-            <td>[환불 불가]</td>
-            <td><input type="hidden" name="orderId" th:value="${comp.orderId}"></td>
+            <td>[여행 종료]</td>
         </tr>
         </tbody>
     </table>
     <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
-    <div>
-        <h4>여행을 변경하실 경우, 환불을 진행하시고 다시 예약해주세요.</h4>
-    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(){
-        $("#cancelPay").click(function(){
-            var orderId = $("input[name='orderId']").val();
-            swal({
-                title: "예약 변경 / 취소",
-                text: "예약을 변경하거나 취소하시겠습니까?",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willCancel) => {
-                if(willCancel){
-                    swal("변경 및 취소가 완료되었습니다.",{
-                        icon: "success",
-                    });
-                    location.href="/order/cancel/"+orderId;
-                } else{
-                    swal("취소되지 않았습니다.");
-                }
-            });
+        $("#checkCustom").click(function(){
+            var customerId = $("input[name='customerId']").val();
+            location.href="/order/customerDetail/"+customerId;
         });
     });
 </script>
