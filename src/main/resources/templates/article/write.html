@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="~{layout/layout}">
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.springframework.org/security/tags">
 
@@ -33,10 +29,7 @@
     <!--<head th:replace="fragments/header :: header">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
 </head>
-<!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 <body>
 
 <div class="upload-container" sec:authorize="isAuthenticated()">
@@ -109,6 +102,5 @@
 
 </script>
 <link th:href="@{/css/footer.css}" rel="stylesheet">
-<!--<div th:replace="fragments/footer :: footer" />-->
 
 </html>
