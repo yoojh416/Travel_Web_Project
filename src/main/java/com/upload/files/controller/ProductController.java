@@ -56,10 +56,7 @@ public class ProductController { //여행 상품용 컨트롤러
             return "admin/upload";
         }
 
-        Member member = memberRepository.findByUsername(userDetails.getUsername());
-        model.addAttribute("name", member.getName());
-
-        Product product = new Product(form.getProNo(), form.getProTitle(), form.getProWriter()
+        Product product = new Product(form.getProNo(), form.getProTitle(), userDetails.getUsername()
                 , form.getProContent(), form.getRegion(), form.getSeason(), form.getTheme()
                 , form.getPrice(), form.getN(), form.getE());
 
