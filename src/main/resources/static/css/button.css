@@ -124,7 +124,7 @@ a.button:hover {
   left: 4px;
   width: 12px;
   height: 12px;
-  background: #0069d9;
+  background: #838BB2;
   border-radius: 50%;
   opacity: 0;
   transform: scale(1.5);
@@ -135,8 +135,8 @@ input[type="radio"]{
 }
 #option-1:checked:checked ~ .option-1,
 #option-2:checked:checked ~ .option-2{
-  border-color: #0069d9;
-  background: #0069d9;
+  border-color: #838BB2;
+  background: #838BB2;
 }
 #option-1:checked:checked ~ .option-1 .dot,
 #option-2:checked:checked ~ .option-2 .dot{
@@ -160,3 +160,4 @@ input[type="radio"]{
   margin: 0 auto;
   width:100%;
 }
+
