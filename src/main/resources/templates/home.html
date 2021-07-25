@@ -1,348 +1,235 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  <!-- loader js link-->
-  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
-  <!-- icon link -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-  <!-- custom css file link  -->
+<head>
+  <title>Home</title>
+  <!--css-->
+  <link rel="stylesheet" th:href="@{/css/home.css}" >
   <link rel="stylesheet" th:href="@{/css/button.css}" >
   <link rel="stylesheet" th:href="@{/css/event.css}" >
-  <link rel="stylesheet" th:href="@{/css/home.css}" >
-  <link rel="stylesheet" th:href="@{/css/footer.css}" >
+  <!--js -->
+  <!-- loader js link-->
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+  <script th:src="@{/js/home.js}"></script>
+</head>
+<th:block layout:fragment="content">
 
-  <!-- loader js -->
-  <script>
-	$(window).load(function() { /*window가 로드되면 함수 실행*/
-		$('.loader').delay('1000').fadeOut(); /*loader class 처리해야 fade out*/
-	});
-</script>
-  <meta charset="UTF-8">
-  <title>메인 화면</title> <!-- href 링크 모두 동일-->
-  <head th:replace="layout/header :: header">
-  </head>
-<body>
-  <div th:replace="layout/bodyHeader :: bodyHeader" />
-
+  <!-- Begin Page Content -->
   <div class="containers">
-  <!-- slidebox section starts -->
-  <div class="loader"></div>
-  <div class="slidebox">
-    <input type="radio" name="slide" id="slide01" checked>
-    <input type="radio" name="slide" id="slide02">
-    <input type="radio" name="slide" id="slide03">
-    <input type="radio" name="slide" id="slide04">
-
-    <ul class="slidelist">
-      <li class="slideitem">
-        <div>
-          <label for="slide04" class="left"></label>
-
-          <label for="slide02" class="right"></label>
-          <a th:href="@{/board/list}"><img src="images/slideimg01.jpg"></a>
+    <!--image slider start-->
+    <div class="slider">
+      <div class="slides">
+        <!--radio button start-->
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+        <!--radio button end-->
+        <!--slide image start-->
+        <div class="slide first">
+          <img src="images/slideimg01.jpg" alt="">
         </div>
-      </li>
-      <li class="slideitem">
-        <div>
-          <label for="slide01" class="left"></label> <label for="slide03"
-                                                            class="right"></label><a th:href="@{/board/list}"><img
-                src="images/slideimg02.jpg"></a>
+        <div class="slide">
+          <img src="images/slideimg02.jpg" alt="">
         </div>
-      </li>
-      <li class="slideitem">
-        <div>
-          <label for="slide02" class="left"></label> <label for="slide04"
-                                                            class="right"></label><a th:href="@{/board/list}"><img
-                src="images/slideimg03.jpg"></a>
+        <div class="slide">
+          <img src="images/slideimg03.jpg" alt="">
         </div>
-      </li>
-      <li class="slideitem">
-        <div>
-          <label for="slide03" class="left"></label> <label for="slide01" class="right"></label><a th:href="@{/board/list}"><img
-                src="images/slideimg04.jpg"></a>
+        <div class="slide">
+          <img src="images/slideimg04.jpg" alt="">
         </div>
-      </li>
-    </ul>
-  </div>
-  <!-- slidebox section ends -->
-  <!-- book section starts  -->
-
-  <section class="book" id="book">
-    <div class="row">
-      <form method="get" th:action="@{board/list}" th:object="${listSearch}" name="searchFrm">
-        <div class="inputBox">
-          <select th:name="region" class="minimal">
-            <option value="">여행지</option>
-            <option th:value="Korea">국내</option>
-            <option th:value="Japan">일본</option>
-            <option th:value="China">중국</option>
-            <option th:value="Southeast_Asia">동남아</option>
-            <option th:value="Europe">유럽</option>
-          </select>
-          <select th:name="season" class="minimal">
-            <option value="">계절</option>
-            <option th:value="Spring">봄</option>
-            <option th:value="Summer">여름</option>
-            <option th:value="Autumn">가을</option>
-            <option th:value="Winter">겨울</option>
-          </select>
-          <select th:name="theme" class="minimal">
-            <option value="">테마</option>
-            <option th:value="Family">가족</option>
-            <option th:value="Friend">친구</option>
-            <option th:value="Couple">커플</option>
-            <option th:value="Filial">효도</option>
-          </select>
-          <button type="submit" class="img_btn" id="img_btn"><a th:href="@{/board/list}"><i class="fas fa-search"></i></a></button>
+        <!--slide image end-->
+        <!--automatic navigation start-->
+        <div class="navigation-auto">
+          <div class="auto-btn1"></div>
+          <div class="auto-btn2"></div>
+          <div class="auto-btn3"></div>
+          <div class="auto-btn4"></div>
         </div>
-      </form>
+        <!--automatic navigation end-->
+      </div>
+      <!--manual navigation start-->
+      <div class="navigation-manual">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+      </div>
+      <!--manual navigation end-->
     </div>
-  </section>
+    <!-- book section starts  -->
 
-  <!-- book section ends -->
+    <section class="book" id="book">
+      <div class="row">
+        <form method="get" th:action="@{board/list}" th:object="${listSearch}" name="searchFrm">
+          <div class="inputBox">
+            <select th:name="region" class="minimal">
+              <option value="">여행지</option>
+              <option th:value="Korea">국내</option>
+              <option th:value="Japan">일본</option>
+              <option th:value="China">중국</option>
+              <option th:value="Southeast_Asia">동남아</option>
+              <option th:value="Europe">유럽</option>
+            </select>
+            <select th:name="season" class="minimal">
+              <option value="">계절</option>
+              <option th:value="Spring">봄</option>
+              <option th:value="Summer">여름</option>
+              <option th:value="Autumn">가을</option>
+              <option th:value="Winter">겨울</option>
+            </select>
+            <select th:name="theme" class="minimal">
+              <option value="">테마</option>
+              <option th:value="Family">가족</option>
+              <option th:value="Friend">친구</option>
+              <option th:value="Couple">커플</option>
+              <option th:value="Filial">효도</option>
+            </select>
+            <button type="submit" class="img_btn" id="img_btn"><a th:href="@{/board/list}"><i class="fas fa-search"></i></a></button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- book section ends -->
 
 
-  <!--  &lt;!&ndash; sms icon starts &ndash;&gt;
-    <div class="sms">
-      <ul>
-        <li><a th:href="@{/board/list}"><i class="fas fa-sms"></i></a></li>
-        <li><a th:href="@{/board/list}"><i class="fab fa-google"></i></a></li>
+    <!--  &lt;!&ndash; sms icon starts &ndash;&gt;
+      <div class="sms">
+        <ul>
+          <li><a th:href="@{/board/list}"><i class="fas fa-sms"></i></a></li>
+          <li><a th:href="@{/board/list}"><i class="fab fa-google"></i></a></li>
+        </ul>
+      </div>-->
+
+    <!-- sms icon ends -->
+
+    <!-- packages section starts  -->
+
+    <!-- 간격 조정 starts -->
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <!-- 간격 조정 ends -->
+
+    <section class="packages" id="package">
+      <h1 class="heading">
+        <span><i class="fas fa-plane-departure">너나들이와 지금 떠나요</i></span>
+      </h1>
+
+      <ul class="navbar_interval">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
       </ul>
-    </div>-->
-
-  <!-- sms icon ends -->
-
-  <!-- packages section starts  -->
-
-  <!-- 간격 조정 starts -->
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <!-- 간격 조정 ends -->
-
-  <section class="packages" id="package">
-    <h1 class="heading">
-      <span><i class="fas fa-plane-departure">너나들이와 지금 떠나요</i></span>
-    </h1>
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-    <div class="box-container">
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/p1.jpg"></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">제주도 한라산</a>
-          </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Veritatis, nam!</p>
+      <div class="box-container">
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/p1.jpg"></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">제주도 한라산</a>
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis, nam!</p>
+          </div>
         </div>
+
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/p2.jpg" ></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">태국 여행</a>
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis, nam!</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/p3.jpg" alt=""></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">부산 여행</a>
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis, nam!</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/p4.jpg" alt=""></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">베트남 다낭으로 떠나요</a>
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis, nam!</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/p5.jpg" alt=""></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">뉴요커는 꿈이 아니에요 단 7일뿐</a>
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis, nam!</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/p6.jpg" alt=""></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">(Seoul)@BTS @PSY @SON</a>
+            </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Veritatis, nam!</p>
+          </div>
+        </div>
+
       </div>
 
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/p2.jpg" ></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">태국 여행</a>
-          </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Veritatis, nam!</p>
-        </div>
-      </div>
+    </section>
 
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/p3.jpg" alt=""></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">부산 여행</a>
-          </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Veritatis, nam!</p>
-        </div>
-      </div>
+    <!-- packages section ends -->
 
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/p4.jpg" alt=""></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">베트남 다낭으로 떠나요</a>
-          </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Veritatis, nam!</p>
-        </div>
-      </div>
-
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/p5.jpg" alt=""></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">뉴요커는 꿈이 아니에요 단 7일뿐</a>
-          </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Veritatis, nam!</p>
-        </div>
-      </div>
-
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/p6.jpg" alt=""></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">(Seoul)@BTS @PSY @SON</a>
-          </h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Veritatis, nam!</p>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- packages section ends -->
-
-  <!-- 간격 조정 starts -->
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <!-- 간격 조정 ends -->
-
-
-  <!-- special section starts -->
-  <h1 class="heading">
-    <span><i class="fas fa-calendar-check">특별한 날을 만드는 건 어때요?</i></span>
-  </h1>
-  <section class="packages" id="packages">
-    <div class="box-container">
-
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/e1.jpg" alt=""></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">북한산 오전 투어(6:00~15:00)</a>
-          </h3>
-          <p>일출만 보고 와요</p>
-        </div>
-      </div>
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/e2.jpg" alt=""></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">(서울) 특별한 날 연인과 호캉스</a>
-          </h3>
-          <p>뉴욕</p>
-        </div>
-      </div>
-      <div class="box">
-        <a th:href="@{/board/list}"><img src="images/e3.jpg" alt=""></a>
-        <div class="content">
-          <h3>
-            <a th:href="@{/board/list}">(강원도) 옥수수 한 사발 하실례예?</a>
-          </h3>
-          <p>서울</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- special section ends -->
-
-  <!-- 간격 조정 starts -->
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-
-  <ul class="navbar_interval">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <!-- 간격 조정 ends -->
-
-  <!-- gallery section starts  -->
-
-  <section class="gallery" id="gallery">
-
-    <h1 class="heading">
-      <span><i class="fas fa-hand-peace">베스트 리뷰 및 이벤트</i></span>
-    </h1>
+    <!-- 간격 조정 starts -->
 
     <ul class="navbar_interval">
       <li></li>
@@ -353,115 +240,208 @@
       <li></li>
     </ul>
 
-    <div class="box-container">
-      <div class="box1">
-        <img class="gallery_img" src="images/g-7.jpg" alt="">
-        <img class="best_icon" src="images/best.png" alt="">
-        <div class="content">
-          <h3>정한나 회원님</h3>
-          <p>베스트 리뷰 : 우정 여행 패키지</p>
-          <br> <br> <br> <a th:href="@{/bestReview/list}" class="btn">더 보기</a>
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <!-- 간격 조정 ends -->
+
+
+    <!-- special section starts -->
+    <h1 class="heading">
+      <span><i class="fas fa-calendar-check">특별한 날을 만드는 건 어때요?</i></span>
+    </h1>
+    <section class="packages" id="packages">
+      <div class="box-container">
+
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/e1.jpg" alt=""></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">북한산 오전 투어(6:00~15:00)</a>
+            </h3>
+            <p>일출만 보고 와요</p>
+          </div>
         </div>
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/e2.jpg" alt=""></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">(서울) 특별한 날 연인과 호캉스</a>
+            </h3>
+            <p>뉴욕</p>
+          </div>
+        </div>
+        <div class="box">
+          <a th:href="@{/board/list}"><img src="images/e3.jpg" alt=""></a>
+          <div class="content">
+            <h3>
+              <a th:href="@{/board/list}">(강원도) 옥수수 한 사발 하실례예?</a>
+            </h3>
+            <p>서울</p>
+          </div>
+        </div>
+
       </div>
+    </section>
 
-      <div class="box2">
+    <!-- special section ends -->
 
-        <div class="slidebox1">
-          <input type="radio" name="slide1" id="slide01" checked>
-          <input type="radio" name="slide1" id="slide02">
-          <input type="radio" name="slide1" id="slide03">
-          <input type="radio" name="slide1" id="slide04">
-          <ul class="slidelist1">
-            <li class="slideitem1">
-              <a>
-                <label for="slide03" class="prev"></label>
-                <img src="./images/slide01.jpg"/>
-                <!-- Button trigger modal -->
-                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
-                  ✨ 자세한 내용보기 ✨
-                </button>
+    <!-- 간격 조정 starts -->
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <ul class="navbar_interval">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <!-- 간격 조정 ends -->
+
+    <!-- gallery section starts  -->
+
+    <section class="gallery" id="gallery">
+
+      <h1 class="heading">
+        <span><i class="fas fa-hand-peace">베스트 리뷰 및 이벤트</i></span>
+      </h1>
+
+      <ul class="navbar_interval">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <div class="box-container">
+        <div class="box1">
+          <img class="gallery_img" src="images/g-7.jpg" alt="">
+          <img class="best_icon" src="images/best.png" alt="">
+          <div class="content">
+            <h3>정한나 회원님</h3>
+            <p>베스트 리뷰 : 우정 여행 패키지</p>
+            <br> <br> <br> <a th:href="@{/bestReview/list}" class="btn">더 보기</a>
+          </div>
+        </div>
+
+        <div class="box2">
+
+          <div class="slidebox1">
+            <input type="radio" name="slide1" id="slide01" checked>
+            <input type="radio" name="slide1" id="slide02">
+            <input type="radio" name="slide1" id="slide03">
+            <input type="radio" name="slide1" id="slide04">
+            <ul class="slidelist1">
+              <li class="slideitem1">
+                <a>
+                  <label for="slide03" class="prev"></label>
+                  <img src="./images/slide01.jpg"/>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                    ✨ 자세한 내용보기 ✨
+                  </button>
                   <label for="slide02" class="next"></label>
-              </a>
-            </li>
-            <li class="slideitem1">
-              <a>
-                <label for="slide01" class="prev"></label>
-                <img src="./images/slide02.jpg">
-                <!-- Button trigger modal -->
-                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
-                  ✨ 자세한 내용보기 ✨
-                </button>
-                <label for="slide03" class="next"></label>
-              </a>
-            </li>
-            <li class="slideitem1">
-              <a>
-                <label for="slide02" class="prev"></label>
-                <img src="./images/slide03.jpg">
-                <!-- Button trigger modal -->
-                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
-                  ✨ 자세한 내용보기 ✨
-                </button>
-                <label for="slide04" class="next"></label>
-              </a>
-            </li>
-            <li class="slideitem1">
-              <a>
-                <label for="slide03" class="prev"></label>
-                <img src="./images/slide04.jpg">
-                <!-- Button trigger modal -->
-                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
-                  ✨ 자세한 내용보기 ✨
-                </button>
-                <label for="slide01" class="next"></label>
-              </a>
-            </li>
-          </ul>
+                </a>
+              </li>
+              <li class="slideitem1">
+                <a>
+                  <label for="slide01" class="prev"></label>
+                  <img src="./images/slide02.jpg">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                    ✨ 자세한 내용보기 ✨
+                  </button>
+                  <label for="slide03" class="next"></label>
+                </a>
+              </li>
+              <li class="slideitem1">
+                <a>
+                  <label for="slide02" class="prev"></label>
+                  <img src="./images/slide03.jpg">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                    ✨ 자세한 내용보기 ✨
+                  </button>
+                  <label for="slide04" class="next"></label>
+                </a>
+              </li>
+              <li class="slideitem1">
+                <a>
+                  <label for="slide03" class="prev"></label>
+                  <img src="./images/slide04.jpg">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                    ✨ 자세한 내용보기 ✨
+                  </button>
+                  <label for="slide01" class="next"></label>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
         </div>
-
-
       </div>
-    </div>
-  </section>
+    </section>
 
 
 
 
-  <!-- gallery section ends -->
-  <div th:replace="layout/footer :: footer" />
-</div>
+    <!-- gallery section ends -->
+  </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">이벤트 제목</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h1>이벤트 내용</h1>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="button" data-bs-dismiss="modal">닫기</button>
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">이벤트 제목</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>이벤트 내용</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="button" data-bs-dismiss="modal">닫기</button>
+          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/60a4d80a185beb22b30ea5d1/1f61unr3a';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-</body>
+</th:block>
 </html>

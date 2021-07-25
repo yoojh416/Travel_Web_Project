@@ -1,27 +1,28 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>itemList</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <title>관리자 페이지</title>
+    <!--css-->
     <link th:href="@{/css/itemList.css}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
-    <head th:replace="layout/header :: header">
+    <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
+    <!--js -->
 </head>
-<body>
-<div th:replace="layout/bodyHeader :: bodyHeader" />
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-    <div class="container">
-        <button class="btn-btn-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
-        <button class="btn btn-home" th:onclick="|window.location.href='/admin/userList'|">회원 관리</button>
-        <button class="btn-home" th:onclick="|window.location.href='/'|">홈으로</button>
 
+
+<th:block layout:fragment="content">
+    <div class="adminTitle">[ 관리자 페이지 ]</div>
+    <div class="container">
+        <div class="listButtons">
+        <button class="button-hover-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
+        <button class="button-hover-user" th:onclick="|window.location.href='/admin/userList'|">회원 관리</button>
+        <button class="button-hover-home" th:onclick="|window.location.href='/'|">홈으로</button>
+        </div>
         <div class="table-list">
             <table class="table_box">
                 <thead>
@@ -82,6 +83,5 @@
 
         <!-- <div th:replace="fragments/footer :: footer" />-->
     </div> <!-- /container -->
-<div th:replace="layout/footer :: footer" />
-</body>
+</th:block>
 </html>

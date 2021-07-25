@@ -60,6 +60,9 @@ dependencies {
     implementation group: 'org.springframework', name: 'spring-context-support', version: '5.3.9'
 
 
+    /** thymeleaf layout*/
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.3'
+
 }
 
 test {

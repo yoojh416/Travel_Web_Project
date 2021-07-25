@@ -16,8 +16,12 @@ body {
 	width: 100%;
 	z-index: 1;
 }
-li a{
+li {
 	text-decoration: none;/*.없앰*/
+}
+.icons {
+    font-style: normal;
+    font-weight: bold;
 }
 .main_logo_img{
 	width: 220px;
@@ -30,11 +34,14 @@ li a{
     margin-right: 217px;
 	list-style:none;
 }
+.navbar_logo li {
+	width: 140px;
+    height: 24px;
+}
 .navbar_logo li a{
     color: white;
     text-decoration: none;/*.없앰*/
     font-size: 24px;
-    height: 27px;
 }
 .navbar_logo li a:hover{
     color:  #0C4F3C;
@@ -45,13 +52,15 @@ li a{
 	padding-left: 0; /*이렇게 지정해서 중앙에 배치*/
 	font-size: 18px;
 }
+.navbar_menu li {
+    width: 140px;
+    height: 24px;
+}
 .navbar_menu li a {
     color: white;
     text-decoration: none;/*.없앰*/
 	padding: 10px; /*메뉴안 내용들의 간격 조정*/
-	width: 125px;
     font-size: 24px;
-    height: 27px;
 }
 .navbar_menu li a:hover {
     color:  #0C4F3C;
@@ -64,16 +73,18 @@ li a{
 	padding-left: 0rem; /*중앙 배치*/
 	margin-left: 50px;
 }
+.navbar_icons li {
+    width: 140px;
+    height: 24px;
+}
 .navbar_icons li a {
-    color: black;
+    color: #1839ff;
 	font-size: 25px;
 	padding: 0px;
-	width: 140px;
     font-size: 24px;
-    height: 27px;
 }
 .navbar_icons li a:hover {
-    color:white;
+    color:#C3e2dd;
 }
 .navbar_toogleBtn { /*위치 조정*/
 	display: none; /*큰 크기때는 안 보이게 함*/
@@ -82,48 +93,3 @@ li a{
 	font-size: 24px;
 	color: white;
 }
-/*
-@media screen and (max-width: 1075px) {
-	.navbar {
-		flex-direction: column;
-*//*기존은 row, column으로 아래로 내림*//*
-
-		align-items: flex-start;
-*//*왼쪽으로 이동*//*
-
-	}
-	.navbar_menu{
-		display: none; *//*
-*//*화면에서 사라짐*//*
-
-		flex-direction: column;
-		align-items: center; *//*
-        *//*중앙배치*//*
-		width: 100%
-*//*align-items가 반응하지 않는 부분을 width가 보완*//*
-
-	}
-	.navbar_menu li{ *//*
-*//*hover부분이 넓어짐*//*
-
-		width: 100%;
-		text-align: center;
-	}
-	.navbar_icons {
-		display: none;
-		justify-content: center; *//*
-*//*중앙 배치*//*
-
-		width: 100%;
-	}
-	.navbar_toogleBtn{
-*//*화면이 작아질때만 표시되도록 함*//*
-
-		display: block;
-	}
-	.navbar_menu.active,
-	.navbar_icons.active {
-    *//*navbar_toogleBtn이 클릭시 활성화*//*
-	display: flex;
-	}
-}*/
