@@ -1,44 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/css/file-upload9.css}"/>
+    <link rel="stylesheet" th:href="@{/css/button.css}"/>
+    <link th:href="@{/css/itemList9.css}" rel="stylesheet">
+
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>✈️예약 확인</title>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>주문번호</th>
-            <th>여행 시작일</th>
-            <th>여행 마지막일</th>
-            <th>주문일자</th>
-            <th>금액</th>
-            <th>수량</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="order : ${orders}">
-            <td th:text="${order.orderId}"></td>
-            <td th:text="${order.dateIn}"></td>
-            <td th:text="${order.dateOut}"></td>
-            <td th:text="${order.orderDate}"></td>
-            <td th:text="${order.orderPrice}"></td>
-            <td th:text="${order.orderQty}"></td>
-            <td><input type="hidden" name="orderId" th:value="${order.orderId}"></td>
-            <td><button class="button" id="cancelPay">예약 취소하기</button></td>
-        </tr>
-        </tbody>
-    </table>
-    <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
-    <div>
-        <h4>여행을 변경하실 경우, 환불을 진행하시고 다시 예약해주세요.</h4>
+<div class="upload-container">
+    <div class="upload-header">
+        <h1 style="margin-bottom: 25px;">👨‍✈️️예약현황 👩‍✈️️</h1>
+        <div style="text-align:right;">
+            <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+        </div>
+    </div>
+    <div class="upload-content">
+        <div class="table-list">
+            <table class="table_box">
+                <!--<table class="table table-striped">-->
+                <thead>
+                <tr>
+                    <th>주문번호</th>
+                    <th>여행 시작일</th>
+                    <th>여행 마지막일</th>
+                    <th>주문일자</th>
+                    <th>금액</th>
+                    <th>수량</th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.dateIn}"></td>
+                    <td th:text="${order.dateOut}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td th:text="${order.orderPrice}"></td>
+                    <td th:text="${order.orderQty}"></td>
+                    <td><input type="hidden" name="orderId" th:value="${order.orderId}"></td>
+                    <td><button class="button" id="cancelPay">예약 취소하기</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h4>여행을 변경하실 경우, 환불을 진행하시고 다시 예약해주세요.</h4>
+        </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script>

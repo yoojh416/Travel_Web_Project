@@ -21,8 +21,7 @@ body:before {
     position: absolute;
     top: 0;
     left: 0;
-    background: #0f5aba;
-    opacity: 0.75;
+    background: #16a085;
     content: "";
     z-index: 0;
 }
@@ -37,7 +36,6 @@ body:before {
 h1, h2, h3, h4, h5, h6 {
     margin-top: 20px;
     margin-bottom: 20px;
-    color: #0f5aba;
 }
 
 h1 {
@@ -63,47 +61,12 @@ button {
     min-height: 38px;
 }
 
-/*upload start*/
-button.button-hover-upload{
-    background: #0f5aba;
+button.primary {
+    background-color: #128ff2;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
-    border: none;
-    position: relative;
-    left: 220px;
-    width: 200px;
-    height: 55px;
-    font-size: 27px;
-    /* padding: 0 2em; */
-    cursor: pointer;
-    transition: 800ms ease all;
-    outline: none;
-    margin: 20px;
 }
-button.button-hover-upload:hover{
-  background:#fff;
-  color:#0f5aba;
-}
-button.button-hover-upload:before,button:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #0f5aba;
-  transition:400ms ease all;
-}
-button.button-hover-upload:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-button.button-hover-upload:hover:before,button:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
-/*upload end*/
+
 input {
     font-size: 1rem;
 }
