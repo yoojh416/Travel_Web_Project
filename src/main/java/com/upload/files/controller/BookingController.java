@@ -5,6 +5,7 @@ import com.upload.files.entity.Member;
 import com.upload.files.entity.Product;
 import com.upload.files.repository.BookingRepository;
 import com.upload.files.repository.MemberRepository;
+import com.upload.files.repository.OrderStatus;
 import com.upload.files.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,8 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,6 +64,7 @@ public class BookingController {
         booking.setOrderPrice(Integer.parseInt(request.getParameter("OrderPrice")));
         booking.setOrderDate(LocalDate.now());
         booking.setMember(member);
+        booking.setStatus(OrderStatus.PAID);
         bookingRepository.save(booking);
         model.addAttribute("order", booking);
 
@@ -102,42 +109,78 @@ public class BookingController {
         Member member = memberRepository.findByUsername(userDetails.getUsername());
         Long id = member.getId();
         List<Booking> bookingList = bookingRepository.findByMemberId(id);
+        List<Booking> paidList = new ArrayList<>();
+        List<Booking> compList = new ArrayList<>();
 
-        model.addAttribute("orders", bookingList);
+        LocalDate day1 = null;
+        LocalDate day2 = null;
+
+        for (int i = 0; i < bookingList.size(); i++) {
+            ;
+            try {
+                day1 = bookingList.get(i).getDateIn();
+                day2 = LocalDate.now();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            int compare = day1.compareTo(day2);
+
+            if (compare < 1) {
+                bookingList.get(i).setStatus(OrderStatus.COMP);
+                compList.add(bookingList.get(i));
+                model.addAttribute("ordered", compList);
+                System.out.println(compare);
+            } else {
+                paidList.add(bookingList.get(i));
+                model.addAttribute("orders", paidList);
+                System.out.println(compare);
+            }
+        }
 
         return "order/bookingList";
+
     }
 
-    //=============================================================================================//
-    /**
-     * 변경 페이지 확인
-     */
-    /*@GetMapping("/modify/{orderId}")
-    public String getOrderUpdate(@PathVariable("orderId") Long orderId, Model model) {
-        Booking booking = bookingRepository.findById(orderId).get();
-        model.addAttribute("order", booking);
+    @GetMapping("/adminBookingList")
+    public String managingBookingList(Booking Booking, @AuthenticationPrincipal UserDetails userDetails,
+                                      Model model) {
+        List<Booking> bookingList = bookingRepository.findAll();
+        List<Booking> paidList = new ArrayList<>();
+        List<Booking> compList = new ArrayList<>();
 
-        return "order/modify";
-    }*/
+        LocalDate day1 = null;
+        LocalDate day2 = null;
 
-    /**
-     * 변경 진행 후 확인
-     */
-    /*@PostMapping("/modify/{orderId}")
-    public String setOrderUpdate(Model model, @PathVariable Long orderId, Booking updateOrder) {
-        Booking booking = bookingRepository.findById(orderId).get();
+        for (int i = 0; i < bookingList.size(); i++) {
+            ;
+            try {
+                day1 = bookingList.get(i).getDateIn();
+                day2 = LocalDate.now();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-        booking.setDateIn(updateOrder.getDateIn());
-        booking.setDateOut(updateOrder.getDateOut());
-        booking.setOrderQty(updateOrder.getOrderQty());
-        bookingRepository.save(booking);
+            int compare = day1.compareTo(day2);
 
-        model.addAttribute("order", booking);
+            if (compare < 1) {
+                bookingList.get(i).setStatus(OrderStatus.COMP);
+                compList.add(bookingList.get(i));
+                model.addAttribute("ordered", compList);
+            } else {
+                paidList.add(bookingList.get(i));
+                model.addAttribute("orders", paidList);
+            }
+        }
 
-        *//*List<Booking> bookingList = bookingRepository.findAll();
-        model.addAttribute("order", bookingList);*//*
+        return "order/managingBooking";
+    }
 
-        return "order/confirmation";
-    }*/
+    @GetMapping("/customerDetail/{id}")
+    public String managingCustomerInfo(@PathVariable Long id, Model model) {
+        Member member = memberRepository.getById(id);
+        model.addAttribute("info", member);
 
+        return "order/customerInfo";
+    }
 }

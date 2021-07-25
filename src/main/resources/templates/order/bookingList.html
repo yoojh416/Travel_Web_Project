@@ -24,38 +24,68 @@
                 <!--<table class="table table-striped">-->
                 <thead>
                 <tr>
-                    <th>주문번호</th>
-                    <th>여행 시작일</th>
-                    <th>여행 마지막일</th>
-                    <th>주문일자</th>
-                    <th>금액</th>
-                    <th>수량</th>
-                    <th></th>
-                    <th></th>
+            <th>주문번호</th>
+            <th>여행 시작일</th>
+            <th>여행 마지막일</th>
+            <th>주문일자</th>
+            <th>금액</th>
+            <th>수량</th>
+            <th></th>
+            <th></th>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="order : ${orders}">
-                    <td th:text="${order.orderId}"></td>
-                    <td th:text="${order.dateIn}"></td>
-                    <td th:text="${order.dateOut}"></td>
-                    <td th:text="${order.orderDate}"></td>
-                    <td th:text="${order.orderPrice}"></td>
-                    <td th:text="${order.orderQty}"></td>
-                    <td><input type="hidden" name="orderId" th:value="${order.orderId}"></td>
-                    <td><button class="button" id="cancelPay">예약 취소하기</button></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div>
-            <h4>여행을 변경하실 경우, 환불을 진행하시고 다시 예약해주세요.</h4>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="paid : ${orders}">
+            <td th:text="${paid.orderId}"></td>
+            <td th:text="${paid.dateIn}"></td>
+            <td th:text="${paid.dateOut}"></td>
+            <td th:text="${paid.orderDate}"></td>
+            <td th:text="${paid.orderPrice}"></td>
+            <td th:text="${paid.orderQty}"></td>
+            <td><input type="hidden" name="orderId" th:value="${paid.orderId}"></td>
+            <td><button class="button" id="cancelPay">예약 취소하기</button></td>
+        </tr>
+        </tbody>
+    </table>
         </div>
     </div>
+    <hr>
+    <br>
+    <div>
+        <span>[지난 여행 내역]</span>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>주문번호</th>
+            <th>여행 시작일</th>
+            <th>여행 마지막일</th>
+            <th>주문일자</th>
+            <th>금액</th>
+            <th>수량</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comp : ${ordered}">
+            <td th:text="${comp.orderId}"></td>
+            <td th:text="${comp.dateIn}"></td>
+            <td th:text="${comp.dateOut}"></td>
+            <td th:text="${comp.orderDate}"></td>
+            <td th:text="${comp.orderPrice}"></td>
+            <td th:text="${comp.orderQty}"></td>
+            <td>[환불 불가]</td>
+            <td><input type="hidden" name="orderId" th:value="${comp.orderId}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+    <div>
+        <h4>여행을 변경하실 경우, 환불을 진행하시고 다시 예약해주세요.</h4>
+    </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script>

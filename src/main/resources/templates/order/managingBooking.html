@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>주문번호</th>
+            <th>여행 시작일</th>
+            <th>여행 마지막일</th>
+            <th>주문일자</th>
+            <th>금액</th>
+            <th>수량</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="paid : ${orders}">
+            <td th:text="${paid.orderId}"></td>
+            <td th:text="${paid.dateIn}"></td>
+            <td th:text="${paid.dateOut}"></td>
+            <td th:text="${paid.orderDate}"></td>
+            <td th:text="${paid.orderPrice}"></td>
+            <td th:text="${paid.orderQty}"></td>
+            <td><input type="hidden" name="customerId" th:value="${paid.member.id}"></td>
+            <!--<td><button class="button"
+                        th:onclick="|window.location.href='@{/order/customerDetail/{id}(id=${paid.member.id})}'|">회원정보 확인하기</button></td>-->
+            <td><button class="button" id="checkCustom">회원정보 확인하기</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>주문번호</th>
+            <th>여행 시작일</th>
+            <th>여행 마지막일</th>
+            <th>주문일자</th>
+            <th>금액</th>
+            <th>수량</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comp : ${ordered}">
+            <td th:text="${comp.orderId}"></td>
+            <td th:text="${comp.dateIn}"></td>
+            <td th:text="${comp.dateOut}"></td>
+            <td th:text="${comp.orderDate}"></td>
+            <td th:text="${comp.orderPrice}"></td>
+            <td th:text="${comp.orderQty}"></td>
+            <td>[여행 종료]</td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        $("#checkCustom").click(function(){
+            var customerId = $("input[name='customerId']").val();
+            location.href="/order/customerDetail/"+customerId;
+        });
+    });
+</script>
+</body>
+</html>
