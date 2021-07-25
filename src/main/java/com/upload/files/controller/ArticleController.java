@@ -11,13 +11,16 @@ import com.upload.files.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -47,11 +50,13 @@ public class ArticleController { //리뷰용 컨트롤러
 	/**글쓰기*/
 	@PostMapping("/write")
 	public String setArticle(Article article,
+							 @AuthenticationPrincipal UserDetails userDetails,
 							 @RequestParam(name = "proNo") Long proNo,
 							 @PageableDefault Pageable pageable,
 							 @RequestParam(value = "page", defaultValue = "1") String pageNum,
 							 Model model) {
-		article.setRegisterDate(LocalDateTime.now());
+		article.setRegisterDate(LocalDate.now());
+		article.setWriter(userDetails.getUsername());
 		articleRepository.save(article);
 
 		Product product = productService.findOne(proNo);
@@ -137,7 +142,7 @@ public class ArticleController { //리뷰용 컨트롤러
 		Article article = articleRepository.findById(id).get();
 		article.setTitle(updatedArticle.getTitle());
 		article.setContent(updatedArticle.getContent());
-		article.setUpdateDate(LocalDateTime.now());
+		article.setUpdateDate(LocalDate.now());
 		articleRepository.save(article);
 		model.addAttribute("article", article);
 

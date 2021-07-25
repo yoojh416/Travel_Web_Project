@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -23,8 +23,8 @@ public class Article { //댓글 테이블 생성용
 	private String writer;
 
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-	private LocalDateTime registerDate;
+	private LocalDate registerDate;
 
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-	private LocalDateTime updateDate;
+	private LocalDate updateDate;
 }

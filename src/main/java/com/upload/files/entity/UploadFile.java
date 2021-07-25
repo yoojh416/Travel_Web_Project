@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -29,5 +29,5 @@ public class UploadFile { //리뷰 사진용 엔티티
 	
 	private long size;
 	
-	private LocalDateTime registerDate;
+	private LocalDate registerDate;
 }

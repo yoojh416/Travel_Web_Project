@@ -68,7 +68,7 @@ public class SendEmailService {
         MailDto mailDto = new MailDto();
         mailDto.setAddress(username);
         mailDto.setTitle("[너나들이 투어] 이메일 계정인증 링크 안내");
-        mailDto.setMessage("안녕하세요. 계정을 인증하고 가입을 계속하려면 링크를 클릭해 주세요.☞"
+        mailDto.setMessage("안녕하세요. 가입을 계속하려면 링크를 클릭해 주세요.☞"
                 + "http://192.168.0.6:8080/user/join/"+username);
 
         return mailDto;

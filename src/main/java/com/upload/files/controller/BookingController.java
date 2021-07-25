@@ -14,8 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +56,7 @@ public class BookingController {
         model.addAttribute("member", member);
 
         booking.setOrderPrice(Integer.parseInt(request.getParameter("OrderPrice")));
-        booking.setOrderDate(LocalDateTime.now());
+        booking.setOrderDate(LocalDate.now());
         booking.setMember(member);
         bookingRepository.save(booking);
         model.addAttribute("order", booking);

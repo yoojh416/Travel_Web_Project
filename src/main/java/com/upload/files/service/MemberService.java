@@ -42,7 +42,7 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        String admin = "admin@1234";
+        String admin = "passionatedtour@gmail.com";
 
         Member userEntityWrapper = memberRepository.findByUsername(username);
         Member userEntity = userEntityWrapper;

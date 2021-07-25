@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -40,7 +40,7 @@ public class ImageService {
 			saveFile.setSaveFileName(saveFileName);
 			saveFile.setContentType(file.getContentType());
 			saveFile.setSize(file.getResource().contentLength());
-			saveFile.setRegisterDate(LocalDateTime.now());
+			saveFile.setRegisterDate(LocalDate.now());
 			saveFile.setFilePath(rootLocation.toString().replace(File.separatorChar, '/') +'/' + saveFileName);
 			uploadFileRepository.save(saveFile);
 			return saveFile;
