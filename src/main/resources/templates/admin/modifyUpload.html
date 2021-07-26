@@ -75,18 +75,16 @@
                             <input type="text" th:field="*{E}" class="GPS_E"/>
                         </div>
                         <div class="buttons">
-                            <button type="submit" class="button-hover-upload">수정하기</button>
-                            <button class="button-hover-delete"
-                                    th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기
-                            </button>
-                            <button class="button-hover-list"
-                                    th:onclick="|window.location.href='/admin/list'|">목록으로
-                            </button>
+                            <button type="submit" class="button-hover-upload">사진 수정</button>
                         </div>
                     </form>
                     <div class="buttons2">
-
-
+                        <button class="button-hover-delete"
+                                th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기
+                        </button>
+                        <button class="button-hover-list"
+                                th:onclick="|window.location.href='/admin/list'|">목록으로
+                        </button>
                     </div>
                 </div>
             </div>

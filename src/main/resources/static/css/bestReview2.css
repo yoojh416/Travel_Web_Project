@@ -3,8 +3,8 @@
 ul, li {list-style:none;}
 
 body {
-    width: 100%;
-    height: 100vh;
+    width: 74%;
+    height: 40%;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/review_background.jpg);
     background-position: center;
     background-size: cover;
@@ -15,7 +15,7 @@ body {
 .bestReviewTitle {
     font-size: 36px;
     position: relative;
-    right: 110px;
+    right: 10px;
     top: 235px;
     color: white;
 }
@@ -35,9 +35,9 @@ body {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 83.333333%;
     flex: 0 0 100%;
-    max-width: 85%;
+    max-width: 100%;
     position: relative;
-    left: 380px;
+    left: 480px;
     bottom: 210px;
 }
 ./*card-decks-second {
@@ -155,23 +155,48 @@ body {
 }
 .icons {
     bottom: 25px;
-    font-size: 13px;
-    width: 185px;
-    position: relative;
-    right: 20px;
-    padding: 5px;
+     font-size: 13px;
+     width: 130px;
+     position: relative;
+     right: 0px;
+     bottom: 70px;
+     padding: 5px;
+     height: 22px;
+     z-index: 2;
+     background: #ffba00;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
 }
-
+img {
+    width: 200px;
+    height: 200px;
+}
 a {
     display: inline-block;
-    padding: 10px 20px;
-    background: #fff;
+    width: 250px;
+    height: 250px;
+    position: relative;
+    right: 43px;
+    bottom: 130px;
+    padding: 1px;
+    /* background: #fff; */
     border-radius: 4px;
     text-decoration: none;
     color: #000;
     font-weight: bold;
     margin-top: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+}
+p {
+    margin: 0px;
+    padding: 0px;
+    width: 395px;
+    position: relative;
+    top: 8px;
+    right: 80px;
+    z-index: 1px;
+    margin-bottom: 10px;
 }
 .proTitle {
     font-size: 2.75rem;
@@ -269,7 +294,7 @@ button.button-hover1-best{
   outline:none;
   margin: 20px;
   top: 105px;
-  left: 90px;
+  left: 200px;
 }
 button.button-hover1-best:hover{
   background:#fff;
@@ -298,13 +323,13 @@ button.button-hover1-best:hover:before,button:hover:after{
 .bestReviewPreview4 {
     position: relative;
     top: 180px;
-    right: 75px;
+    left:10px;
     color: white;
 }
 .bestReviewPreview3 {
     position: relative;
     top: 200px;
-    right: 20px;
+    left: 35px;
     width: 320px;
     margin: 0;
     color: white;

@@ -171,10 +171,6 @@
     position: relative;
     left: 40px;
 }
-.buttons {
-    margin-left: 140px;
-    margin-top: 25px;
-}
 .btn-btn-upload {
     width: 160px;
     height: 60px;
@@ -221,8 +217,9 @@
 }
 .buttons {
     position: relative;
-    right: 355px;
+    right: 460px;
     width: 850px;
+    top: 80px;
 }
 /*upload start*/
 button.button-hover-upload{
@@ -272,7 +269,8 @@ button.button-hover-delete{
     color: #fff;
     border: none;
     position: relative;
-    left: 220px;
+    left: 150px;
+    bottom: 15px;
     width: 200px;
     height: 55px;
     font-size: 27px;
@@ -314,7 +312,8 @@ button.button-hover-list{
     color: #fff;
     border: none;
     position: relative;
-    left: 220px;
+    left: 185px;
+    bottom: 15px;
     width: 200px;
     height: 55px;
     font-size: 27px;

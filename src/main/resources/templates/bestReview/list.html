@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<div class="container gallery-container">
+
     <h1 class="bestReviewTitle"> 너나들이 BEST REVIEW </h1>
     <button class="button-hover1-best" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
     <h4 class="bestReviewPreview4">신뢰와 즐거움으로 함께하는 너나들이 여행사</h4>
@@ -25,24 +25,20 @@
         <div class="card-decks-first">
             <div class="card-container" th:each="bestReview : ${bestReviews}">
                 <div class="card-box">
-              <!--  <h3><a th:text="${bestReview.writer}" class="icons"></a></h3>-->
-                <a class="lightbox" th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
-                   th:utext="${bestReview.content}" ></a>
-                  <!--  <button class="bestBtn"><a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
-                       th:utext="${bestReview.content}" id="detail">click</a></button>-->
-                   <!-- <button class="bestBtn" type="button"
-                            th:onclick="'location.href=\''+ @{/bestReview/{id}(id = ${bestReview.id})} + '\''">click</button>-->
+                    <h3><a th:text="${bestReview.writer}" class="icons"></a></h3>
+                    <a th:href="@{/bestReview/{id}(id = ${bestReview.id})}"
+                                          th:utext="${bestReview.content}"></a>
                     </div>
               </div>
           </div>
       </div>
     </div>
-</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <!--js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
 
-<script type="text/javascript">
-    var giveColor = document.getElementsByClassName('bestBtn');
+    <script type="text/javascript">
+    var giveColor = document.getElementsByClassName('card-box');
     var color = ['#578fff', '#8c9ffd', '#ff7ea2', '#ffbf43', '#74dde3', 'red', '#BEC8D7', '#E2D2D2',
                    '#E3E2B4', '#A2B59F', '#E8E7D2', '#D2D5B8', '#BDC2BB', '#C9BA9B', '#D18063'];
     function randomColorOn(giveColor,color){

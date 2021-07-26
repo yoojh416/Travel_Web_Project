@@ -98,20 +98,19 @@ width: 100%;
     transform: translateY(10px);
     box-shadow: 2px 2px 5px #999;
 }
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+    position: relative;
+    bottom: 10px;
+}
 .proTitle {
-    font-size: 2.75rem;
-    text-decoration:none;
-    color: black;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #16a085;
 }
 .proTitle:hover {
-    color: green;
-}
-cards-footer {
-    border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);
-    padding: .5rem 1rem;
-    background-color: white;
-    border-top: 1px solid rgba(0,0,0,.125);
-    box-sizing: content-box;
+    color: black;
 }
 label {
     display: inline-flex;
