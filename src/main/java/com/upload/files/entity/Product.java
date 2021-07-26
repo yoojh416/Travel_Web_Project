@@ -2,10 +2,12 @@ package com.upload.files.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
-import static javax.persistence.FetchType.*;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "product")
@@ -25,10 +27,13 @@ public class Product {
     private String N; //위도
     private String E; //경도
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate registerDate;
+
     public Product(){}
 
     public Product(Long proNo, String proTitle, String proWriter, String proContent
-            , String region, String season, String theme, int price, String N, String E) {
+            , String region, String season, String theme, int price, String N, String E, LocalDate registerDate) {
         this.proNo = proNo;
         this.proTitle = proTitle;
         this.proWriter = proWriter;
@@ -39,5 +44,7 @@ public class Product {
         this.theme = theme;
         this.N = N;
         this.E = E;
+        this.registerDate = registerDate;
     }
+
 }

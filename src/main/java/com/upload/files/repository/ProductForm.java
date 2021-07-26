@@ -1,10 +1,13 @@
-package com.upload.files.controller;
+package com.upload.files.repository;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 @Getter @Setter
-public class ProductForm { //컨테이너(상품 관련 컨트롤러 돌리기 위한 용도)
+public class ProductForm { //컨테이너(상품 관련 데이터 일시적으로 담는 용도)
 
     private Long proNo;
     private String proTitle;
@@ -17,14 +20,16 @@ public class ProductForm { //컨테이너(상품 관련 컨트롤러 돌리기 �
     private String N; //위도
     private String E; //경도
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private LocalDate registerDate;
+
     private int fno;
-    private Long reNo;
 
     public ProductForm() {}
 
     public ProductForm(Long proNo, String proTitle, String proWriter, int price
             , String proContent, String region, String season, String theme, String N
-            , String E, int fno, Long reNo) {
+            , String E, int fno, LocalDate registerDate) {
         this.proNo = proNo;
         this.proTitle = proTitle;
         this.proWriter = proWriter;
@@ -36,6 +41,6 @@ public class ProductForm { //컨테이너(상품 관련 컨트롤러 돌리기 �
         this.N = N;
         this.E = E;
         this.fno = fno;
-        this.reNo = reNo;
+        this.registerDate = registerDate;
     }
 }

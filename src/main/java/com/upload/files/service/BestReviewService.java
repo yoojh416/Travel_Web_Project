@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class BestReviewService {
+public class BestReviewService { //아직 사용하지 않는 로직
 
     private BestReviewRepository bestReviewRepository;
 

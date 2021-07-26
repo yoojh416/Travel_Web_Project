@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.expression.Lists;
 
 import java.util.List;
 
@@ -43,6 +42,7 @@ public class ProductService {
         return productRepository.findByFilter(listSearch);
     }
 
+    /** 6개씩, 리스트 반환 */
     public Page<Product> pagingFindItemsByFilter(ListSearch listSearch, Pageable pageable) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() -1);
         pageable = PageRequest.of(page, 6);

@@ -15,12 +15,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class SendEmailService {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private JavaMailSender mailSender;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private JavaMailSender mailSender;
+    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private static final String FROM_ADDRESS = "passionatedtour@gmail.com";
 
@@ -48,30 +45,32 @@ public class SendEmailService {
         String str = getTempPassword();
         String pw = bCryptPasswordEncoder.encode(str);
 
-        if(memberRepository.existsByUsername(username)) {
+        if (memberRepository.existsByUsername(username) && memberRepository.existsByName(name)) {
             Member member = memberRepository.findByUsername(username);
             member.setPassword(pw);
             memberRepository.save(member);
+
+            MailDto mailDto = new MailDto();
+            mailDto.setAddress(username);
+            mailDto.setTitle(name + "님의 너나들이투어 임시비밀번호 안내 이메일 입니다.");
+            mailDto.setMessage("안녕하세요. 너나들이투어 임시비밀번호 안내 관련 이메일 입니다."
+                    + "[" + name + "]" + "님의 임시 비밀번호는 [" + str + "] 입니다.");
+
+            return mailDto;
+        } else {
+            return null;
         }
-
-        MailDto mailDto = new MailDto();
-        mailDto.setAddress(username);
-        mailDto.setTitle(name + "님의 너나들이투어 임시비밀번호 안내 이메일 입니다.");
-        mailDto.setMessage("안녕하세요. 너나들이투어 임시비밀번호 안내 관련 이메일 입니다."
-                +"["+ name +"]"+"님의 임시 비밀번호는 ["+ str +"] 입니다.");
-
-        return mailDto;
     }
 
     /**
-     * 계정인증
+     * 가입 링크 이메일 전송
      */
     public MailDto verifyUserAccount(String username) {
         MailDto mailDto = new MailDto();
         mailDto.setAddress(username);
         mailDto.setTitle("[너나들이 투어] 이메일 계정인증 링크 안내");
         mailDto.setMessage("안녕하세요. 가입을 계속하려면 링크를 클릭해 주세요.☞"
-                + "http://localhost:8080/user/join/"+username);
+                + "http://localhost:8080/user/join/" + username);
 
         return mailDto;
     }
@@ -81,13 +80,15 @@ public class SendEmailService {
      */
     public void mailSend(MailDto mailDto) {
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(mailDto.getAddress());
-        message.setFrom(SendEmailService.FROM_ADDRESS);
-        message.setSubject(mailDto.getTitle());
-        message.setText(mailDto.getMessage());
+        if (mailDto != null) {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(mailDto.getAddress());
+            message.setFrom(SendEmailService.FROM_ADDRESS);
+            message.setSubject(mailDto.getTitle());
+            message.setText(mailDto.getMessage());
 
-        mailSender.send(message);
+            mailSender.send(message);
+        }
     }
 }
 

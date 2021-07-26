@@ -99,7 +99,7 @@
                         </block>
                         <div class="card-body">
                             <h3>🚙<a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}"
-                                     th:text = "${list.proTitle}"></a></h3>
+                                   th:text = "${list.proTitle}"></a></h3>
                             <p class="card-text" th:text="'￦ '+${list.price}"></p>
                             <p class="card-text" th:text="${list.proContent}"></p>
                             @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
@@ -151,7 +151,6 @@
             </div>
         </div>
     </div>
-
     <!--if($("input:checkbox[name='region']").is(":checked")){
     alert("하나만 선택해주세요");
     }-->

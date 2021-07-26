@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 @SpringBootApplication(scanBasePackages = {"com.upload.files"})
@@ -42,7 +41,7 @@ public class HomeController {
         return "board/list";
     }
 
-    /** 지도 이동 */
+    /** 지도 이동 (연습용) */
     @GetMapping("board/map")
     public String map() {
         return "board/map";
