@@ -17,8 +17,9 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
   <script th:src="@{/js/home.js}"></script>
 </head>
-<th:block layout:fragment="content">
 
+<th:block layout:fragment="content">
+  <body>
   <!-- Begin Page Content -->
   <div class="containers">
     <!--image slider start-->
@@ -349,12 +350,14 @@
 
       <div class="box-container">
         <div class="box1">
-          <img class="gallery_img" src="images/g-7.jpg" alt="">
-          <img class="best_icon" src="images/best.png" alt="">
+          <img class="gallery_img" src="images/gallery_img.jpg" alt="">
           <div class="content">
             <h3>정한나 회원님</h3>
             <p>베스트 리뷰 : 우정 여행 패키지</p>
-            <br> <br> <br> <a th:href="@{/bestReview/list}" class="btn">더 보기</a>
+            <button class="bestIcon"  type="button"
+                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''" disabled value="">Best Review</button>
+            <button class="bestBtn" type="button"
+                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''">더보기</button>
           </div>
         </div>
 
@@ -443,5 +446,6 @@
       </div>
     </div>
   </div>
+  </body>
 </th:block>
 </html>

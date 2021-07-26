@@ -14,7 +14,7 @@ body {
 	padding: 10px;
 	position: fixed;
 	width: 100%;
-	z-index: 1;
+	z-index: 2;
 }
 li {
 	text-decoration: none;/*.없앰*/
@@ -78,7 +78,7 @@ li {
     height: 24px;
 }
 .navbar_icons li a {
-    color: #1839ff;
+    color: #ffba00;
 	font-size: 25px;
 	padding: 0px;
     font-size: 24px;

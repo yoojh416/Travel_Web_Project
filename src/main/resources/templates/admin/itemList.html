@@ -10,12 +10,14 @@
     <title>관리자 페이지</title>
     <!--css-->
     <link th:href="@{/css/itemList.css}" rel="stylesheet">
+    <link th:href="@{/css/itemList2.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
     <!--js -->
 </head>
 
 
 <th:block layout:fragment="content">
+<body>
     <div class="adminTitle">[ 관리자 페이지 ]</div>
     <div class="container">
         <div class="listButtons">
@@ -83,5 +85,6 @@
 
         <!-- <div th:replace="fragments/footer :: footer" />-->
     </div> <!-- /container -->
+</body>
 </th:block>
 </html>

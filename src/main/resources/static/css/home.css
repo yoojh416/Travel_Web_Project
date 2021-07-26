@@ -1,18 +1,15 @@
 body {
     margin: 0;
     padding: 0;
-    /*height: 100vh;*/
-    /*display: flex;*/
     justify-content: center;
     align-items: center;
-    /*background: #fff;*/
 }
 .slider {
     width: 950px;
     height: 500px;
     border-radius: 10px;
     overflow: hidden;
-    margin-left:250px;
+    margin-left:270px;
     margin-top: 10px;
 }
 .slides {
@@ -29,7 +26,8 @@ body {
 }
 .slide img {
     width: 950px;
-    height: 700px;
+     height: 500px;
+     position: static;
 }
 
 /*css for manual slide navigation*/
@@ -596,6 +594,7 @@ select:-moz-focusing {
 	margin: 0px auto;
 }
 
+/*
 .gallery .box-container .box1 .content {
 	position: absolute;
 	top: -100%;
@@ -606,6 +605,36 @@ select:-moz-focusing {
 	background: rgba(0, 0, 0, .7);
 	padding: 2rem;
 	padding-top: 5rem;
+}
+*/
+.bestIcon {
+    position: absolute;
+    top: 2px;
+    width: 220px;
+    /* height: 23px; */
+    left: 0px;
+    height: 60px;
+    border-radius: 10px;
+    color: white;
+    background: #1839ff;
+    font-size: 30px;
+    font-weight: bold;
+    z-index: 1;
+}
+.bestBtn {
+    position: absolute;
+    top: 210px;
+    left: 230px;
+    width: 150px;
+    height: 50px;
+    background: #ffba00;
+    font-size: 30px;
+    font-weight: bold;
+    z-index: 1;
+}
+.bestBtn:hover {
+    background: #ffba00;
+    opacity: 0.8;
 }
 
 .gallery .box-container .box1:hover .content {
@@ -659,7 +688,7 @@ select:-moz-focusing {
     font-size: 35px;
 }
 .img_btn i {
-    color: #1839ff;
+    color: #ffba00;
 }
 .img_btn i:hover {
     color: #0c71e0;
