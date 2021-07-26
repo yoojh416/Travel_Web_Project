@@ -41,24 +41,19 @@
 
 <!--<body id="pageTop">-->
 <th:block layout:fragment="content">
-<div class="container row" style="float: none; margin:0 auto;" >
-
-    <!--
-    <div th:replace="layout/bodyHeader :: bodyHeader" />
-    -->
+    <div class="container row" style="float: none; margin:0 auto;" >
 
 
+        <div class="container" style="text-align : right;">
+            <br>
+            <!--<span>조회수</span>-->
+            <!--좋아요 버튼-->
+            <button class="like__btn" style="margin-right:240px; margin-bottom:10px;" >
+                <span id="icon"><i class="far fa-thumbs-up"></i></span>
+                <span id="count">0</span> Like
+            </button>
 
-    <div class="container" style="text-align : right;">
-<br>
-        <!--<span>조회수</span>-->
-        <!--좋아요 버튼-->
-        <button class="like__btn" style="margin-right:240px; margin-bottom:10px;" >
-            <span id="icon"><i class="far fa-thumbs-up"></i></span>
-            <span id="count">0</span> Like
-        </button>
-
-        <script>
+            <script>
     const likeBtn = document.querySelector(".like__btn");
 let likeIcon = document.querySelector("#icon"),
   count = document.querySelector("#count");
@@ -79,63 +74,69 @@ likeBtn.addEventListener("click", () => {
 });
 
 </script>
-        <div style="text-align:center;">
-            <div>
-                <input type="hidden" name="proNo" th:value="${productInfo.proNo}">
-                <input type="hidden" name="N" th:value="${productInfo.N}">
-                <input type="hidden" name="E" th:value="${productInfo.E}">
-            </div>
-            <div class="productImg">
-                <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
-                     alt="상품 메인 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
-            </div>
-            <div class="bookingProduct">
-                <br>
-                <h3>👛상품가격 : <strong th:text="${productInfo.price}"/> 원</h3>
+
+            <div style="text-align:center;">
+                <div style="margin-bottom:50px;">
+                <h1>⚜️ <strong th:text="${productInfo.proTitle}"/> ⚜️</h1>
+                </div>
+
                 <div>
-                    <button class="button-hover"
-                            th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
-                    </button>
-                    <button class="button-hover" th:onclick="|window.location.href='/board/list'|">목록으로</button>
+                    <input type="hidden" name="proNo" th:value="${productInfo.proNo}">
+                    <input type="hidden" name="N" th:value="${productInfo.N}">
+                    <input type="hidden" name="E" th:value="${productInfo.E}">
+                </div>
+
+                <div class="productImg">
+                    <img th:src="@{/upload/{MainImg}(MainImg = ${MainImg})}"
+                         alt="상품 메인 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+                </div>
+                <div class="bookingProduct">
+                    <br>
+                    <h3>👛상품가격 : <strong th:text="${productInfo.price}"/> 원</h3>
+                    <div>
+                        <button class="button-hover"
+                                th:onclick="|window.location.href='@{/order/book/{proNo}(proNo= ${productInfo.proNo})}'|">예약하기
+                        </button>
+                        <button class="button-hover" th:onclick="|window.location.href='/board/list'|">목록으로</button>
+                    </div>
+                </div>
+
+                <div style="margin-left:150px" >
+                    <div id="map"/>
                 </div>
             </div>
 
-            <div style="margin-left:150px" >
-                <div id="map"/>
-            </div>
-        </div>
-
             <div>
-            <table style="visibility:hidden">
-                <tr>
-                    <th>상품명</th>
-                    <td th:text="${productInfo.proTitle}"></td>
-                </tr>
-                <tr>
-                    <th>가격</th>
-                    <td th:text="${productInfo.price}"></td>
-                </tr>
-                <tr>
-                    <th>상품 설명</th>
+                <table style="visibility:hidden">
+                    <tr>
+                        <th>상품명</th>
+                        <td th:text="${productInfo.proTitle}"></td>
+                    </tr>
+                    <tr>
+                        <th>가격</th>
+                        <td th:text="${productInfo.price}"></td>
+                    </tr>
+                    <tr>
+                        <th>상품 설명</th>
 
-                    <td th:text="${productInfo.proContent}"></td>
-                </tr>
-            </table>
+                        <td th:text="${productInfo.proContent}"></td>
+                    </tr>
+                </table>
+                <hr>
+
+
+                <div class="productImg">
+                    <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
+                         alt="상품 상세 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
+                </div>
+            </div>
             <hr>
 
+            <div th:fragment="reviewList" th:include="article/list :: reviewList"/>
 
-            <div class="productImg">
-                <img th:src="@{/upload/{DetailImg}(DetailImg = ${DetailImg})}"
-                     alt="상품 상세 이미지" style="height: 100%;"/> <!--이미지 style 재지정 필요(임의 크기 설정)-->
-            </div>
         </div>
-        <hr>
 
-        <div th:fragment="reviewList" th:include="article/list :: reviewList"/>
-
-    </div>
-
-    <script>
+        <script>
 
     <!--파라미터 받기-->
     function getParameterByName(name) {
@@ -161,15 +162,15 @@ likeBtn.addEventListener("click", () => {
 
 
 </script>
-    <!--<div th:replace="layout/footer :: footer" />-->
-</div>
+        <!--<div th:replace="layout/footer :: footer" />-->
+    </div>
 
 
-<!-- 맨위로 가기 이미지 버튼 시작 -->
+    <!-- 맨위로 가기 이미지 버튼 시작 -->
 
-<a href="#" class="jcm-top"><img src="../images/up.png" style="margin-bottom: 60px;width: 60px;"></a>
+    <a href="#" class="jcm-top"><img src="../images/up.png" style="margin-bottom: 80px; width: 90px; margin-inline: -20px;"></a>
 
-<script>
+    <script>
 
 $( document ).ready( function() {
 
@@ -199,6 +200,6 @@ return false;
 
 </script>
 
-<!-- 맨위로 가기 이미지 버튼 끝 -->
+    <!-- 맨위로 가기 이미지 버튼 끝 -->
 </th:block>
 </html>
