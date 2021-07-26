@@ -151,8 +151,6 @@ public class ProductController { //여행 상품용 컨트롤러
 
         }
 
-
-
         return "board/list";
     }
 

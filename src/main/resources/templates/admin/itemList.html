@@ -17,13 +17,13 @@
 
 
 <th:block layout:fragment="content">
-<body>
+    <body>
     <div class="adminTitle">[ 관리자 페이지 ]</div>
     <div class="container">
         <div class="listButtons">
-        <button class="button-hover-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
-        <button class="button-hover-user" th:onclick="|window.location.href='/admin/userList'|">회원 관리</button>
-        <button class="button-hover-home" th:onclick="|window.location.href='/'|">홈으로</button>
+            <button class="button-hover-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
+            <button class="button-hover-user" th:onclick="|window.location.href='/admin/userList'|">회원 관리</button>
+            <button class="button-hover-home" th:onclick="|window.location.href='/'|">홈으로</button>
         </div>
         <div class="table-list">
             <table class="table_box">
@@ -46,45 +46,44 @@
                 </tbody>
             </table>
         </div>
+        <nav style="text-align: center">
+            <ul class="pagination"
+                th:with="start=${T(Math).floor(products.number/10) * 10 + 1},
+              last=${start + 9 < products.totalPages ? start + 9 : products.totalPages}">
 
-        <!--<ul class="pagination"
-            th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},
-              last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
+                <li>
+                    <a th:href="@{./list(page=1)}" aria-label="First">
+                        <span aria-hidden="true">← 처음</span>
+                    </a>
+                </li>
 
-            <li>
-                <a th:href="@{./list(page=1)}" aria-label="First">
-                    <span aria-hidden="true">← 처음</span>
-                </a>
-            </li>
+                <li th:class="${products.first} ? 'disabled'">
+                    <a th:href="${products.first} ? '#' : @{./list(page=${products.number})}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&lt;</span>
+                    </a>
+                </li>
 
-            <li th:class="${articleList.first} ? 'disabled'">
-                <a th:href="${articleList.first} ? '#' : @{./list(page=${articleList.number})}"
-                   aria-label="Previous">
-                    <span aria-hidden="true">&lt;</span>
-                </a>
-            </li>
+                <li th:each="page: ${#numbers.sequence(start, last)}"
+                    th:class="${page == products.number + 1} ? 'active'">
+                    <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>
+                </li>
 
-            <li th:each="page: ${#numbers.sequence(start, last)}"
-                th:class="${page == articleList.number + 1} ? 'active'">
-                <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>
-            </li>
+                <li th:class="${products.last} ? 'disabled'">
+                    <a th:href="${products.last} ? '#' : @{./list(page=${products.number + 2})}"
+                       aria-label="Next">
+                        <span aria-hidden="true">&gt;</span>
+                    </a>
+                </li>
 
-            <li th:class="${articleList.last} ? 'disabled'">
-                <a th:href="${articleList.last} ? '#' : @{./list(page=${articleList.number + 2})}"
-                   aria-label="Next">
-                    <span aria-hidden="true">&gt;</span>
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{./list(page=${articleList.totalPages})}" aria-label="Last">
-                    <span aria-hidden="true">마지막 →</span>
-                </a>
-            </li>
-        </ul>-->
-
-        <!-- <div th:replace="fragments/footer :: footer" />-->
+                <li>
+                    <a th:href="@{./list(page=${products.totalPages})}" aria-label="Last">
+                        <span aria-hidden="true">마지막 →</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div> <!-- /container -->
-</body>
+    </body>
 </th:block>
 </html>

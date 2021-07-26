@@ -42,6 +42,22 @@ public class ProductRepository {
                 .getResultList();
     }
 
+    public Page<Product> pagingFindAll(Pageable pageable){
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+        QProduct product = QProduct.product;
+        QueryResults<Product> results =
+                queryFactory.select(product)
+                    .from(product)
+                    .offset(pageable.getOffset())
+                    .limit(pageable.getPageSize())
+                    .fetchResults();
+
+        List<Product> products = results.getResults();
+        Long total = results.getTotal();
+
+        return new PageImpl<>(products, pageable, total);
+    }
+
     public void deleteProduct(Product product) {
         em.remove(em.contains(product) ? product : em.merge(product));
     }

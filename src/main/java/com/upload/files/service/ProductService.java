@@ -29,6 +29,12 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Page<Product> pagingProducts(Pageable pageable){
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() -1);
+        pageable = PageRequest.of(page, 10);
+        return productRepository.pagingFindAll(pageable);
+    }
+
     public Product findOne(Long proNo) {
         return productRepository.findOne(proNo);
     }
