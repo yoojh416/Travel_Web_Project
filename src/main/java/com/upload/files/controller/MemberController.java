@@ -254,12 +254,14 @@ public class MemberController {
             , @ModelAttribute("member") MemberDto memberDto
             , MailDto mailDto, BindingResult result, Model model) {
 
-        String str = sendEmailService.getTempPassword(); // 임시 비밀번호
-        mailDto = sendEmailService.createMailAndChangePassword(memberDto.getUsername()
-                , memberDto.getName());
-        sendEmailService.mailSend(mailDto);
+        if (sendEmailService.createMailAndChangePassword(memberDto.getUsername(), memberDto.getName()) != null) {
+            mailDto = sendEmailService.createMailAndChangePassword(memberDto.getUsername(), memberDto.getName());
+            sendEmailService.mailSend(mailDto);
 
-        return "user/login";
+            return "user/login";
+        } else {
+            return "user/findInfo";
+        }
     }
 
     /**
