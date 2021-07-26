@@ -85,11 +85,11 @@ width: 100%;
     background-clip: border-box;
     border: 1px solid #999;
     border-radius: 0.5rem;
-    margin-top: 20px;
+    margin-top: 60px;
     margin-right: 5px;
     margin-left: 5px;
     width: 18rem;
-    height: 20rem;
+    height: 23rem;
     box-sizing: content-box;
     cursor: pointer;
     transition: transform 0.5s;
@@ -105,15 +105,51 @@ width: 100%;
     bottom: 10px;
 }
 .proTitle {
-    font-size: 1.5em;
+    font-size: 25px;
     text-decoration: none;
     color: #16a085;
 }
 .proTitle:hover {
-    color: black;
+    text-shadow: 2px 2px 2px gray;
+    color: #2f52a4;
 }
 label {
     display: inline-flex;
     width: 120px;
     font-size: 15px;
+}
+/*paging css*/
+.pagination {
+    display: inline-block;
+    width: 400px;
+    position: absolute;
+    left: 32%;
+    right: 57%;
+    bottom: 78%;
+}
+
+.pagination a {
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.page_number {
+    background-color: #2f52a4;
+    color: white;
+}
+.page_number:hover {
+    background-color: gray;
+    color: black;
+}
+.page_pointer {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.page_pointer:hover {
+    background-color: gray;
 }

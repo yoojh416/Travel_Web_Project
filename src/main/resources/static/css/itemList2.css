@@ -40,7 +40,7 @@ body {
     text-overflow:ellipsis;
     overflow:hidden;
     white-space: nowrap;
-    font-size: 23px;
+    font-size: 20px;
     text-align: center;
      height:60px;
 }
@@ -175,3 +175,36 @@ button.button-hover-home:hover:before,button:hover:after{
   transition:800ms ease all;
 }
 /*home end*/
+/*paging css*/
+.pagination {
+    display: inline-block;
+    width: 400px;
+    position: relative;
+    left: 35px;
+}
+
+.pagination a {
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.page_number {
+    background-color: #2f52a4;
+    color: white;
+}
+.page_number:hover {
+    background-color: gray;
+    color: black;
+}
+.page_pointer {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.page_pointer:hover {
+    background-color: gray;
+}

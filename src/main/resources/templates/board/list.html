@@ -92,12 +92,14 @@
                 <div class="card-decks-second" th:each = "list : ${items}">
                     <div class="cards" >
                         <block th:each=" file : ${MainImage}" th:remove="tag">
-                            <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
-                                 th:src="@{/upload/{fileName}(fileName = ${file.fileName})}" alt="여행 상품 메인 사진">
+                            <a th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}">
+                                <img class="card-img-top" th:if="${list.proNo} eq ${file.proNo}"
+                                     th:src="@{/upload/{fileName}(fileName = ${file.fileName})}"
+                                     alt="여행 상품 메인 사진"></a>
                         </block>
                         <div class="card-body">
                             <h3>🚙<a class="proTitle" th:href="@{/board/get(proNo=${list.proNo}, N=${list.N}, E=${list.E})}"
-                                   th:text = "${list.proTitle}"></a></h3>
+                                     th:text = "${list.proTitle}"></a></h3>
                             <p class="card-text" th:text="'￦ '+${list.price}"></p>
                             <p class="card-text" th:text="${list.proContent}"></p>
                             @<input type="hidden" name="region" th:text="${list.region}">&nbsp;
@@ -106,47 +108,50 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!--       &lt;!&ndash; 페이징 처리&ndash;&gt;-->
+                <nav style="text-align: center" class="pagination">
+                    <ul class="pagination"
+                        th:with="start=${T(Math).floor(items.number/10) * 10 + 1},
+                    last=${start + 9 < items.totalPages ? start + 9 : items.totalPages}">
+
+                        <li>
+                            <a th:href="@{./list(page=1)}" aria-label="First">
+                                <span aria-hidden="true">👈 처음</span>
+                            </a>
+                        </li>
+
+                        <li th:class="${items.first} ? 'disabled'">
+                            <a th:href="${items.first} ? '#' : @{./list(page=${items.number})}"
+                               aria-label="Previous" class="page_pointer">
+                                <span aria-hidden="true">⬅</span>
+                            </a>
+                        </li>
+
+                        <li th:each="page: ${#numbers.sequence(start, last)}"
+                            th:class="${page == items.number + 1} ? 'active'">
+                            <a th:text="${page}" th:href="@{./list(page=${page})}" class="page_number">&nbsp;</a>
+                        </li>
+
+                        <li th:class="${items.last} ? 'disabled'">
+                            <a th:href="${items.last} ? '#' : @{./list(page=${items.number + 2})}"
+                               aria-label="Next" class="page_pointer">
+                                <span aria-hidden="true">➡</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a th:href="@{./list(page=${items.totalPages})}" aria-label="Last">
+                                <span aria-hidden="true">마지막 👉</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <!-- 페이징 처리-->
-            <nav style="text-align: center">
-                <ul class="pagination"
-                    th:with="start=${T(Math).floor(items.number/10) * 10 + 1},
-              last=${start + 9 < items.totalPages ? start + 9 : items.totalPages}">
-
-                    <li>
-                        <a th:href="@{./list(page=1)}" aria-label="First">
-                            <span aria-hidden="true">← 처음</span>
-                        </a>
-                    </li>
-
-                    <li th:class="${items.first} ? 'disabled'">
-                        <a th:href="${items.first} ? '#' : @{./list(page=${items.number})}"
-                           aria-label="Previous">
-                            <span aria-hidden="true">&lt;</span>
-                        </a>
-                    </li>
-
-                    <li th:each="page: ${#numbers.sequence(start, last)}"
-                        th:class="${page == items.number + 1} ? 'active'">
-                        <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>
-                    </li>
-
-                    <li th:class="${items.last} ? 'disabled'">
-                        <a th:href="${items.last} ? '#' : @{./list(page=${items.number + 2})}"
-                           aria-label="Next">
-                            <span aria-hidden="true">&gt;</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a th:href="@{./list(page=${items.totalPages})}" aria-label="Last">
-                            <span aria-hidden="true">마지막 →</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
+
     <!--if($("input:checkbox[name='region']").is(":checked")){
     alert("하나만 선택해주세요");
     }-->
