@@ -1,11 +1,15 @@
 package com.upload.files.repository;
 
+import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.upload.files.entity.ListSearch;
 import com.upload.files.entity.Product;
 import com.upload.files.entity.QProduct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -53,6 +57,26 @@ public class ProductRepository {
                         seasonLike(listSearch.getSeason()),
                         themeLike(listSearch.getTheme()))
                 .fetch();
+    }
+
+    public Page<Product> pagingFindByFilter(ListSearch listSearch, Pageable pageable){
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+        QProduct product = QProduct.product;
+
+        QueryResults<Product> result =
+                queryFactory.select(product)
+                        .from(product)
+                        .where(regionLike(listSearch.getRegion()),
+                                seasonLike(listSearch.getSeason()),
+                                themeLike(listSearch.getTheme()))
+                        .limit(pageable.getPageSize())
+                        .offset(pageable.getOffset())
+                        .fetchResults();
+
+        List<Product> products = result.getResults();
+        Long total = result.getTotal();
+
+        return new PageImpl<>(products, pageable, total);
     }
 
     private BooleanExpression regionLike(String regionCond) {

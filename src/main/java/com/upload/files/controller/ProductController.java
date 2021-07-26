@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -133,7 +135,8 @@ public class ProductController { //여행 상품용 컨트롤러
                        @PageableDefault Pageable pageable,
                        @RequestParam(value = "page", defaultValue = "0") String pageNum,
                        Model model) {
-        List<Product> products = productService.findItemsByFilter(listSearch);
+        List<Product> products = productService.findByFilter(listSearch);
+        Page<Product> pagingProducts = productService.pagingFindItemsByFilter(listSearch, pageable);
         List<FilePath> files = new ArrayList<>();
         //리서치 서비스 페이징 추가 요망
 
@@ -143,7 +146,7 @@ public class ProductController { //여행 상품용 컨트롤러
             Optional<FilePath> MainImage = filePathRepository.findById(fno[0]);
             files.add(MainImage.get());
 
-            model.addAttribute("items", products);
+            model.addAttribute("items", pagingProducts);
             model.addAttribute("MainImage", files);
 
         }

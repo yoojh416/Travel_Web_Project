@@ -107,11 +107,11 @@
                     </div>
                 </div>
             </div>
-            <!-- 페이징 처리
+            <!-- 페이징 처리-->
             <nav style="text-align: center">
                 <ul class="pagination"
-                    th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},
-              last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
+                    th:with="start=${T(Math).floor(list.number/10) * 10 + 1},
+              last=${start + 9 < list.totalPages ? start + 9 : list.totalPages}">
 
                     <li>
                         <a th:href="@{./list(page=1)}" aria-label="First">
@@ -119,39 +119,39 @@
                         </a>
                     </li>
 
-                    <li th:class="${articleList.first} ? 'disabled'">
-                        <a th:href="${articleList.first} ? '#' : @{./list(page=${articleList.number})}"
+                    <li th:class="${list.first} ? 'disabled'">
+                        <a th:href="${list.first} ? '#' : @{./list(page=${list.number})}"
                            aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
 
                     <li th:each="page: ${#numbers.sequence(start, last)}"
-                        th:class="${page == articleList.number + 1} ? 'active'">
+                        th:class="${page == list.number + 1} ? 'active'">
                         <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>
                     </li>
 
-                    <li th:class="${articleList.last} ? 'disabled'">
-                        <a th:href="${articleList.last} ? '#' : @{./list(page=${articleList.number + 2})}"
+                    <li th:class="${list.last} ? 'disabled'">
+                        <a th:href="${list.last} ? '#' : @{./list(page=${list.number + 2})}"
                            aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
 
                     <li>
-                        <a th:href="@{./list(page=${articleList.totalPages})}" aria-label="Last">
+                        <a th:href="@{./list(page=${list.totalPages})}" aria-label="Last">
                             <span aria-hidden="true">마지막 →</span>
                         </a>
                     </li>
                 </ul>
-            </nav>-->
+            </nav>
         </div>
     </div>
     <!--if($("input:checkbox[name='region']").is(":checked")){
     alert("하나만 선택해주세요");
     }-->
 
-    <script>
+    <script type="text/javascript">
     $(document).ready(function(){
 
         $("input:checkbox[name='region']").change(function(){
