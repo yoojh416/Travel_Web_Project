@@ -31,17 +31,21 @@ import java.util.*;
 @AllArgsConstructor
 public class MemberController {
 
-    @Autowired private MemberRepository memberRepository;
-    @Autowired private MemberService memberService;
-    @Autowired private SendEmailService sendEmailService;
-    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private MemberRepository memberRepository;
+    @Autowired
+    private MemberService memberService;
+    @Autowired
+    private SendEmailService sendEmailService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 회원가입 페이지
      */
     @GetMapping("/user/join/{username}")
     public String dispSignup(@ModelAttribute(name = "memberDto") @Valid MemberDto memberDto
-            ,@PathVariable("username")String username, BindingResult result, Model model) {
+            , @PathVariable("username") String username, BindingResult result, Model model) {
         memberDto.setUsername(username);
 
         model.addAttribute("memberDto", memberDto);
@@ -50,7 +54,7 @@ public class MemberController {
 
     @GetMapping("/user/join")
     public String dispSignup(@ModelAttribute(name = "memberDto") @Valid MemberDto memberDto
-            ,BindingResult result, Model model) {
+            , BindingResult result, Model model) {
 
         model.addAttribute("memberDto", memberDto);
         return "user/join";
@@ -218,7 +222,7 @@ public class MemberController {
         String phoneNo = request.getParameter("phoneNo");
         String name = request.getParameter("name");
 
-        if (memberService.findMember(phoneNo)){
+        if (memberService.findEmail(phoneNo, name)) {
             Member member = memberRepository.findMember(phoneNo, name);
             model.addAttribute("member", member);
 
@@ -255,13 +259,15 @@ public class MemberController {
                 , memberDto.getName());
         sendEmailService.mailSend(mailDto);
 
-        return "/user/login";
+        return "user/login";
     }
 
-    /** 이메일 인증 폼으로 가기 */
+    /**
+     * 이메일 인증 폼으로 가기
+     */
     @GetMapping("/verifyEmail")
     public String verifyEmail(@ModelAttribute(name = "memberDto") @Valid MemberDto memberDto
-            ,BindingResult result, Model model) {
+            , BindingResult result, Model model) {
         return "user/verifyEmail";
     }
 
@@ -276,5 +282,4 @@ public class MemberController {
 
         return "user/login";
     }
-
 }

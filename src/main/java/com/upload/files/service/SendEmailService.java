@@ -48,7 +48,7 @@ public class SendEmailService {
         String str = getTempPassword();
         String pw = bCryptPasswordEncoder.encode(str);
 
-        if(memberRepository.existsByUsername(username)) {
+        if(memberRepository.existsByUsername(username) && memberRepository.existsByName(name)) {
             Member member = memberRepository.findByUsername(username);
             member.setPassword(pw);
             memberRepository.save(member);
