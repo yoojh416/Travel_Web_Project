@@ -16,11 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class ImageController { /*리뷰용 이미지 컨트롤러*/
 
-	@Autowired
-	ImageService imageService;
-	
-	@Autowired
-	ResourceLoader resourceLoader;
+	@Autowired ImageService imageService;
+	@Autowired ResourceLoader resourceLoader;
 	
 	@PostMapping("/image")
 	public ResponseEntity<?> imageUpload(@RequestParam("file") MultipartFile file) {
@@ -44,4 +41,5 @@ public class ImageController { /*리뷰용 이미지 컨트롤러*/
 			return ResponseEntity.badRequest().build();
 		}
 	}
+
 }

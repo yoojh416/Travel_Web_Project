@@ -15,12 +15,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class SendEmailService {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private JavaMailSender mailSender;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private JavaMailSender mailSender;
+    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private static final String FROM_ADDRESS = "passionatedtour@gmail.com";
 

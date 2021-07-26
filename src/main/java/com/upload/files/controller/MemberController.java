@@ -31,14 +31,10 @@ import java.util.*;
 @AllArgsConstructor
 public class MemberController {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private MemberService memberService;
-    @Autowired
-    private SendEmailService sendEmailService;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private MemberService memberService;
+    @Autowired private SendEmailService sendEmailService;
+    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 회원가입 페이지
@@ -284,4 +280,5 @@ public class MemberController {
 
         return "user/login";
     }
+
 }

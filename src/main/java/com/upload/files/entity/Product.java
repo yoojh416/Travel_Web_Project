@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 import java.time.LocalDate;
 
-import static javax.persistence.FetchType.*;
 
 @Entity
 @Table(name = "product")
@@ -47,4 +46,5 @@ public class Product {
         this.E = E;
         this.registerDate = registerDate;
     }
+
 }

@@ -17,8 +17,7 @@ import java.util.UUID;
 @Service
 public class ImageService {
 
-	@Autowired
-	UploadFileRepository uploadFileRepository;
+	@Autowired UploadFileRepository uploadFileRepository;
 
 	private final Path rootLocation; // c:/image/
 
@@ -27,7 +26,7 @@ public class ImageService {
 		System.out.println(rootLocation.toString());
 	}
 
-	public UploadFile store(MultipartFile file) throws Exception { //DB에 저장하기 위한 path 생성 => path를 DB로 저장하여 사용(리뷰용)
+	public UploadFile store(MultipartFile file) throws Exception { //리뷰 이미지, text를 이미지 링크로 db저장
 
 		try {
 			if(file.isEmpty()) {

@@ -9,10 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
-public class ArticleService {
+public class ArticleService { //아직 사용하지 않는 로직
 
     private ArticleRepository articleRepository;
 
