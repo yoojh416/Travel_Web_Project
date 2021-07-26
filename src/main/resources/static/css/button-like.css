@@ -21,7 +21,7 @@ a.jcm-top {
     width: 70px;
     height: 100px;
     font-size: 100px;
-   background-color:#ffba00; opacity:0.5; filter:alpha(opacity=50);
+    background-color:#ffba00; opacity:0.5; filter:alpha(opacity=50);
     z-index: 999;
     display: none;
 

@@ -6,6 +6,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
 <head>
   <title>Home</title>
   <!--css-->
@@ -18,6 +23,24 @@
   <script th:src="@{/js/home.js}"></script>
 </head>
 <th:block layout:fragment="content">
+
+<script>
+    window.onload = function() {
+
+    function onClick() {
+        document.querySelector('.modal_wrap').style.display ='block';
+        document.querySelector('.black_bg').style.display ='block';
+    }
+    function offClick() {
+        document.querySelector('.modal_wrap').style.display ='none';
+        document.querySelector('.black_bg').style.display ='none';
+    }
+
+    document.getElementById('modal_btn').addEventListener('click', onClick);
+    document.querySelector('.modal_close').addEventListener('click', offClick);
+
+};
+</script>
 
   <!-- Begin Page Content -->
   <div class="containers">
@@ -202,6 +225,7 @@
         </div>
 
         <div class="box">
+
           <a th:href="@{/board/list}"><img src="images/p5.jpg" alt=""></a>
           <div class="content">
             <h3>
@@ -366,16 +390,17 @@
             <input type="radio" name="slide1" id="slide01" checked>
             <input type="radio" name="slide1" id="slide02">
             <input type="radio" name="slide1" id="slide03">
-            <input type="radio" name="slide1" id="slide04">
+
             <ul class="slidelist1">
               <li class="slideitem1">
                 <a>
                   <label for="slide03" class="prev"></label>
                   <img src="./images/slide01.jpg"/>
                   <!-- Button trigger modal -->
-                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  <a href="#" data-toggle="modal" data-target="#myModal">이미지 모달띄우기</a>
+                  <!--<button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
                     ✨ 자세한 내용보기 ✨
-                  </button>
+                  </button>-->
                   <label for="slide02" class="next"></label>
                 </a>
               </li>
@@ -398,52 +423,40 @@
                   <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
                     ✨ 자세한 내용보기 ✨
                   </button>
-                  <label for="slide04" class="next"></label>
-                </a>
-              </li>
-              <li class="slideitem1">
-                <a>
-                  <label for="slide03" class="prev"></label>
-                  <img src="./images/slide04.jpg">
-                  <!-- Button trigger modal -->
-                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
-                    ✨ 자세한 내용보기 ✨
-                  </button>
                   <label for="slide01" class="next"></label>
                 </a>
               </li>
             </ul>
           </div>
-
-
         </div>
       </div>
     </section>
-
-
-
-
     <!-- gallery section ends -->
   </div>
 
+  <button>모달창</button>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">이벤트 제목</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h1>이벤트 내용</h1>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="button" data-bs-dismiss="modal">닫기</button>
-          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-        </div>
-      </div>
+  <button type='button' id="modal_btn">모달창아 나와랏</button>
+  <div class="black_bg"></div>
+  <div class="modal_wrap">
+    <div class="modal_close"><a href="#">close</a></div>
+    <div>
+      모달창 내용
     </div>
+    <div>
+
+
+
+
+
+
+
+
+
   </div>
+  </div>
+  </div>
+
+
 </th:block>
 </html>
