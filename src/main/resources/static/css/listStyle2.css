@@ -122,10 +122,9 @@ label {
 .pagination {
     display: inline-block;
     width: 400px;
-    position: absolute;
-    left: 32%;
-    right: 57%;
-    bottom: 78%;
+    position: sticky;
+    left: 45%;
+    margin-top: 10px;
 }
 
 .pagination a {

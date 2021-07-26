@@ -114,15 +114,6 @@ body {
     background-color: #16a085;
     z-index: 1;
 }
-.navbar_interval {
-	display: flex;
-	list-style: none;
-	padding-left: 0;
-}
-
-.navbar_interval li {
-	padding: 8px 75px; /*메뉴안 내용들의 간격 조정*/
-}
 
 /*label.left {
 	left: 20px;
@@ -224,6 +215,7 @@ html {
 
 section {
 	padding: 2rem 9%;
+	padding-top: 10%;
 }
 
 .heading {
@@ -435,7 +427,9 @@ header .search-bar-container label:hover {
 .sms ul li a:hover {
     color:  #0C4F3C;
 }
-
+.book {
+    padding-top: 2.5%;
+}
 
 .book .row {
 	display: flex;
@@ -594,43 +588,18 @@ select:-moz-focusing {
 	margin: 0px auto;
 }
 
-/*
-.gallery .box-container .box1 .content {
-	position: absolute;
-	top: -100%;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	text-align: center;
-	background: rgba(0, 0, 0, .7);
-	padding: 2rem;
-	padding-top: 5rem;
-}
-*/
 .bestIcon {
     position: absolute;
-    top: 2px;
-    width: 220px;
-    /* height: 23px; */
-    left: 0px;
-    height: 60px;
-    border-radius: 10px;
-    color: white;
-    background: #1839ff;
-    font-size: 30px;
-    font-weight: bold;
-    z-index: 1;
-}
-.bestBtn {
-    position: absolute;
-    top: 210px;
-    left: 230px;
-    width: 150px;
-    height: 50px;
-    background: #ffba00;
-    font-size: 30px;
-    font-weight: bold;
-    z-index: 1;
+     top: 10px;
+     width: 163px;
+     left: 15px;
+     height: 48px;
+     border-radius: 10px;
+     color: white;
+     background: #ffba00;
+     font-size: 23px;
+     font-weight: bold;
+     z-index: 1;
 }
 .bestBtn:hover {
     background: #ffba00;

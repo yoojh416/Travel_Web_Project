@@ -112,51 +112,13 @@
 
     <!-- packages section starts  -->
 
-    <!-- 간격 조정 starts -->
 
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-    <!-- 간격 조정 ends -->
 
     <section class="packages" id="package">
       <h1 class="heading">
         <span><i class="fas fa-plane-departure">너나들이와 지금 떠나요</i></span>
       </h1>
 
-      <ul class="navbar_interval">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
       <div class="box-container">
         <div class="box">
           <a th:href="@{/board/list}"><img src="images/p1.jpg"></a>
@@ -230,36 +192,6 @@
 
     <!-- packages section ends -->
 
-    <!-- 간격 조정 starts -->
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-    <!-- 간격 조정 ends -->
-
 
     <!-- special section starts -->
     <h1 class="heading">
@@ -301,35 +233,6 @@
 
     <!-- special section ends -->
 
-    <!-- 간격 조정 starts -->
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-
-    <ul class="navbar_interval">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-    <!-- 간격 조정 ends -->
 
     <!-- gallery section starts  -->
 
@@ -339,25 +242,15 @@
         <span><i class="fas fa-hand-peace">베스트 리뷰 및 이벤트</i></span>
       </h1>
 
-      <ul class="navbar_interval">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-
       <div class="box-container">
         <div class="box1">
-          <img class="gallery_img" src="images/gallery_img.jpg" alt="">
+          <a th:href="@{/bestReview/list}">
+          <img class="gallery_img" src="images/smile.jpg" alt=""></a>
           <div class="content">
-            <h3>정한나 회원님</h3>
-            <p>베스트 리뷰 : 우정 여행 패키지</p>
+    <!--        <h3>정한나 회원님</h3>
+            <p>베스트 리뷰 : 우정 여행 패키지</p>-->
             <button class="bestIcon"  type="button"
-                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''" disabled value="">Best Review</button>
-            <button class="bestBtn" type="button"
-                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''">더보기</button>
+                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''">😊베스트 리뷰</button>
           </div>
         </div>
 
@@ -367,6 +260,7 @@
             <input type="radio" name="slide1" id="slide01" checked>
             <input type="radio" name="slide1" id="slide02">
             <input type="radio" name="slide1" id="slide03">
+            <input type="radio" name="slide1" id="slide04">
             <ul class="slidelist1">
               <li class="slideitem1">
                 <a>
@@ -414,12 +308,13 @@
               </li>
             </ul>
           </div>
+
+
         </div>
       </div>
     </section>
-    <!-- gallery section ends -->
   </div>
-
+    <!-- gallery section ends -->
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
