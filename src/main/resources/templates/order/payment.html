@@ -44,8 +44,8 @@
                                                  th:text="${order.dateOut}"></strong></h3>
         </div>
         <div style="text-align:right;">
-            <button class="button" type="button" id="check_module" style="font-size: 13px; margin:0px;">결제하기(테스트)</button>
-            <a class="button" id="cancelTour" style="font-size: 13px; text-decoration:none;">여행 취소하기</a>
+            <button class="button" type="button" id="check_module" style="font-size: 13px; margin:0px;">결제하기 💵</button>
+            <a class="button" id="cancelTour" style="font-size: 13px; text-decoration:none;">여행 취소하기 😉</a>
         </div>
     </div>
 
@@ -72,10 +72,6 @@ $(document).ready(function(){
             console.log(rsp);
             if(rsp.success){
                 var msg="결제가 완료되었습니다.";
-                msg += "고유ID: "+rsp.imp_uid;
-                msg += "상점 거래ID: "+rsp.merchant_uid;
-                msg += "결제 금액: "+rsp.paid_amount;
-                msg += "카드 승인번호: "+rsp.apply_num;
                 location.href="/order/confirmation/"+orderId;
 
             } else{

@@ -180,7 +180,7 @@ public class MemberController {
     public String deleteMyInfo(@PathVariable("id") Long id) {
         memberRepository.deleteById(id);
 
-        return "user/login";
+        return "redirect:/user/login";
     }
 
     /**

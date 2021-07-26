@@ -32,9 +32,9 @@
             <hr/>
 
             <h3 class="mt-5">🛫 여행 시작일: <strong th:name="dateIn"
-                                                th:text="${#dates.format(order.dateIn, 'yyyy-MM-dd')}"></strong></h3>
+                                                th:text="${order.dateIn}"></strong></h3>
             <h3 class="mt-5">🛬 여행 마지막일: <strong th:name="dateOut"
-                                                 th:text="${#dates.format(order.dateOut, 'yyyy-MM-dd')}"></strong></h3>
+                                                 th:text="${order.dateOut}"></strong></h3>
         </div>
         <div style="text-align:right;">
             <a th:href="@{/}" class="button" style="font-size: 0.8rem;  text-decoration:none;">홈으로 돌아가기</a>
