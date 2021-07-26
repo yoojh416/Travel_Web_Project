@@ -36,6 +36,7 @@
                     <th class="th-list">제목</th>
                     <th class="th-list">관리자</th>
                     <th class="th-list">내용</th>
+                    <th class="th-list">등록일</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,6 +46,7 @@
                            th:text="${product.proTitle}"></a></td>
                     <td th:text="${product.proWriter}"></td>
                     <td th:text="${product.proContent}"></td>
+                    <td th:text="${product.registerDate}"></td>
                 </tr>
                 </tbody>
             </table>

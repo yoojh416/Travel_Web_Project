@@ -111,7 +111,7 @@
             <nav style="text-align: center">
                 <ul class="pagination"
                     th:with="start=${T(Math).floor(items.number/10) * 10 + 1},
-              last=${start + 9 < items.totalPages ? start + 9 : items.totalPages}">
+                    last=${start + 9 < items.totalPages ? start + 9 : items.totalPages}">
 
                     <li>
                         <a th:href="@{./list(page=1)}" aria-label="First">
@@ -147,9 +147,6 @@
             </nav>
         </div>
     </div>
-    <!--if($("input:checkbox[name='region']").is(":checked")){
-    alert("하나만 선택해주세요");
-    }-->
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -201,7 +198,6 @@
 
             });
         });
-
     });
     </script>
 </th:block>
