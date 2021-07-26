@@ -18,13 +18,13 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("select m from Member m where phoneNo = :phoneNo and name = :name")
     Member findMember(@Param("phoneNo") String phoneNo, @Param("name") String name);
 
-    /*아이디 중복확인용*/
+    /** 아이디 중복확인용 */
     boolean existsByUsername(String username);
-
-    /*같은 로직으로 회원수정시 비밀번호 확인*/
-    boolean existsByPassword(String password);
 
     /** 전화번호 유효성 확인용 */
     boolean existsByPhoneNo(String phoneNo);
+
+    /** 이름 유효성 확인용 */
+    boolean existsByName(String name);
 
 }
