@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Nullable;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -30,14 +31,10 @@ import java.util.*;
 @AllArgsConstructor
 public class MemberController {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private MemberService memberService;
-    @Autowired
-    private SendEmailService sendEmailService;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private MemberService memberService;
+    @Autowired private SendEmailService sendEmailService;
+    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 회원가입 페이지
@@ -136,8 +133,8 @@ public class MemberController {
     }
 
     @PostMapping("/checkingPw")
-    public String pwCheck(@AuthenticationPrincipal UserDetails userDetails, Model model
-            , Member member, HttpServletRequest request) {
+    public String checkingPw(@AuthenticationPrincipal UserDetails userDetails, Model model
+            , @Nullable Member member, HttpServletRequest request) {
 
         member = memberRepository.findByUsername(userDetails.getUsername());
         String dbPw = member.getPassword();
@@ -220,11 +217,15 @@ public class MemberController {
     public String findingId(HttpServletRequest request, Model model) throws Exception {
         String phoneNo = request.getParameter("phoneNo");
         String name = request.getParameter("name");
-        Member member = memberRepository.findMember(phoneNo, name);
 
-        model.addAttribute("member", member);
+        if (memberService.findMember(phoneNo)){
+            Member member = memberRepository.findMember(phoneNo, name);
+            model.addAttribute("member", member);
 
-        return "user/findResult";
+            return "user/findResult";
+        } else {
+            return "user/findEmail";
+        }
     }
 
     /**

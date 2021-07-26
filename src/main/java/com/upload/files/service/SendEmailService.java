@@ -48,9 +48,11 @@ public class SendEmailService {
         String str = getTempPassword();
         String pw = bCryptPasswordEncoder.encode(str);
 
-        Member member = memberRepository.findByUsername(username);
-        member.setPassword(pw);
-        memberRepository.save(member);
+        if(memberRepository.existsByUsername(username)) {
+            Member member = memberRepository.findByUsername(username);
+            member.setPassword(pw);
+            memberRepository.save(member);
+        }
 
         MailDto mailDto = new MailDto();
         mailDto.setAddress(username);

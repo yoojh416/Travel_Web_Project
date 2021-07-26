@@ -24,4 +24,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     /*같은 로직으로 회원수정시 비밀번호 확인*/
     boolean existsByPassword(String password);
 
+    /** 전화번호 유효성 확인용 */
+    boolean existsByPhoneNo(String phoneNo);
+
 }

@@ -42,35 +42,13 @@
         <a type="button" class="btn btn-secondary btn-lg btn-block"
            style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
     </div>
-    <!--        <button type="submit" class="btn btn-success btn-block" >확인하기</button>-->
 </form>
-
-
-
-
-
-<!--
-    <div class="login-form">
-        <br>
-        <h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1>
-        <h6>회원정보에 등록한 전화번호와 입력한 전화번호가 같아야,<br>
-            아이디를 찾을 수 있습니다.</h6>
-        <br>
-
-        <input type="text" th:name="name" placeholder="이름">
-        <input type="text"  th:name="phoneNo" placeholder="전화번호">
-
-        <input class="submit-btn " type="submit" value="아이디 찾기">
-        <a type="button" class="btn btn-secondary btn-lg btn-block"
-           style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
-        &lt;!&ndash;        <input type="button" class="submit-btn"
-                    th:href="@{/user/login}" value="로그인 창으로 돌아가기">&ndash;&gt;
-
-    </div>
-
-</form>
--->
-
 </body>
+<script>
+    $("#checkEmail").on("click",function(){
+        swal("Success!","성공적으로 이메일이 전송되었습니다.","success");
+        location.href="/mail";
+    })
+</script>
 
 </html>

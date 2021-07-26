@@ -125,12 +125,12 @@
 
                                 <div class="col-sm-6" >
                                     <button class="btn btn-outline-success"
-                                            style="width:200px; margin-right:30px; " type="submit">수정하기
+                                            style="width:200px; margin-right:30px; " type="button" onclick="successModify()">수정하기
                                     </button>
                                     <a type="button" class="btn btn-outline-secondary"
                                        style="width:200px; margin-right:30px; margin-left:30px; text-decoration:none;" th:href="@{/user/info}"> 수정취소하기</a>
-                                    <a type="button" class="btn btn-outline-danger btn-block"
-                                       style="width:200px;  margin-left:30px; text-decoration:none;" th:href="@{/user/delete/{id}(id = ${member.id})}">계정탈퇴하기</a>
+                                    <a type="button" onclick="deleteAccount()" class="btn btn-outline-danger btn-block"
+                                       style="width:200px;  margin-left:30px; text-decoration:none;">계정탈퇴하기</a>
                                 </div>
                             </div>
                         </div>
@@ -141,6 +141,33 @@
     </div>
 </th:block>
 </body>
+<script>
+function successModify(){
+    swal({
+        title: "Success!",
+        text: "수정이 완료되었습니다. 다시 로그인 해 주세요.",
+        icon: "success",
+        timer: 2000,
+        buttons: false,
+    })
+    .then(() => {
+        location.href='/user/login';
+    })
+}
+function deleteAccount(){
+ var userId = $("input[id='id']").val();
+    swal({
+        title:"Success!",
+        text:"그동안 감사했습니다. 다시 만나요:)",
+        icon: "info",
+        timer: 2000,
+        buttons: false
+    })
+    .then(() => {
+        location.href='user/delete/'+userId;
+    })
+}
+</script>
 </html>
 
 

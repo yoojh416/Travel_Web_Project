@@ -23,8 +23,10 @@ import java.util.List;
 @Service
 public class MemberService implements UserDetailsService {
 
-    @Autowired private MemberRepository memberRepository;
-    @Autowired private MemberService memberService;
+    @Autowired
+    private MemberRepository memberRepository;
+    @Autowired
+    private MemberService memberService;
 
     @Transactional
     public Long joinUser(MemberDto memberDto) {
@@ -64,15 +66,29 @@ public class MemberService implements UserDetailsService {
         return memberRepository.existsByUsername(username);
     }
 
-    /** email 유효성 검사  */
+    /**
+     * email 유효성 검사
+     */
     public boolean userEmailCheck(String username, String name) {
 
         Member member = memberRepository.findByUsername(username);
-        if(member!=null && member.getUsername().equals(username)) {
+        if (member != null && member.getUsername().equals(username)) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
+
+    /**
+     * 아이디 찾기 null값 검사
+     */
+    public boolean findMember(String phoneNo) {
+
+        if(!memberRepository.existsByPhoneNo(phoneNo)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

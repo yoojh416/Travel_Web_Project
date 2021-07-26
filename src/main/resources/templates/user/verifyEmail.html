@@ -61,6 +61,12 @@ function idCheck() {
         }
     }
 }
+
+function sendEmail(){
+    swal("Success!","성공적으로 이메일이 전송되었습니다.","success");
+    location.href="/verifying";
+}
+
 </script>
 </head>
 
@@ -100,7 +106,7 @@ function idCheck() {
                                 <label class="col-sm-3"></label>
                                 <div class="col-sm-6">
                                     <button type="submit" class="btn btn-outline-primary btn-block"
-                                            style=" width: 100%;">가입링크 메일 받기</button>
+                                            style=" width: 100%;" onclick="sendEmail()">가입링크 메일 받기</button>
                                 </div>
                             </div>
                             <div class="form-group row" style="margin-bottom: 20px;">
