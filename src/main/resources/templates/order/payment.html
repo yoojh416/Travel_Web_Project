@@ -10,6 +10,7 @@
     <!--script for i'mport-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body>
@@ -44,47 +45,68 @@
         </div>
         <div style="text-align:right;">
             <button class="button" type="button" id="check_module" style="font-size: 13px; margin:0px;">결제하기(테스트)</button>
-            <a th:href="@{/order/cancel/{orderId}(orderId= ${order.orderId})}"
-               class="button" style="font-size: 13px; text-decoration:none;" >여행 취소하기</a>
+            <a class="button" id="cancelTour" style="font-size: 13px; text-decoration:none;">여행 취소하기</a>
         </div>
     </div>
 
 </div>
 <script>
-    $(document).ready(function(){
-        $("#check_module").click(function(){
-            var IMP = window.IMP;
-            var orderId = $("input[name='orderId']").val();
+$(document).ready(function(){
 
-            IMP.init("imp92101402");
+    $("#check_module").click(function(){
+        var IMP = window.IMP;
+        var orderId = $("input[name='orderId']").val();
 
-            IMP.request_pay({
-                pg: "html5_inicis",
-                pay_method: "card",
-                merchant_uid: 'Order_'+new Date().getTime(),
-                amount: $("input[name='totalPrice']").val(),
-                name: $(".proTitle").val(),
-                buyer_email: $("input[name='userName']").val(),
-                buyer_name: $("input[name='name']").val(),
-                buyer_addr: $("input[name='address']").val(),
-            }, function(rsp){
-                console.log(rsp);
-                if(rsp.success){
-                    var msg="결제가 완료되었습니다.";
-                    msg += "고유ID: "+rsp.imp_uid;
-                    msg += "상점 거래ID: "+rsp.merchant_uid;
-                    msg += "결제 금액: "+rsp.paid_amount;
-                    msg += "카드 승인번호: "+rsp.apply_num;
-                    location.href="/order/confirmation/"+orderId;
+        IMP.init("imp92101402");
 
-                } else{
-                    var msg = '결제에 실패하였습니다.';
-                    msg += '에러내용: '+rsp.error_msg;
-                }
-                alert(msg);
-            });
+        IMP.request_pay({
+            pg: "html5_inicis",
+            pay_method: "card",
+            merchant_uid: 'Order_'+new Date().getTime(),
+            amount: $("input[name='totalPrice']").val(),
+            name: $(".proTitle").val(),
+            buyer_email: $("input[name='userName']").val(),
+            buyer_name: $("input[name='name']").val(),
+            buyer_addr: $("input[name='address']").val(),
+        }, function(rsp){
+            console.log(rsp);
+            if(rsp.success){
+                var msg="결제가 완료되었습니다.";
+                msg += "고유ID: "+rsp.imp_uid;
+                msg += "상점 거래ID: "+rsp.merchant_uid;
+                msg += "결제 금액: "+rsp.paid_amount;
+                msg += "카드 승인번호: "+rsp.apply_num;
+                location.href="/order/confirmation/"+orderId;
+
+            } else{
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용: '+rsp.error_msg;
+            }
+            alert(msg);
         });
     });
+
+    $("#cancelTour").click(function(){
+        var orderId = $("input[name='orderId']").val();
+        swal({
+            title:"Warning!",
+            text: "여행을 취소하시겠습니까?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willCancel)=>{
+            if(willCancel){
+                swal("취소가 완료되었습니다.",{
+                    icon: 'success',
+                });
+                location.href="/order/cancel/"+orderId;
+            } else{
+                swal("변경이 취소되었습니다.");
+            }
+        });
+    });
+});
 </script>
 </body>
 </html>

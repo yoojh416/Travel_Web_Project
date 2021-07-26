@@ -17,8 +17,6 @@
             <th>금액</th>
             <th>수량</th>
             <th></th>
-            <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -30,9 +28,6 @@
             <td th:text="${paid.orderPrice}"></td>
             <td th:text="${paid.orderQty}"></td>
             <td><input type="hidden" name="customerId" th:value="${paid.member.id}"></td>
-            <!--<td><button class="button"
-                        th:onclick="|window.location.href='@{/order/customerDetail/{id}(id=${paid.member.id})}'|">회원정보 확인하기</button></td>-->
-            <td><button class="button" id="checkCustom">회원정보 확인하기</button></td>
         </tr>
         </tbody>
     </table>
