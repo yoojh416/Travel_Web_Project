@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="col-12" style="height: 100%;">
-                    <form class="form-signin" th:action="@{/user/modified}" method="post" th:object="${member}">
+                    <form class="form-signin" th:action="@{/user/modified}" method="post" id="modifyingInfo" th:object="${member}">
 
                         <input type="hidden" th:field="*{id}" id="id" th:value="*{id}"/>
 
@@ -150,9 +150,10 @@ function successModify(){
         timer: 2000,
         buttons: false,
     })
-    .then(() => {
-        location.href='/user/login';
+    .then(()=> {
+        document.getElementById('modifyingInfo').submit();
     })
+
 }
 function deleteAccount(){
  var userId = $("input[id='id']").val();
