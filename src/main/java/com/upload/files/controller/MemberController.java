@@ -31,14 +31,10 @@ import java.util.*;
 @AllArgsConstructor
 public class MemberController {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private MemberService memberService;
-    @Autowired
-    private SendEmailService sendEmailService;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private MemberService memberService;
+    @Autowired private SendEmailService sendEmailService;
+    @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 회원가입 페이지
@@ -109,7 +105,7 @@ public class MemberController {
     }
 
     /**
-     * 권한 거부 페이지 -> 추후 알람으로 대체
+     * 권한 거부 페이지
      */
     @GetMapping("/user/denied")
     public String dispDenied() {
