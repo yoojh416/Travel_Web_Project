@@ -38,19 +38,55 @@
         <label for="name" class="sr-only">이름</label>
         <input type="text" id="name" name="name" class="form-control"
                placeholder="이름" required/>
-        <input class="submit-btn " type="submit" id="checkEmail" value="비밀번호 찾기">
+        <input class="submit-btn " type="submit" id="checkEmail" value="비밀번호 찾기"
+               />
         <a type="button" class="btn btn-secondary btn-lg btn-block"
            style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
     </div>
 </form>
 </body>
-<!--
+
 <script>
-    $("#checkEmail").on("click",function(){
-        swal("Success!","성공적으로 이메일이 전송되었습니다.","success");
-        location.href="/mail";
-    })
+
+    function check_info() {
+    var username = $("input[name='username']").val();
+    var name = $("input[name='name']").val();
+
+   $.ajax({
+        type: "GET",
+        url: "/check/findPw",
+        data: {
+            username: username,
+            name: name
+        },
+        datatype: boolean,
+        success: function (response) {
+            if(response != false){
+                swal({
+                        title: "Success!",
+                        text: "임시 비밀번호가 이메일로 전송되었습니다.",
+                        icon: "success",
+                        timer: 2000,
+                        buttons: false
+                }).
+                then(() => {
+                    location.href='/user/login';
+                })
+            } else {
+                swal({
+                        title: "Error!",
+                        text: "정보가 일치하지 않습니다. 다시 입력해주세요.",
+                        icon: "error",
+                        timer: 2000,
+                        buttons: false
+                }).
+                then(() => {
+                    location.href='/findInfo';
+                })
+            }
+        }
+    });
+}
 </script>
--->
 
 </html>

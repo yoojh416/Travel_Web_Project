@@ -74,7 +74,7 @@ public class MemberController {
         member.setRole(Role.MEMBER); //어드민 1계정, 나머지 고객
         member.setUsername(memberDto.getUsername());
         member.setRegDate(LocalDate.now());
-        this.memberRepository.save(member);
+        memberRepository.save(member);
         model.addAttribute("member", member);
 
         return "redirect:/user/login";
@@ -105,7 +105,7 @@ public class MemberController {
     }
 
     /**
-     * 권한 거부 페이지 -> 추후 알람으로 대체
+     * 권한 거부 페이지
      */
     @GetMapping("/user/denied")
     public String dispDenied() {
@@ -231,15 +231,12 @@ public class MemberController {
     /**
      * 비밀번호 찾기할때 이메일과 이름이 있는지 조회
      */
+    @ResponseBody
     @GetMapping("/check/findPw")
-    public @ResponseBody
-    Map<String, Boolean> pw_find(String username, String name) {
-        Map<String, Boolean> json = new HashMap<>();
+    public boolean pw_find(String username, String name) {
         boolean pwFindCheck = memberService.userEmailCheck(username, name);
 
-        json.put("check", pwFindCheck);
-
-        return json;
+        return pwFindCheck;
     }
 
     /**
