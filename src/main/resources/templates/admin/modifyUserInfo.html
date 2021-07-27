@@ -127,6 +127,8 @@
                                     </button>
                                     <a type="button" class="btn btn-outline-secondary"
                                        style="width:200px; margin-right:30px; margin-left:30px; text-decoration:none;" th:href="@{/admin/memberList}"> 수정취소하기</a>
+                                    <a type="button" onclick="deleteAccount()" class="btn btn-outline-danger btn-block"
+                                       style="width:200px;  margin-left:30px; text-decoration:none;">계정탈퇴시키기</a>
                                 </div>
                             </div>
                         </div>
@@ -138,6 +140,20 @@
 </th:block>
 </body>
 <script>
+/*탈퇴 시 안내 메세지*/
+function deleteAccount(){
+ var id = $("input[id='id']").val();
+    swal({
+        title:"Success!",
+        text:"해당 회원을 탈퇴시키겠습니다.",
+        icon: "info",
+        timer: 2000,
+        buttons: false
+    })
+    .then(() => {
+        location.href='/user/delete/'+id;
+    })
+}
 </script>
 </html>
 

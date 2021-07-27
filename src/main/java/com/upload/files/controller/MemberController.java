@@ -139,15 +139,6 @@ public class MemberController {
         return "admin/modifyUserInfo";
     }
 
-   /*@GetMapping("user/modifyMyInfo/{username}")
-    public String getModifyForm(@PathVariable String username, Member member, Model model) {
-        member = memberRepository.findByUsername(username);
-
-        model.addAttribute("username", username);
-        model.addAttribute("members", member);
-        return "user/modifyMyInfo.html";
-    }*/
-
     /**
      * 수정 전 비밀번호 확인
      */
@@ -206,10 +197,14 @@ public class MemberController {
      * 계정삭제 로직 -> 삭제 후 login 으로 이동
      */
     @GetMapping("/user/delete/{id}")
-    public String deleteMyInfo(@PathVariable("id") Long id) {
+    public String deleteMyInfo(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetails userDetails) {
         memberRepository.deleteById(id);
 
-        return "redirect:/user/login";
+        if (userDetails.getUsername().equals("passionatedtour@gmail.com")){
+            return "redirect:/admin/memberList";
+        } else {
+            return "redirect:/user/login";
+        }
     }
 
     /**
