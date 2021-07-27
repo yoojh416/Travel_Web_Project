@@ -40,5 +40,4 @@ public class ArticleService { //아직 사용하지 않는 로직
             return ArticleAllList;
         }
     }
-
 }

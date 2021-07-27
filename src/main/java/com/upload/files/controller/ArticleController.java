@@ -21,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -183,4 +184,72 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "board/get";
 	}
 
+	/** 개인 리뷰 모음 리스트 */
+	@GetMapping("/myReview/list")
+	public String myReviewAll(@AuthenticationPrincipal UserDetails userDetails
+			, Model model, @PageableDefault Pageable pageable
+			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
+
+		Page<Article> articleList = articleRepository.findAllByWriter(userDetails.getUsername(), pageable);
+		model.addAttribute("articleList", articleList);
+
+		return "myReview/list";
+	}
+
+	/** 개인리뷰 디테일 --> 수정 삭제 로직으로 전환 */
+	@GetMapping("/myReview/detail/{id}")
+	public String myReviewDetail(@AuthenticationPrincipal UserDetails userDetails
+			, @PathVariable Long id
+			, Model model, @PageableDefault Pageable pageable
+			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
+
+		Article article = articleRepository.findById(id).get();
+		model.addAttribute("article", article);
+
+		return "myReview/detail";
+	}
+
+	/** 개인리뷰 수정 */
+	@GetMapping("/myReview/update/{id}")
+	public String myReviewUpdateForm(@PathVariable Long id, Article updatedArticle
+			, @PageableDefault Pageable pageable, @AuthenticationPrincipal UserDetails userDetails
+			, @RequestParam(value = "page", defaultValue = "1") String pageNum, Model model) {
+
+		Article article = articleRepository.findById(id).get();
+		model.addAttribute("article", article);
+
+		return "myReview/update";
+	}
+
+	@PostMapping("/myReview/update/{id}")
+	public String myReviewUpdate(@PathVariable Long id, Article updatedArticle
+			, @PageableDefault Pageable pageable, @AuthenticationPrincipal UserDetails userDetails
+			, @RequestParam(value = "page", defaultValue = "1") String pageNum, Model model) {
+
+		Article article = articleRepository.findById(id).get();
+		article.setTitle(updatedArticle.getTitle());
+		article.setContent(updatedArticle.getContent());
+		article.setUpdateDate(LocalDate.now());
+		articleRepository.save(article);
+
+		Page<Article> articleList = articleRepository.findAllByWriter(userDetails.getUsername(), pageable);
+		model.addAttribute("articleList", articleList);
+
+
+		return "myReview/list";
+	}
+
+	/** 개인 리뷰 확인후 삭제 */
+	@GetMapping("/myReview/delete/{id}")
+	public String deleteMine(@PathVariable Long id, Article updatedArticle
+			, @PageableDefault Pageable pageable, @AuthenticationPrincipal UserDetails userDetails
+			, @RequestParam(value = "page", defaultValue = "1") String pageNum, Model model) {
+
+		articleRepository.deleteById(id);
+
+		Page<Article> articleList = articleRepository.findAllByWriter(userDetails.getUsername(), pageable);
+		model.addAttribute("articleList", articleList);
+
+		return "myReview/list";
+	}
 }
