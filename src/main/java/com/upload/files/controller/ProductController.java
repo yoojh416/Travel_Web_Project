@@ -126,7 +126,7 @@ public class ProductController { //여행 상품용 컨트롤러
     @RequestMapping("/board/list")
     public String list(@ModelAttribute("listSearch") ListSearch listSearch,
                        @PageableDefault Pageable pageable,
-                       @RequestParam(value = "page", defaultValue = "0") String pageNum,
+                       @RequestParam(value = "page", defaultValue = "1") String pageNum,
                        Model model) {
         List<Product> products = productService.findByFilter(listSearch);
         Page<Product> pagingProducts = productService.pagingFindItemsByFilter(listSearch, pageable);

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -139,28 +140,41 @@ public class BookingController {
         List<Booking> bookingList = bookingRepository.findAll();
         List<Booking> paidList = new ArrayList<>();
         List<Booking> compList = new ArrayList<>();
+        List<Member> memberPList = new ArrayList<>();
+        List<Member> memberCList = new ArrayList<>();
 
         LocalDate day1 = null;
         LocalDate day2 = null;
 
         for (int i = 0; i < bookingList.size(); i++) {
-            ;
             try {
                 day1 = bookingList.get(i).getDateIn();
                 day2 = LocalDate.now();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             int compare = day1.compareTo(day2);
 
-            if (compare < 1) {
+            if (compare < 1) { //여행 완료 고객
                 bookingList.get(i).setStatus(OrderStatus.COMP);
                 compList.add(bookingList.get(i));
                 model.addAttribute("ordered", compList);
-            } else {
+
+                Optional<Member> memberC = memberRepository.findById(bookingList.get(i).getMember().getId());
+                memberCList.add(memberC.get());
+                model.addAttribute("memberC", memberCList);
+
+
+            } else { //여행 예정 고객
                 paidList.add(bookingList.get(i));
                 model.addAttribute("orders", paidList);
+
+                Optional<Member> memberP = memberRepository.findById(bookingList.get(i).getMember().getId());
+                memberPList.add(memberP.get());
+                model.addAttribute("memberP", memberPList);
+
             }
         }
 
