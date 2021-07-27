@@ -56,7 +56,7 @@ body {
     font-size: 25px;
 }
 /*upload start*/
-button.button-hover-upload{
+.button-hover-upload{
     background: #0f5aba;
     color: #fff;
     border: none;
@@ -70,11 +70,11 @@ button.button-hover-upload{
     outline: none;
     margin: 20px;
 }
-button.button-hover-upload:hover{
+.button-hover-upload:hover{
   background:#fff;
   color:#0f5aba;
 }
-button.button-hover-upload:before,button:after{
+.button-hover-upload:before,button:after{
   content:'';
   position:absolute;
   top:0;
@@ -84,19 +84,19 @@ button.button-hover-upload:before,button:after{
   background: #0f5aba;
   transition:400ms ease all;
 }
-button.button-hover-upload:after{
+.button-hover-upload:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button.button-hover-upload:hover:before,button:hover:after{
+.button-hover-upload:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
 /*upload end*/
 /*user start*/
-button.button-hover-user{
+.button-hover-user{
     background: #ffcc00;
     color: #fff;
     border: none;
@@ -110,11 +110,11 @@ button.button-hover-user{
     outline: none;
     margin: 20px;
 }
-button.button-hover-user:hover{
+.button-hover-user:hover{
   background:#fff;
   color:#ffcc00;
 }
-button.button-hover-user:before,button:after{
+.button-hover-user:before,button:after{
   content:'';
   position:absolute;
   top:0;
@@ -124,19 +124,19 @@ button.button-hover-user:before,button:after{
   background: #ffcc00;
   transition:400ms ease all;
 }
-button.button-hover-user:after{
+.button-hover-user:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button.button-hover-user:hover:before,button:hover:after{
+.button-hover-user:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
 /*user end*/
 /*home start*/
-button.button-hover-home{
+.button-hover-home{
     background: #2f52a4;
     color: #fff;
     border: none;
@@ -150,11 +150,11 @@ button.button-hover-home{
     outline: none;
     margin: 20px;
 }
-button.button-hover-home:hover{
+.button-hover-home:hover{
   background:#fff;
   color:#2f52a4;
 }
-button.button-hover-home:before,button:after{
+.button-hover-home:before,button:after{
   content:'';
   position:absolute;
   top:0;
@@ -164,13 +164,13 @@ button.button-hover-home:before,button:after{
   background: #2f52a4;
   transition:400ms ease all;
 }
-button.button-hover-home:after{
+.button-hover-home:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button.button-hover-home:hover:before,button:hover:after{
+.button-hover-home:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
