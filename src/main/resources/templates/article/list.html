@@ -52,28 +52,21 @@
             </table>
         </div>
 
-        <!--페이징, 검색 시작-->
-        <!--<nav style="text-align: center">
-
-            <div>
-                <form th:action="@{/article/search}" th:method="GET" >
-                    <input name="keyword" type="text" placeholder="검색할 제목을 입력" style="width: 80%;">
-                    <button class="btn-home">검색하기</button>
-                </form>
-            </div>
+        <!--페이징 시작-->
+        <nav style="text-align: center">
 
             <ul class="pagination"
                 th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},
               last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
 
                 <li>
-                    <a th:href="@{./list(page=1)}" aria-label="First">
+                    <a th:href="@{/board/get(page=1)}" aria-label="First">
                         <span aria-hidden="true">← 처음</span>
                     </a>
                 </li>
 
                 <li th:class="${articleList.first} ? 'disabled'">
-                    <a th:href="${articleList.first} ? '#' : @{./list(page=${articleList.number})}"
+                    <a th:href="${articleList.first} ? '#' : @{/board/get(page=${articleList.number})}"
                        aria-label="Previous">
                         <span aria-hidden="true">&lt;</span>
                     </a>
@@ -81,25 +74,24 @@
 
                 <li th:each="page: ${#numbers.sequence(start, last)}"
                     th:class="${page == articleList.number + 1} ? 'active'">
-                    <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>
+                    <a th:text="${page}" th:href="@{/board/get(page=${page})}">&nbsp;</a>
                 </li>
 
                 <li th:class="${articleList.last} ? 'disabled'">
-                    <a th:href="${articleList.last} ? '#' : @{./list(page=${articleList.number + 2})}"
+                    <a th:href="${articleList.last} ? '#' : @{/board/get(page=${articleList.number + 2})}"
                        aria-label="Next">
                         <span aria-hidden="true">&gt;</span>
                     </a>
                 </li>
 
                 <li>
-                    <a th:href="@{./list(page=${articleList.totalPages})}" aria-label="Last">
+                    <a th:href="@{/board/get(page=${articleList.totalPages})}" aria-label="Last">
                         <span aria-hidden="true">마지막 →</span>
                     </a>
                 </li>
             </ul>
         </nav>
-        &lt;!&ndash;페이징 시작&ndash;&gt;-->
-
+        <!--&lt;!&ndash;페이징 시작&ndash;&gt;-->
     </div>
 
     <script type="text/javascript">
