@@ -6,6 +6,10 @@ import com.upload.files.repository.MemberRepository;
 
 import com.upload.files.repository.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -85,6 +89,16 @@ public class MemberService implements UserDetailsService {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 회원 리스트 페이징 메소드
+     */
+    public Page<Member> getMemberList(Pageable pageable){
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() -1 );
+        pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
+
+        return memberRepository.findAll(pageable);
     }
 
 }
