@@ -241,7 +241,7 @@ public class MemberController {
         Map<String, Boolean> json = new HashMap<>();
         boolean pwFindCheck = memberService.userEmailCheck(username, name);
 
-        json.put("check", pwFindCheck);
+        json.put("data", pwFindCheck);
 
         return json;
     }
@@ -284,4 +284,5 @@ public class MemberController {
 
         return "user/login";
     }
+
 }
