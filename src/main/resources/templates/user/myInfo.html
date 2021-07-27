@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<html xmlns:th="http://www.thymeleaf.org">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +23,7 @@
 
     <h1> <span sec:authentication="principal.username"></span> 회원님 정보(◍•ᴗ•◍)❤ </h1>
     <div style="text-align:right;">
-        <a class="button-hover" th:href="@{/user/passwordCheck}" style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">회원정보 수정 🧐</a>
+        <a class="button-hover1" th:href="@{/user/passwordCheck}" style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">회원정보 수정 🧐</a>
         <a class="button-hover" th:href="@{/myReview/list}" style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">내가 쓴 리뷰 🧐</a>
         <button class="button-hover" th:onclick="|window.location.href='/'|"  style="font-size: 1rem;" >홈으로 가기 😎</button>
     </div>
