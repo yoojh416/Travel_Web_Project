@@ -140,10 +140,10 @@ public class ProductController { //여행 상품용 컨트롤러
 
             model.addAttribute("items", pagingProducts);
             model.addAttribute("MainImage", files);
-
         }
 
         return "board/list";
+
     }
 
     @GetMapping("/board/get")
