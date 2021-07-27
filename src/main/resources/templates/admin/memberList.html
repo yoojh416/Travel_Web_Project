@@ -36,7 +36,7 @@
             <tbody>
             <tr th:each="member : ${members}">
                 <td th:text="${member.id}"></td>
-                <td><a th:href="@{/admin/modify/{username}(username = ${member.username})}" th:text="${member.username}"></a></td>
+                <td><a th:href="@{/admin/modifyUserName/{username}(username = ${member.username})}" th:text="${member.username}"></a></td>
                 <td th:text="${member.name}"></td>
                 <td th:text="${member.gender}"></td>
                 <td th:text="${member.address}"></td>

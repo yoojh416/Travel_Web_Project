@@ -130,14 +130,23 @@ public class MemberController {
     /**
      * 어드민 -> 내 정보 페이지 회원별 이동
      */
-    @GetMapping("/admin/modify/{username}")
+    @GetMapping("/admin/modifyUserName/{username}")
     public String dispUserInfo(@PathVariable String username, Member member, Model model) {
         member = memberRepository.findByUsername(username);
 
         model.addAttribute("username", username);
         model.addAttribute("members", member);
-        return "user/modifyMyInfo";
+        return "admin/modifyUserInfo";
     }
+
+   /*@GetMapping("user/modifyMyInfo/{username}")
+    public String getModifyForm(@PathVariable String username, Member member, Model model) {
+        member = memberRepository.findByUsername(username);
+
+        model.addAttribute("username", username);
+        model.addAttribute("members", member);
+        return "user/modifyMyInfo.html";
+    }*/
 
     /**
      * 수정 전 비밀번호 확인
@@ -162,6 +171,7 @@ public class MemberController {
             return "user/passwordCheck";
         }
     }
+
 
     /**
      * 정보 수정 로직
