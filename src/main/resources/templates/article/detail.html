@@ -34,9 +34,6 @@
                     삭제하기
                     😢
                 </button>
-                <button sec:authorize="hasRole('ROLE_MEMBER')" class="button" th:onclick="|window.location.href='/'|">
-                    홈으로 가기 😎
-                </button>
             </div>
 
             <button sec:authorize="hasRole('ROLE_ADMIN')" class="button"
@@ -54,7 +51,7 @@
             <button sec:authorize="hasRole('ROLE_ADMIN')"
                     class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍
             </button>
-            <button sec:authorize="hasRole('ROLE_ADMIN')" class="button" th:onclick="|window.location.href='/'|">홈으로
+            <button sec:authorize="isAuthenticated()" class="button" th:onclick="|window.location.href='/'|">홈으로
                 가기
                 😎
             </button>
