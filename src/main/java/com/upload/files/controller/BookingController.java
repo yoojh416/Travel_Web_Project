@@ -15,13 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,12 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 @Transactional
 public class BookingController {
 
-    @Autowired
-    private BookingRepository bookingRepository;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private MemberRepository memberRepository;
+    @Autowired private BookingRepository bookingRepository;
+    @Autowired private ProductService productService;
+    @Autowired private MemberRepository memberRepository;
 
     /**
      * 예약페이지로 이동
@@ -137,9 +130,7 @@ public class BookingController {
                 System.out.println(compare);
             }
         }
-
         return "order/bookingList";
-
     }
 
     @GetMapping("/adminBookingList")
@@ -183,4 +174,5 @@ public class BookingController {
 
         return "order/customerInfo";
     }
+
 }

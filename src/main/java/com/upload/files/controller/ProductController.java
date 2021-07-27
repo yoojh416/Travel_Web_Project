@@ -131,7 +131,6 @@ public class ProductController { //여행 상품용 컨트롤러
         List<Product> products = productService.findByFilter(listSearch);
         Page<Product> pagingProducts = productService.pagingFindItemsByFilter(listSearch, pageable);
         List<FilePath> files = new ArrayList<>();
-        //리서치 서비스 페이징 추가 요망
 
         for (int i = 0; i < products.size(); i++) {
             Long proNo = products.get(i).getProNo();
@@ -141,10 +140,10 @@ public class ProductController { //여행 상품용 컨트롤러
 
             model.addAttribute("items", pagingProducts);
             model.addAttribute("MainImage", files);
-
         }
 
         return "board/list";
+
     }
 
     @GetMapping("/board/get")

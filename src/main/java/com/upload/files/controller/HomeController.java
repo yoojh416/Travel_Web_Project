@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 @SpringBootApplication(scanBasePackages = {"com.upload.files"})
@@ -42,7 +41,7 @@ public class HomeController {
         return "board/list";
     }
 
-    /** 지도 이동 */
+    /** 지도 이동 (연습용) */
     @GetMapping("board/map")
     public String map() {
         return "board/map";
@@ -57,5 +56,22 @@ public class HomeController {
     public String footer() {
         return "/layout/footer";
     }
+
+    /**
+     * 이벤트 페이지로 이동
+     */
+    @GetMapping("/event/event1")
+    public String event1() {
+        return "event/event1";
+    }
+
+    @GetMapping("/event/event2")
+    public String event2() {
+        return "event/event2";
+    }
+
+    @GetMapping("/event/event3")
+    public String event3() { return "event/event3"; }
+
 
 }

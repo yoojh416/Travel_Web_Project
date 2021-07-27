@@ -41,15 +41,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception
     {
         // static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상통과 )
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/images/**", "/lib/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 페이지 권한 설정
-                .antMatchers("/admin/**", "/transfer/**", "/bestReview/delete/**").hasRole("ADMIN")
-                .antMatchers("/user/myInfo").hasRole("MEMBER")
+                .antMatchers("/admin/**", "/transfer/**"
+                        , "/bestReview/delete/**").hasRole("ADMIN")
+                .antMatchers("/user/myInfo","/order/book/**"
+                        , "/order/bookingInfo","/form","user/info").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
                 .and() // 로그인 설정 & RememberME
                 .formLogin( formLogin -> formLogin

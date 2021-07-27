@@ -23,15 +23,12 @@ import java.util.List;
 @Service
 public class MemberService implements UserDetailsService {
 
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private MemberService memberService;
+    @Autowired private MemberRepository memberRepository;
 
     @Transactional
     public Long joinUser(MemberDto memberDto) {
 
-        // 비밀번호 암호화
+        /* 비밀번호 암호화 */
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
 
@@ -67,7 +64,7 @@ public class MemberService implements UserDetailsService {
     }
 
     /**
-     * email+이름 유효성 검사
+     * email + 이름 유효성 검사
      */
     public boolean userEmailCheck(String username, String name) {
 
@@ -79,7 +76,7 @@ public class MemberService implements UserDetailsService {
     }
 
     /**
-     * 아이디+이름 찾기 유효성 검사
+     * 아이디 + 이름 찾기 유효성 검사
      */
     public boolean findEmail(String phoneNo, String name) {
 

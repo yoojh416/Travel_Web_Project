@@ -10,12 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -26,8 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+    @PersistenceContext private EntityManager em;
 
     public void save(Product product) {
         em.persist(product);
@@ -42,6 +36,7 @@ public class ProductRepository {
                 .getResultList();
     }
 
+    /** pagination & listing All */
     public Page<Product> pagingFindAll(Pageable pageable){
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QProduct product = QProduct.product;
@@ -62,6 +57,7 @@ public class ProductRepository {
         em.remove(em.contains(product) ? product : em.merge(product));
     }
 
+    /** 전체 sorting 사이즈를 받아서 아이템 수만큼 값을 찾아오기 위한 로직 */
     public List<Product> findByFilter(ListSearch listSearch){
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QProduct product = QProduct.product;
@@ -75,6 +71,7 @@ public class ProductRepository {
                 .fetch();
     }
 
+    /** pagination & sorting */
     public Page<Product> pagingFindByFilter(ListSearch listSearch, Pageable pageable){
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         QProduct product = QProduct.product;

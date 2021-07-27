@@ -16,12 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
-
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -97,7 +94,6 @@ public class FilesController { /*메인 이미지 파일 업로드 컨트롤러*
                        @RequestParam(value = "page", defaultValue = "0") String pageNum,
                        @PageableDefault Pageable pageable) {
 
-        /*List<Product> products = productService.products();*/
         Page<Product> products = productService.pagingProducts(pageable);
         model.addAttribute("products", products);
 
