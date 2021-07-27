@@ -74,36 +74,26 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "board/get";
 	}
 
-	/** 전체 리스트 + 페이징 *//*
+	/** 전체 리스트 + 페이징 */
 	@GetMapping("/article/list")
-	public String getArticleList(Model model, @PageableDefault Pageable pageable
-			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
+	public String getArticleList(Model model, @PageableDefault Pageable pageable,
+								 @RequestParam(value = "page", defaultValue = "1") String pageNum,
+								 @RequestParam(name = "proNo") Long proNo) {
 		Page<Article> articleList = articleService.getArticleList(pageable);
 		model.addAttribute("articleList", articleList);
 
-		return "article/list";
-	}*/
+		Product product = productService.findOne(proNo);
+		model.addAttribute("productInfo", product);
 
-	/** 검색기능 추가 *//*
-	@GetMapping("/article/search")
-	public String getSearch(Model model, @PageableDefault Pageable pageable
-			, @RequestParam(value = "page", defaultValue = "1") String pageNum
-			, String keyword) {
-		Page result;
-		Page<Article> articleList = articleService.getArticleList(pageable);
-		Page<Article> searchList = articleService.search(keyword, pageable);
+		int[] fno = filePathRepository.findAllFno(proNo);
+		FilePath MainImg = filePathRepository.findById(fno[0]).get();
+		FilePath DetailImg = filePathRepository.findById(fno[1]).get();
 
-		*//*검색어가 없으면 전체 리스트 반환하는 로직*//*
-		if(keyword.isEmpty()) {
-			result = articleList;
-		} else {
-			result = searchList;
-		}
-
-		model.addAttribute("articleList", result);
+		model.addAttribute("MainImg", MainImg.getFileName());
+		model.addAttribute("DetailImg", DetailImg.getFileName());
 
 		return "article/list";
-	}*/
+	}
 
 	/**상세 페이지*/
 	@GetMapping("/article/detail")

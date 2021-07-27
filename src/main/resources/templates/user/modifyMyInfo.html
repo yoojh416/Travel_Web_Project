@@ -142,6 +142,7 @@
 </th:block>
 </body>
 <script>
+/* 정보 수정 후 재 로그인 요청*/
 function successModify(){
     swal({
         title: "Success!",
@@ -155,6 +156,8 @@ function successModify(){
     })
 
 }
+
+/*탈퇴 시 안내 메세지*/
 function deleteAccount(){
  var userId = $("input[id='id']").val();
     swal({

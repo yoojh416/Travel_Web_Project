@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" th:href="@{/css/file-upload.css}"/>
 <script>
+/* datepicker 사용 - 현재 날짜 기준 이전 날짜들은 선택 되지 않도록 지정 */
 $(document).ready(function () {
     $('#dateIn').datepicker({
         dateFormat: "yy-mm-dd",
