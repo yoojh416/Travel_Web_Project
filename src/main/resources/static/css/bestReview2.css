@@ -3,7 +3,7 @@
 ul, li {list-style:none;}
 
 body {
-    width: 74%;
+    width: 70%;
     height: 40%;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/review_background.jpg);
     background-position: center;

@@ -5,12 +5,14 @@ import com.upload.files.entity.Product;
 import com.upload.files.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 @SpringBootApplication(scanBasePackages = {"com.upload.files"})
@@ -33,13 +35,13 @@ public class HomeController {
 
     /**여행지, 계절, 테마 검색*/
     @RequestMapping(value="list")
-    public String list(@ModelAttribute("listSearch") ListSearch listSearch, Model model) {
-        List<Product> products = productService.findItemsByFilter(listSearch);
+    public String list(@ModelAttribute("listSearch") ListSearch listSearch, @PageableDefault Pageable pageable, Model model) {
+        Page<Product> products = productService.pagingFindItemsByFilter(listSearch, pageable);
         model.addAttribute("items", products);
         return "board/list";
     }
 
-    /** 지도 이동 */
+    /** 지도 이동 (연습용) */
     @GetMapping("board/map")
     public String map() {
         return "board/map";

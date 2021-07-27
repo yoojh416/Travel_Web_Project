@@ -8,8 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Getter
-@Setter
+@Getter @Setter
 @Entity
 @Table(name = "persistent_logins")
 public class PersistentLogins {
@@ -19,4 +18,5 @@ public class PersistentLogins {
     private String username;
     private String token;
     private Date lastUsed;
+
 }

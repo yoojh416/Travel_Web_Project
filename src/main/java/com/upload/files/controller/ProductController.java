@@ -1,10 +1,7 @@
 package com.upload.files.controller;
 
 import com.upload.files.entity.*;
-import com.upload.files.repository.ArticleRepository;
-import com.upload.files.repository.FilePathRepository;
-import com.upload.files.repository.MemberRepository;
-import com.upload.files.repository.ProductRepository;
+import com.upload.files.repository.*;
 import com.upload.files.service.ArticleService;
 import com.upload.files.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +30,6 @@ public class ProductController { //여행 상품용 컨트롤러
     private final ProductRepository productRepository;
     private final FilePathRepository filePathRepository;
     private final ArticleService articleService;
-    private final MemberRepository memberRepository;
 
     /**
      * 상품등록 페이지로 이동
@@ -58,7 +53,7 @@ public class ProductController { //여행 상품용 컨트롤러
 
         Product product = new Product(form.getProNo(), form.getProTitle(), userDetails.getUsername()
                 , form.getProContent(), form.getRegion(), form.getSeason(), form.getTheme()
-                , form.getPrice(), form.getN(), form.getE());
+                , form.getPrice(), form.getN(), form.getE(), LocalDate.now());
 
         productService.save(product);
 
@@ -133,9 +128,9 @@ public class ProductController { //여행 상품용 컨트롤러
                        @PageableDefault Pageable pageable,
                        @RequestParam(value = "page", defaultValue = "0") String pageNum,
                        Model model) {
-        List<Product> products = productService.findItemsByFilter(listSearch);
+        List<Product> products = productService.findByFilter(listSearch);
+        Page<Product> pagingProducts = productService.pagingFindItemsByFilter(listSearch, pageable);
         List<FilePath> files = new ArrayList<>();
-        //리서치 서비스 페이징 추가 요망
 
         for (int i = 0; i < products.size(); i++) {
             Long proNo = products.get(i).getProNo();
@@ -143,12 +138,10 @@ public class ProductController { //여행 상품용 컨트롤러
             Optional<FilePath> MainImage = filePathRepository.findById(fno[0]);
             files.add(MainImage.get());
 
-            model.addAttribute("items", products);
+            model.addAttribute("items", pagingProducts);
             model.addAttribute("MainImage", files);
 
         }
-
-
 
         return "board/list";
     }

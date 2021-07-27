@@ -13,17 +13,21 @@
     <link th:href="@{/css/itemList2.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
     <!--js -->
+
+   <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+-->
 </head>
 
-
 <th:block layout:fragment="content">
-<body>
+    <body>
     <div class="adminTitle">[ 관리자 페이지 ]</div>
     <div class="container">
         <div class="listButtons">
-        <button class="button-hover-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
-        <button class="button-hover-user" th:onclick="|window.location.href='/admin/userList'|">회원 관리</button>
-        <button class="button-hover-home" th:onclick="|window.location.href='/'|">홈으로</button>
+            <button class="button-hover-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
+            <button class="button-hover-user" th:onclick="|window.location.href='/admin/userList'|">회원 관리</button>
+            <button class="button-hover-home" th:onclick="|window.location.href='/'|">홈으로</button>
         </div>
         <div class="table-list">
             <table class="table_box">
@@ -33,6 +37,7 @@
                     <th class="th-list">제목</th>
                     <th class="th-list">관리자</th>
                     <th class="th-list">내용</th>
+                    <th class="th-list">등록일</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,49 +47,51 @@
                            th:text="${product.proTitle}"></a></td>
                     <td th:text="${product.proWriter}"></td>
                     <td th:text="${product.proContent}"></td>
+                    <td th:text="${product.registerDate}"></td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
-        <!--<ul class="pagination"
-            th:with="start=${T(Math).floor(articleList.number/10) * 10 + 1},
-              last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
+        <!--pagingnation-->
+        <nav style="text-align: center" class="pagination">
+            <ul class="pagination"
+                th:with="start=${T(Math).floor(products.number/10) * 10 + 1},
+              last=${start + 9 < products.totalPages ? start + 9 : products.totalPages}">
 
-            <li>
-                <a th:href="@{./list(page=1)}" aria-label="First">
-                    <span aria-hidden="true">← 처음</span>
-                </a>
-            </li>
+                <li>
+                    <a th:href="@{./list(page=1)}" aria-label="First">
+                        <span aria-hidden="true">👈 처음</span>
+                    </a>
+                </li>
 
-            <li th:class="${articleList.first} ? 'disabled'">
-                <a th:href="${articleList.first} ? '#' : @{./list(page=${articleList.number})}"
-                   aria-label="Previous">
-                    <span aria-hidden="true">&lt;</span>
-                </a>
-            </li>
+                <li th:class="${products.first} ? 'disabled'">
+                    <a th:href="${products.first} ? '#' : @{./list(page=${products.number})}"
+                       aria-label="Previous"  class="page_pointer">
+                        <span aria-hidden="true">⬅</span>
+                    </a>
+                </li>
 
-            <li th:each="page: ${#numbers.sequence(start, last)}"
-                th:class="${page == articleList.number + 1} ? 'active'">
-                <a th:text="${page}" th:href="@{./list(page=${page})}">&nbsp;</a>
-            </li>
+                <li th:each="page: ${#numbers.sequence(start, last)}"
+                    th:class="${page == products.number + 1} ? 'active'">
+                    <a th:text="${page}" th:href="@{./list(page=${page})}" class="page_number">&nbsp;</a>
+                </li>
 
-            <li th:class="${articleList.last} ? 'disabled'">
-                <a th:href="${articleList.last} ? '#' : @{./list(page=${articleList.number + 2})}"
-                   aria-label="Next">
-                    <span aria-hidden="true">&gt;</span>
-                </a>
-            </li>
+                <li th:class="${products.last} ? 'disabled'">
+                    <a th:href="${products.last} ? '#' : @{./list(page=${products.number + 2})}"
+                       aria-label="Next" class="page_pointer">
+                        <span aria-hidden="true">➡</span>
+                    </a>
+                </li>
 
-            <li>
-                <a th:href="@{./list(page=${articleList.totalPages})}" aria-label="Last">
-                    <span aria-hidden="true">마지막 →</span>
-                </a>
-            </li>
-        </ul>-->
-
-        <!-- <div th:replace="fragments/footer :: footer" />-->
+                <li>
+                    <a th:href="@{./list(page=${products.totalPages})}" aria-label="Last">
+                        <span aria-hidden="true">마지막 👉</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div> <!-- /container -->
-</body>
+    </body>
 </th:block>
 </html>

@@ -30,4 +30,5 @@ public class UploadFile { //리뷰 사진용 엔티티
 	private long size;
 	
 	private LocalDate registerDate;
+
 }

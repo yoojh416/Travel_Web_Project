@@ -7,17 +7,18 @@ import com.upload.files.service.FilePathService;
 import com.upload.files.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
-
 import javax.servlet.http.HttpServletRequest;
+
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -89,8 +90,11 @@ public class FilesController { /*메인 이미지 파일 업로드 컨트롤러*
     }
 
     @GetMapping("/admin/list")
-    public String list(Model model) {
-        List<Product> products = productService.products();
+    public String list(Model model,
+                       @RequestParam(value = "page", defaultValue = "0") String pageNum,
+                       @PageableDefault Pageable pageable) {
+
+        Page<Product> products = productService.pagingProducts(pageable);
         model.addAttribute("products", products);
 
         return "admin/itemList";
