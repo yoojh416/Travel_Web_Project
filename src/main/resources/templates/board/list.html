@@ -111,10 +111,8 @@
             </div>
         </div>
     </div>
-    <!--if($("input:checkbox[name='region']").is(":checked")){
-    alert("하나만 선택해주세요");
-    }-->
-    <!--       &lt;!&ndash; 페이징 처리&ndash;&gt;-->
+
+    <!--페이징 처리-->
     <nav style="text-align: center" class="pagination">
         <ul class="pagination"
             th:with="start=${T(Math).floor(items.number/10) * 10 + 1},
@@ -152,6 +150,7 @@
             </li>
         </ul>
     </nav>
+    <!--페이징 처리 완료-->
 
     <script type="text/javascript">
     $(document).ready(function(){
