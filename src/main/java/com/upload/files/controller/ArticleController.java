@@ -78,6 +78,7 @@ public class ArticleController { //리뷰용 컨트롤러
 	@GetMapping("/article/list")
 	public String getArticleList(Model model, @PageableDefault Pageable pageable,
 								 @RequestParam(value = "page", defaultValue = "1") String pageNum,
+								 @AuthenticationPrincipal UserDetails userDetails,
 								 @RequestParam(name = "proNo") Long proNo) {
 		Page<Article> articleList = articleService.getArticleList(pageable);
 		model.addAttribute("articleList", articleList);
@@ -91,6 +92,7 @@ public class ArticleController { //리뷰용 컨트롤러
 
 		model.addAttribute("MainImg", MainImg.getFileName());
 		model.addAttribute("DetailImg", DetailImg.getFileName());
+		model.addAttribute("userDetails", userDetails);
 
 		return "article/list";
 	}
@@ -99,7 +101,10 @@ public class ArticleController { //리뷰용 컨트롤러
 	@GetMapping("/article/detail")
 	public String getArticle(@RequestParam("id") Long id,
 							 @RequestParam(name="proNo", required = false) Long proNo,
+							 @AuthenticationPrincipal UserDetails userDetails,
 							 Model model) {
+		model.addAttribute("userDetails", userDetails);
+
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
 
@@ -114,7 +119,10 @@ public class ArticleController { //리뷰용 컨트롤러
 	/**수정 페이지 들어가기*/
 	@GetMapping("/article/update")
 	public String getArticleUpdate(Model model, @RequestParam Long id,
+								   @AuthenticationPrincipal UserDetails userDetails,
 								   @RequestParam("proNo") Long proNo) {
+		model.addAttribute("userDetails", userDetails);
+
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
 
@@ -127,7 +135,10 @@ public class ArticleController { //리뷰용 컨트롤러
 	@PostMapping(value = "/article/updated")
 	public String setArticleUpdate(Model model, @RequestParam Long id,
 								   @RequestParam(name="proNo", required = false) Long proNo,
+								   @AuthenticationPrincipal UserDetails userDetails,
 								   Article updatedArticle) {
+		model.addAttribute("userDetails", userDetails);
+
 		Article article = articleRepository.findById(id).get();
 		article.setTitle(updatedArticle.getTitle());
 		article.setContent(updatedArticle.getContent());
@@ -150,7 +161,10 @@ public class ArticleController { //리뷰용 컨트롤러
 								@RequestParam Long id,
 								@RequestParam("proNo") Long proNo,
 								@PageableDefault Pageable pageable,
+								@AuthenticationPrincipal UserDetails userDetails,
 								@RequestParam(value = "page", defaultValue = "1") String pageNum) {
+		model.addAttribute("userDetails", userDetails);
+
 		articleRepository.deleteById(id);
 
 		Product product = productService.findOne(proNo);
