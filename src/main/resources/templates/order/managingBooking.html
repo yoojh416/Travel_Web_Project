@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+<!--관리자 페이지 - 회원 예약 현황 확인-->
 <div class="upload-container">
     <div class="upload-header">
         <h1 style="margin-left: 100px;">👨‍✈️ 회원 예약 현황 👩‍✈️️</h1>
@@ -34,8 +35,7 @@
                     <th>주문일자</th>
                     <th>금액</th>
                     <th>수량</th>
-                    <th></th>
-                    <th></th>
+                    <th>이메일 주소</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,10 +46,9 @@
                     <td th:text="${paid.orderDate}"></td>
                     <td th:text="${paid.orderPrice}"></td>
                     <td th:text="${paid.orderQty}"></td>
-                    <td><button class="btn btn-secondary" id="checkCustom" style="width:160px;">회원정보 확인하기</button></td>
-                    <td><input type="hidden" name="customerId" th:value="${paid.member.id}"></td>
-                    <!--<td><button class="button"
-                                th:onclick="|window.location.href='@{/order/customerDetail/{id}(id=${paid.member.id})}'|">회원정보 확인하기</button></td>-->
+                    <block th:each="member : ${memberP}" th:remove="tag">
+                        <td th:if="${paid.member.id} == ${member.id}" th:text="${member.username}"></td>
+                    </block>
                 </tr>
                 </tbody>
             </table>
@@ -70,6 +69,7 @@
                     <th>주문일자</th>
                     <th>금액</th>
                     <th>수량</th>
+                    <th>이메일 주소</th>
                     <th></th>
 
                 </tr>
@@ -82,6 +82,9 @@
                     <td th:text="${comp.orderDate}"></td>
                     <td th:text="${comp.orderPrice}"></td>
                     <td th:text="${comp.orderQty}"></td>
+                    <block th:each="member : ${memberC}" th:remove="tag">
+                        <td th:if = "${comp.member.id} == ${member.id}" th:text="${member.username}"></td>
+                    </block>
                     <td>[여행 종료]</td>
                 </tr>
                 </tbody>
