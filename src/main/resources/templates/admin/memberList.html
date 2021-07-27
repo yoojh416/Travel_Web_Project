@@ -18,17 +18,22 @@
 
 <th:block layout:fragment="content">
     <body>
-    <div class="adminTitle">[ 관리자 페이지 ]</div>
+    <div class="adminTitle">👨‍✈️ 회원 리스트 👩‍✈</div>
     <div class="container">
         <div class="listButtons">
             <button class="button-hover-upload" th:onclick="|window.location.href='/admin/new'|">상품 업로드</button>
             <button class="button-hover-user" th:onclick="|window.location.href='/admin/list'|">상품 리스트</button>
             <button class="button-hover-home" th:onclick="|window.location.href='/'|">홈으로</button>
         </div>
+
+        <br/>
         <div class="container">
             <div>
-                <h3 style="text-align: left; padding-bottom: 25px;">👨‍✈️ 회원 리스트 👩‍✈️️</h3>
+                <h3 style="text-align: right; padding-bottom: 25px;">
+                    🛫 현재 여행예정 수량: <span th:text="${orders}" />
+                    🛬 지난 여행 내역 수량: <span th:text="${ordered}" /></h3>
             </div>
+            <hr/>
             <div>
                 <table class="table table-striped">
                     <thead>

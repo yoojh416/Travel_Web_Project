@@ -1,10 +1,8 @@
 package com.upload.files.controller;
 
+import com.upload.files.entity.Booking;
 import com.upload.files.entity.Member;
-import com.upload.files.repository.MailDto;
-import com.upload.files.repository.MemberDto;
-import com.upload.files.repository.MemberRepository;
-import com.upload.files.repository.Role;
+import com.upload.files.repository.*;
 import com.upload.files.service.MemberService;
 import com.upload.files.service.SendEmailService;
 import lombok.AllArgsConstructor;
@@ -38,6 +36,8 @@ public class MemberController {
     @Autowired private MemberService memberService;
     @Autowired private SendEmailService sendEmailService;
     @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private BookingRepository bookingRepository;
 
     /**
      * 회원가입 페이지
@@ -211,6 +211,35 @@ public class MemberController {
         Page<Member> memberList = memberService.getMemberList(pageable);
 
         model.addAttribute("members", memberList);
+
+        List<Booking> bookingList = bookingRepository.findAll();
+        List<Booking> paidList = new ArrayList<>();
+        List<Booking> compList = new ArrayList<>();
+
+        LocalDate day1 = null;
+        LocalDate day2 = null;
+
+        for (int i = 0; i < bookingList.size(); i++) { //현재 날짜와 DB 내 날짜 비교 저장
+            try {
+                day1 = bookingList.get(i).getDateIn();
+                day2 = LocalDate.now();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            int compare = day1.compareTo(day2);
+
+            if (compare < 1) { //여행 완료 고객
+                bookingList.get(i).setStatus(OrderStatus.COMP);
+                compList.add(bookingList.get(i));
+                model.addAttribute("ordered", compList.size());
+
+            } else { //여행 예정 고객
+                paidList.add(bookingList.get(i));
+                model.addAttribute("orders", paidList.size());
+            }
+        }
 
         return "admin/memberList";
     }

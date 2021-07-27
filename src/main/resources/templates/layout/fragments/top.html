@@ -5,7 +5,6 @@
 <th:block th:fragment="topbarFragment">
 
     <!-- Topbar -->
-
         <nav class="navbar navbar-custom">
             <a th:href="@{/}"><img class="main_logo_img" th:src="@{/images/logo.png}" /></a>
             <ul class="navbar_logo">
@@ -19,7 +18,6 @@
                     <a th:href="@{/user/logout}"><i class="fas fa-sign-out-alt icons">로그아웃</i></a></li>
                 <li sec:authorize="isAuthenticated()">
                     <a sec:authorize="hasRole('MEMBER')" th:href="@{/order/bookingInfo}"><i class="fas fa-bookmark icons">예약관리</i></a>
-                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/order/adminBookingList}"><i class="fas fa-bookmark icons">예약관리</i></a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
                     <a th:href="@{/user/info}"><i class="fas fa-address-card icons">회원정보</i></a></li>
@@ -28,8 +26,6 @@
                 <li class="navbar_icons_home"><a th:href="@{/}"><i class="fas fa-home icons">홈</i></a></li>
             </ul>
         </nav>
-
     </nav>
-
 </th:block>
 </html>
