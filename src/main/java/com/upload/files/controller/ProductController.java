@@ -124,10 +124,17 @@ public class ProductController { //여행 상품용 컨트롤러
      * 메인 상품 리스트
      */
     @RequestMapping("/board/list")
-    public String list(@ModelAttribute("listSearch") ListSearch listSearch,
-                       @PageableDefault Pageable pageable,
+    public String list(@ModelAttribute("listSearch") ListSearch dto,
+                       @PageableDefault Pageable pageable, ListSearch listSearch,
                        @RequestParam(value = "page", defaultValue = "1") String pageNum,
                        Model model) {
+
+        listSearch.setSeason(dto.getSeason());
+        listSearch.setRegion(dto.getRegion());
+        listSearch.setTheme(dto.getTheme());
+
+        model.addAttribute("search", listSearch);
+
         List<Product> products = productService.findByFilter(listSearch);
         Page<Product> pagingProducts = productService.pagingFindItemsByFilter(listSearch, pageable);
         List<FilePath> files = new ArrayList<>();
