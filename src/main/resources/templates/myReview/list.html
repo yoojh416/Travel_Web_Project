@@ -1,30 +1,5 @@
-<!--<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-&lt;!&ndash; Required meta tags &ndash;&gt;
-<meta charset="utf-8">
-&lt;!&ndash;
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-&ndash;&gt;
-
-<head>
-    <title>✈️개인 리뷰 목록</title>
-    &lt;!&ndash;css&ndash;&gt;
-    <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>
-    <link th:href="@{/css/button-hover.css}" rel="stylesheet">
-    <link th:href="@{/css/itemList.css}" rel="stylesheet">
-
-    &lt;!&ndash;js&ndash;&gt;
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-
-</head>
-
-<body>-->
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
     <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>
@@ -39,8 +14,12 @@
 <body style=" background-color: #16a085; min-height:0px;">
 <div class="container gallery-container" style="margin-top:50px; min-height:650px;">
     <div style="text-align: right;">
+
     <button class="button-hover" th:onclick="|window.location.href='/'|"  >홈으로 가기 😎</button>
+        <h1> <span sec:authentication="principal.username"></span> 리뷰 정보(◍•ᴗ•◍)❤ </h1>
+
     </div>
+
         <div class="container">
         <div class="table-list">
             <table class="table_box">
