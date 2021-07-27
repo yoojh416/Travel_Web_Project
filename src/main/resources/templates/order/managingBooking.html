@@ -29,12 +29,12 @@
             <table class="table_box">
                 <thead>
                 <tr>
-                    <th>주문번호</th>
-                    <th>여행 시작일</th>
-                    <th>여행 마지막일</th>
-                    <th>주문일자</th>
-                    <th>금액</th>
-                    <th>수량</th>
+                    <th style="width: 80px">주문번호</th>
+                    <th style="width: 180px">여행 시작일</th>
+                    <th style="width: 180px">여행 마지막일</th>
+                    <th style="width: 180px">주문일자</th>
+                    <th style="width: 150px">금액</th>
+                    <th style="width: 80px">수량</th>
                     <th>이메일 주소</th>
                 </tr>
                 </thead>
@@ -63,14 +63,13 @@
             <table class="table_box">
                 <thead>
                 <tr>
-                    <th>주문번호</th>
-                    <th>여행 시작일</th>
-                    <th>여행 마지막일</th>
-                    <th>주문일자</th>
-                    <th>금액</th>
-                    <th>수량</th>
+                    <th style="width: 80px">주문번호</th>
+                    <th style="width: 180px">여행 시작일</th>
+                    <th style="width: 180px">여행 마지막일</th>
+                    <th style="width: 180px">주문일자</th>
+                    <th style="width: 150px">금액</th>
+                    <th style="width: 80px">수량</th>
                     <th>이메일 주소</th>
-                    <th></th>
 
                 </tr>
                 </thead>
@@ -85,7 +84,6 @@
                     <block th:each="member : ${memberC}" th:remove="tag">
                         <td th:if = "${comp.member.id} == ${member.id}" th:text="${member.username}"></td>
                     </block>
-                    <td>[여행 종료]</td>
                 </tr>
                 </tbody>
             </table>

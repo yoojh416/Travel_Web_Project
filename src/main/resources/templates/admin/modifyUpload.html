@@ -11,6 +11,8 @@
     <!--css-->
     <link th:href="@{/css/modifyUpload2.css}" rel="stylesheet">
     <!--js -->
+    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <th:block layout:fragment="content">
@@ -19,7 +21,7 @@
                 <div class="col-md-8 mx-auto">
                     <div class="adminTitle">[ 관리자 업로드 수정 ]</div>
                     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-                    <form method="post" th:action="@{/admin/register}" th:object="${productForm}">
+                    <form method="post" th:action="@{/admin/modified/{proNo}(proNo=${productForm.proNo})}" id="modifyInfo" th:object="${productForm}">
 
                         <div>
                             <label th:for="proTitle"><div class="title">제목</div></label>
@@ -79,7 +81,7 @@
                         </div>
                     </form>
                     <div class="buttons2">
-                        <button class="button-hover-delete"
+                        <button class="button-hover-delete" id="deleteProduct"
                                 th:onclick="|window.location.href='/admin/delete/${proNo}'|">삭제하기
                         </button>
                         <button class="button-hover-list"
@@ -90,4 +92,27 @@
             </div>
         </div>
 </th:block>
+<script>
+    $("#deleteProduct").click(function(){
+        swal({
+            title: "Warning!",
+            text: "상품을 삭제하시겠습니까?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete)=>{
+            if(willDelete){
+                swal({
+                    title: "Success!",
+                    text: "상품이 삭제되었습니다.",
+                    icon: "success"
+                });
+                document.getElementById('modifyInfo').submit();
+            } else {
+                swal("상품 삭제를 취소하였습니다.");
+            }
+        })
+    })
+</script>
 </html>
