@@ -57,4 +57,21 @@ public class HomeController {
         return "/layout/footer";
     }
 
+    /**
+     * 이벤트 페이지로 이동
+     */
+    @GetMapping("/event/event1")
+    public String event1() {
+        return "event/event1";
+    }
+
+    @GetMapping("/event/event2")
+    public String event2() {
+        return "event/event2";
+    }
+
+    @GetMapping("/event/event3")
+    public String event3() { return "event/event3"; }
+
+
 }
