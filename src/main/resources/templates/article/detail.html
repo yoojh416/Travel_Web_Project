@@ -33,7 +33,7 @@
                     th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">삭제하기
                 😢
             </button>
-            </div>
+
             <button class="button" th:onclick="|window.location.href='/'|">홈으로 가기 😎</button>
             <button sec:authorize="hasRole('ROLE_ADMIN')" class="button"
                     th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">삭제하기
@@ -42,6 +42,7 @@
             <button sec:authorize="hasRole('ROLE_ADMIN')"
                     class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍
             </button>
+            </div>
         </div>
     </div>
 </div>
