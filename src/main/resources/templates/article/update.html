@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -51,9 +52,9 @@
             <br/>
 
             <div style="text-align : right;">
-            <button type="submit" id="sucker" name="submit" style="margin-top:0px; margin-bottom:0px; font-size:15px;" class="sucker">수정하기 😊
-            </button>
-            <a type="button" style="text-decoration:none; font-size:15px;" class="button"  onclick="history.go(-1)">취소하기 😉</a>
+                <button type="submit" id="sucker" name="submit" style="margin-top:0px; margin-bottom:0px; font-size:15px;" class="sucker">수정하기 😊
+                </button>
+                <a type="button" style="text-decoration:none; font-size:15px;" class="button" onclick="history.go(-1)">취소하기 😉</a>
             </div>
         </form>
     </div>
@@ -99,6 +100,8 @@
 				}
 			});
 		}
+
+
 
 </script>
 </html>

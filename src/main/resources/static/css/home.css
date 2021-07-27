@@ -224,7 +224,7 @@ section {
 }
 
 .heading i {
-	color: #16a085;
+	color: #0f5aba;
 }
 
 .heading span {
@@ -235,7 +235,29 @@ section {
 	padding: .2rem 1rem;
 }
 
-.heading span.space {
+.heading-best span.space {
+	background: none;
+}
+.heading-best {
+	text-align: center;
+	padding: 2.5rem 0;
+    position: relative;
+    top: 160px
+}
+
+.heading-best i {
+	color: #ffba00;
+}
+
+.heading-best span {
+	font-size: 3.5rem;
+	background: white;
+	color: var(- -black);
+	border-radius: .5rem;
+	padding: .2rem 1rem;
+}
+
+.heading-best span.space {
 	background: none;
 }
 

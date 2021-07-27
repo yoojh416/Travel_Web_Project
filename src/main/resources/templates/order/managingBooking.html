@@ -12,9 +12,10 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+<!--관리자 페이지 - 회원 예약 현황 확인-->
 <div class="upload-container">
     <div class="upload-header">
-        <h1 style="margin-left: 100px;">👨‍✈️ 회원 예약 현황 👩‍✈️️</h1>
+        <h1 style="margin-left: 100px; padding-top: 50px;">👨‍✈️ 회원 예약 현황 👩‍✈️️</h1>
         <div style="text-align:right;">
             <a th:href="@{/}" class="button" style="font-size: 0.8rem; text-decoration:none; margin:50px;">홈으로 가기</a>
         </div><br>
@@ -28,14 +29,13 @@
             <table class="table_box">
                 <thead>
                 <tr>
-                    <th>주문번호</th>
-                    <th>여행 시작일</th>
-                    <th>여행 마지막일</th>
-                    <th>주문일자</th>
-                    <th>금액</th>
-                    <th>수량</th>
-                    <th></th>
-                    <th></th>
+                    <th style="width: 80px">주문번호</th>
+                    <th style="width: 180px">여행 시작일</th>
+                    <th style="width: 180px">여행 마지막일</th>
+                    <th style="width: 180px">주문일자</th>
+                    <th style="width: 150px">금액</th>
+                    <th style="width: 80px">수량</th>
+                    <th>이메일 주소</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,10 +46,9 @@
                     <td th:text="${paid.orderDate}"></td>
                     <td th:text="${paid.orderPrice}"></td>
                     <td th:text="${paid.orderQty}"></td>
-                    <td><button class="btn btn-secondary" id="checkCustom" style="width:160px;">회원정보 확인하기</button></td>
-                    <td><input type="hidden" name="customerId" th:value="${paid.member.id}"></td>
-                    <!--<td><button class="button"
-                                th:onclick="|window.location.href='@{/order/customerDetail/{id}(id=${paid.member.id})}'|">회원정보 확인하기</button></td>-->
+                    <block th:each="member : ${memberP}" th:remove="tag">
+                        <td th:if="${paid.member.id} == ${member.id}" th:text="${member.username}"></td>
+                    </block>
                 </tr>
                 </tbody>
             </table>
@@ -64,13 +63,13 @@
             <table class="table_box">
                 <thead>
                 <tr>
-                    <th>주문번호</th>
-                    <th>여행 시작일</th>
-                    <th>여행 마지막일</th>
-                    <th>주문일자</th>
-                    <th>금액</th>
-                    <th>수량</th>
-                    <th></th>
+                    <th style="width: 80px">주문번호</th>
+                    <th style="width: 180px">여행 시작일</th>
+                    <th style="width: 180px">여행 마지막일</th>
+                    <th style="width: 180px">주문일자</th>
+                    <th style="width: 150px">금액</th>
+                    <th style="width: 80px">수량</th>
+                    <th>이메일 주소</th>
 
                 </tr>
                 </thead>
@@ -82,7 +81,9 @@
                     <td th:text="${comp.orderDate}"></td>
                     <td th:text="${comp.orderPrice}"></td>
                     <td th:text="${comp.orderQty}"></td>
-                    <td>[여행 종료]</td>
+                    <block th:each="member : ${memberC}" th:remove="tag">
+                        <td th:if = "${comp.member.id} == ${member.id}" th:text="${member.username}"></td>
+                    </block>
                 </tr>
                 </tbody>
             </table>

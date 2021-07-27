@@ -10,6 +10,9 @@ import com.upload.files.service.SendEmailService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -105,7 +108,7 @@ public class MemberController {
     }
 
     /**
-     * 권한 거부 페이지 -> 추후 알람으로 대체
+     * 권한 거부 페이지
      */
     @GetMapping("/user/denied")
     public String dispDenied() {
@@ -122,6 +125,18 @@ public class MemberController {
 
         model.addAttribute("members", member);
         return "user/myInfo";
+    }
+
+    /**
+     * 어드민 -> 내 정보 페이지 회원별 이동
+     */
+    @GetMapping("/admin/modifyUserName/{username}")
+    public String dispUserInfo(@PathVariable String username, Member member, Model model) {
+        member = memberRepository.findByUsername(username);
+
+        model.addAttribute("username", username);
+        model.addAttribute("members", member);
+        return "admin/modifyUserInfo";
     }
 
     /**
@@ -153,42 +168,47 @@ public class MemberController {
      */
     @PostMapping("/user/modified")
     public String modifyMyInfo(@AuthenticationPrincipal UserDetails userDetails
-            , @Valid MemberDto memberDto, BindingResult result, Model model, Member member) {
+            , @Valid MemberDto memberDto, BindingResult result, Model model) throws Exception {
 
-        memberRepository.deleteById(memberDto.getId());
+        Optional<Member> member = memberRepository.findById(memberDto.getId());
+        member.get().setPassword(memberService.modifyPw(memberDto));
+        member.get().setName(memberDto.getName());
+        member.get().setAddress(memberDto.getAddress());
+        member.get().setPhoneNo(memberDto.getPhoneNo());
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
+        this.memberRepository.save(member.get());
 
-        member.setName(memberDto.getName());
-        member.setAddress(memberDto.getAddress());
-        member.setBirthdate(memberDto.getBirthdate());
-        member.setGender(memberDto.getGender());
-        member.setPhoneNo(memberDto.getPhoneNo());
-        member.setRole(Role.MEMBER); //어드민 1계정, 나머지 고객
-        member.setUsername(memberDto.getUsername());
-        member.setRegDate(LocalDate.now());
-        this.memberRepository.save(member);
-
-        return "redirect:/user/login";
+        if (userDetails.getUsername().equals("passionatedtour@gmail.com")){
+            return "redirect:/admin/memberList";
+        } else {
+            return "redirect:/user/login";
+        }
     }
 
     /**
      * 계정삭제 로직 -> 삭제 후 login 으로 이동
      */
     @GetMapping("/user/delete/{id}")
-    public String deleteMyInfo(@PathVariable("id") Long id) {
+    public String deleteMyInfo(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetails userDetails) {
         memberRepository.deleteById(id);
 
-        return "redirect:/user/login";
+        if (userDetails.getUsername().equals("passionatedtour@gmail.com")){
+            return "redirect:/admin/memberList";
+        } else {
+            return "redirect:/user/login";
+        }
     }
 
     /**
      * 어드민 페이지
      */
-    @GetMapping("/admin/userList")
-    public String dispAdmin(Member member, Model model) {
-        List<Member> memberList = memberRepository.findAll();
+    @GetMapping("/admin/memberList")
+    public String dispAdmin(Member member, Model model,
+                            @PageableDefault Pageable pageable,
+                            @RequestParam(value = "page", defaultValue = "1") String pageNum) {
+        //List<Member> memberList = memberRepository.findAll();
+
+        Page<Member> memberList = memberService.getMemberList(pageable);
 
         model.addAttribute("members", memberList);
 
@@ -237,7 +257,7 @@ public class MemberController {
         Map<String, Boolean> json = new HashMap<>();
         boolean pwFindCheck = memberService.userEmailCheck(username, name);
 
-        json.put("check", pwFindCheck);
+        json.put("data", pwFindCheck);
 
         return json;
     }

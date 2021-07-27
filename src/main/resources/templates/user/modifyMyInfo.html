@@ -127,8 +127,8 @@
                                     <button class="btn btn-outline-success"
                                             style="width:200px; margin-right:30px; " type="button" onclick="successModify()">수정하기
                                     </button>
-                                    <a type="button" class="btn btn-outline-secondary"
-                                       style="width:200px; margin-right:30px; margin-left:30px; text-decoration:none;" th:href="@{/user/info}"> 수정취소하기</a>
+                                    <a type="button" class="btn btn-outline-secondary" onclick="cancelModify()"
+                                       style="width:200px; margin-right:30px; margin-left:30px; text-decoration:none;"> 수정취소하기</a>
                                     <a type="button" onclick="deleteAccount()" class="btn btn-outline-danger btn-block"
                                        style="width:200px;  margin-left:30px; text-decoration:none;">계정탈퇴하기</a>
                                 </div>
@@ -142,6 +142,8 @@
 </th:block>
 </body>
 <script>
+
+/* 정보 수정 후 재 로그인 요청*/
 function successModify(){
     swal({
         title: "Success!",
@@ -155,6 +157,20 @@ function successModify(){
     })
 
 }
+
+/* 정보 수정 취소 시 안내 창*/
+function cancelModify(){
+    swal({
+        title: "Canceled!",
+        text: "수정이 취소되었습니다.",
+        icon: "error",
+    })
+    .then(() => {
+        location.href='/user/info';
+    })
+}
+
+/*탈퇴 시 안내 메세지*/
 function deleteAccount(){
  var userId = $("input[id='id']").val();
     swal({

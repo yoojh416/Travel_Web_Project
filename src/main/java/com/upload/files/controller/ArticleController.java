@@ -74,42 +74,37 @@ public class ArticleController { //리뷰용 컨트롤러
 		return "board/get";
 	}
 
-	/** 전체 리스트 + 페이징 *//*
+	/** 전체 리스트 + 페이징 */
 	@GetMapping("/article/list")
-	public String getArticleList(Model model, @PageableDefault Pageable pageable
-			, @RequestParam(value = "page", defaultValue = "1") String pageNum) {
+	public String getArticleList(Model model, @PageableDefault Pageable pageable,
+								 @RequestParam(value = "page", defaultValue = "1") String pageNum,
+								 @AuthenticationPrincipal UserDetails userDetails,
+								 @RequestParam(name = "proNo") Long proNo) {
 		Page<Article> articleList = articleService.getArticleList(pageable);
 		model.addAttribute("articleList", articleList);
 
-		return "article/list";
-	}*/
+		Product product = productService.findOne(proNo);
+		model.addAttribute("productInfo", product);
 
-	/** 검색기능 추가 *//*
-	@GetMapping("/article/search")
-	public String getSearch(Model model, @PageableDefault Pageable pageable
-			, @RequestParam(value = "page", defaultValue = "1") String pageNum
-			, String keyword) {
-		Page result;
-		Page<Article> articleList = articleService.getArticleList(pageable);
-		Page<Article> searchList = articleService.search(keyword, pageable);
+		int[] fno = filePathRepository.findAllFno(proNo);
+		FilePath MainImg = filePathRepository.findById(fno[0]).get();
+		FilePath DetailImg = filePathRepository.findById(fno[1]).get();
 
-		*//*검색어가 없으면 전체 리스트 반환하는 로직*//*
-		if(keyword.isEmpty()) {
-			result = articleList;
-		} else {
-			result = searchList;
-		}
-
-		model.addAttribute("articleList", result);
+		model.addAttribute("MainImg", MainImg.getFileName());
+		model.addAttribute("DetailImg", DetailImg.getFileName());
+		model.addAttribute("userDetails", userDetails);
 
 		return "article/list";
-	}*/
+	}
 
 	/**상세 페이지*/
 	@GetMapping("/article/detail")
 	public String getArticle(@RequestParam("id") Long id,
 							 @RequestParam(name="proNo", required = false) Long proNo,
+							 @AuthenticationPrincipal UserDetails userDetails,
 							 Model model) {
+		model.addAttribute("userDetails", userDetails);
+
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
 
@@ -124,7 +119,10 @@ public class ArticleController { //리뷰용 컨트롤러
 	/**수정 페이지 들어가기*/
 	@GetMapping("/article/update")
 	public String getArticleUpdate(Model model, @RequestParam Long id,
+								   @AuthenticationPrincipal UserDetails userDetails,
 								   @RequestParam("proNo") Long proNo) {
+		model.addAttribute("userDetails", userDetails);
+
 		Article article = articleRepository.findById(id).get();
 		model.addAttribute("article", article);
 
@@ -137,7 +135,10 @@ public class ArticleController { //리뷰용 컨트롤러
 	@PostMapping(value = "/article/updated")
 	public String setArticleUpdate(Model model, @RequestParam Long id,
 								   @RequestParam(name="proNo", required = false) Long proNo,
+								   @AuthenticationPrincipal UserDetails userDetails,
 								   Article updatedArticle) {
+		model.addAttribute("userDetails", userDetails);
+
 		Article article = articleRepository.findById(id).get();
 		article.setTitle(updatedArticle.getTitle());
 		article.setContent(updatedArticle.getContent());
@@ -160,7 +161,10 @@ public class ArticleController { //리뷰용 컨트롤러
 								@RequestParam Long id,
 								@RequestParam("proNo") Long proNo,
 								@PageableDefault Pageable pageable,
+								@AuthenticationPrincipal UserDetails userDetails,
 								@RequestParam(value = "page", defaultValue = "1") String pageNum) {
+		model.addAttribute("userDetails", userDetails);
+
 		articleRepository.deleteById(id);
 
 		Product product = productService.findOne(proNo);

@@ -12,10 +12,8 @@
     <link rel="stylesheet" th:href="@{/css/bestReview.css}"/>
     <link rel="stylesheet" th:href="@{/css/button-hover.css}"/>
     <link rel="stylesheet" th:href="@{/css/footer.css}">
-    <!-- <head th:replace="layout/header :: header"/>-->
 </head>
 <body>
-<!--<div th:replace="layout/bodyHeader :: bodyHeader" />-->
 <br>
 <br>
 <br>
@@ -25,8 +23,8 @@
 
     <h1> <span sec:authentication="principal.username"></span> 회원님 정보(◍•ᴗ•◍)❤ </h1>
     <div style="text-align:right;">
-        <a class="button-hover" th:href="@{/user/passwordCheck}"
-           style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">회원정보 수정 🧐</a>
+        <a class="button-hover" th:href="@{/user/passwordCheck}" style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">회원정보 수정 🧐</a>
+        <a class="button-hover" th:href="@{/user/passwordCheck}" style="font-size: 0.9rem; text-decoration:none; width:30px; padding-left: 32px; padding-right: 32px;">내가 쓴 리뷰 🧐</a>
         <button class="button-hover" th:onclick="|window.location.href='/'|"  style="font-size: 1rem;" >홈으로 가기 😎</button>
     </div>
 
@@ -71,5 +69,4 @@
     </div>
 </div>
 </body>
-<!--<div th:replace="layout/footer :: footer" />-->
 </html>

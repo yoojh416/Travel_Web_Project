@@ -22,7 +22,7 @@ public class ArticleService { //아직 사용하지 않는 로직
     /** 전체 페이징 메소드 */
     public Page<Article> getArticleList(Pageable pageable) {
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
-        pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"));
+        pageable = PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id"));
 
         return articleRepository.findAll(pageable);
     }

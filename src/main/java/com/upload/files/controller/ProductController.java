@@ -121,12 +121,12 @@ public class ProductController { //여행 상품용 컨트롤러
     }
 
     /**
-     * 메인 상품 페이지
+     * 메인 상품 리스트
      */
     @RequestMapping("/board/list")
     public String list(@ModelAttribute("listSearch") ListSearch listSearch,
                        @PageableDefault Pageable pageable,
-                       @RequestParam(value = "page", defaultValue = "0") String pageNum,
+                       @RequestParam(value = "page", defaultValue = "1") String pageNum,
                        Model model) {
         List<Product> products = productService.findByFilter(listSearch);
         Page<Product> pagingProducts = productService.pagingFindItemsByFilter(listSearch, pageable);
@@ -140,15 +140,18 @@ public class ProductController { //여행 상품용 컨트롤러
 
             model.addAttribute("items", pagingProducts);
             model.addAttribute("MainImage", files);
-
         }
 
         return "board/list";
+
     }
 
+    /**
+     * 메인 상품 상세 페이지
+     */
     @GetMapping("/board/get")
     public String getProduct(@RequestParam(name = "proNo") Long proNo,
-                             @RequestParam(value = "page", defaultValue = "0") String pageNum,
+                             @RequestParam(value = "page", defaultValue = "1") String pageNum,
                              @PageableDefault Pageable pageable, Model model) {
 
         Product product = productService.findOne(proNo);

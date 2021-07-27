@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+<!--고객 상품 예약 현황-->
 <div class="upload-container">
     <div class="upload-header">
         <h1 style="margin-left: 100px;">👨‍✈️️예약현황 👩‍✈️️</h1>
@@ -101,6 +102,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script>
+/*예약 변경 및 취소 관련 알람창 설정*/
     $(document).ready(function(){
         $("#cancelPay").click(function(){
             var orderId = $("input[name='orderId']").val();
@@ -118,7 +120,7 @@
                     });
                     location.href="/order/cancel/"+orderId;
                 } else{
-                    swal("취소되지 않았습니다.");
+                    swal("Canceled", "예약 변경이 취소되었습니다.","info");
                 }
             });
         });

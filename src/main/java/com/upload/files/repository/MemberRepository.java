@@ -1,6 +1,8 @@
 package com.upload.files.repository;
 
 import com.upload.files.entity.Member;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,4 +28,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     /** 이름 유효성 확인용 */
     boolean existsByName(String name);
 
+    /**회원 리스트 페이징 처리*/
+    Page<Member> findAll(Pageable pageable);
 }
