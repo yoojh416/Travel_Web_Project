@@ -250,7 +250,9 @@
     <!--        <h3>정한나 회원님</h3>
             <p>베스트 리뷰 : 우정 여행 패키지</p>-->
             <button class="bestIcon"  type="button"
-                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''">😊베스트 리뷰</button>
+                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''" disabled value="">Best Review</button>
+            <button class="bestBtn" type="button"
+                    th:onclick="'location.href=\''+ @{/bestReview/list} + '\''">더보기</button>
           </div>
         </div>
 
@@ -260,14 +262,14 @@
             <input type="radio" name="slide1" id="slide01" checked>
             <input type="radio" name="slide1" id="slide02">
             <input type="radio" name="slide1" id="slide03">
-            <input type="radio" name="slide1" id="slide04">
-            <ul class="slidelist1">
+            <ul class="slidelist1" style="padding:0px;">
               <li class="slideitem1">
                 <a>
                   <label for="slide03" class="prev"></label>
-                  <img src="./images/slide01.jpg"/>
+                  <img src="./images/event-01.jpg" style="height:360px;"/>
                   <!-- Button trigger modal -->
-                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  <button type="button" class="button"  style="width:200px; font-size: 1.1rem; margin: 20px;"
+                          th:onclick="'location.href=\''+ @{/event/event1} + '\''">
                     ✨ 자세한 내용보기 ✨
                   </button>
                   <label for="slide02" class="next"></label>
@@ -276,9 +278,10 @@
               <li class="slideitem1">
                 <a>
                   <label for="slide01" class="prev"></label>
-                  <img src="./images/slide02.jpg">
+                  <img src="./images/event-02.png" style="height:360px;"/>
                   <!-- Button trigger modal -->
-                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  <button type="button" class="button" style="width:200px; font-size: 1.1rem; margin: 20px;"
+                          th:onclick="'location.href=\''+ @{/event/event2} + '\''">
                     ✨ 자세한 내용보기 ✨
                   </button>
                   <label for="slide03" class="next"></label>
@@ -287,20 +290,10 @@
               <li class="slideitem1">
                 <a>
                   <label for="slide02" class="prev"></label>
-                  <img src="./images/slide03.jpg">
+                  <img src="./images/event-03.png" style="height:360px;"/>
                   <!-- Button trigger modal -->
-                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
-                    ✨ 자세한 내용보기 ✨
-                  </button>
-                  <label for="slide04" class="next"></label>
-                </a>
-              </li>
-              <li class="slideitem1">
-                <a>
-                  <label for="slide03" class="prev"></label>
-                  <img src="./images/slide04.jpg">
-                  <!-- Button trigger modal -->
-                  <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:200px; font-size: 1.1rem;" >
+                  <button type="button" class="button" style="width:200px; font-size: 1.1rem; margin: 20px;"
+                          th:onclick="'location.href=\''+ @{/event/event3} + '\''" >
                     ✨ 자세한 내용보기 ✨
                   </button>
                   <label for="slide01" class="next"></label>
@@ -308,31 +301,10 @@
               </li>
             </ul>
           </div>
-
-
         </div>
       </div>
     </section>
-  </div>
     <!-- gallery section ends -->
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">이벤트 제목</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h1>이벤트 내용</h1>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="button" data-bs-dismiss="modal">닫기</button>
-          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-        </div>
-      </div>
-    </div>
   </div>
   </body>
 </th:block>
