@@ -48,10 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 // 페이지 권한 설정
-                .antMatchers("/admin/**", "/transfer/**"
-                        , "/bestReview/delete/**").hasRole("ADMIN")
-                .antMatchers("/user/myInfo","/order/book/**"
-                        , "/order/bookingInfo","/form","user/info").hasRole("MEMBER")
+                .antMatchers("/admin/**", "/transfer/**", "/bestReview/delete/**").hasRole("ADMIN")
+                .antMatchers("/user/myInfo").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
                 .and() // 로그인 설정 & RememberME
                 .formLogin( formLogin -> formLogin

@@ -100,5 +100,13 @@ public class MemberService implements UserDetailsService {
 
         return memberRepository.findAll(pageable);
     }
+    
+    /** 비밀번호 암호화 */
+    public String modifyPw(MemberDto memberDto) throws Exception {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String securedPw = encoder.encode(memberDto.getPassword());
+
+        return securedPw;
+    }
 
 }

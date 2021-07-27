@@ -163,28 +163,20 @@ public class MemberController {
         }
     }
 
-
     /**
      * 정보 수정 로직
      */
     @PostMapping("/user/modified")
     public String modifyMyInfo(@AuthenticationPrincipal UserDetails userDetails
-            , @Valid MemberDto memberDto, BindingResult result, Model model, Member member) {
+            , @Valid MemberDto memberDto, BindingResult result, Model model) throws Exception {
 
-        memberRepository.deleteById(memberDto.getId());
+        Optional<Member> member = memberRepository.findById(memberDto.getId());
+        member.get().setPassword(memberService.modifyPw(memberDto));
+        member.get().setName(memberDto.getName());
+        member.get().setAddress(memberDto.getAddress());
+        member.get().setPhoneNo(memberDto.getPhoneNo());
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        member.setPassword(passwordEncoder.encode(memberDto.getPassword()));
-
-        member.setName(memberDto.getName());
-        member.setAddress(memberDto.getAddress());
-        member.setBirthdate(memberDto.getBirthdate());
-        member.setGender(memberDto.getGender());
-        member.setPhoneNo(memberDto.getPhoneNo());
-        member.setRole(Role.MEMBER); //어드민 1계정, 나머지 고객
-        member.setUsername(memberDto.getUsername());
-        member.setRegDate(LocalDate.now());
-        this.memberRepository.save(member);
+        this.memberRepository.save(member.get());
 
         if (userDetails.getUsername().equals("passionatedtour@gmail.com")){
             return "redirect:/admin/memberList";
