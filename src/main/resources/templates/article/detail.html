@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div class="upload-container">
+<div class="upload-container" s>
     <div class="upload-header">
         <h2># 리뷰 확인창 🤹</h2>
         <p th:utext="${article.registerDate}" style="text-align : right;"></p>
@@ -22,7 +22,9 @@
             <div th:utext="${article.content}" class="panel-body" style="text-align : center;"></div>
             <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
         </div>
-        <div style="text-align:center;">
+
+        <div tyle=" display: inline-block;" ;>
+        <div style="text-align:left;">
             <div th:if="${article.writer.toString().equals(userDetails.username.toString())}">
                 <button sec:authorize="hasRole('ROLE_MEMBER')" class="button"
                         th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">
@@ -58,6 +60,7 @@
                 😎
             </button>
                 </div>
+        </div>
 
         </div>
     </div>
