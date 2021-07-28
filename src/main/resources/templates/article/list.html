@@ -59,13 +59,15 @@
               last=${start + 9 < articleList.totalPages ? start + 9 : articleList.totalPages}">
 
                 <li>
-                    <a th:href="@{/board/get(proNo = ${productInfo.proNo}, page=1)}" aria-label="First">
+                    <a th:href="@{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=1)}" aria-label="First">
                         <span aria-hidden="true">👈 처음</span>
                     </a>
                 </li>
 
                 <li th:class="${articleList.first} ? 'disabled'">
-                    <a th:href="${articleList.first} ? '#' : @{/board/get(proNo = ${productInfo.proNo}, page=${articleList.number})}"
+                    <a th:href="${articleList.first} ? '#' : @{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${articleList.number})}"
                        aria-label="Previous">
                         <span aria-hidden="true">⬅</span>
                     </a>
@@ -73,18 +75,21 @@
 
                 <li th:each="page: ${#numbers.sequence(start, last)}"
                     th:class="${page == articleList.number + 1} ? 'active'">
-                    <a th:text="${page}" th:href="@{/board/get(proNo = ${productInfo.proNo}, page=${page})}">&nbsp;</a>
+                    <a th:text="${page}" th:href="@{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${page})}">&nbsp;</a>
                 </li>
 
                 <li th:class="${articleList.last} ? 'disabled'">
-                    <a th:href="${articleList.last} ? '#' : @{/board/get(proNo = ${productInfo.proNo}, page=${articleList.number + 2})}"
+                    <a th:href="${articleList.last} ? '#' : @{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${articleList.number + 2})}"
                        aria-label="Next">
                         <span aria-hidden="true">➡</span>
                     </a>
                 </li>
 
                 <li>
-                    <a th:href="@{/board/get(proNo = ${productInfo.proNo}, page=${articleList.totalPages})}" aria-label="Last">
+                    <a th:href="@{/board/get(proNo = ${productInfo.proNo}, N = ${productInfo.N}
+                    , E = ${productInfo.E}, page=${articleList.totalPages})}" aria-label="Last">
                         <span aria-hidden="true">마지막 👉</span>
                     </a>
                 </li>
