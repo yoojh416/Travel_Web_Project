@@ -122,7 +122,7 @@ label {
 .pagination {
     display: inline-block;
     width: 600px;
-    /*position: sticky;*/
+    position: sticky;
     left: 45%;
     margin-top: 10px;
 }

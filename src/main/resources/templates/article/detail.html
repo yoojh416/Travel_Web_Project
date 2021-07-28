@@ -36,18 +36,20 @@
                 </button>
             </div>
 
+
+            <div th:if="${article.writer.toString().equals('passionatedtour@gmail.com')}" style="text-align:left;">
+                <button sec:authorize="hasRole('ROLE_ADMIN')" class="button" style="margin:0px;"
+                        th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">
+                    수정하기
+                    🤩
+                </button> </div>
+            <div style="text-align:right;">
+
             <button sec:authorize="hasRole('ROLE_ADMIN')" class="button"
                     th:onclick="|window.location.href='@{/article/delete(proNo = ${proNo}, id = ${article.id})}'|">
                 삭제하기
                 😢
             </button>
-            <div th:if="${article.writer.toString().equals('passionatedtour@gmail.com')}">
-                <button sec:authorize="hasRole('ROLE_ADMIN')" class="button"
-                        th:onclick="|window.location.href='@{/article/update(proNo = ${proNo}, id = ${article.id})}'|">
-                    수정하기
-                    🤩
-                </button>
-            </div>
             <button sec:authorize="hasRole('ROLE_ADMIN')"
                     class="button" th:onclick="|window.location.href='/transfer/${article.id}'|">베스트 선정하기 👍
             </button>
@@ -55,6 +57,7 @@
                 가기
                 😎
             </button>
+                </div>
 
         </div>
     </div>
