@@ -23,8 +23,7 @@
             <h4 style="text-align:right;">작성자 : <a th:text="${article.writer}">님</a></h4>
         </div>
         <div style="text-align:center;">
-            <button sec:authorize="hasRole('ROLE_MEMBER')"
-                    class="button"
+            <button  class="button"
                     th:onclick="|window.location.href='@{/myReview/update/{id}(id = ${article.id})}'|">
                 수정하기
                 🤩
