@@ -121,8 +121,8 @@ label {
 /*paging css*/
 .pagination {
     display: inline-block;
-    width: 400px;
-    position: sticky;
+    width: 600px;
+    /*position: sticky;*/
     left: 45%;
     margin-top: 10px;
 }

@@ -178,7 +178,7 @@ body {
 /*paging css*/
 .pagination {
     display: inline-block;
-    width: 400px;
+    width: 600px;
     position: relative;
     left: 35px;
 }
