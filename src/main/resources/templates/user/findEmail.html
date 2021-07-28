@@ -21,7 +21,7 @@
 </head>
 <body class="text-center">
 
-<form class="form-signin" method="post" th:action="@{/user/findId}">
+<form class="form-signin" method="post" id="findEmail" th:action="@{/user/findId}">
 
     <a th:href="@{/}"><img class="mb-6" th:src="@{/images/logo.png}" width="500" alt="main_logo_img"></a>
     <div class="login-form">
@@ -34,11 +34,24 @@
         <input type="text" th:name="name" placeholder="이름">
         <input type="text"  th:name="phoneNo" placeholder="010-1234-5678">
 
-        <input class="submit-btn " type="submit" value="아이디 찾기">
+        <input class="submit-btn " onclick="successFinding()" type="button" value="아이디 찾기">
         <a type="button" class="btn btn-secondary btn-lg btn-block"
            style="text-decoration:none;" th:href="@{/user/login}">로그인 창으로 돌아가기</a>
     </div>
 
 </form>
+<script>
+/*아이디 찾기 요청*/
+function successFinding(){
+    swal({
+        title: "Success!",
+        text: "아이디가 확인됐습니다.",
+        icon: "success",
+    })
+    .then(() => {
+        document.getElementById('findEmail').submit();
+    })
+}
+</script>
 </body>
 </html>
