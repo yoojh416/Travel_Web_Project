@@ -84,7 +84,9 @@ public class MemberService implements UserDetailsService {
      */
     public boolean findEmail(String phoneNo, String name) {
 
-        if (memberRepository.existsByPhoneNo(phoneNo) && memberRepository.existsByName(name)) {
+        Member member = memberRepository.findMember(phoneNo, name);
+
+        if(member != null) {
             return true;
         } else {
             return false;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/security/tags"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="~{layout/layout}">
 <!-- Required meta tags -->
@@ -103,7 +104,7 @@
             </div>
             <hr>
 
-            <div th:fragment="reviewList" th:include="article/list :: reviewList"/>
+            <div sec:authorize="isAuthenticated()" th:fragment="reviewList" th:include="article/list :: reviewList"/>
 
         </div>
 

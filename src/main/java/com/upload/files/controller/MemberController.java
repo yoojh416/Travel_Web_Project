@@ -267,7 +267,7 @@ public class MemberController {
         String phoneNo = request.getParameter("phoneNo");
         String name = request.getParameter("name");
 
-        if (memberService.findEmail(phoneNo, name)) {
+        if (memberService.findEmail(phoneNo,name)){
             Member member = memberRepository.findMember(phoneNo, name);
             model.addAttribute("member", member);
 
